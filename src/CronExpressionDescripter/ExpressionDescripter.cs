@@ -11,7 +11,7 @@ namespace CronExpressionDescripter
     /// </summary>
     public class ExpressionDescripter
     {
-        private string m_cronExpression;
+        private string[] m_cronExpression;
 
         public ExpressionDescripter(string cronExpression)
         {
@@ -24,7 +24,7 @@ namespace CronExpressionDescripter
                 ValueOrError<CrontabSchedule> sc = CrontabSchedule.TryParse(cronExpression);
                 if (!sc.IsError)
                 {
-                    m_cronExpression = cronExpression;
+                    m_cronExpression = cronExpression.Split(' '); ;
                 }
                 else
                 {
@@ -33,30 +33,52 @@ namespace CronExpressionDescripter
             }
         }
 
-        public string GetHumanDescription()
+        public string TimeDescription
         {
-            string description = string.Empty;
-
-            string[] segments = m_cronExpression.Split(' ');
-
-            string timeSegment = GetTimeDescription(segments[0], segments[1]);
-            string dayOfMonthDesc = GetDayOfMonthDescription(segments[2]);
-            string monthDesc = GetMonthDescription(segments[3]);
-            string dayOfWeekDesc = GetDayOfWeekDescription(segments[4]);
-
-            if (!string.IsNullOrEmpty(dayOfMonthDesc))
-            {
-                dayOfWeekDesc = string.Empty;
-            }
-
-            description = string.Format("{0}{1}{2}{3}",
-                timeSegment, dayOfWeekDesc, dayOfMonthDesc, monthDesc);
-
-
-            return description;
+            get { return GetTimeDescription(m_cronExpression[0], m_cronExpression[1]); }
         }
 
-        protected string GetTimeDescription(string minuteExpression, string hourExpression)
+        public string DayOfMonthDescription
+        {
+            get { return GetDayOfMonthDescription(m_cronExpression[2]); }
+        }
+
+        public string MonthDescription
+        {
+            get { return GetMonthDescription(m_cronExpression[3]); }
+        }
+
+        public string DayOfWeekDescription
+        {
+            get { return GetDayOfWeekDescription(m_cronExpression[4]); }
+        }
+
+
+        public string FullDescription
+        {
+            get
+            {
+                string description = string.Empty;
+
+                string timeSegment = this.TimeDescription;
+                string dayOfMonthDesc = this.DayOfMonthDescription;
+                string monthDesc = this.MonthDescription;
+                string dayOfWeekDesc = this.DayOfWeekDescription;
+
+                if (!string.IsNullOrEmpty(dayOfMonthDesc))
+                {
+                    dayOfWeekDesc = string.Empty;
+                }
+
+                description = string.Format("{0}{1}{2}{3}",
+                    timeSegment, dayOfWeekDesc, dayOfMonthDesc, monthDesc);
+
+
+                return description;
+            }
+        }
+
+        public string GetTimeDescription(string minuteExpression, string hourExpression)
         {
             string description = string.Empty;
 
@@ -88,9 +110,8 @@ namespace CronExpressionDescripter
             }
             else
             {
-                description = string.Format("{0}{1}{2}",
+                description = string.Format("{0}{1}",
                     minuteVerboseDescription,
-                    !string.IsNullOrEmpty(hourVerboseDescription) ? ", " : string.Empty,
                     hourVerboseDescription);
             }
 
@@ -121,6 +142,14 @@ namespace CronExpressionDescripter
 
         protected string GetDayOfWeekDescription(string expression)
         {
+            //convert SUN-SAT format to 0-6
+            for (int i = 0; i <= 6; i++)
+            {
+                DayOfWeek currentDay = (DayOfWeek)i;
+                string currentDayOfWeekDescription = currentDay.ToString().Substring(0, 3).ToUpper();
+                expression = expression.Replace(currentDayOfWeekDescription, i.ToString());
+            }
+
             string description = GetSegmentDescription(expression, ", daily",
               (s => ((DayOfWeek)Convert.ToInt32(s)).ToString()),
               (s => string.Format(", every {0} days of the week", s)),
@@ -132,6 +161,14 @@ namespace CronExpressionDescripter
 
         protected string GetMonthDescription(string expression)
         {
+            //convert  JAN-DEC format to 1-12 
+            for (int i = 1; i <= 12; i++)
+            {
+                DateTime currentMonth = new DateTime(DateTime.Now.Year, i, 1);
+                string currentMonthDescription = currentMonth.ToString("MMM").ToUpper();
+                expression = expression.Replace(currentMonthDescription, i.ToString());
+            }
+
             string description = GetSegmentDescription(expression, string.Empty,
                (s => new DateTime(DateTime.Now.Year, Convert.ToInt32(s), 1).ToString("MMMM")),
                (s => string.Format(", every {0} months", s)),

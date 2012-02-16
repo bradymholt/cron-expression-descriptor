@@ -1,2 +1,8 @@
 obj/
 bin/
+/src/CronExpressionDescripter/bin
+/src/CronExpressionDescripter/obj
+/src/CronExpressionDescripter.Test/bin
+/src/CronExpressionDescripter.Test/obj
+/src/TestResults
+/src/CronExpressionDescripter.suo

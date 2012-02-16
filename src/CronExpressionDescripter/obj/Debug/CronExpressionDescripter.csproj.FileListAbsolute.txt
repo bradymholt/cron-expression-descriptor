@@ -1,7 +1,0 @@
-C:\Users\Katie\Desktop\bradyholt-cron-expression-humanizer-402bc81\src\CronExpressionDescripter\bin\Debug\CronExpressionDescripter.dll
-C:\Users\Katie\Desktop\bradyholt-cron-expression-humanizer-402bc81\src\CronExpressionDescripter\bin\Debug\CronExpressionDescripter.pdb
-C:\Users\Katie\Desktop\bradyholt-cron-expression-humanizer-402bc81\src\CronExpressionDescripter\bin\Debug\NCrontab.dll
-C:\Users\Katie\Desktop\bradyholt-cron-expression-humanizer-402bc81\src\CronExpressionDescripter\bin\Debug\NCrontab.pdb
-C:\Users\Katie\Desktop\bradyholt-cron-expression-humanizer-402bc81\src\CronExpressionDescripter\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Katie\Desktop\bradyholt-cron-expression-humanizer-402bc81\src\CronExpressionDescripter\obj\Debug\CronExpressionDescripter.dll
-C:\Users\Katie\Desktop\bradyholt-cron-expression-humanizer-402bc81\src\CronExpressionDescripter\obj\Debug\CronExpressionDescripter.pdb

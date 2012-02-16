@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="1cef8d69-c915-4280-ada0-696ddda27876" name="Katie@KATIE-PC 2012-02-15 22:52:27" runUser="Katie-PC\Katie" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="2bf76d5e-3c9b-49f8-a874-aee42a459e48">
+    <Deployment runDeploymentRoot="Katie_KATIE-PC 2012-02-15 22_52_27">
+      <DeploymentItem filename="C:\Users\Katie\Desktop\bradyholt-cron-expression-humanizer-402bc81\src\CronExpressionDescripter\bin\Debug\CronExpressionDescripter.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2012-02-15T22:52:27.1452255-06:00" queuing="2012-02-15T22:52:27.2642323-06:00" start="2012-02-15T22:52:27.2772330-06:00" finish="2012-02-15T22:52:27.6552547-06:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="14" executed="14" passed="14" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="TestEveryMinute" storage="c:\users\katie\desktop\bradyholt-cron-expression-humanizer-402bc81\src\cronexpressiondescripter.test\bin\debug\cronexpressiondescripter.test.dll" id="bf177ffb-5528-e914-2d54-0be67430bfd4">
+      <Execution id="7d58afd6-b2e0-4396-902d-a70ed39cf462" />
+      <TestMethod codeBase="C:/Users/Katie/Desktop/bradyholt-cron-expression-humanizer-402bc81/src/CronExpressionDescripter.Test/bin/Debug/CronExpressionDescripter.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CronExpressionDescripter.Test.TestFormats, CronExpressionDescripter.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestEveryMinute" />
+    </UnitTest>
+    <UnitTest name="TestMinuteSpan" storage="c:\users\katie\desktop\bradyholt-cron-expression-humanizer-402bc81\src\cronexpressiondescripter.test\bin\debug\cronexpressiondescripter.test.dll" id="ec7c0c1c-9c5c-6aa4-171b-7f6b4f1eaa51">
+      <Execution id="5018150b-3a5a-4e02-8f1a-3ba3fd6ef972" />
+      <TestMethod codeBase="C:/Users/Katie/Desktop/bradyholt-cron-expression-humanizer-402bc81/src/CronExpressionDescripter.Test/bin/Debug/CronExpressionDescripter.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CronExpressionDescripter.Test.TestFormats, CronExpressionDescripter.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestMinuteSpan" />
+    </UnitTest>
+    <UnitTest name="TestNullCronExpression" storage="c:\users\katie\desktop\bradyholt-cron-expression-humanizer-402bc81\src\cronexpressiondescripter.test\bin\debug\cronexpressiondescripter.test.dll" id="cfa4c28b-4ddf-623c-77ae-e42748b2461e">
+      <Execution id="7ddc829b-a8e8-4bf5-bfeb-d6d12562881d" />
+      <TestMethod codeBase="C:/Users/Katie/Desktop/bradyholt-cron-expression-humanizer-402bc81/src/CronExpressionDescripter.Test/bin/Debug/CronExpressionDescripter.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CronExpressionDescripter.Test.TestExceptions, CronExpressionDescripter.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestNullCronExpression" />
+    </UnitTest>
+    <UnitTest name="TestDayOfMonth" storage="c:\users\katie\desktop\bradyholt-cron-expression-humanizer-402bc81\src\cronexpressiondescripter.test\bin\debug\cronexpressiondescripter.test.dll" id="5aebeca6-2919-3df8-19b4-14cfa9591dcd">
+      <Execution id="79466ba9-a7c9-405f-8984-8bc2e4783c0d" />
+      <TestMethod codeBase="C:/Users/Katie/Desktop/bradyholt-cron-expression-humanizer-402bc81/src/CronExpressionDescripter.Test/bin/Debug/CronExpressionDescripter.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CronExpressionDescripter.Test.TestFormats, CronExpressionDescripter.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestDayOfMonth" />
+    </UnitTest>
+    <UnitTest name="TestDailyAtTime" storage="c:\users\katie\desktop\bradyholt-cron-expression-humanizer-402bc81\src\cronexpressiondescripter.test\bin\debug\cronexpressiondescripter.test.dll" id="97bee7b2-7594-5b1f-81d6-95bfa07ebace">
+      <Execution id="a46f7cbd-4432-407e-a036-547428d6bacc" />
+      <TestMethod codeBase="C:/Users/Katie/Desktop/bradyholt-cron-expression-humanizer-402bc81/src/CronExpressionDescripter.Test/bin/Debug/CronExpressionDescripter.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CronExpressionDescripter.Test.TestFormats, CronExpressionDescripter.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestDailyAtTime" />
+    </UnitTest>
+    <UnitTest name="TestTwoMonthsOnly" storage="c:\users\katie\desktop\bradyholt-cron-expression-humanizer-402bc81\src\cronexpressiondescripter.test\bin\debug\cronexpressiondescripter.test.dll" id="74bac9a2-ca70-0f73-034a-fd31ac609a85">
+      <Execution id="4721cdbd-a12a-4d8b-9f8f-49db250ce176" />
+      <TestMethod codeBase="C:/Users/Katie/Desktop/bradyholt-cron-expression-humanizer-402bc81/src/CronExpressionDescripter.Test/bin/Debug/CronExpressionDescripter.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CronExpressionDescripter.Test.TestFormats, CronExpressionDescripter.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestTwoMonthsOnly" />
+    </UnitTest>
+    <UnitTest name="TestEmptyCronExpression" storage="c:\users\katie\desktop\bradyholt-cron-expression-humanizer-402bc81\src\cronexpressiondescripter.test\bin\debug\cronexpressiondescripter.test.dll" id="e6333c2f-3b7f-d9b8-08ac-a0a3c18090d7">
+      <Execution id="0c01688d-867b-49db-a8b3-84e982bc6aba" />
+      <TestMethod codeBase="C:/Users/Katie/Desktop/bradyholt-cron-expression-humanizer-402bc81/src/CronExpressionDescripter.Test/bin/Debug/CronExpressionDescripter.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CronExpressionDescripter.Test.TestExceptions, CronExpressionDescripter.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestEmptyCronExpression" />
+    </UnitTest>
+    <UnitTest name="TestInvalidCronExpression" storage="c:\users\katie\desktop\bradyholt-cron-expression-humanizer-402bc81\src\cronexpressiondescripter.test\bin\debug\cronexpressiondescripter.test.dll" id="c3fce1dc-eadf-e96a-ddfc-b037f607fad0">
+      <Execution id="e237c26a-ba18-49ab-9792-29acd8f559d0" />
+      <TestMethod codeBase="C:/Users/Katie/Desktop/bradyholt-cron-expression-humanizer-402bc81/src/CronExpressionDescripter.Test/bin/Debug/CronExpressionDescripter.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CronExpressionDescripter.Test.TestExceptions, CronExpressionDescripter.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestInvalidCronExpression" />
+    </UnitTest>
+    <UnitTest name="TestEvery5Minutes" storage="c:\users\katie\desktop\bradyholt-cron-expression-humanizer-402bc81\src\cronexpressiondescripter.test\bin\debug\cronexpressiondescripter.test.dll" id="0e8930ad-38d9-3456-a0eb-16d2e9edca14">
+      <Execution id="42a85183-df6f-45ad-8e3e-d0972598fd32" />
+      <TestMethod codeBase="C:/Users/Katie/Desktop/bradyholt-cron-expression-humanizer-402bc81/src/CronExpressionDescripter.Test/bin/Debug/CronExpressionDescripter.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CronExpressionDescripter.Test.TestFormats, CronExpressionDescripter.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestEvery5Minutes" />
+    </UnitTest>
+    <UnitTest name="TestOneMonthOnly" storage="c:\users\katie\desktop\bradyholt-cron-expression-humanizer-402bc81\src\cronexpressiondescripter.test\bin\debug\cronexpressiondescripter.test.dll" id="5ae04d4b-ea17-e1c9-fef1-a824a2ad1453">
+      <Execution id="78dbeaf6-e695-4f38-a6c7-40826094473f" />
+      <TestMethod codeBase="C:/Users/Katie/Desktop/bradyholt-cron-expression-humanizer-402bc81/src/CronExpressionDescripter.Test/bin/Debug/CronExpressionDescripter.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CronExpressionDescripter.Test.TestFormats, CronExpressionDescripter.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestOneMonthOnly" />
+    </UnitTest>
+    <UnitTest name="TestOnceAWeek" storage="c:\users\katie\desktop\bradyholt-cron-expression-humanizer-402bc81\src\cronexpressiondescripter.test\bin\debug\cronexpressiondescripter.test.dll" id="7d39b650-1fa6-b537-2ac9-31d0e4cd6a1a">
+      <Execution id="3024d840-1c8a-4f91-bd70-bdd77a38439a" />
+      <TestMethod codeBase="C:/Users/Katie/Desktop/bradyholt-cron-expression-humanizer-402bc81/src/CronExpressionDescripter.Test/bin/Debug/CronExpressionDescripter.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CronExpressionDescripter.Test.TestFormats, CronExpressionDescripter.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestOnceAWeek" />
+    </UnitTest>
+    <UnitTest name="TestTwoTimesEachAfternoon" storage="c:\users\katie\desktop\bradyholt-cron-expression-humanizer-402bc81\src\cronexpressiondescripter.test\bin\debug\cronexpressiondescripter.test.dll" id="2c4256f9-f75a-caf5-eefa-eac20e451cf7">
+      <Execution id="f84fedb4-910c-462d-b51b-9f6d8c1117d9" />
+      <TestMethod codeBase="C:/Users/Katie/Desktop/bradyholt-cron-expression-humanizer-402bc81/src/CronExpressionDescripter.Test/bin/Debug/CronExpressionDescripter.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CronExpressionDescripter.Test.TestFormats, CronExpressionDescripter.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestTwoTimesEachAfternoon" />
+    </UnitTest>
+    <UnitTest name="TestThreeTimesDaily" storage="c:\users\katie\desktop\bradyholt-cron-expression-humanizer-402bc81\src\cronexpressiondescripter.test\bin\debug\cronexpressiondescripter.test.dll" id="3dbb19f7-559b-6cab-8860-ff4aa093dc3e">
+      <Execution id="324590e6-b1d5-433f-9295-cf320ae9af22" />
+      <TestMethod codeBase="C:/Users/Katie/Desktop/bradyholt-cron-expression-humanizer-402bc81/src/CronExpressionDescripter.Test/bin/Debug/CronExpressionDescripter.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CronExpressionDescripter.Test.TestFormats, CronExpressionDescripter.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestThreeTimesDaily" />
+    </UnitTest>
+    <UnitTest name="TestWeekdaysAtTime" storage="c:\users\katie\desktop\bradyholt-cron-expression-humanizer-402bc81\src\cronexpressiondescripter.test\bin\debug\cronexpressiondescripter.test.dll" id="668a0ebc-e2ce-ae41-cb31-800f85d78d34">
+      <Execution id="600c48ba-82d4-4672-82c1-096abb24ad6e" />
+      <TestMethod codeBase="C:/Users/Katie/Desktop/bradyholt-cron-expression-humanizer-402bc81/src/CronExpressionDescripter.Test/bin/Debug/CronExpressionDescripter.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="CronExpressionDescripter.Test.TestFormats, CronExpressionDescripter.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestWeekdaysAtTime" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="0e8930ad-38d9-3456-a0eb-16d2e9edca14" executionId="42a85183-df6f-45ad-8e3e-d0972598fd32" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2c4256f9-f75a-caf5-eefa-eac20e451cf7" executionId="f84fedb4-910c-462d-b51b-9f6d8c1117d9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3dbb19f7-559b-6cab-8860-ff4aa093dc3e" executionId="324590e6-b1d5-433f-9295-cf320ae9af22" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5ae04d4b-ea17-e1c9-fef1-a824a2ad1453" executionId="78dbeaf6-e695-4f38-a6c7-40826094473f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5aebeca6-2919-3df8-19b4-14cfa9591dcd" executionId="79466ba9-a7c9-405f-8984-8bc2e4783c0d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="668a0ebc-e2ce-ae41-cb31-800f85d78d34" executionId="600c48ba-82d4-4672-82c1-096abb24ad6e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="74bac9a2-ca70-0f73-034a-fd31ac609a85" executionId="4721cdbd-a12a-4d8b-9f8f-49db250ce176" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7d39b650-1fa6-b537-2ac9-31d0e4cd6a1a" executionId="3024d840-1c8a-4f91-bd70-bdd77a38439a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="97bee7b2-7594-5b1f-81d6-95bfa07ebace" executionId="a46f7cbd-4432-407e-a036-547428d6bacc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bf177ffb-5528-e914-2d54-0be67430bfd4" executionId="7d58afd6-b2e0-4396-902d-a70ed39cf462" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c3fce1dc-eadf-e96a-ddfc-b037f607fad0" executionId="e237c26a-ba18-49ab-9792-29acd8f559d0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cfa4c28b-4ddf-623c-77ae-e42748b2461e" executionId="7ddc829b-a8e8-4bf5-bfeb-d6d12562881d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e6333c2f-3b7f-d9b8-08ac-a0a3c18090d7" executionId="0c01688d-867b-49db-a8b3-84e982bc6aba" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ec7c0c1c-9c5c-6aa4-171b-7f6b4f1eaa51" executionId="5018150b-3a5a-4e02-8f1a-3ba3fd6ef972" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="42a85183-df6f-45ad-8e3e-d0972598fd32" testId="0e8930ad-38d9-3456-a0eb-16d2e9edca14" testName="TestEvery5Minutes" computerName="KATIE-PC" duration="00:00:00.0280876" startTime="2012-02-15T22:52:27.2822333-06:00" endTime="2012-02-15T22:52:27.5432483-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="42a85183-df6f-45ad-8e3e-d0972598fd32">
+    </UnitTestResult>
+    <UnitTestResult executionId="f84fedb4-910c-462d-b51b-9f6d8c1117d9" testId="2c4256f9-f75a-caf5-eefa-eac20e451cf7" testName="TestTwoTimesEachAfternoon" computerName="KATIE-PC" duration="00:00:00.0016305" startTime="2012-02-15T22:52:27.5442483-06:00" endTime="2012-02-15T22:52:27.5492486-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f84fedb4-910c-462d-b51b-9f6d8c1117d9">
+    </UnitTestResult>
+    <UnitTestResult executionId="324590e6-b1d5-433f-9295-cf320ae9af22" testId="3dbb19f7-559b-6cab-8860-ff4aa093dc3e" testName="TestThreeTimesDaily" computerName="KATIE-PC" duration="00:00:00.0004234" startTime="2012-02-15T22:52:27.5502487-06:00" endTime="2012-02-15T22:52:27.5542489-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="324590e6-b1d5-433f-9295-cf320ae9af22">
+    </UnitTestResult>
+    <UnitTestResult executionId="78dbeaf6-e695-4f38-a6c7-40826094473f" testId="5ae04d4b-ea17-e1c9-fef1-a824a2ad1453" testName="TestOneMonthOnly" computerName="KATIE-PC" duration="00:00:00.0023150" startTime="2012-02-15T22:52:27.5562490-06:00" endTime="2012-02-15T22:52:27.5622493-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="78dbeaf6-e695-4f38-a6c7-40826094473f">
+    </UnitTestResult>
+    <UnitTestResult executionId="79466ba9-a7c9-405f-8984-8bc2e4783c0d" testId="5aebeca6-2919-3df8-19b4-14cfa9591dcd" testName="TestDayOfMonth" computerName="KATIE-PC" duration="00:00:00.0005673" startTime="2012-02-15T22:52:27.5632494-06:00" endTime="2012-02-15T22:52:27.5672496-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="79466ba9-a7c9-405f-8984-8bc2e4783c0d">
+    </UnitTestResult>
+    <UnitTestResult executionId="600c48ba-82d4-4672-82c1-096abb24ad6e" testId="668a0ebc-e2ce-ae41-cb31-800f85d78d34" testName="TestWeekdaysAtTime" computerName="KATIE-PC" duration="00:00:00.0004927" startTime="2012-02-15T22:52:27.5692497-06:00" endTime="2012-02-15T22:52:27.5722499-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="600c48ba-82d4-4672-82c1-096abb24ad6e">
+    </UnitTestResult>
+    <UnitTestResult executionId="4721cdbd-a12a-4d8b-9f8f-49db250ce176" testId="74bac9a2-ca70-0f73-034a-fd31ac609a85" testName="TestTwoMonthsOnly" computerName="KATIE-PC" duration="00:00:00.0003334" startTime="2012-02-15T22:52:27.5732500-06:00" endTime="2012-02-15T22:52:27.5772502-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4721cdbd-a12a-4d8b-9f8f-49db250ce176">
+    </UnitTestResult>
+    <UnitTestResult executionId="3024d840-1c8a-4f91-bd70-bdd77a38439a" testId="7d39b650-1fa6-b537-2ac9-31d0e4cd6a1a" testName="TestOnceAWeek" computerName="KATIE-PC" duration="00:00:00.0003606" startTime="2012-02-15T22:52:27.5792503-06:00" endTime="2012-02-15T22:52:27.5822505-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3024d840-1c8a-4f91-bd70-bdd77a38439a">
+    </UnitTestResult>
+    <UnitTestResult executionId="a46f7cbd-4432-407e-a036-547428d6bacc" testId="97bee7b2-7594-5b1f-81d6-95bfa07ebace" testName="TestDailyAtTime" computerName="KATIE-PC" duration="00:00:00.0002868" startTime="2012-02-15T22:52:27.5832505-06:00" endTime="2012-02-15T22:52:27.5862507-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a46f7cbd-4432-407e-a036-547428d6bacc">
+    </UnitTestResult>
+    <UnitTestResult executionId="7d58afd6-b2e0-4396-902d-a70ed39cf462" testId="bf177ffb-5528-e914-2d54-0be67430bfd4" testName="TestEveryMinute" computerName="KATIE-PC" duration="00:00:00.0003590" startTime="2012-02-15T22:52:27.5872508-06:00" endTime="2012-02-15T22:52:27.5912510-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7d58afd6-b2e0-4396-902d-a70ed39cf462">
+    </UnitTestResult>
+    <UnitTestResult executionId="e237c26a-ba18-49ab-9792-29acd8f559d0" testId="c3fce1dc-eadf-e96a-ddfc-b037f607fad0" testName="TestInvalidCronExpression" computerName="KATIE-PC" duration="00:00:00.0032397" startTime="2012-02-15T22:52:27.6222528-06:00" endTime="2012-02-15T22:52:27.6282531-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e237c26a-ba18-49ab-9792-29acd8f559d0">
+    </UnitTestResult>
+    <UnitTestResult executionId="7ddc829b-a8e8-4bf5-bfeb-d6d12562881d" testId="cfa4c28b-4ddf-623c-77ae-e42748b2461e" testName="TestNullCronExpression" computerName="KATIE-PC" duration="00:00:00.0004805" startTime="2012-02-15T22:52:27.6292532-06:00" endTime="2012-02-15T22:52:27.6332534-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7ddc829b-a8e8-4bf5-bfeb-d6d12562881d">
+    </UnitTestResult>
+    <UnitTestResult executionId="0c01688d-867b-49db-a8b3-84e982bc6aba" testId="e6333c2f-3b7f-d9b8-08ac-a0a3c18090d7" testName="TestEmptyCronExpression" computerName="KATIE-PC" duration="00:00:00.0004834" startTime="2012-02-15T22:52:27.6332534-06:00" endTime="2012-02-15T22:52:27.6372536-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0c01688d-867b-49db-a8b3-84e982bc6aba">
+    </UnitTestResult>
+    <UnitTestResult executionId="5018150b-3a5a-4e02-8f1a-3ba3fd6ef972" testId="ec7c0c1c-9c5c-6aa4-171b-7f6b4f1eaa51" testName="TestMinuteSpan" computerName="KATIE-PC" duration="00:00:00.0005494" startTime="2012-02-15T22:52:27.6382537-06:00" endTime="2012-02-15T22:52:27.6412539-06:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5018150b-3a5a-4e02-8f1a-3ba3fd6ef972">
+    </UnitTestResult>
+  </Results>
+</TestRun>

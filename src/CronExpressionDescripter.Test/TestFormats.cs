@@ -95,10 +95,17 @@ namespace CronExpressionDescripter.Test
         }
 
         [TestMethod]
-        public void TestMonthNameRange()
+        public void TestMonthNameRange2()
         {
             ExpressionDescripter ceh = new ExpressionDescripter("23 12 * JAN-FEB *");
-            Assert.AreEqual("At 12:23 PM, daily, between January and February", ceh.FullDescription);
+            Assert.AreEqual("At 12:23 PM, daily, January-February", ceh.FullDescription);
+        }
+
+        [TestMethod]
+        public void TestMonthNameRange3()
+        {
+            ExpressionDescripter ceh = new ExpressionDescripter("23 12 * JAN-MAR *");
+            Assert.AreEqual("At 12:23 PM, daily, January-March", ceh.FullDescription);
         }
 
         [TestMethod]

@@ -172,7 +172,7 @@ namespace CronExpressionDescripter
             string description = GetSegmentDescription(expression, string.Empty,
                (s => new DateTime(DateTime.Now.Year, Convert.ToInt32(s), 1).ToString("MMMM")),
                (s => string.Format(", every {0} months", s)),
-               (s => ", between {0} and {1}"),
+               (s => ", {0}-{1}"),
                (s => ", only in {0}"));
 
             return description;

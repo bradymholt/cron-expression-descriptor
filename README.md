@@ -1,4 +1,4 @@
-# cron-expression-descripter
+# cron-expression-descriptor
 A C# library that converts cron expressions into human readable strings.  
 Author: Brady Holt (http://www.geekytidbits.com)  
 License: MIT

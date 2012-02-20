@@ -3,9 +3,9 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CronExpressionDescripter;
+using CronExpressionDescriptor;
 
-namespace CronExpressionDescripter.Test
+namespace CronExpressionDescriptor.Test
 {
     [TestClass]
     public class TestFormats

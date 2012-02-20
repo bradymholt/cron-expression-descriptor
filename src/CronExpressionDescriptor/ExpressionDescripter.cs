@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using NCrontab;
 
-namespace CronExpressionDescripter
+namespace CronExpressionDescriptor
 {
     /// <summary>
     /// Converts cron expressions into human readable strings.

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EBD2EEF7-FE3F-4627-8931-BACA70D80B03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronExpressionDescripter", "CronExpressionDescripter\CronExpressionDescripter.csproj", "{BD023841-603A-4B09-A3B1-522664C1E274}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronExpressionDescriptor", "CronExpressionDescriptor\CronExpressionDescriptor.csproj", "{BD023841-603A-4B09-A3B1-522664C1E274}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronExpressionDescripter.Test", "CronExpressionDescripter.Test\CronExpressionDescripter.Test.csproj", "{8544E66A-B914-4A85-BF14-5E320015299F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronExpressionDescriptor.Test", "CronExpressionDescriptor.Test\CronExpressionDescriptor.Test.csproj", "{8544E66A-B914-4A85-BF14-5E320015299F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

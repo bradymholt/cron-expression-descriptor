@@ -13,21 +13,21 @@ namespace CronExpressionDescriptor.Test
         [ExpectedException(typeof(MissingFieldException))]
         public void TestNullCronExpression()
         {
-            ExpressionDescripter ceh = new ExpressionDescripter(null);
+            ExpressionDescriptor ceh = new ExpressionDescriptor(null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(MissingFieldException))]
         public void TestEmptyCronExpression()
         {
-            ExpressionDescripter ceh = new ExpressionDescripter("");
+            ExpressionDescriptor ceh = new ExpressionDescriptor("");
         }
 
         [TestMethod]
         [ExpectedException(typeof(FormatException))]
         public void TestInvalidCronExpression()
         {
-            ExpressionDescripter ceh = new ExpressionDescripter("INVALID");
+            ExpressionDescriptor ceh = new ExpressionDescriptor("INVALID");
             string result = ceh.FullDescription;
         }
     }

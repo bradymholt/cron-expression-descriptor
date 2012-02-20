@@ -9,11 +9,11 @@ namespace CronExpressionDescriptor
     /// <summary>
     /// Converts cron expressions into human readable strings.
     /// </summary>
-    public class ExpressionDescripter
+    public class ExpressionDescriptor
     {
         private string[] m_cronExpression;
 
-        public ExpressionDescripter(string cronExpression)
+        public ExpressionDescriptor(string cronExpression)
         {
             if (string.IsNullOrEmpty(cronExpression))
             {

@@ -17,7 +17,7 @@ namespace CronExpressionDescriptor
         {
             if (string.IsNullOrEmpty(cronExpression))
             {
-                throw new MissingFieldException("CronExpressionHumanizer", "cronExpression");
+                throw new MissingFieldException("ExpressionDescriptor", "cronExpression");
             }
             else
             {

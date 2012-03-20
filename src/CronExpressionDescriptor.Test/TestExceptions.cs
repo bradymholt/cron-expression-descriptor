@@ -28,7 +28,7 @@ namespace CronExpressionDescriptor.Test
         public void TestInvalidCronExpression()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("INVALID");
-            string result = ceh.FullDescription;
+            string result = ceh.GetDescription();
         }
     }
 }

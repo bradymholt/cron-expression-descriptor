@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace CronExpressionDescriptor
 {
@@ -10,24 +12,16 @@ namespace CronExpressionDescriptor
     /// </summary>
     public class ExpressionDescriptor
     {
-        private ExpressionTypeEnum m_type;
         private string m_expression;
         private Options m_options;
-        private string m_secondsExpression;
-        private string m_minutesExpression;
-        private string m_hoursExpression;
-        private string m_dayOfMonthExpression;
-        private string m_monthExpression;
-        private string m_dayOfWeekExpression;
-        private string m_yearExpression;
+        private string[] m_expressionParts;
 
-        public ExpressionDescriptor(string expression) : this(ExpressionTypeEnum.Crontab, expression) { }
-        public ExpressionDescriptor(ExpressionTypeEnum type, string expression) : this(type, expression, new Options()) { }
-        public ExpressionDescriptor(ExpressionTypeEnum type, string expression, Options options)
+        public ExpressionDescriptor(string expression) : this(expression, new Options()) { }
+        public ExpressionDescriptor(string expression, Options options)
         {
-            m_type = type;
             m_expression = expression;
             m_options = options;
+            m_expressionParts = new string[6];
         }
 
         public string GetDescription()
@@ -36,20 +30,43 @@ namespace CronExpressionDescriptor
 
             if (ParseExpression(m_expression, out description) == true)
             {
-                string timeSegment = this.TimeDescription;
-                string dayOfMonthDesc = this.DayOfMonthDescription;
-                string monthDesc = this.MonthDescription;
-                string dayOfWeekDesc = this.DayOfWeekDescription;
-                string yearDesc = this.YearDescription;
-
-                if (!string.IsNullOrEmpty(dayOfMonthDesc))
+                try
                 {
-                    dayOfWeekDesc = string.Empty;
+                    string timeSegment = this.TimeDescription;
+                    string dayOfMonthDesc = this.DayOfMonthDescription;
+                    string monthDesc = this.MonthDescription;
+                    string dayOfWeekDesc = this.DayOfWeekDescription;
+
+                    if (!string.IsNullOrEmpty(dayOfMonthDesc))
+                    {
+                        dayOfWeekDesc = string.Empty;
+                    }
+
+                    description = string.Format("{0}{1}{2}{3}",
+                        timeSegment, dayOfWeekDesc, dayOfMonthDesc, monthDesc);
+
+                    switch (m_options.CasingType)
+                    {
+                        case CasingTypeEnum.Sentence:
+                            description = string.Concat(char.ToUpper(description[0]), description.Substring(1));
+                            break;
+                        case CasingTypeEnum.Title:
+                            description = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(description);
+                            break;
+                        default:
+                            description = description.ToLower();
+                            break;
+
+                    }
                 }
-
-                description = string.Format("{0}{1}{2}{3}{4}",
-                    timeSegment, dayOfWeekDesc, dayOfMonthDesc, monthDesc, yearDesc);
-
+                catch (Exception ex)
+                {
+                    description = "An error occured when generating the expression description.  Check the cron expression syntax.";
+                    if (m_options.ThrowExceptionOnParseError)
+                    {
+                        throw new FormatException(description, ex);
+                    }
+                }
             }
 
             return description;
@@ -62,62 +79,36 @@ namespace CronExpressionDescriptor
 
             if (string.IsNullOrEmpty(expression))
             {
-                result = "expression was empty!";
+                result = "Error: Expression is missing.";
                 exception = new MissingFieldException("ExpressionDescriptor", "expression");
             }
             else
             {
-                string[] expressionParts = expression.Split(' ');
+                string[] expressionPartsTemp = expression.Split(' ');
 
-                if (expressionParts.Length < 5)
+                if (expressionPartsTemp.Length < 5)
                 {
-                    result = string.Format("expression only has {0} parts!", expressionParts.Length);
+                    result = string.Format("Error: Expression only has {0} parts.  At least 5 part are required.", expressionPartsTemp.Length);
                     exception = new FormatException(result);
                 }
-
-                //default seconds and year to empty as these are optional.
-                m_secondsExpression = string.Empty;
-                m_yearExpression = string.Empty;
-
-                switch (m_type)
+                else if (expressionPartsTemp.Length > 6)
                 {
-                    case ExpressionTypeEnum.Quartz:
-                        if (expressionParts.Length < 6)
-                        {
-                            result = string.Format("expression only has {0} parts!  Quartz type requires at least 6 parts.", expressionParts.Length);
-                            exception = new FormatException(result);
-                        }
-                        else
-                        {
-                            m_secondsExpression = expressionParts[0];
-                            m_minutesExpression = expressionParts[1];
-                            m_hoursExpression = expressionParts[2];
-                            m_dayOfMonthExpression = expressionParts[3];
-                            m_monthExpression = expressionParts[4];
-                            m_dayOfWeekExpression = expressionParts[5];
-
-                            if (expressionParts.Length == 7)
-                            {
-                                m_yearExpression = expressionParts[6];
-                            }
-                        }
-                        break;
-                    default:
-                        m_minutesExpression = expressionParts[0];
-                        m_hoursExpression = expressionParts[1];
-                        m_dayOfMonthExpression = expressionParts[2];
-                        m_monthExpression = expressionParts[3];
-                        m_dayOfWeekExpression = expressionParts[4];
-
-                        if (expressionParts.Length == 6)
-                        {
-                            m_yearExpression = expressionParts[5];
-                        }
-                        break;
+                    result = string.Format("Error: Expression has too many parts ({0}).  Expression must not have more than 6 parts.", expressionPartsTemp.Length);
+                    exception = new FormatException(result);
+                }
+                else if (expressionPartsTemp.Length == 5)
+                {
+                    //5 part cron so defualt seconds to empty and shift array
+                    m_expressionParts[0] = string.Empty;
+                    Array.Copy(expressionPartsTemp, 0, m_expressionParts, 1, 5);
+                }
+                else if (expressionPartsTemp.Length == 6)
+                {
+                    m_expressionParts = expressionPartsTemp;
                 }
             }
 
-            if (m_options.ThrowExceptionOnParseError)
+            if (exception != null && m_options.ThrowExceptionOnParseError)
             {
                 throw exception;
             }
@@ -127,102 +118,106 @@ namespace CronExpressionDescriptor
 
         private string TimeDescription
         {
-            get { return GetTimeDescription(m_secondsExpression, m_minutesExpression, m_hoursExpression); }
+            get { return GetTimeDescription(m_expressionParts[0], m_expressionParts[1], m_expressionParts[2]); }
         }
 
         private string DayOfMonthDescription
         {
-            get { return GetDayOfMonthDescription(m_dayOfMonthExpression); }
+            get { return GetDayOfMonthDescription(m_expressionParts[3]); }
         }
 
         private string MonthDescription
         {
-            get { return GetMonthDescription(m_monthExpression); }
+            get { return GetMonthDescription(m_expressionParts[4]); }
         }
 
         private string DayOfWeekDescription
         {
-            get { return GetDayOfWeekDescription(m_dayOfWeekExpression); }
-        }
-
-        private string YearDescription
-        {
-            get { return GetYearDescription(m_yearExpression); }
+            get { return GetDayOfWeekDescription(m_expressionParts[5]); }
         }
 
         private string GetTimeDescription(string secondsExpression, string minuteExpression, string hourExpression)
         {
             string description = string.Empty;
 
-            string minuteVerboseDescription = GetMinuteDescription(minuteExpression);
-            string hourVerboseDescription = GetHourDescription(hourExpression);
-            string secondVerboseDescription = GetSecondDescription(secondsExpression);
-
             if (minuteExpression.IndexOfAny(new char[] { '/', '-', ',', '*' }) == -1
                 && hourExpression.IndexOfAny(new char[] { '/', '-', ',', '*' }) == -1
                 && secondsExpression.IndexOfAny(new char[] { '/', '-', ',', '*' }) == -1)
             {
+                //specific time of day
                 description = string.Concat("At ", FormatTime(hourExpression, minuteExpression, secondsExpression));
-            }
-            else if (minuteExpression.IndexOfAny(new char[] { '/', '-', ',', '*' }) == -1
-                && secondsExpression.IndexOfAny(new char[] { '/', '-', ',', '*' }) == -1
-               && hourExpression.Contains(","))
-            {
-                description = GetSegmentDescription(hourExpression, string.Empty,
-                     (s => FormatTime(s, minuteExpression, secondsExpression)),
-                     (s => string.Empty),
-                     (s => string.Empty),
-                     (s => "At {0}"));
-            }
-            else if (minuteExpression.Contains("-")
-                && hourExpression.IndexOfAny(new char[] { '/', '-', ',', '*' }) == -1)
-            {
-                description = GetSegmentDescription(minuteExpression, string.Empty,
-                    (s => FormatTime(hourExpression, s, secondsExpression)),
-                    (s => string.Empty),
-                    (s => "Every minute between {0} and {1}"),
-                    (s => string.Empty));
             }
             else
             {
-                description = string.Format("{0}{1}{2}",
-                    minuteVerboseDescription,
-                    hourVerboseDescription,
-                    secondVerboseDescription);
+                bool isBetweenMinutesInSingleHourFormat = minuteExpression.Contains("-") && hourExpression.IndexOfAny(new char[] { '/', '-', ',', '*' }) == -1;
+                bool isBetweenMinutesInMultipleHourFormat = minuteExpression.Contains("-") && hourExpression.IndexOfAny(new char[] { '/', '-', ',', '*' }) > -1;
+                bool isSpecificMinuteFormat = minuteExpression.IndexOfAny(new char[] { '/', '-', ',', '*' }) == -1;
+                bool isSpecificSecondsFormat = secondsExpression.IndexOfAny(new char[] { '/', '-', ',', '*' }) == -1;
+
+                string secondVerboseDescription = GetSegmentDescription(secondsExpression,
+                    "every second",
+                  (s => string.Concat(":", s.PadLeft(2, '0'))),
+                  (s => string.Format("every {0} seconds", s)),
+                  (s => "every second between {0} and {1}"),
+                  (s => s == "0" ? string.Empty : "at seconds {0}"));
+
+                string minuteVerboseDescription = GetSegmentDescription(minuteExpression,
+                   !string.IsNullOrEmpty(secondsExpression) ? string.Empty : "every minute",
+                   (s =>
+                     {
+                         if (isBetweenMinutesInSingleHourFormat)
+                         {
+                             return FormatTime(hourExpression, s, secondsExpression);
+                         }
+                         else if (isBetweenMinutesInMultipleHourFormat)
+                         {
+                             return string.Concat(":", s.PadLeft(2, '0'));
+                         }
+                         else
+                         {
+                             return string.Empty;
+                         }
+
+                     }),
+                   (s => string.Format("every {0} minutes", s)),
+                   (s => isBetweenMinutesInSingleHourFormat ? "every minute between {0} and {1}" : "between the minutes of {0} and {1}"),
+                   (s => isSpecificMinuteFormat ? string.Empty : "at {0}")
+                );
+
+
+                string hourVerboseDescription = GetSegmentDescription(hourExpression,
+                    string.Empty,
+                    (s =>
+                    {
+                        if (isBetweenMinutesInMultipleHourFormat)
+                        {
+                            return FormatTime(s, "00", string.Empty);
+                        }
+                        else
+                        {
+                            return FormatTime(s, isSpecificMinuteFormat ? minuteExpression : "00", secondsExpression);
+                        }
+                    }),
+                 (s => string.Format(", every {0} hours", s)),
+                 (s => "between the hours of {0} and {1}"),
+                 (s => isBetweenMinutesInSingleHourFormat ? string.Empty : "at {0}"));
+
+                description += secondVerboseDescription;
+
+                if (description.Length > 0 && !string.IsNullOrEmpty(minuteVerboseDescription))
+                {
+                    description += ", ";
+                }
+
+                description += minuteVerboseDescription;
+
+                if (description.Length > 0 && !string.IsNullOrEmpty(hourVerboseDescription))
+                {
+                    description += ", ";
+                }
+
+                description += hourVerboseDescription;
             }
-
-            return description;
-        }
-
-        protected string GetSecondDescription(string expression)
-        {
-            string description = GetSegmentDescription(expression, "Every second",
-           (s => string.Concat(":", s)),
-           (s => string.Format("Every {0} seconds", s)),
-           (s => "Every second between {0} and {1}"),
-           (s => "At {0}"));
-
-            return description;
-        }
-
-        protected string GetMinuteDescription(string expression)
-        {
-            string description = GetSegmentDescription(expression, "Every minute",
-           (s => string.Concat(":", s)),
-           (s => string.Format("Every {0} minutes", s)),
-           (s => "Every minute between {0} and {1}"),
-           (s => "At {0}"));
-
-            return description;
-        }
-
-        protected string GetHourDescription(string expression)
-        {
-            string description = GetSegmentDescription(expression, string.Empty,
-            (s => FormatTime(s, "00", string.Empty)),
-            (s => string.Format(", every {0} hours", s)),
-            (s => ", between the hours of {0} and {1}"),
-            (s => ", at {0}"));
 
             return description;
         }
@@ -239,7 +234,8 @@ namespace CronExpressionDescriptor
                 expression = expression.Replace(currentDayOfWeekDescription, i.ToString());
             }
 
-            string description = GetSegmentDescription(expression, ", daily",
+            string description = GetSegmentDescription(expression,
+                string.Empty,
               (s =>
               {
                   string exp = s;
@@ -330,7 +326,8 @@ namespace CronExpressionDescriptor
             }
             else
             {
-                description = GetSegmentDescription(expression, string.Empty,
+                description = GetSegmentDescription(expression,
+                    string.Empty,
                     (s => s),
                     (s => ", every {0} days"),
                     (s => ", between day {0} and {1} of the month"),
@@ -340,30 +337,20 @@ namespace CronExpressionDescriptor
             return description;
         }
 
-        protected string GetYearDescription(string expression)
-        {
-            string description = string.Empty;
-            if (!string.IsNullOrEmpty(expression))
-            {
-                description = GetSegmentDescription(expression, string.Empty,
-              (s => s),
-              (s => string.Format(", every {0} years", s)),
-              (s => ", {0}-{1}"),
-              (s => ", only in the year {0}"));
-            }
-
-            return description;
-        }
-
-        protected string GetSegmentDescription(string expression, string allDescription,
+        protected string GetSegmentDescription(string expression,
+            string allDescription,
             Func<string, string> getSingleItemDescription,
             Func<string, string> getIntervalDescriptionFormat,
             Func<string, string> getBetweenDescriptionFormat,
             Func<string, string> getDescriptionFormat)
         {
-            string description = string.Empty;
+            string description = null;
 
-            if (expression == "*")
+            if (string.IsNullOrEmpty(expression))
+            {
+                description = string.Empty;
+            }
+            else if (expression == "*")
             {
                 description = allDescription;
             }
@@ -417,7 +404,11 @@ namespace CronExpressionDescriptor
             string amPM = hour >= 12 ? "PM" : "AM";
             if (hour > 12) { hour -= 12; }
             string minute = Convert.ToInt32(minuteExpression).ToString();
-            string second = string.IsNullOrEmpty(secondExpression) ? string.Empty : string.Concat(":", Convert.ToInt32(secondExpression).ToString());
+            string second = string.Empty;
+            if (!string.IsNullOrEmpty(secondExpression))
+            {
+                second = string.Concat(":", Convert.ToInt32(secondExpression).ToString().PadLeft(2, '0'));
+            }
 
             return string.Format("{0}:{1}{2} {3}",
                 hour.ToString().PadLeft(2, '0'), minute.PadLeft(2, '0'), second, amPM);

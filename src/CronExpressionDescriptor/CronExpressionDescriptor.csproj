@@ -40,8 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CasingTypeEnum.cs" />
     <Compile Include="ExpressionDescriptor.cs" />
-    <Compile Include="ExpressionTypeEnum.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

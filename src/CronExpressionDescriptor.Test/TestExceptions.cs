@@ -11,24 +11,64 @@ namespace CronExpressionDescriptor.Test
     {
         [TestMethod]
         [ExpectedException(typeof(MissingFieldException))]
-        public void TestNullCronExpression()
+        public void TestNullCronExpressionException()
         {
-            ExpressionDescriptor ceh = new ExpressionDescriptor(null);
+            Options options = new Options() { ThrowExceptionOnParseError = true };
+            ExpressionDescriptor ceh = new ExpressionDescriptor(null, options);
+            ceh.GetDescription();
         }
 
         [TestMethod]
         [ExpectedException(typeof(MissingFieldException))]
-        public void TestEmptyCronExpression()
+        public void TestEmptyCronExpressionException()
         {
-            ExpressionDescriptor ceh = new ExpressionDescriptor("");
+            Options options = new Options() { ThrowExceptionOnParseError = true };
+            ExpressionDescriptor ceh = new ExpressionDescriptor(null, options);
+            ceh.GetDescription();
+        }
+
+        [TestMethod]
+        public void TestNullCronExpressionError()
+        {
+            Options options = new Options() { ThrowExceptionOnParseError = false };
+            ExpressionDescriptor ceh = new ExpressionDescriptor(null, options);
+            string description = ceh.GetDescription();
+            Assert.AreEqual("Error: Expression was empty.", ceh.GetDescription());
         }
 
         [TestMethod]
         [ExpectedException(typeof(FormatException))]
-        public void TestInvalidCronExpression()
+        public void TestInvalidCronExpressionException()
         {
-            ExpressionDescriptor ceh = new ExpressionDescriptor("INVALID");
-            string result = ceh.GetDescription();
+            Options options = new Options() { ThrowExceptionOnParseError = true };
+            ExpressionDescriptor ceh = new ExpressionDescriptor("INVALID", options);
+            ceh.GetDescription();
+        }
+
+        [TestMethod]
+        public void TestInvalidCronExpressionError()
+        {
+            Options options = new Options() { ThrowExceptionOnParseError = false };
+            ExpressionDescriptor ceh = new ExpressionDescriptor("INVALID CRON", options);
+            string description = ceh.GetDescription();
+            Assert.AreEqual("Error: Expression has 2 parts.  At least 5 part are required.", ceh.GetDescription());
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(FormatException))]
+        public void TestInvalidSyntaxException()
+        {
+            Options options = new Options() { ThrowExceptionOnParseError = true };
+            ExpressionDescriptor ceh = new ExpressionDescriptor("* $ * * *", options);
+            string description = ceh.GetDescription();
+        }
+
+        [TestMethod]
+        public void TestInvalidSyntaxError()
+        {
+            Options options = new Options() { ThrowExceptionOnParseError = false };
+            ExpressionDescriptor ceh = new ExpressionDescriptor("* $ * * *", options);
+            Assert.AreEqual("An error occured when generating description.  Check the cron expression syntax.", ceh.GetDescription());
         }
     }
 }

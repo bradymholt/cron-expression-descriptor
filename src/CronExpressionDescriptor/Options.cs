@@ -9,9 +9,11 @@ namespace CronExpressionDescriptor
     {
         public Options()
         {
-            this.ThrowExceptionOnParseError = false;
+            this.ThrowExceptionOnParseError = true;
+            this.CasingType = CasingTypeEnum.Sentence;
         }
 
         public bool ThrowExceptionOnParseError { get; set; }
+        public CasingTypeEnum CasingType { get; set; }
     }
 }

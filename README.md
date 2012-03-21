@@ -194,7 +194,6 @@ License: MIT
             Assert.AreEqual("At seconds :30, every 5 minutes", ceh.GetDescription());
         }
         
-        
 **Notes**          
 
  * Supports 5 or 6 (w/ seconds) part cron expressions.

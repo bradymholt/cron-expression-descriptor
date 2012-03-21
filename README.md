@@ -5,7 +5,7 @@ License: MIT
 
 **Usage Examples (as Unit Tests)**  
 
-         [TestMethod]
+        [TestMethod]
         public void TestEveryMinute()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("* * * * *");

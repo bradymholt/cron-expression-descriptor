@@ -33,7 +33,7 @@ namespace CronExpressionDescriptor.Test
             Options options = new Options() { ThrowExceptionOnParseError = false };
             ExpressionDescriptor ceh = new ExpressionDescriptor(null, options);
             string description = ceh.GetDescription();
-            Assert.AreEqual("Error: Expression was empty.", ceh.GetDescription());
+            Assert.AreEqual("Error: Expression is missing.", ceh.GetDescription());
         }
 
         [TestMethod]
@@ -51,7 +51,7 @@ namespace CronExpressionDescriptor.Test
             Options options = new Options() { ThrowExceptionOnParseError = false };
             ExpressionDescriptor ceh = new ExpressionDescriptor("INVALID CRON", options);
             string description = ceh.GetDescription();
-            Assert.AreEqual("Error: Expression has 2 parts.  At least 5 part are required.", ceh.GetDescription());
+            Assert.AreEqual("Error: Expression only has 2 parts.  At least 5 part are required.", ceh.GetDescription());
         }
 
         [TestMethod]
@@ -68,7 +68,7 @@ namespace CronExpressionDescriptor.Test
         {
             Options options = new Options() { ThrowExceptionOnParseError = false };
             ExpressionDescriptor ceh = new ExpressionDescriptor("* $ * * *", options);
-            Assert.AreEqual("An error occured when generating description.  Check the cron expression syntax.", ceh.GetDescription());
+            Assert.AreEqual("An error occured when generating the expression description.  Check the cron expression syntax.", ceh.GetDescription());
         }
     }
 }

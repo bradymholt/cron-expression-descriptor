@@ -108,12 +108,48 @@ namespace CronExpressionDescriptor
                 }
             }
 
-            if (exception != null && m_options.ThrowExceptionOnParseError)
+            if (exception != null)
             {
-                throw exception;
+                if (m_options.ThrowExceptionOnParseError)
+                {
+                    throw exception;
+                }
+            }
+            else
+            {
+                NormalizeExpression();
             }
 
             return (exception == null);
+        }
+
+        private void NormalizeExpression()
+        {
+            //convert ? to * only for DOM and DOW
+            m_expressionParts[3] = m_expressionParts[3].Replace("?", "*");
+            m_expressionParts[5] = m_expressionParts[5].Replace("?", "*");
+
+            //convert 0/ to */
+            for (int i = 0; i < 6; i++)
+            {
+                m_expressionParts[i] = m_expressionParts[i].Replace("0/", "*/");
+            }
+
+            //convert SUN-SAT format to 0-6 format
+            for (int i = 0; i <= 6; i++)
+            {
+                DayOfWeek currentDay = (DayOfWeek)i;
+                string currentDayOfWeekDescription = currentDay.ToString().Substring(0, 3).ToUpper();
+                m_expressionParts[5] = m_expressionParts[5].Replace(currentDayOfWeekDescription, i.ToString());
+            }
+
+            //convert  JAN-DEC format to 1-12 format
+            for (int i = 1; i <= 12; i++)
+            {
+                DateTime currentMonth = new DateTime(DateTime.Now.Year, i, 1);
+                string currentMonthDescription = currentMonth.ToString("MMM").ToUpper();
+                m_expressionParts[4] = m_expressionParts[4].Replace(currentMonthDescription, i.ToString());
+            }
         }
 
         private string TimeDescription
@@ -151,15 +187,16 @@ namespace CronExpressionDescriptor
             {
                 bool isBetweenMinutesInSingleHourFormat = minuteExpression.Contains("-") && hourExpression.IndexOfAny(new char[] { '/', '-', ',', '*' }) == -1;
                 bool isBetweenMinutesInMultipleHourFormat = minuteExpression.Contains("-") && hourExpression.IndexOfAny(new char[] { '/', '-', ',', '*' }) > -1;
+                bool isBetweenHoursInSingleMinuteFormat = hourExpression.Contains("-") && minuteExpression.IndexOfAny(new char[] { '/', '-', ',', '*' }) == -1;
                 bool isSpecificMinuteFormat = minuteExpression.IndexOfAny(new char[] { '/', '-', ',', '*' }) == -1;
                 bool isSpecificSecondsFormat = secondsExpression.IndexOfAny(new char[] { '/', '-', ',', '*' }) == -1;
 
                 string secondVerboseDescription = GetSegmentDescription(secondsExpression,
                     "every second",
-                  (s => string.Concat(":", s.PadLeft(2, '0'))),
+                  (s => s.PadLeft(2, '0')),
                   (s => string.Format("every {0} seconds", s)),
-                  (s => "every second between {0} and {1}"),
-                  (s => s == "0" ? string.Empty : "at seconds {0}"));
+                  (s => "seconds {0} through {1} past the minute"),
+                  (s => s == "0" ? string.Empty : "at {0} seconds past the minute"));
 
                 string minuteVerboseDescription = GetSegmentDescription(minuteExpression,
                    !string.IsNullOrEmpty(secondsExpression) ? string.Empty : "every minute",
@@ -171,7 +208,11 @@ namespace CronExpressionDescriptor
                          }
                          else if (isBetweenMinutesInMultipleHourFormat)
                          {
-                             return string.Concat(":", s.PadLeft(2, '0'));
+                             return s.PadLeft(2, '0');
+                         }
+                         else if (isBetweenHoursInSingleMinuteFormat)
+                         {
+                             return string.Concat(s, " minutes past the hour");
                          }
                          else
                          {
@@ -179,9 +220,9 @@ namespace CronExpressionDescriptor
                          }
 
                      }),
-                   (s => string.Format("every {0} minutes", s)),
-                   (s => isBetweenMinutesInSingleHourFormat ? "every minute between {0} and {1}" : "between the minutes of {0} and {1}"),
-                   (s => isSpecificMinuteFormat ? string.Empty : "at {0}")
+                     (s => string.Format("every {0} minute{1}", s, (s == "1" ? string.Empty : "s"))),
+                   (s => isBetweenMinutesInSingleHourFormat ? "every minute between {0} and {1}" : "between {0} and {1} minutes past the hour"),
+                   (s => isSpecificMinuteFormat && !isBetweenHoursInSingleMinuteFormat ? string.Empty : "at {0}")
                 );
 
 
@@ -189,7 +230,7 @@ namespace CronExpressionDescriptor
                     string.Empty,
                     (s =>
                     {
-                        if (isBetweenMinutesInMultipleHourFormat)
+                        if (isBetweenMinutesInMultipleHourFormat || isBetweenHoursInSingleMinuteFormat)
                         {
                             return FormatTime(s, "00", string.Empty);
                         }
@@ -199,8 +240,22 @@ namespace CronExpressionDescriptor
                         }
                     }),
                  (s => string.Format(", every {0} hours", s)),
-                 (s => "between the hours of {0} and {1}"),
-                 (s => isBetweenMinutesInSingleHourFormat ? string.Empty : "at {0}"));
+                 (s => "during hours {0} and {1}"),
+                 (s =>
+                     {
+                         if (isBetweenMinutesInSingleHourFormat)
+                         {
+                             return string.Empty;
+                         }
+                         else if (isBetweenMinutesInMultipleHourFormat)
+                         {
+                             return "during {0}";
+                         }
+                         else
+                         {
+                             return "at {0}";
+                         }
+                     }));
 
                 description += secondVerboseDescription;
 
@@ -224,16 +279,6 @@ namespace CronExpressionDescriptor
 
         protected string GetDayOfWeekDescription(string expression)
         {
-            expression = expression.Replace("?", "*");
-
-            //convert SUN-SAT format to 0-6
-            for (int i = 0; i <= 6; i++)
-            {
-                DayOfWeek currentDay = (DayOfWeek)i;
-                string currentDayOfWeekDescription = currentDay.ToString().Substring(0, 3).ToUpper();
-                expression = expression.Replace(currentDayOfWeekDescription, i.ToString());
-            }
-
             string description = GetSegmentDescription(expression,
                 string.Empty,
               (s =>
@@ -251,7 +296,7 @@ namespace CronExpressionDescriptor
                   return ((DayOfWeek)Convert.ToInt32(exp)).ToString();
               }),
               (s => string.Format(", every {0} days of the week", s)),
-              (s => ", {0}-{1}"),
+              (s => ", {0} through {1}"),
               (s =>
               {
                   string format = null;
@@ -287,7 +332,7 @@ namespace CronExpressionDescriptor
                   }
                   else
                   {
-                      format = ", only on {0}s";
+                      format = ", only on {0}";
                   }
 
                   return format;
@@ -298,18 +343,10 @@ namespace CronExpressionDescriptor
 
         protected string GetMonthDescription(string expression)
         {
-            //convert  JAN-DEC format to 1-12 
-            for (int i = 1; i <= 12; i++)
-            {
-                DateTime currentMonth = new DateTime(DateTime.Now.Year, i, 1);
-                string currentMonthDescription = currentMonth.ToString("MMM").ToUpper();
-                expression = expression.Replace(currentMonthDescription, i.ToString());
-            }
-
             string description = GetSegmentDescription(expression, string.Empty,
                (s => new DateTime(DateTime.Now.Year, Convert.ToInt32(s), 1).ToString("MMMM")),
                (s => string.Format(", every {0} months", s)),
-               (s => ", {0}-{1}"),
+               (s => ", {0} through {1}"),
                (s => ", only in {0}"));
 
             return description;
@@ -361,6 +398,14 @@ namespace CronExpressionDescriptor
             else if (expression.Contains("/"))
             {
                 description = getIntervalDescriptionFormat(expression.Substring(expression.IndexOf("/") + 1));
+
+                //interval contains 'between' piece (i.e. 2-59/3 )
+                if (expression.Contains("-"))
+                {
+                    string betweenSegmentOfInterval = expression.Substring(0, expression.IndexOf("/"));
+                    string[] segements = betweenSegmentOfInterval.Split('-');
+                    description += ", " + string.Format(getBetweenDescriptionFormat(betweenSegmentOfInterval), getSingleItemDescription(segements[0]), getSingleItemDescription(segements[1]));
+                }
             }
             else if (expression.Contains("-"))
             {

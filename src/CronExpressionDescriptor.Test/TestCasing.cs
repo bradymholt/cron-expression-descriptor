@@ -14,21 +14,21 @@ namespace CronExpressionDescriptor.Test
         public void TestSentenceCasing()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("* * * * *", new Options() { CasingType = CasingTypeEnum.Sentence });
-            Assert.AreEqual("Every minute, daily", ceh.GetDescription());
+            Assert.AreEqual("Every minute", ceh.GetDescription());
         }
 
         [TestMethod]
         public void TestTitleCasing()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("* * * * *", new Options() { CasingType = CasingTypeEnum.Title });
-            Assert.AreEqual("Every Minute, Daily", ceh.GetDescription());
+            Assert.AreEqual("Every Minute", ceh.GetDescription());
         }
 
         [TestMethod]
         public void TestLowerCasing()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("* * * * *", new Options() { CasingType = CasingTypeEnum.LowerCase });
-            Assert.AreEqual("every minute, daily", ceh.GetDescription());
+            Assert.AreEqual("every minute", ceh.GetDescription());
         }
     }
 }

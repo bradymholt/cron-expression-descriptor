@@ -197,4 +197,5 @@ License: MIT
         
 **Notes**          
 
- * Does not support Year in cron expression.
+ * Supports 5 or 6 (w/ seconds) part cron expressions.
+ * Does NOT support Year in cron expression.

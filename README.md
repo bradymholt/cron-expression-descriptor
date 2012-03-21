@@ -195,4 +195,4 @@ License: MIT
         }
         
 **Notes**          
-* Does not support Year in cron expression.
+ * Does not support Year in cron expression.

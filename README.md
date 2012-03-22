@@ -5,7 +5,7 @@ License: MIT
 
 **Download**
 
-If you want to get up and running quickly and just want the library, visit the Downloads page.
+If you want to get up and running quickly and just want the library, [visit the Downloads page](https://github.com/bradyholt/cron-expression-descriptor/downloads).
 
 **Usage Examples (as Unit Tests)**  
 

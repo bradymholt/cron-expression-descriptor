@@ -3,6 +3,12 @@ A C# library that converts cron expressions into human readable strings.
 Author: Brady Holt (http://www.geekytidbits.com)  
 License: MIT
 
+**Notes**          
+
+ * Supports 5 or 6 (w/ seconds) part cron expressions.
+ * Does NOT support Year in cron expression.
+ 
+
 **Download**
 
 If you want to get up and running quickly and just want the library, [visit the Downloads page](https://github.com/bradyholt/cron-expression-descriptor/downloads) and download the latest CronExpressionDescriptor.dll library assembly.
@@ -235,8 +241,3 @@ If you want to get up and running quickly and just want the library, [visit the 
             ExpressionDescriptor ceh = new ExpressionDescriptor("2-59/3 1,9,22 11-26 1-6 ?");
             Assert.AreEqual("Every 3 minutes, between 02 and 59 minutes past the hour, during 01:00 AM, 09:00 AM, and 10:00 PM, between day 11 and 26 of the month, January through June", ceh.GetDescription());
         }
-        
-**Notes**          
-
- * Supports 5 or 6 (w/ seconds) part cron expressions.
- * Does NOT support Year in cron expression.

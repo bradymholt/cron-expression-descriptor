@@ -3,10 +3,11 @@ A C# library that converts cron expressions into human readable strings.
 Author: Brady Holt (http://www.geekytidbits.com)  
 License: MIT
 
-**Notes**          
+**Features**          
 
- * Supports 5 or 6 (w/ seconds) part cron expressions.
- * Does NOT support Year in cron expression.
+ * Supports all cron expression special characters including * / , - ? L W, #.
+ * Supports 5 or 6 (w/ seconds) part cron expressions.  Does NOT support Year in cron expression.
+ * Provides casing options (Sentence, Title, Lower, etc.)
  
 
 **Download**

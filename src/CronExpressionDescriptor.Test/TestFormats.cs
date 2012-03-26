@@ -236,5 +236,13 @@ namespace CronExpressionDescriptor.Test
             ExpressionDescriptor ceh = new ExpressionDescriptor("2-59/3 1,9,22 11-26 1-6 ?");
             Assert.AreEqual("Every 3 minutes, between 02 and 59 minutes past the hour, during 01:00 AM, 09:00 AM, and 10:00 PM, between day 11 and 26 of the month, January through June", ceh.GetDescription());
         }
+
+        [TestMethod]
+        public void TestRecurringFirstOfMonth()
+        {
+            ExpressionDescriptor ceh = new ExpressionDescriptor("0 0 6 1/1 * ?");
+            Assert.AreEqual("At 06:00 AM, every day", ceh.GetDescription());
+            
+        }
     }
 }

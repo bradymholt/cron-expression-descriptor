@@ -129,11 +129,13 @@ namespace CronExpressionDescriptor
             m_expressionParts[3] = m_expressionParts[3].Replace("?", "*");
             m_expressionParts[5] = m_expressionParts[5].Replace("?", "*");
 
-            //convert 0/ to */
-            for (int i = 0; i < 6; i++)
-            {
-                m_expressionParts[i] = m_expressionParts[i].Replace("0/", "*/");
-            }
+            //convert 0/, 1/ to */
+            m_expressionParts[0] = m_expressionParts[0].Replace("0/", "*/"); //seconds
+            m_expressionParts[1] = m_expressionParts[1].Replace("0/", "*/"); //minutes
+            m_expressionParts[2] = m_expressionParts[2].Replace("0/", "*/"); //hours
+            m_expressionParts[3] = m_expressionParts[3].Replace("1/", "*/"); //DOM
+            m_expressionParts[4] = m_expressionParts[4].Replace("1/", "*/"); //Month
+            m_expressionParts[5] = m_expressionParts[5].Replace("1/", "*/"); //DOW
 
             //convert SUN-SAT format to 0-6 format
             for (int i = 0; i <= 6; i++)
@@ -366,7 +368,7 @@ namespace CronExpressionDescriptor
                 description = GetSegmentDescription(expression,
                     string.Empty,
                     (s => s),
-                    (s => ", every {0} days"),
+                    (s => s == "1" ? ", every day" : ", every {0} days"),
                     (s => ", between day {0} and {1} of the month"),
                     (s => ", on day {0} of the month"));
             }
@@ -397,14 +399,15 @@ namespace CronExpressionDescriptor
             }
             else if (expression.Contains("/"))
             {
-                description = getIntervalDescriptionFormat(expression.Substring(expression.IndexOf("/") + 1));
+                string[] segments =  expression.Split('/');
+                description = string.Format(getIntervalDescriptionFormat(segments[1]), getSingleItemDescription(segments[1]));
 
                 //interval contains 'between' piece (i.e. 2-59/3 )
-                if (expression.Contains("-"))
+                if (segments[0].Contains("-"))
                 {
-                    string betweenSegmentOfInterval = expression.Substring(0, expression.IndexOf("/"));
-                    string[] segements = betweenSegmentOfInterval.Split('-');
-                    description += ", " + string.Format(getBetweenDescriptionFormat(betweenSegmentOfInterval), getSingleItemDescription(segements[0]), getSingleItemDescription(segements[1]));
+                    string betweenSegmentOfInterval = segments[0];
+                    string[] betweenSegements = betweenSegmentOfInterval.Split('-');
+                    description += ", " + string.Format(getBetweenDescriptionFormat(betweenSegmentOfInterval), getSingleItemDescription(betweenSegements[0]), getSingleItemDescription(betweenSegements[1]));
                 }
             }
             else if (expression.Contains("-"))
@@ -450,7 +453,7 @@ namespace CronExpressionDescriptor
             if (hour > 12) { hour -= 12; }
             string minute = Convert.ToInt32(minuteExpression).ToString();
             string second = string.Empty;
-            if (!string.IsNullOrEmpty(secondExpression))
+            if (!string.IsNullOrEmpty(secondExpression) && secondExpression != "0")
             {
                 second = string.Concat(":", Convert.ToInt32(secondExpression).ToString().PadLeft(2, '0'));
             }

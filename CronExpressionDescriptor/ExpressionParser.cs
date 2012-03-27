@@ -68,7 +68,10 @@ namespace CronExpressionDescriptor
             //convert */1 to *
             for (int i = 0; i <= 5; i++)
             {
-                expressionParts[i] = expressionParts[i].Replace("*/1", "*");
+                if (expressionParts[i] == "*/1")
+                {
+                    expressionParts[i] = "*";
+                }
             }
 
             //convert SUN-SAT format to 0-6 format

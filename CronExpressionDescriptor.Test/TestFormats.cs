@@ -63,6 +63,9 @@ namespace CronExpressionDescriptor.Test
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("*/5 * * * *");
             Assert.AreEqual("Every 05 minutes", ceh.GetDescription(DescriptionTypeEnum.FULL));
+
+            ceh = new ExpressionDescriptor("0 0/10 * * * ?");
+            Assert.AreEqual("Every 10 minutes", ceh.GetDescription(DescriptionTypeEnum.FULL));
         }
 
         [TestMethod]

@@ -27,10 +27,20 @@ If you want to get up and running quickly and just want the library, [visit the 
         public void TestEvery1Minute()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("*/1 * * * *");
-            Assert.AreEqual("Every 1 minute", ceh.GetDescription());
+            Assert.AreEqual("Every minute", ceh.GetDescription());
 
             ceh = new ExpressionDescriptor("0 0/1 * * * ?");
-            Assert.AreEqual("Every 1 minute", ceh.GetDescription());
+            Assert.AreEqual("Every minute", ceh.GetDescription());
+        }
+
+        [TestMethod]
+        public void TestEveryHour()
+        {
+            ExpressionDescriptor ceh = new ExpressionDescriptor("0 0 * * * ?");
+            Assert.AreEqual("Every hour", ceh.GetDescription());
+
+            ceh = new ExpressionDescriptor("0 0 0/1 * * ?");
+            Assert.AreEqual("Every hour", ceh.GetDescription());
         }
 
         [TestMethod]
@@ -58,14 +68,14 @@ If you want to get up and running quickly and just want the library, [visit the 
         public void TestEvery5Minutes()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("*/5 * * * *");
-            Assert.AreEqual("Every 5 minutes", ceh.GetDescription());
+            Assert.AreEqual("Every 05 minutes", ceh.GetDescription());
         }
 
         [TestMethod]
         public void TestEvery5MinutesOnTheSecond()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("0 */5 * * * *");
-            Assert.AreEqual("Every 5 minutes", ceh.GetDescription());
+            Assert.AreEqual("Every 05 minutes", ceh.GetDescription());
         }
 
         [TestMethod]
@@ -114,7 +124,7 @@ If you want to get up and running quickly and just want the library, [visit the 
         public void TestThreeTimesDaily()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("30 6,14,16 * * *");
-            Assert.AreEqual("At 06:30 AM, 02:30 PM, and 04:30 PM", ceh.GetDescription());
+            Assert.AreEqual("At 06:30 AM, 02:30 PM and 04:30 PM", ceh.GetDescription());
         }
 
         [TestMethod]
@@ -170,7 +180,7 @@ If you want to get up and running quickly and just want the library, [visit the 
         public void TestDayOfWeekRange()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("*/5 15 * * MON-FRI");
-            Assert.AreEqual("Every 5 minutes, at 03:00 PM, Monday through Friday", ceh.GetDescription());
+            Assert.AreEqual("Every 05 minutes, at 03:00 PM, Monday through Friday", ceh.GetDescription());
         }
 
         [TestMethod]
@@ -191,7 +201,7 @@ If you want to get up and running quickly and just want the library, [visit the 
         public void TestLastDayOfTheMonth()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("*/5 * L JAN *");
-            Assert.AreEqual("Every 5 minutes, on the last day of the month, only in January", ceh.GetDescription());
+            Assert.AreEqual("Every 05 minutes, on the last day of the month, only in January", ceh.GetDescription());
         }
 
         [TestMethod]
@@ -212,33 +222,47 @@ If you want to get up and running quickly and just want the library, [visit the 
         public void TestSecondMinutesHoursIntervals()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("5-10 30-35 10-12 * * *");
-            Assert.AreEqual("Seconds 05 through 10 past the minute, between 30 and 35 minutes past the hour, during hours 10:00 AM and 12:00 PM", ceh.GetDescription());
+            Assert.AreEqual("Seconds 05 through 10 past the minute, minutes 30 through 35 past the hour, between 10:00 AM and 12:00 PM", ceh.GetDescription());
         }
 
         [TestMethod]
         public void TestEvery5MinutesAt30Seconds()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("30 */5 * * * *");
-            Assert.AreEqual("At 30 seconds past the minute, every 5 minutes", ceh.GetDescription());
+            Assert.AreEqual("At 30 seconds past the minute, every 05 minutes", ceh.GetDescription());
         }
 
         [TestMethod]
         public void TestMinutesPastTheHourRange()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("0 30 10-13 ? * WED,FRI");
-            Assert.AreEqual("At 30 minutes past the hour, during hours 10:00 AM and 01:00 PM, only on Wednesday and Friday", ceh.GetDescription());
+            Assert.AreEqual("At 30 minutes past the hour, between 10:00 AM and 01:00 PM, only on Wednesday and Friday", ceh.GetDescription());
         }
 
         [TestMethod]
         public void TestSecondsPastTheMinuteInterval()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("10 0/5 * * * ?");
-            Assert.AreEqual("At 10 seconds past the minute, every 5 minutes", ceh.GetDescription());
+            Assert.AreEqual("At 10 seconds past the minute, every 05 minutes", ceh.GetDescription());
         }
 
         [TestMethod]
-        public void TestBetweenWithInternval()
+        public void TestBetweenWithInterval()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("2-59/3 1,9,22 11-26 1-6 ?");
-            Assert.AreEqual("Every 3 minutes, between 02 and 59 minutes past the hour, during 01:00 AM, 09:00 AM, and 10:00 PM, between day 11 and 26 of the month, January through June", ceh.GetDescription());
+            Assert.AreEqual("Every 03 minutes, minutes 02 through 59 past the hour, at 01:00 AM, 09:00 AM, and 10:00 PM, between day 11 and 26 of the month, January through June", ceh.GetDescription());
+        }
+
+        [TestMethod]
+        public void TestRecurringFirstOfMonth()
+        {
+            ExpressionDescriptor ceh = new ExpressionDescriptor("0 0 6 1/1 * ?");
+            Assert.AreEqual("At 06:00 AM", ceh.GetDescription());
+        }
+
+        [TestMethod]
+        public void TestMinutesPastTheHour()
+        {
+            ExpressionDescriptor ceh = new ExpressionDescriptor("0 5 0/1 * * ?");
+            Assert.AreEqual("At 05 minutes past the hour", ceh.GetDescription());
         }

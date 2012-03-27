@@ -5,7 +5,7 @@ License: MIT
 
 **Demo**
 
-[http://www.geekytidbits.com/cron-expression-descriptor-demo/]http://www.geekytidbits.com/cron-expression-descriptor-demo/
+[http://www.geekytidbits.com/cron-expression-descriptor-demo/](http://www.geekytidbits.com/cron-expression-descriptor-demo/)
 
 **Features**          
 

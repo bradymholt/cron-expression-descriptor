@@ -21,10 +21,10 @@ namespace CronExpressionDescriptor.Test
         public void TestEvery1Minute()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("*/1 * * * *");
-            Assert.AreEqual("Every 1 minute", ceh.GetDescription());
+            Assert.AreEqual("Every minute", ceh.GetDescription());
 
             ceh = new ExpressionDescriptor("0 0/1 * * * ?");
-            Assert.AreEqual("Every 1 minute", ceh.GetDescription());
+            Assert.AreEqual("Every minute", ceh.GetDescription());
         }
 
         [TestMethod]
@@ -73,14 +73,14 @@ namespace CronExpressionDescriptor.Test
         public void TestDailyAtTime()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("30 11 * * *");
-            Assert.AreEqual("At 11:30 AM", ceh.GetDescription());
+            Assert.AreEqual("At 11:30 AM, every day", ceh.GetDescription());
         }
 
         [TestMethod]
         public void TestMinuteSpan()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("0-10 11 * * *");
-            Assert.AreEqual("Every minute between 11:00 AM and 11:10 AM", ceh.GetDescription());
+            Assert.AreEqual("Every minute between 11:00 AM and 11:10 AM, every day", ceh.GetDescription());
         }
 
         [TestMethod]
@@ -101,14 +101,14 @@ namespace CronExpressionDescriptor.Test
         public void TestTwoTimesEachAfternoon()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("30 14,16 * * *");
-            Assert.AreEqual("At 02:30 PM and 04:30 PM", ceh.GetDescription());
+            Assert.AreEqual("At 02:30 PM and 04:30 PM, every day", ceh.GetDescription());
         }
 
         [TestMethod]
         public void TestThreeTimesDaily()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("30 6,14,16 * * *");
-            Assert.AreEqual("At 06:30 AM, 02:30 PM, and 04:30 PM", ceh.GetDescription());
+            Assert.AreEqual("At 06:30 AM, 02:30 PM, and 04:30 PM, every day", ceh.GetDescription());
         }
 
         [TestMethod]
@@ -129,28 +129,28 @@ namespace CronExpressionDescriptor.Test
         public void TestMonthName()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("23 12 * JAN *");
-            Assert.AreEqual("At 12:23 PM, only in January", ceh.GetDescription());
+            Assert.AreEqual("At 12:23 PM, every day, only in January", ceh.GetDescription());
         }
 
         [TestMethod]
         public void TestDayOfMonthWithQuestionMark()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("23 12 ? JAN *");
-            Assert.AreEqual("At 12:23 PM, only in January", ceh.GetDescription());
+            Assert.AreEqual("At 12:23 PM, every day, only in January", ceh.GetDescription());
         }
 
         [TestMethod]
         public void TestMonthNameRange2()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("23 12 * JAN-FEB *");
-            Assert.AreEqual("At 12:23 PM, January through February", ceh.GetDescription());
+            Assert.AreEqual("At 12:23 PM, every day, January through February", ceh.GetDescription());
         }
 
         [TestMethod]
         public void TestMonthNameRange3()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("23 12 * JAN-MAR *");
-            Assert.AreEqual("At 12:23 PM, January through March", ceh.GetDescription());
+            Assert.AreEqual("At 12:23 PM, every day, January through March", ceh.GetDescription());
         }
 
         [TestMethod]
@@ -171,28 +171,28 @@ namespace CronExpressionDescriptor.Test
         public void TestDayOfWeekOnceInMonth()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("* * * * MON#3");
-            Assert.AreEqual("Every minute, on the third Monday of the month", ceh.GetDescription());
+            Assert.AreEqual("Every minute, every hour, on the third Monday of the month", ceh.GetDescription());
         }
 
         [TestMethod]
         public void TestLastDayOfTheWeekOfTheMonth()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("* * * * 4L");
-            Assert.AreEqual("Every minute, on the last Thursday of the month", ceh.GetDescription());
+            Assert.AreEqual("Every minute, every hour, on the last Thursday of the month", ceh.GetDescription());
         }
 
         [TestMethod]
         public void TestLastDayOfTheMonth()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("*/5 * L JAN *");
-            Assert.AreEqual("Every 5 minutes, on the last day of the month, only in January", ceh.GetDescription());
+            Assert.AreEqual("Every 5 minutes, every hour, on the last day of the month, only in January", ceh.GetDescription());
         }
 
         [TestMethod]
         public void TestTimeOfDayWithSeconds()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("30 02 14 * * *");
-            Assert.AreEqual("At 02:02:30 PM", ceh.GetDescription());
+            Assert.AreEqual("At 02:02:30 PM, every day", ceh.GetDescription());
         }
 
         [TestMethod]
@@ -206,7 +206,7 @@ namespace CronExpressionDescriptor.Test
         public void TestSecondMinutesHoursIntervals()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("5-10 30-35 10-12 * * *");
-            Assert.AreEqual("Seconds 05 through 10 past the minute, between 30 and 35 minutes past the hour, during hours 10:00 AM and 12:00 PM", ceh.GetDescription());
+            Assert.AreEqual("Seconds 05 through 10 past the minute, between 30 and 35 minutes past the hour, during hours 10:00 AM and 12:00 PM, every day", ceh.GetDescription());
         }
 
         [TestMethod]
@@ -242,7 +242,13 @@ namespace CronExpressionDescriptor.Test
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("0 0 6 1/1 * ?");
             Assert.AreEqual("At 06:00 AM, every day", ceh.GetDescription());
-            
+        }
+
+        [TestMethod]
+        public void TestMinutesPastTheHour()
+        {
+            ExpressionDescriptor ceh = new ExpressionDescriptor("0 5 0/1 * * ?");
+            Assert.AreEqual("At 5 minutes past the hour", ceh.GetDescription());
         }
     }
 }

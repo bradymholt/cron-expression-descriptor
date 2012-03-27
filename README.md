@@ -3,6 +3,10 @@ A C# library that converts cron expressions into human readable strings.
 Author: Brady Holt (http://www.geekytidbits.com)  
 License: MIT
 
+**Online Demo**
+
+[http://www.geekytidbits.com/cron-expression-descriptor-demo/](http://www.geekytidbits.com/cron-expression-descriptor-demo/)
+
 **Features**          
 
  * Supports all cron expression special characters including * / , - ? L W, #.

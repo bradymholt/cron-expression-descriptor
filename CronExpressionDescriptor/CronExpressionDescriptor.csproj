@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CasingTypeEnum.cs" />
+    <Compile Include="DescriptionTypeEnum.cs" />
     <Compile Include="ExpressionDescriptor.cs" />
+    <Compile Include="ExpressionParser.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

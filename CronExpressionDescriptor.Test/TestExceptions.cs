@@ -15,7 +15,7 @@ namespace CronExpressionDescriptor.Test
         {
             Options options = new Options() { ThrowExceptionOnParseError = true };
             ExpressionDescriptor ceh = new ExpressionDescriptor(null, options);
-            ceh.GetDescription();
+            ceh.GetDescription(DescriptionTypeEnum.FULL);
         }
 
         [TestMethod]
@@ -24,7 +24,7 @@ namespace CronExpressionDescriptor.Test
         {
             Options options = new Options() { ThrowExceptionOnParseError = true };
             ExpressionDescriptor ceh = new ExpressionDescriptor(null, options);
-            ceh.GetDescription();
+            ceh.GetDescription(DescriptionTypeEnum.FULL);
         }
 
         [TestMethod]
@@ -32,8 +32,8 @@ namespace CronExpressionDescriptor.Test
         {
             Options options = new Options() { ThrowExceptionOnParseError = false };
             ExpressionDescriptor ceh = new ExpressionDescriptor(null, options);
-            string description = ceh.GetDescription();
-            Assert.AreEqual("Error: Expression is missing.", ceh.GetDescription());
+            string description = ceh.GetDescription(DescriptionTypeEnum.FULL);
+            Assert.AreEqual("Field 'ExpressionDescriptor.expression' not found.", ceh.GetDescription(DescriptionTypeEnum.FULL));
         }
 
         [TestMethod]
@@ -42,7 +42,7 @@ namespace CronExpressionDescriptor.Test
         {
             Options options = new Options() { ThrowExceptionOnParseError = true };
             ExpressionDescriptor ceh = new ExpressionDescriptor("INVALID", options);
-            ceh.GetDescription();
+            ceh.GetDescription(DescriptionTypeEnum.FULL);
         }
 
         [TestMethod]
@@ -50,8 +50,8 @@ namespace CronExpressionDescriptor.Test
         {
             Options options = new Options() { ThrowExceptionOnParseError = false };
             ExpressionDescriptor ceh = new ExpressionDescriptor("INVALID CRON", options);
-            string description = ceh.GetDescription();
-            Assert.AreEqual("Error: Expression only has 2 parts.  At least 5 part are required.", ceh.GetDescription());
+            string description = ceh.GetDescription(DescriptionTypeEnum.FULL);
+            Assert.AreEqual("Error: Expression only has 2 parts.  At least 5 part are required.", ceh.GetDescription(DescriptionTypeEnum.FULL));
         }
 
         [TestMethod]
@@ -60,7 +60,7 @@ namespace CronExpressionDescriptor.Test
         {
             Options options = new Options() { ThrowExceptionOnParseError = true };
             ExpressionDescriptor ceh = new ExpressionDescriptor("* $ * * *", options);
-            string description = ceh.GetDescription();
+            string description = ceh.GetDescription(DescriptionTypeEnum.FULL);
         }
     }
 }

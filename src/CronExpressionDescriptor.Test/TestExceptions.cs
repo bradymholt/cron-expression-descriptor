@@ -62,13 +62,5 @@ namespace CronExpressionDescriptor.Test
             ExpressionDescriptor ceh = new ExpressionDescriptor("* $ * * *", options);
             string description = ceh.GetDescription();
         }
-
-        [TestMethod]
-        public void TestInvalidSyntaxError()
-        {
-            Options options = new Options() { ThrowExceptionOnParseError = false };
-            ExpressionDescriptor ceh = new ExpressionDescriptor("* $ * * *", options);
-            Assert.AreEqual("An error occured when generating the expression description.  Check the cron expression syntax.", ceh.GetDescription());
-        }
     }
 }

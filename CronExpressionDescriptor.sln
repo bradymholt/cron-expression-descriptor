@@ -7,6 +7,26 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronExpressionDescriptor", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronExpressionDescriptor.Test", "CronExpressionDescriptor.Test\CronExpressionDescriptor.Test.csproj", "{8544E66A-B914-4A85-BF14-5E320015299F}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CronExpressionDescriptor.Demo", "CronExpressionDescriptor.Demo\", "{F6566770-11AF-4647-8B31-DCBE3DECC117}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv3.5"
+		Debug.AspNetCompiler.VirtualPath = "/CronExpressionDescriptor.Demo"
+		Debug.AspNetCompiler.PhysicalPath = "CronExpressionDescriptor.Demo\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\CronExpressionDescriptor.Demo\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/CronExpressionDescriptor.Demo"
+		Release.AspNetCompiler.PhysicalPath = "CronExpressionDescriptor.Demo\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\CronExpressionDescriptor.Demo\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "61677"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +41,10 @@ Global
 		{8544E66A-B914-4A85-BF14-5E320015299F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8544E66A-B914-4A85-BF14-5E320015299F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8544E66A-B914-4A85-BF14-5E320015299F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6566770-11AF-4647-8B31-DCBE3DECC117}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6566770-11AF-4647-8B31-DCBE3DECC117}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6566770-11AF-4647-8B31-DCBE3DECC117}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6566770-11AF-4647-8B31-DCBE3DECC117}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -446,7 +446,15 @@ namespace CronExpressionDescriptor
             }
             return description;
         }
+
+        public static string GetDescription(string expression)
+        {
+            ExpressionDescriptor descripter = new ExpressionDescriptor(expression);
+            return  descripter.GetDescription(DescriptionTypeEnum.FULL);
+        }
     }
+
+
 
 
 }

@@ -10,6 +10,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CronExpressionDescriptor.Demo", "CronExpressionDescriptor.Demo\", "{F6566770-11AF-4647-8B31-DCBE3DECC117}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv3.5"
+		ProjectReferences = "{BD023841-603A-4B09-A3B1-522664C1E274}|CronExpressionDescriptor.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/CronExpressionDescriptor.Demo"
 		Debug.AspNetCompiler.PhysicalPath = "CronExpressionDescriptor.Demo\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\CronExpressionDescriptor.Demo\"

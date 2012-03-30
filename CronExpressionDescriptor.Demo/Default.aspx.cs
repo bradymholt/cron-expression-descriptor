@@ -17,7 +17,6 @@ public partial class _Default : System.Web.UI.Page
     {
         CronExpressionDescriptor.Options options = new CronExpressionDescriptor.Options();
         options.ThrowExceptionOnParseError = false;
-        ExpressionDescriptor descriptor = new ExpressionDescriptor(txtExpression.Text, options);
-        lblResult.Text = descriptor.GetDescription();
+        lblResult.Text = ExpressionDescriptor.GetDescription(txtExpression.Text);
     }
 }

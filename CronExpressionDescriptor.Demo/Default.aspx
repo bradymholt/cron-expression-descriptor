@@ -22,7 +22,7 @@
         <form id="Form1" class="well" runat="server">
         <div class="control-group">
             <asp:Label runat="server" ID="lblCronExpression" Text="Cron Expression:" AssociatedControlID="txtExpression"></asp:Label>
-            <asp:TextBox runat="server" CssClass="cronExpression" Text="* * * * *" ID="txtExpression"></asp:TextBox>
+            <asp:TextBox runat="server" CssClass="cronExpression" Text="*/12 * * * 2,3" ID="txtExpression"></asp:TextBox>
             <asp:Button runat="server" ID="btnSubmit" CssClass="btn" Text="Submit" />
         </div>
         <label for="resultContainer">

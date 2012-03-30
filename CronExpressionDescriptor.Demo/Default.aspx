@@ -15,7 +15,7 @@
     <div class="container">
         <header>
             <h1>
-                Cron Expression Descriptor Demo</h1>
+                Cron Expression Descriptor - Demo</h1>
             <p>
                 A C# library that converts cron expressions into human readable strings.</p>
         </header>

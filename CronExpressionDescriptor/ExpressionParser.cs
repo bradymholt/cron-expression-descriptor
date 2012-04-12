@@ -8,10 +8,12 @@ namespace CronExpressionDescriptor
     public class ExpressionParser
     {
         private string m_expression;
+        private Options m_options;
 
-        public ExpressionParser(string expression)
+        public ExpressionParser(string expression, Options options)
         {
             m_expression = expression;
+            m_options = options;
         }
 
         public string[] Parse()
@@ -77,6 +79,11 @@ namespace CronExpressionDescriptor
             //convert SUN-SAT format to 0-6 format
             for (int i = 0; i <= 6; i++)
             {
+                if (!m_options.DayOfWeekStartIndexZero)
+                {
+                    expressionParts[5] = expressionParts[5].Replace((i + 1).ToString(), i.ToString());
+                }
+
                 DayOfWeek currentDay = (DayOfWeek)i;
                 string currentDayOfWeekDescription = currentDay.ToString().Substring(0, 3).ToUpper();
                 expressionParts[5] = expressionParts[5].Replace(currentDayOfWeekDescription, i.ToString());

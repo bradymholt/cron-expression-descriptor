@@ -35,7 +35,7 @@ namespace CronExpressionDescriptor
             {
                 if (!m_parsed)
                 {
-                    ExpressionParser parser = new ExpressionParser(m_expression);
+                    ExpressionParser parser = new ExpressionParser(m_expression, m_options);
                     m_expressionParts = parser.Parse();
                     m_parsed = true;
                 }

@@ -170,6 +170,42 @@ namespace CronExpressionDescriptor.Test
         }
 
         [TestMethod]
+        public void TestLastWeekdayOfTheMonth()
+        {
+            Assert.AreEqual("Every minute, on the last weekday of the month", ExpressionDescriptor.GetDescription("* * LW * *"));
+        }
+
+        [TestMethod]
+        public void TestLastWeekdayOfTheMonth2()
+        {
+            Assert.AreEqual("Every minute, on the last weekday of the month", ExpressionDescriptor.GetDescription("* * WL * *"));
+        }
+
+        [TestMethod]
+        public void TestFirstWeekdayOfTheMonth()
+        {
+            Assert.AreEqual("Every minute, on the first weekday of the month", ExpressionDescriptor.GetDescription("* * 1W * *"));
+        }
+
+        [TestMethod]
+        public void TestFirstWeekdayOfTheMonth2()
+        {
+            Assert.AreEqual("Every minute, on the first weekday of the month", ExpressionDescriptor.GetDescription("* * W1 * *"));
+        }
+
+        [TestMethod]
+        public void TestParticularWeekdayOfTheMonth()
+        {
+            Assert.AreEqual("Every minute, on the weekday nearest day 5 of the month", ExpressionDescriptor.GetDescription("* * 5W * *"));
+        }
+
+        [TestMethod]
+        public void TestParticularWeekdayOfTheMonth2()
+        {
+            Assert.AreEqual("Every minute, on the weekday nearest day 5 of the month", ExpressionDescriptor.GetDescription("* * W5 * *"));
+        }
+
+        [TestMethod]
         public void TestTimeOfDayWithSeconds()
         {
             Assert.AreEqual("At 02:02:30 PM", ExpressionDescriptor.GetDescription("30 02 14 * * *"));

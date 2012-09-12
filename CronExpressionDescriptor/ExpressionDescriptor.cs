@@ -309,18 +309,37 @@ namespace CronExpressionDescriptor
             string expression = m_expressionParts[3];
             expression = expression.Replace("?", "*");
 
-            if (expression == "L")
+            switch (expression)
             {
-                description = ", on the last day of the month";
-            }
-            else
-            {
-                description = GetSegmentDescription(expression,
-                    ", every day",
-                    (s => s),
-                    (s => s == "1" ? ", every day" : ", every {0} days"),
-                    (s => ", between day {0} and {1} of the month"),
-                    (s => ", on day {0} of the month"));
+                case "L":
+                    description = ", on the last day of the month";
+                    break;
+                case "WL":
+                case "LW":
+                    description = ", on the last weekday of the month";
+                    break;
+                default:
+                    Regex regex = new Regex("(\\dW)|(W\\d)");
+                    if (regex.IsMatch(expression))
+                    {
+                        Match m = regex.Match(expression);
+                        int dayNumber = Int32.Parse(m.Value.Replace("W", ""));
+
+                        string dayString = dayNumber == 1 ? "first weekday" : String.Format("weekday nearest day {0}", dayNumber);
+                        description = String.Format(", on the {0} of the month", dayString);
+
+                        break;
+                    }
+                    else
+                    {
+                        description = GetSegmentDescription(expression,
+                            ", every day",
+                            (s => s),
+                            (s => s == "1" ? ", every day" : ", every {0} days"),
+                            (s => ", between day {0} and {1} of the month"),
+                            (s => ", on day {0} of the month"));
+                        break;
+                    }
             }
 
             return description;

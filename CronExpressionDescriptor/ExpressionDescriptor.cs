@@ -23,7 +23,7 @@ namespace CronExpressionDescriptor
         {
             m_expression = expression;
             m_options = options;
-            m_expressionParts = new string[6];
+            m_expressionParts = new string[7];
             m_parsed = false;
         }
 
@@ -66,6 +66,9 @@ namespace CronExpressionDescriptor
                     case DescriptionTypeEnum.DAYOFWEEK:
                         description = GetDayOfWeekDescription();
                         break;
+                    case DescriptionTypeEnum.YEAR:
+                        description = GetYearDescription();
+                        break;
                     default:
                         description = GetSecondsDescription();
                         break;
@@ -97,11 +100,13 @@ namespace CronExpressionDescriptor
                 string dayOfMonthDesc = GetDayOfMonthDescription();
                 string monthDesc = GetMonthDescription();
                 string dayOfWeekDesc = GetDayOfWeekDescription();
+                string yearDesc = GetYearDescription();
 
-                description = string.Format("{0}{1}{2}",
+                description = string.Format("{0}{1}{2}{3}",
                     timeSegment,
                     (m_expressionParts[3] == "*" ? dayOfWeekDesc : dayOfMonthDesc),
-                    monthDesc);
+                    monthDesc,
+                    yearDesc);
 
                 description = TransformVerbosity(description);
                 description = TransformCase(description);
@@ -344,6 +349,18 @@ namespace CronExpressionDescriptor
 
             return description;
         }
+
+        private string GetYearDescription()
+        {
+            string description = GetSegmentDescription(m_expressionParts[6],
+                string.Empty,
+               (s => new DateTime(Convert.ToInt32(s), 1, 1).ToString("yyyy")),
+               (s => string.Format(", every {0} years", s)),
+               (s => ", {0} through {1}"),
+               (s => ", only in {0}"));
+			
+            return description;
+		}
 
         protected string GetSegmentDescription(string expression,
             string allDescription,

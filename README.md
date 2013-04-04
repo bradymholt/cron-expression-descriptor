@@ -10,7 +10,7 @@ License: MIT
 **Features**          
 
  * Supports all cron expression special characters including * / , - ? L W, #.
- * Supports 5 or 6 (w/ seconds) part cron expressions.  Does NOT support Year in cron expression.
+ * Supports 5, 6 (w/ seconds or year), or 7 (w/ seconds and year) part cron expressions.
  * Provides casing options (Sentence, Title, Lower, etc.)
  
 
@@ -231,4 +231,34 @@ If you want to get up and running quickly and just want the library, [visit the 
         public void TestMinutesPastTheHour()
         {
             Assert.AreEqual("At 05 minutes past the hour", ExpressionDescriptor.GetDescription("0 5 0/1 * * ?"));
+        }
+
+        [TestMethod]
+        public void TestOneYearOnlyWithSeconds()
+        {
+            Assert.AreEqual("Every second, only in 2013", ExpressionDescriptor.GetDescription("* * * * * * 2013"));
+        }
+        
+        [TestMethod]
+        public void TestOneYearOnlyWithoutSeconds()
+        {
+            Assert.AreEqual("Every minute, only in 2013", ExpressionDescriptor.GetDescription("* * * * * 2013"));
+        }
+
+        [TestMethod]
+        public void TestTwoYearsOnly()
+        {
+            Assert.AreEqual("Every minute, only in 2013 and 2014", ExpressionDescriptor.GetDescription("* * * * * 2013,2014"));
+        }
+
+        [TestMethod]
+        public void TestYearRange2()
+        {
+            Assert.AreEqual("At 12:23 PM, January through February, 2013 through 2014", ExpressionDescriptor.GetDescription("23 12 * JAN-FEB * 2013-2014"));
+        }
+
+        [TestMethod]
+        public void TestYearRange3()
+        {
+            Assert.AreEqual("At 12:23 PM, January through March, 2013 through 2015", ExpressionDescriptor.GetDescription("23 12 * JAN-MAR * 2013-2015"));
         }

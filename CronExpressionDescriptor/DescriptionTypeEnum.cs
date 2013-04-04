@@ -14,6 +14,7 @@ namespace CronExpressionDescriptor
         HOURS,
         DAYOFWEEK,
         MONTH,
-        DAYOFMONTH
+        DAYOFMONTH,
+        YEAR
     }
 }

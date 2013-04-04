@@ -12,3 +12,5 @@ CronExpressionDescripter.Test/bin
 CronExpressionDescripter.Test/obj
 TestResults
 *.suo
+.DS_Store
+*.userprefs

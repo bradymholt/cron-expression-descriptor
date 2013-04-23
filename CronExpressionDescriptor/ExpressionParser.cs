@@ -34,10 +34,6 @@ namespace CronExpressionDescriptor
                 {
                     throw new FormatException(string.Format("Error: Expression only has {0} parts.  At least 5 part are required.", expressionPartsTemp.Length));
                 }
-                else if (expressionPartsTemp.Length > 6)
-                {
-                    throw new FormatException(string.Format("Error: Expression has too many parts ({0}).  Expression must not have more than 6 parts.", expressionPartsTemp.Length));
-                }
                 else if (expressionPartsTemp.Length == 5)
                 {
                     //5 part cron so shift array past seconds element

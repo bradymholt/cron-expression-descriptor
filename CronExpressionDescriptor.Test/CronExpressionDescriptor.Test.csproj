@@ -53,7 +53,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CronExpressionDescriptor\CronExpressionDescriptor.csproj">
       <Project>{BD023841-603A-4B09-A3B1-522664C1E274}</Project>
-      <Name>CronExpressionDescripter</Name>
+      <Name>CronExpressionDescriptor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

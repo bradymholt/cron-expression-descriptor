@@ -2,11 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EBD2EEF7-FE3F-4627-8931-BACA70D80B03}"
-	ProjectSection(SolutionItems) = preProject
-		CronExpressionDescriptor.vsmdi = CronExpressionDescriptor.vsmdi
-		Local.testsettings = Local.testsettings
-		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronExpressionDescriptor", "CronExpressionDescriptor\CronExpressionDescriptor.csproj", "{BD023841-603A-4B09-A3B1-522664C1E274}"
 EndProject
@@ -34,9 +29,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CronExpressionDescriptor.De
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = CronExpressionDescriptor.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

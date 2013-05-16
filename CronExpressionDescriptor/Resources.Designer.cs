@@ -132,7 +132,15 @@ namespace CronExpressionDescriptor {
             }
         }
         
-     
+        /// <summary>
+        ///   Looks up a localized string similar to , every day.
+        /// </summary>
+        internal static string ComaEveryDay {
+            get {
+                return ResourceManager.GetString("ComaEveryDay", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to , every hour.
         /// </summary>
@@ -260,15 +268,6 @@ namespace CronExpressionDescriptor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to , every day.
-        /// </summary>
-        internal static string ComaEveryDay {
-            get {
-                return ResourceManager.GetString("ComaEveryDay", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to every hour.
         /// </summary>
         internal static string EveryHour {
@@ -328,6 +327,15 @@ namespace CronExpressionDescriptor {
         internal static string EveryX0Seconds {
             get {
                 return ResourceManager.GetString("EveryX0Seconds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , every {0} years.
+        /// </summary>
+        internal static string ComaEveryX0Years {
+            get {
+                return ResourceManager.GetString("ComaEveryX0Years", resourceCulture);
             }
         }
         

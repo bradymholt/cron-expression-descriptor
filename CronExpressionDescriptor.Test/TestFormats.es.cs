@@ -288,5 +288,39 @@ namespace CronExpressionDescriptor.Test
         {
             Assert.AreEqual("A los 05 minutos de la hora", ExpressionDescriptor.GetDescription("0 5 0/1 * * ?"));
         }
+        [TestMethod]
+        [DeploymentItem(@"es\CronExpressionDescriptor.resources.dll", "es")]
+        public void TestOneYearOnlyWithSeconds()
+        {
+            Assert.AreEqual("Cada segundo, sólo en 2013", ExpressionDescriptor.GetDescription("* * * * * * 2013"));
+        }
+
+        [TestMethod]
+        [DeploymentItem(@"es\CronExpressionDescriptor.resources.dll", "es")]
+        public void TestOneYearOnlyWithoutSeconds()
+        {
+            Assert.AreEqual("Cada minuto, sólo en 2013", ExpressionDescriptor.GetDescription("* * * * * 2013"));
+        }
+
+        [TestMethod]
+        [DeploymentItem(@"es\CronExpressionDescriptor.resources.dll", "es")]
+        public void TestTwoYearsOnly()
+        {
+            Assert.AreEqual("Cada minuto, sólo en 2013 y 2014", ExpressionDescriptor.GetDescription("* * * * * 2013,2014"));
+        }
+
+        [TestMethod]
+        [DeploymentItem(@"es\CronExpressionDescriptor.resources.dll", "es")]
+        public void TestYearRange2()
+        {
+            Assert.AreEqual("A las 12:23 PM, de enero a febrero, de 2013 a 2014", ExpressionDescriptor.GetDescription("23 12 * JAN-FEB * 2013-2014"));
+        }
+
+        [TestMethod]
+        [DeploymentItem(@"es\CronExpressionDescriptor.resources.dll", "es")]
+        public void TestYearRange3()
+        {
+            Assert.AreEqual("A las 12:23 PM, de enero a marzo, de 2013 a 2015", ExpressionDescriptor.GetDescription("23 12 * JAN-MAR * 2013-2015"));
+        }
     }
 }

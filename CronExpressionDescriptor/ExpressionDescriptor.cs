@@ -362,9 +362,9 @@ namespace CronExpressionDescriptor
             string description = GetSegmentDescription(m_expressionParts[6],
                 string.Empty,
                (s => new DateTime(Convert.ToInt32(s), 1, 1).ToString("yyyy")),
-               (s => string.Format(", every {0} years", s)),
-               (s => ", {0} through {1}"),
-               (s => ", only in {0}"));
+               (s => string.Format(CronExpressionDescriptor.Resources.ComaEveryX0Years, s)),
+               (s => CronExpressionDescriptor.Resources.ComaX0ThroughX1),
+               (s => CronExpressionDescriptor.Resources.ComaOnlyInX0));
 			
             return description;
 		}

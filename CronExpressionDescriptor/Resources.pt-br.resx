@@ -284,4 +284,8 @@
     <value>dia da semana mais próximo do dia {0}</value>
     <comment>WeekdayNearestDayX0 description</comment>
   </data>
+  <data name="ComaEveryX0Years" xml:space="preserve">
+    <value />
+    <comment>ComaEveryX0Years description</comment>
+  </data>
 </root>

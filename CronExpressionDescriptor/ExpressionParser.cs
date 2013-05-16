@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Globalization;
 
 namespace CronExpressionDescriptor
@@ -21,7 +22,8 @@ namespace CronExpressionDescriptor
 
         public string[] Parse()
         {
-            string[] parsed = new string[6];
+            // Initialize all elements of parsed array to empty strings
+            string[] parsed = new string[7].Select(el => "").ToArray();
 
             if (string.IsNullOrEmpty(m_expression))
             {
@@ -35,19 +37,31 @@ namespace CronExpressionDescriptor
                 {
                     throw new FormatException(string.Format("Error: Expression only has {0} parts.  At least 5 part are required.", expressionPartsTemp.Length));
                 }
-                else if (expressionPartsTemp.Length > 6)
-                {
-                    throw new FormatException(string.Format("Error: Expression has too many parts ({0}).  Expression must not have more than 6 parts.", expressionPartsTemp.Length));
-                }
                 else if (expressionPartsTemp.Length == 5)
                 {
-                    //5 part cron so defualt seconds to empty and shift array
-                    parsed[0] = string.Empty;
+                    //5 part cron so shift array past seconds element
                     Array.Copy(expressionPartsTemp, 0, parsed, 1, 5);
                 }
                 else if (expressionPartsTemp.Length == 6)
                 {
+                    //If last element ends with 4 digits, a year element has been supplied and no seconds element
+                    Regex yearRegex = new Regex("\\d{4}$");
+                    if (yearRegex.IsMatch(expressionPartsTemp[5]))
+                    {
+                        Array.Copy(expressionPartsTemp, 0, parsed, 1, 6);
+                    }
+                    else
+                    {
+                        Array.Copy(expressionPartsTemp, 0, parsed, 0, 6);
+                    }
+                }
+                else if (expressionPartsTemp.Length == 7)
+                {
                     parsed = expressionPartsTemp;
+                }
+                else
+                {
+                    throw new FormatException(string.Format("Error: Expression has too many parts ({0}).  Expression must not have more than 7 parts.", expressionPartsTemp.Length));
                 }
             }
 
@@ -71,7 +85,8 @@ namespace CronExpressionDescriptor
             expressionParts[5] = expressionParts[5].Replace("1/", "*/"); //DOW
 
             //convert */1 to *
-            for (int i = 0; i <= 5; i++)
+            int len = expressionParts.Length;
+            for (int i = 0; i < len; i++)
             {
                 if (expressionParts[i] == "*/1")
                 {

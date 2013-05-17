@@ -285,7 +285,7 @@
     <comment>WeekdayNearestDayX0 description</comment>
   </data>
   <data name="ComaEveryX0Years" xml:space="preserve">
-    <value />
+    <value>, a cada {0} anos</value>
     <comment>ComaEveryX0Years description</comment>
   </data>
 </root>

@@ -4,12 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CronExpressionDescriptor;
+using System.Globalization;
+using System.Threading;
 
 namespace CronExpressionDescriptor.Test
 {
     [TestClass]
     public class TestFormats
     {
+        [TestInitialize]
+        public void SetUp()
+        {
+            CultureInfo myCultureInfo = new CultureInfo("en");
+            Thread.CurrentThread.CurrentCulture = myCultureInfo;
+            Thread.CurrentThread.CurrentUICulture = myCultureInfo;
+        }
         [TestMethod]
         public void TestEveryMinute()
         {

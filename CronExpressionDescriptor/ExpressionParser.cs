@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace CronExpressionDescriptor
 {
@@ -10,11 +11,13 @@ namespace CronExpressionDescriptor
     {
         private string m_expression;
         private Options m_options;
+        private CultureInfo m_en_culture;
 
         public ExpressionParser(string expression, Options options)
         {
             m_expression = expression;
             m_options = options;
+            m_en_culture = new CultureInfo("en");
         }
 
         public string[] Parse()
@@ -108,7 +111,7 @@ namespace CronExpressionDescriptor
             for (int i = 1; i <= 12; i++)
             {
                 DateTime currentMonth = new DateTime(DateTime.Now.Year, i, 1);
-                string currentMonthDescription = currentMonth.ToString("MMM").ToUpper();
+                string currentMonthDescription = currentMonth.ToString("MMM",m_en_culture).ToUpper();
                 expressionParts[4] = expressionParts[4].Replace(currentMonthDescription, i.ToString());
             }
 

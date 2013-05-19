@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Globalization;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CronExpressionDescriptor;
 
@@ -10,6 +12,14 @@ namespace CronExpressionDescriptor.Test
     [TestClass]
     public class TestCasing
     {
+        [TestInitialize]
+        public void SetUp()
+        {
+            CultureInfo myCultureInfo = new CultureInfo("en");
+            Thread.CurrentThread.CurrentCulture = myCultureInfo;
+            Thread.CurrentThread.CurrentUICulture = myCultureInfo;
+        }
+
         [TestMethod]
         public void TestSentenceCasing()
         {

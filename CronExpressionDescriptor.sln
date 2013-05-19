@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronExpressionDescriptor", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronExpressionDescriptor.Test", "CronExpressionDescriptor.Test\CronExpressionDescriptor.Test.csproj", "{8544E66A-B914-4A85-BF14-5E320015299F}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CronExpressionDescriptor.Demo", "CronExpressionDescriptor.Demo\", "{F6566770-11AF-4647-8B31-DCBE3DECC117}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CronExpressionDescriptor.Demo", "CronExpressionDescriptor.Demo", "{F6566770-11AF-4647-8B31-DCBE3DECC117}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		ProjectReferences = "{BD023841-603A-4B09-A3B1-522664C1E274}|CronExpressionDescriptor.dll;"

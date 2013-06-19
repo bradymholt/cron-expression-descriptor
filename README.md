@@ -1,5 +1,5 @@
 # cron-expression-descriptor
-This forked from [bradyholt/cron-expression-descriptor](https://github.com/bradyholt/cron-expression-descriptor) is a C# library that converts cron (Quartz.NET) expressions into localized human readable strings. The languages availabe are:
+A C# library that converts cron expressions into localized human readable strings. The languages availabe are:
 
  * English (Brady Holt)
  * Brazilian (Renato Lima)
@@ -7,10 +7,6 @@ This forked from [bradyholt/cron-expression-descriptor](https://github.com/brady
 
 Author: Brady Holt (http://www.geekytidbits.com)  
 License: MIT
-
-**Online Demo (only english)**
-
-[http://www.geekytidbits.com/cron-expression-descriptor-demo/](http://www.geekytidbits.com/cron-expression-descriptor-demo/)
 
 **Features**          
 

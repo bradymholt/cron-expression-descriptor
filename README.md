@@ -1,10 +1,3 @@
-# cron-expression-descriptor
-A C# library that converts cron expressions into localized human readable strings. The languages availabe are:
-
- * English (Brady Holt)
- * Brazilian (Renato Lima)
- * Spanish (Ivan Santos)
-
 Author: Brady Holt (http://www.geekytidbits.com)  
 License: MIT
 
@@ -13,7 +6,13 @@ License: MIT
  * Supports all cron expression special characters including * / , - ? L W, #.
  * Supports 5, 6 (w/ seconds or year), or 7 (w/ seconds and year) part cron expressions.
  * Provides casing options (Sentence, Title, Lower, etc.)
+ * Localization
  
+**Languages Available**
+
+ * English (Brady Holt)
+ * Brazilian (Renato Lima)
+ * Spanish (Ivan Santos)
 
 **Download**
 

@@ -17,7 +17,7 @@ License: MIT
 
 **Download**
 
-If you want to get up and running quickly and just want the library in english, [visit the Downloads page](http://cron-expression-descriptor.s3.amazonaws.com/list.html) and download the latest CronExpressionDescriptor.dll library assembly.
+Cron Expression Descriptor releases can be installed with **NuGet**.  [Visit the NuGet Package page](https://www.nuget.org/packages/CronExpressionDescriptor/) for more info.
 
 **Usage Examples (as Unit Tests)**  
 

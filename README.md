@@ -24,7 +24,7 @@ Download
 
 Cron Expression Descriptor releases can be installed with **NuGet**.  [Visit the NuGet Package page](https://www.nuget.org/packages/CronExpressionDescriptor/) for more info.
 
-View (Releases)[https://github.com/bradyholt/cron-expression-descriptor/releases] for release version history.
+View [Releases](https://github.com/bradyholt/cron-expression-descriptor/releases) for release version history.
 
 Usage Examples (as Unit Tests)
 --------

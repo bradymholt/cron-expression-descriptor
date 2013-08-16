@@ -24,6 +24,8 @@ Download
 
 Cron Expression Descriptor releases can be installed with **NuGet**.  [Visit the NuGet Package page](https://www.nuget.org/packages/CronExpressionDescriptor/) for more info.
 
+View (Releases)[https://github.com/bradyholt/cron-expression-descriptor/releases] for release version history.
+
 Usage Examples (as Unit Tests)
 --------
 
@@ -269,19 +271,3 @@ Usage Examples (as Unit Tests)
         {
             Assert.AreEqual("At 12:23 PM, January through March, 2013 through 2015", ExpressionDescriptor.GetDescription("23 12 * JAN-MAR * 2013-2015"));
         }
-Version History
------
-- **1.6** -  8/9/2013  
-*Localization support*
-- **1.5** - 4/23/2013  
-*Bug fixes*
-- **1.4** 3/28/2013  
-*Bug fixes*
-- **1.3** 3/27/2013  
-*Bug fixes*
-- **1.2** 3/27/2013  
-*Bug fixes*
-- **1.1** - 3/25/2013  
-*Bug fixes*
-- **1.0** - 2/15/2013  
-*Initial Release*

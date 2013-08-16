@@ -1,26 +1,31 @@
-**Cron Expression Descriptor** is a C# library that converts cron expressions into human readable strings.
+Cron Expression Descriptor
+==========================
+A C# library that converts cron expressions into human readable strings.
 
 Author: Brady Holt (http://www.geekytidbits.com)  
-License: MIT
+License: [MIT](http://opensource.org/licenses/MIT)
 
-**Features**          
-
+Features         
+--------
  * Supports all cron expression special characters including * / , - ? L W, #.
  * Supports 5, 6 (w/ seconds or year), or 7 (w/ seconds and year) part cron expressions.
  * Provides casing options (Sentence, Title, Lower, etc.)
  * Localization
  
-**Languages Available**
+Languages Available
+--------
 
- * English (Brady Holt)
- * Brazilian (Renato Lima)
- * Spanish (Ivan Santos)
+ * English ([Brady Holt](https://github.com/bradyholt))
+ * Brazilian ([Renato Lima](https://github.com/natenho))
+ * Spanish ([Ivan Santos](https://github.com/ivansg))
 
-**Download**
+Download
+----------
 
 Cron Expression Descriptor releases can be installed with **NuGet**.  [Visit the NuGet Package page](https://www.nuget.org/packages/CronExpressionDescriptor/) for more info.
 
-**Usage Examples (as Unit Tests)**  
+Usage Examples (as Unit Tests)
+--------
 
         [TestMethod]
         public void TestEveryMinute()
@@ -264,3 +269,19 @@ Cron Expression Descriptor releases can be installed with **NuGet**.  [Visit the
         {
             Assert.AreEqual("At 12:23 PM, January through March, 2013 through 2015", ExpressionDescriptor.GetDescription("23 12 * JAN-MAR * 2013-2015"));
         }
+Version History
+-----
+- **1.6** -  8/9/2013  
+*Localization support*
+- **1.5** - 4/23/2013  
+*Bug fixes*
+- **1.4** 3/28/2013  
+*Bug fixes*
+- **1.3** 3/27/2013  
+*Bug fixes*
+- **1.2** 3/27/2013  
+*Bug fixes*
+- **1.1** - 3/25/2013  
+*Bug fixes*
+- **1.0** - 2/15/2013  
+*Initial Release*

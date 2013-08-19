@@ -1,5 +1,5 @@
 #CronExpressionDescriptor
-##Example usage: rake release["1.7.0"]
+#Example usage: rake release["1.7.0"]
 
 require 'albacore'
 

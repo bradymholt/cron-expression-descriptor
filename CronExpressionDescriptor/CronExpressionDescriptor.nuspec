@@ -2,18 +2,17 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>CronExpressionDescriptor</id>
-    <version>$version$</version>
+    <version>1.7.0</version>
     <title>Cron Expression Descriptor</title>
     <authors>$author$</authors>
-    <owners>>$author$</owners>
+    <owners>$author$</owners>
     <licenseUrl>https://raw.github.com/bradyholt/cron-expression-descriptor/master/LICENSE</licenseUrl>
     <projectUrl>http://bradyholt.github.io/cron-expression-descriptor/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <frameworkAssemblies>
-	<frameworkAssembly assemblyName="System" targetFramework="net40" />
-    </frameworkAssemblies>
-    <releaseNotes />
+    <releaseNotes>
+        v.1.7.0 - Assembly is now strongly named (signed).  Also, changing target framework to 3.5, as 4.0 is not needed.
+    </releaseNotes>
     <copyright>Copyright 2013</copyright>
     <tags>cron</tags>
   </metadata>

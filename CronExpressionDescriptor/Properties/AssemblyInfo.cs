@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CronExpressionDescriptor")]
+[assembly: AssemblyTitle("Cron Expression Descriptor")]
 [assembly: AssemblyDescription("CronExpressionDescriptor")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Brady Holt, Renato Lima, Ivan Santos")]
 [assembly: AssemblyProduct("CronExpressionDescriptor")]
-[assembly: AssemblyCopyright("Copyright © 2012, Brady Holt")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,4 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.4.*")]
-[assembly: AssemblyFileVersion("1.4.*")]
+[assembly: AssemblyVersion("1.7")]

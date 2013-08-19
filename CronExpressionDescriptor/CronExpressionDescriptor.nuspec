@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>CronExpressionDescriptor</id>
-    <version>1.7.0</version>
+    <version>$version$</version>
     <title>Cron Expression Descriptor</title>
     <authors>$author$</authors>
     <owners>$author$</owners>

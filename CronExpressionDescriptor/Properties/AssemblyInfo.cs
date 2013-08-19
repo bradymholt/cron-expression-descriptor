@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Cron Expression Descriptor")]
-[assembly: AssemblyDescription("A C# library that converts cron expressions into human readable strings.")]
+[assembly: AssemblyDescription("A library that converts cron expressions into human readable strings.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Brady Holt, Renato Lima, Ivan Santos")]
 [assembly: AssemblyProduct("CronExpressionDescriptor")]

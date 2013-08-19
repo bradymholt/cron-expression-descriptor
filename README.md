@@ -2,9 +2,9 @@ Cron Expression Descriptor
 ==========================
 A .NET library that converts cron expressions into human readable strings.
 
-Original Author: Brady Holt (http://www.geekytidbits.com)  
-Contributors: Renato Lima, Ivan Santos  
-License: [MIT](http://opensource.org/licenses/MIT)
+**Original Author**: Brady Holt (http://www.geekytidbits.com)  
+**Contributors**: Renato Lima, Ivan Santos  
+**License**: [MIT](http://opensource.org/licenses/MIT)
 
 Features         
 --------

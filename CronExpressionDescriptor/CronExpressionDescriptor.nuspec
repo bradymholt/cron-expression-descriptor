@@ -11,9 +11,12 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>
-        v.1.7.0 - Assembly is now strongly named (signed).  Also, changing target framework to 3.5, as 4.0 is not needed.
+      v.1.7.1 - Change to ship all localized dll files with the package.
     </releaseNotes>
     <copyright>Copyright 2013</copyright>
     <tags>cron</tags>
   </metadata>
+  <files>
+    <file src="bin/Release/**/*.dll" target="lib\net35"/>
+  </files>
 </package>

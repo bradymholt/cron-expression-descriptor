@@ -1,0 +1,53 @@
+#CronExpressionDescriptor
+#Example usage: rake release["1.7.0", "Release notes here..."]
+
+require 'albacore'
+require 'date'
+
+project_name = "CronExpressionDescriptor"
+project_title = "Cron Expression Descriptor"
+project_author = "Brady Holt, Renato Lima, Ivan Santos"
+project_description = "A library that converts cron expressions into human readable strings."
+project_copyright = "Copyright #{DateTime.now.strftime('%Y')}"
+
+task :version, [:version_number, :notes] do |t, args|
+	desc "Version the assembly"
+  	assemblyinfo :version do |asm|
+		asm.version = args.version_number
+		asm.file_version = args.version_number
+		asm.title = project_title
+		asm.description = project_description
+		asm.company_name = project_author
+		asm.copyright = project_copyright
+		asm.input_file =  "..\\#{project_name}\\Properties\\AssemblyInfo.cs"
+		asm.output_file = "..\\#{project_name}\\Properties\\AssemblyInfo.cs"
+ 	end
+end
+
+task :build, [:version_number, :notes]  do |t, args|
+	desc 'Build the solution in the Release configuration'
+	msbuild :build do |msb|
+		msb.solution = "..\\#{project_name}\\#{project_name}.csproj"
+		msb.targets = [ :Clean, :Build ]
+		msb.properties = { :Configuration => 'Release' } 
+ 	end
+end
+
+task :package, [:version_number, :notes] => [:build] do |t, args|
+	desc "create the nuget package"
+	sh "xcopy /Y /S /EXCLUDE:exclude.txt ..\\#{project_name}\\bin\\Release\ lib\\net35"
+	sh "nuget.exe pack #{project_name}.nuspec -Properties \"version=#{args.version_number};title=#{project_title};author=#{project_author};description=#{project_description};notes=v#{args.version_number} - #{args.notes};copyright=#{project_copyright}\""
+end
+
+task :push, [:version_number, :notes] do |t, args|
+	sh "nuget.exe push #{project_name}.#{args.version_number}.nupkg"
+end
+
+task :tag, [:version_number, :notes] do |t, args|
+	sh "git tag -a v#{args.version_number} -m \"#{args.notes}\""
+	sh "git push --tags"
+end
+
+task :release, [:version_number, :notes] => [:version, :package, :push, :tag] do |t, args|
+	puts "v#{args.version_number} Released!"
+end

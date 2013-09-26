@@ -14,3 +14,5 @@ TestResults
 *.suo
 .DS_Store
 *.userprefs
+build/lib
+build/*.nupkg

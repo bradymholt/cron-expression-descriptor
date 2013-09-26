@@ -3,20 +3,15 @@
   <metadata>
     <id>CronExpressionDescriptor</id>
     <version>$version$</version>
-    <title>Cron Expression Descriptor</title>
+    <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
     <licenseUrl>https://raw.github.com/bradyholt/cron-expression-descriptor/master/LICENSE</licenseUrl>
     <projectUrl>http://bradyholt.github.io/cron-expression-descriptor/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>
-      v.1.7.1 - Change to ship all localized dll files with the package.
-    </releaseNotes>
-    <copyright>Copyright 2013</copyright>
+    <releaseNotes>$notes$</releaseNotes>
+    <copyright>$copyright$</copyright>
     <tags>cron</tags>
   </metadata>
-  <files>
-    <file src="bin/Release/**/*.dll" target="lib\net35"/>
-  </files>
 </package>

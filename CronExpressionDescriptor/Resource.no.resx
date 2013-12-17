@@ -269,11 +269,11 @@
     <comment>SecondsX0ThroughX1PastTheMinute description</comment>
   </data>
   <data name="SpaceAnd" xml:space="preserve">
-    <value>og</value>
+    <value> og</value>
     <comment>And description</comment>
   </data>
   <data name="SpaceAndSpace" xml:space="preserve">
-    <value>og </value>
+    <value> og </value>
     <comment>And description</comment>
   </data>
   <data name="SpaceX0OfTheMonth" xml:space="preserve">

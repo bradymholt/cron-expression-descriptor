@@ -257,7 +257,7 @@
     <comment>Forth description</comment>
   </data>
   <data name="MinutesX0ThroughX1PastTheHour" xml:space="preserve">
-    <value>minutter {0} fra og med {1} etter timen</value>
+    <value>minuttene fra {0} til og med {1} etter timen</value>
     <comment>MinutesX0ThroughX1PastTheHour description</comment>
   </data>
   <data name="Second" xml:space="preserve">
@@ -265,7 +265,7 @@
     <comment>Second description</comment>
   </data>
   <data name="SecondsX0ThroughX1PastTheMinute" xml:space="preserve">
-    <value>sekunder {0} fra og med {1} etter minuttet</value>
+    <value>sekundene fra {0} til og med {1} etter minuttet</value>
     <comment>SecondsX0ThroughX1PastTheMinute description</comment>
   </data>
   <data name="SpaceAnd" xml:space="preserve">

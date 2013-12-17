@@ -273,7 +273,7 @@ namespace CronExpressionDescriptor.Test
         public void TestSecondInternvals()
         {
             Assert.AreEqual(
-                "Sekunder 05 fra og med 10 etter minuttet", ExpressionDescriptor.GetDescription("5-10 * * * * *"));
+                "Sekundene fra 05 til og med 10 etter minuttet", ExpressionDescriptor.GetDescription("5-10 * * * * *"));
         }
 
         [TestMethod]
@@ -281,7 +281,7 @@ namespace CronExpressionDescriptor.Test
         public void TestSecondMinutesHoursIntervals()
         {
             Assert.AreEqual(
-                "Sekunder 05 fra og med 10 etter minuttet, minutter 30 fra og med 35 etter timen, mellom 10:00 AM og 12:00 PM",
+                "Sekundene fra 05 til og med 10 etter minuttet, minuttene fra 30 til og med 35 etter timen, mellom 10:00 AM og 12:00 PM",
                 ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
         }
 
@@ -315,7 +315,7 @@ namespace CronExpressionDescriptor.Test
         public void TestBetweenWithInterval()
         {
             Assert.AreEqual(
-                "Hvert 03 minutt, minutter 02 fra og med 59 etter timen, på 01:00 AM, 09:00 AM, og 10:00 PM, mellom dag 11 og 26 av måneden, januar til og med juni",
+                "Hvert 03 minutt, minuttene fra 02 til og med 59 etter timen, på 01:00 AM, 09:00 AM, og 10:00 PM, mellom dag 11 og 26 av måneden, januar til og med juni",
                 ExpressionDescriptor.GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
         }
 

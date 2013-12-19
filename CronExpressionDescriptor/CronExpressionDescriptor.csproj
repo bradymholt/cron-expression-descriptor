@@ -59,6 +59,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources.no.resx" />
     <EmbeddedResource Include="Resources.pt-br.resx" />
     <EmbeddedResource Include="Resources.es.resx" />
     <EmbeddedResource Include="Resources.resx">

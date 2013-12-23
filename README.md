@@ -3,7 +3,7 @@ Cron Expression Descriptor
 A .NET library that converts cron expressions into human readable strings.
 
 **Original Author**: Brady Holt (http://www.geekytidbits.com)  
-**Contributors**: Renato Lima, Ivan Santos, Fabien Brooke  
+**Contributors**: Renato Lima, Ivan Santos, Fabien Brooke, Siarhei Khalipski
 **License**: [MIT](http://opensource.org/licenses/MIT)
 
 Features         
@@ -19,6 +19,7 @@ Languages Available
  * English ([Brady Holt](https://github.com/bradyholt))
  * Brazilian ([Renato Lima](https://github.com/natenho))
  * Spanish ([Ivan Santos](https://github.com/ivansg))
+ * Norwegian ([Siarhei Khalipski](https://github.com/KhalipskiSiarhei))
 
 Download
 ----------

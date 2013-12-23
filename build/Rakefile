@@ -6,7 +6,7 @@ require 'date'
 
 project_name = "CronExpressionDescriptor"
 project_title = "Cron Expression Descriptor"
-project_author = "Brady Holt, Renato Lima, Ivan Santos"
+project_author = "Brady Holt, Renato Lima, Ivan Santos, Siarhei Khalipski"
 project_description = "A library that converts cron expressions into human readable strings."
 project_copyright = "Copyright #{DateTime.now.strftime('%Y')}"
 

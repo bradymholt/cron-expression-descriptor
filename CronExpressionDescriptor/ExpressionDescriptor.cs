@@ -227,6 +227,11 @@ namespace CronExpressionDescriptor
         protected string GetHoursDescription()
         {
             string expression = m_expressionParts[2];
+
+            //For between (-) hour expressions, add one hour to the ending portion to 
+            //more accurately describe the ending hour.  for example: 8-9 should read
+            //"between 8:00 AM and 10:00 AM".
+
             int nextBetweenIndex = expression.IndexOf("-");
             while(nextBetweenIndex > -1)
             {

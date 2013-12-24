@@ -303,5 +303,20 @@ namespace CronExpressionDescriptor.Test
         {
             Assert.AreEqual("Every 30 minutes, between 08:00 AM and 10:00 AM, on day 5 and 20 of the month", ExpressionDescriptor.GetDescription("0 0/30 8-9 5,20 * ?"));
         }
+
+        [TestMethod]
+        public void TestDayOfWeekModifier()
+        {
+            Assert.AreEqual("At 12:23 PM, on the second Sunday of the month", ExpressionDescriptor.GetDescription("23 12 * * SUN#2"));
+        }
+
+        [TestMethod]
+        public void TestDayOfWeekModifierWithSundayStartOne()
+        {
+            Options options = new Options();
+            options.DayOfWeekStartIndexZero = false;
+
+            Assert.AreEqual("At 12:23 PM, on the second Sunday of the month", ExpressionDescriptor.GetDescription("23 12 * * 1#2", options));
+        }
     }
 }

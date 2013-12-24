@@ -94,20 +94,32 @@ namespace CronExpressionDescriptor
                 }
             }
 
+            //handle DayOfWeekStartIndexZero option where SUN=1 rather than SUN=0
+             if (!m_options.DayOfWeekStartIndexZero)
+             {
+                 char[] dowChars = expressionParts[5].ToCharArray();
+                 for (int i = 0; i < dowChars.Length; i++)
+                 {
+                     int charNumeric;
+                     if ((i == 0 || dowChars[i - 1] != '#') 
+                         && int.TryParse(dowChars[i].ToString(), out charNumeric))
+                     {
+                         dowChars[i] = (charNumeric - 1).ToString()[0];
+                     } 
+                 }
+
+                 expressionParts[5] = new string(dowChars);
+             }
+
             //convert SUN-SAT format to 0-6 format
             for (int i = 0; i <= 6; i++)
             {
-                if (!m_options.DayOfWeekStartIndexZero)
-                {
-                    expressionParts[5] = expressionParts[5].Replace((i + 1).ToString(), i.ToString());
-                }
-
                 DayOfWeek currentDay = (DayOfWeek)i;
                 string currentDayOfWeekDescription = currentDay.ToString().Substring(0, 3).ToUpper();
                 expressionParts[5] = expressionParts[5].Replace(currentDayOfWeekDescription, i.ToString());
             }
 
-            //convert  JAN-DEC format to 1-12 format
+            //convert JAN-DEC format to 1-12 format
             for (int i = 1; i <= 12; i++)
             {
                 DateTime currentMonth = new DateTime(DateTime.Now.Year, i, 1);

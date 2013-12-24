@@ -248,7 +248,7 @@ namespace CronExpressionDescriptor.Test
         [DeploymentItem(@"pt-br\CronExpressionDescriptor.resources.dll", "pt-br")]
         public void TestSecondMinutesHoursIntervals()
         {
-            Assert.AreEqual("No segundo 05 até 10 de cada minuto, do minuto 30 até 35 de cada hora, entre 10:00 AM e 12:00 PM", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
+            Assert.AreEqual("No segundo 05 até 10 de cada minuto, do minuto 30 até 35 de cada hora, entre 10:00 AM e 01:00 PM", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
         }
 
         [TestMethod]
@@ -262,7 +262,7 @@ namespace CronExpressionDescriptor.Test
         [DeploymentItem(@"pt-br\CronExpressionDescriptor.resources.dll", "pt-br")]
         public void TestMinutesPastTheHourRange()
         {
-            Assert.AreEqual("Aos 30 minutos da hora, entre 10:00 AM e 01:00 PM, somente de quarta-feira e sexta-feira", ExpressionDescriptor.GetDescription("0 30 10-13 ? * WED,FRI"));
+            Assert.AreEqual("Aos 30 minutos da hora, entre 10:00 AM e 02:00 PM, somente de quarta-feira e sexta-feira", ExpressionDescriptor.GetDescription("0 30 10-13 ? * WED,FRI"));
         }
         [TestMethod]
         [DeploymentItem(@"pt-br\CronExpressionDescriptor.resources.dll", "pt-br")]

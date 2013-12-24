@@ -226,7 +226,28 @@ namespace CronExpressionDescriptor
 
         protected string GetHoursDescription()
         {
-            string description = GetSegmentDescription(m_expressionParts[2],
+            string expression = m_expressionParts[2];
+            int nextBetweenIndex = expression.IndexOf("-");
+            while(nextBetweenIndex > -1)
+            {
+                int nextBetweenStartIndex = nextBetweenIndex + 1;
+                int nextBetweenEndIndex = expression.IndexOf(",", nextBetweenIndex);
+                if (nextBetweenEndIndex == -1)
+                {
+                   nextBetweenEndIndex = expression.Length;
+                }
+
+                int betweenToNumeric;
+                if (int.TryParse(expression.Substring(nextBetweenStartIndex, nextBetweenEndIndex - nextBetweenStartIndex), out betweenToNumeric))
+                {
+                    expression = expression.Remove(nextBetweenStartIndex, nextBetweenEndIndex - nextBetweenStartIndex);
+                    expression = expression.Insert(nextBetweenStartIndex, (betweenToNumeric + 1).ToString());
+                }
+
+                nextBetweenIndex = expression.IndexOf("-", nextBetweenIndex + 1);
+            }
+
+            string description = GetSegmentDescription(expression,
                  CronExpressionDescriptor.Resources.EveryHour,
                (s => FormatTime(s, "0")),
                (s => string.Format(CronExpressionDescriptor.Resources.EveryX0Hours, s.PadLeft(2, '0'))),
@@ -405,8 +426,11 @@ namespace CronExpressionDescriptor
             }
             else if (expression.Contains("-"))
             {
-                string[] segements = expression.Split('-');
-                description = string.Format(getBetweenDescriptionFormat(expression), getSingleItemDescription(segements[0]), getSingleItemDescription(segements[1]));
+                string[] segments = expression.Split('-');
+                string segment1 = segments[0];
+                string segment2 = segments[1];
+           
+                description = string.Format(getBetweenDescriptionFormat(expression), getSingleItemDescription(segment1), getSingleItemDescription(segment2));
             }
             else if (expression.Contains(","))
             {

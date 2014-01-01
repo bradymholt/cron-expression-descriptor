@@ -1,6 +1,6 @@
 Cron Expression Descriptor
 ==========================
-A .NET library that converts cron expressions into human readable strings.
+A .NET library that converts cron expressions into human readable strings
 
 **Original Author**: Brady Holt (http://www.geekytidbits.com)  
 **Contributors**: Renato Lima, Ivan Santos, Fabien Brooke, Siarhei Khalipski
@@ -8,8 +8,8 @@ A .NET library that converts cron expressions into human readable strings.
 
 Features         
 --------
- * Supports all cron expression special characters including * / , - ? L W, #.
- * Supports 5, 6 (w/ seconds or year), or 7 (w/ seconds and year) part cron expressions.
+ * Supports all cron expression special characters including * / , - ? L W, #
+ * Supports 5, 6 (w/ seconds or year), or 7 (w/ seconds and year) part cron expressions
  * Provides casing options (Sentence, Title, Lower, etc.)
  * Localization
  

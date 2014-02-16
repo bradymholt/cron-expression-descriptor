@@ -115,7 +115,7 @@ namespace CronExpressionDescriptor
             for (int i = 0; i <= 6; i++)
             {
                 DayOfWeek currentDay = (DayOfWeek)i;
-                string currentDayOfWeekDescription = currentDay.ToString().Substring(0, 3).ToUpper();
+                string currentDayOfWeekDescription = currentDay.ToString().Substring(0, 3).ToUpperInvariant();
                 expressionParts[5] = expressionParts[5].Replace(currentDayOfWeekDescription, i.ToString());
             }
 
@@ -123,7 +123,7 @@ namespace CronExpressionDescriptor
             for (int i = 1; i <= 12; i++)
             {
                 DateTime currentMonth = new DateTime(DateTime.Now.Year, i, 1);
-                string currentMonthDescription = currentMonth.ToString("MMM",m_en_culture).ToUpper();
+                string currentMonthDescription = currentMonth.ToString("MMM", m_en_culture).ToUpperInvariant();
                 expressionParts[4] = expressionParts[4].Replace(currentMonthDescription, i.ToString());
             }
 

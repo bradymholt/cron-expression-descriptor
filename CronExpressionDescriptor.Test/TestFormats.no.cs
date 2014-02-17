@@ -191,7 +191,7 @@ namespace CronExpressionDescriptor.Test
         public void TestDayOfWeekOnceInMonth()
         {
             Assert.AreEqual(
-                "Hvert minutt, på dentredje mandag av måneden", ExpressionDescriptor.GetDescription("* * * * MON#3"));
+                "Hvert minutt, på den tredje mandag av måneden", ExpressionDescriptor.GetDescription("* * * * MON#3"));
         }
 
         [TestMethod]

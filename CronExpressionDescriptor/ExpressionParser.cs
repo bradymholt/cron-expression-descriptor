@@ -77,12 +77,35 @@ namespace CronExpressionDescriptor
             expressionParts[5] = expressionParts[5].Replace("?", "*");
 
             //convert 0/, 1/ to */
-            expressionParts[0] = expressionParts[0].Replace("0/", "*/"); //seconds
-            expressionParts[1] = expressionParts[1].Replace("0/", "*/"); //minutes
-            expressionParts[2] = expressionParts[2].Replace("0/", "*/"); //hours
-            expressionParts[3] = expressionParts[3].Replace("1/", "*/"); //DOM
-            expressionParts[4] = expressionParts[4].Replace("1/", "*/"); //Month
-            expressionParts[5] = expressionParts[5].Replace("1/", "*/"); //DOW
+            if (expressionParts[0].StartsWith("0/"))
+            {
+                expressionParts[0] = expressionParts[0].Replace("0/", "*/"); //seconds
+            }
+
+            if (expressionParts[1].StartsWith("0/"))
+            {
+                expressionParts[1] = expressionParts[1].Replace("0/", "*/"); //minutes
+            }
+
+            if (expressionParts[2].StartsWith("0/"))
+            {
+                expressionParts[2] = expressionParts[2].Replace("0/", "*/"); //hours
+            }
+
+            if (expressionParts[3].StartsWith("1/"))
+            {
+                expressionParts[3] = expressionParts[3].Replace("1/", "*/"); //DOM
+            }
+
+            if (expressionParts[4].StartsWith("1/"))
+            {
+                expressionParts[4] = expressionParts[4].Replace("1/", "*/"); //Month
+            }
+
+            if (expressionParts[5].StartsWith("1/"))
+            {
+                expressionParts[5] = expressionParts[5].Replace("1/", "*/"); //DOW
+            }
 
             //convert */1 to *
             int len = expressionParts.Length;

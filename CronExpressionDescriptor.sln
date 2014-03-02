@@ -5,6 +5,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		build\CronExpressionDescriptor.nuspec = build\CronExpressionDescriptor.nuspec
+		build\exclude.txt = build\exclude.txt
 		LICENSE = LICENSE
 		build\Rakefile = build\Rakefile
 		README.md = README.md

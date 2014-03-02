@@ -52,6 +52,7 @@
     <Compile Include="TestExceptions.cs" />
     <Compile Include="TestFormats.cs" />
     <Compile Include="TestFormats.es.cs" />
+    <Compile Include="TestFormats.tr.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CronExpressionDescriptor\CronExpressionDescriptor.csproj">

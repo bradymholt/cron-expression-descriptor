@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Cron Expression Descriptor")]
 [assembly: AssemblyDescription("A library that converts cron expressions into human readable strings.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Brady Holt, Renato Lima, Ivan Santos, Siarhei Khalipski")]
+[assembly: AssemblyCompany("Brady Holt")]
 [assembly: AssemblyProduct("CronExpressionDescriptor")]
 [assembly: AssemblyCopyright("Copyright 2013")]
 [assembly: AssemblyTrademark("")]

@@ -53,6 +53,7 @@
     <Compile Include="TestFormats.cs" />
     <Compile Include="TestFormats.es.cs" />
     <Compile Include="TestFormats.tr.cs" />
+    <Compile Include="TestFormats.zh-CHS.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CronExpressionDescriptor\CronExpressionDescriptor.csproj">

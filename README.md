@@ -21,6 +21,8 @@ Languages Available
  * Spanish ([Ivan Santos](https://github.com/ivansg))
  * Norwegian ([Siarhei Khalipski](https://github.com/KhalipskiSiarhei))
  * Turkish ([Mustafa SADEDİL](https://github.com/sadedil))
+ * Dutch ([TotalMace](https://github.com/TotalMace))
+ * Chinese Simplified ([Star Peng](https://github.com/starpeng))
 
 Download
 ----------

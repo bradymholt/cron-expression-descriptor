@@ -185,7 +185,7 @@
     <comment>AtX0 description</comment>
   </data>
   <data name="ComaEveryDay" xml:space="preserve">
-    <value>,  every day </value>
+    <value>, every day</value>
     <comment>ComaEveryDay description</comment>
   </data>
   <data name="ComaEveryX0DaysOfTheWeek" xml:space="preserve">
@@ -277,11 +277,11 @@
     <comment>And description</comment>
   </data>
   <data name="ComaEveryMinute" xml:space="preserve">
-    <value>,  every minute </value>
+    <value>, every minute</value>
     <comment>ComaEveryMinute1 description</comment>
   </data>
   <data name="ComaEveryHour" xml:space="preserve">
-    <value>,  every hour </value>
+    <value>, every hour</value>
     <comment>ComaEveryHour description</comment>
   </data>
   <data name="ComaEveryX0Years" xml:space="preserve">

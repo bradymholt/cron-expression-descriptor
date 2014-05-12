@@ -19,6 +19,7 @@ namespace CronExpressionDescriptor.Test
             Thread.CurrentThread.CurrentCulture = myCultureInfo;
             Thread.CurrentThread.CurrentUICulture = myCultureInfo;
         }
+
         [TestMethod]
         public void TestEveryMinute()
         {

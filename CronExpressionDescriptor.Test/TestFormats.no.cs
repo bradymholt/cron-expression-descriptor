@@ -281,7 +281,7 @@ namespace CronExpressionDescriptor.Test
         public void TestSecondMinutesHoursIntervals()
         {
             Assert.AreEqual(
-                "Sekundene fra 05 til og med 10 etter minuttet, minuttene fra 30 til og med 35 etter timen, mellom 10:00 AM og 01:00 PM",
+                "Sekundene fra 05 til og med 10 etter minuttet, minuttene fra 30 til og med 35 etter timen, mellom 10:00 AM og 12:59 PM",
                 ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
         }
 
@@ -298,7 +298,7 @@ namespace CronExpressionDescriptor.Test
         public void TestMinutesPastTheHourRange()
         {
             Assert.AreEqual(
-                "På 30 minutter etter timen, mellom 10:00 AM og 02:00 PM, bare på onsdag og fredag",
+                "På 30 minutter etter timen, mellom 10:00 AM og 01:59 PM, bare på onsdag og fredag",
                 ExpressionDescriptor.GetDescription("0 30 10-13 ? * WED,FRI"));
         }
 

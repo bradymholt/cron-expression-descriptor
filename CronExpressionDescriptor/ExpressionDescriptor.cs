@@ -227,31 +227,6 @@ namespace CronExpressionDescriptor
         protected string GetHoursDescription()
         {
             string expression = m_expressionParts[2];
-
-            //For between (-) hour expressions, add one hour to the ending portion to 
-            //more accurately describe the ending hour.  for example: 8-9 should read
-            //"between 8:00 AM and 10:00 AM".
-
-            int nextBetweenIndex = expression.IndexOf("-");
-            while(nextBetweenIndex > -1)
-            {
-                int nextBetweenStartIndex = nextBetweenIndex + 1;
-                int nextBetweenEndIndex = expression.IndexOf(",", nextBetweenIndex);
-                if (nextBetweenEndIndex == -1)
-                {
-                   nextBetweenEndIndex = expression.Length;
-                }
-
-                int betweenToNumeric;
-                if (int.TryParse(expression.Substring(nextBetweenStartIndex, nextBetweenEndIndex - nextBetweenStartIndex), out betweenToNumeric))
-                {
-                    expression = expression.Remove(nextBetweenStartIndex, nextBetweenEndIndex - nextBetweenStartIndex);
-                    expression = expression.Insert(nextBetweenStartIndex, (betweenToNumeric + 1).ToString());
-                }
-
-                nextBetweenIndex = expression.IndexOf("-", nextBetweenIndex + 1);
-            }
-
             string description = GetSegmentDescription(expression,
                  CronExpressionDescriptor.Resources.EveryHour,
                (s => FormatTime(s, "0")),
@@ -309,7 +284,7 @@ namespace CronExpressionDescriptor
                       }
 
 
-                      format = string.Concat(CronExpressionDescriptor.Resources.ComaOnThe, 
+                      format = string.Concat(CronExpressionDescriptor.Resources.ComaOnThe,
                           dayOfWeekOfMonthDescription, CronExpressionDescriptor.Resources.SpaceX0OfTheMonth);
                   }
                   else if (s.Contains("L"))
@@ -361,7 +336,7 @@ namespace CronExpressionDescriptor
                         Match m = regex.Match(expression);
                         int dayNumber = Int32.Parse(m.Value.Replace("W", ""));
 
-                        string dayString = dayNumber == 1 ? CronExpressionDescriptor.Resources.FirstWeekday : 
+                        string dayString = dayNumber == 1 ? CronExpressionDescriptor.Resources.FirstWeekday :
                             String.Format(CronExpressionDescriptor.Resources.WeekdayNearestDayX0, dayNumber);
                         description = String.Format(CronExpressionDescriptor.Resources.ComaOnTheX0OfTheMonth, dayString);
 
@@ -391,9 +366,9 @@ namespace CronExpressionDescriptor
                (s => string.Format(CronExpressionDescriptor.Resources.ComaEveryX0Years, s)),
                (s => CronExpressionDescriptor.Resources.ComaX0ThroughX1),
                (s => CronExpressionDescriptor.Resources.ComaOnlyInX0));
-			
+
             return description;
-		}
+        }
 
         protected string GetSegmentDescription(string expression,
             string allDescription,
@@ -426,16 +401,19 @@ namespace CronExpressionDescriptor
                 {
                     string betweenSegmentOfInterval = segments[0];
                     string[] betweenSegements = betweenSegmentOfInterval.Split('-');
-                    description += ", " + string.Format(getBetweenDescriptionFormat(betweenSegmentOfInterval), getSingleItemDescription(betweenSegements[0]), getSingleItemDescription(betweenSegements[1]));
+                    string betweenSegment1Description = getSingleItemDescription(betweenSegements[0]);
+                    string betweenSegment2Description = getSingleItemDescription(betweenSegements[1]);
+                    betweenSegment2Description = betweenSegment2Description.Replace(":00", ":59");
+                    description += ", " + string.Format(getBetweenDescriptionFormat(betweenSegmentOfInterval), betweenSegment1Description, betweenSegment2Description);
                 }
             }
             else if (expression.Contains("-"))
             {
                 string[] segments = expression.Split('-');
-                string segment1 = segments[0];
-                string segment2 = segments[1];
-           
-                description = string.Format(getBetweenDescriptionFormat(expression), getSingleItemDescription(segment1), getSingleItemDescription(segment2));
+                string betweenSegment1Description = getSingleItemDescription(segments[0]);
+                string betweenSegment2Description = getSingleItemDescription(segments[1]);
+                betweenSegment2Description = betweenSegment2Description.Replace(":00", ":59");
+                description = string.Format(getBetweenDescriptionFormat(expression), betweenSegment1Description, betweenSegment2Description);
             }
             else if (expression.Contains(","))
             {
@@ -527,7 +505,7 @@ namespace CronExpressionDescriptor
         public static string GetDescription(string expression, Options options)
         {
             ExpressionDescriptor descripter = new ExpressionDescriptor(expression, options);
-            return  descripter.GetDescription(DescriptionTypeEnum.FULL);
+            return descripter.GetDescription(DescriptionTypeEnum.FULL);
         }
     }
 

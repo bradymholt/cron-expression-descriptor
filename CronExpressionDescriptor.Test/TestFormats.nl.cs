@@ -262,7 +262,7 @@ namespace CronExpressionDescriptor.Test
         [DeploymentItem(@"nl\CronExpressionDescriptor.resources.dll", "nl")]
         public void TestSecondMinutesHoursIntervals()
         {
-            Assert.AreEqual("Seconden 05 t/m 10 na de minuut, minuut 30 t/m 35 na het uur, tussen 10:00 AM en 01:00 PM", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
+            Assert.AreEqual("Seconden 05 t/m 10 na de minuut, minuut 30 t/m 35 na het uur, tussen 10:00 AM en 12:59 PM", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
         }
 
         [TestMethod]
@@ -276,7 +276,7 @@ namespace CronExpressionDescriptor.Test
         [DeploymentItem(@"nl\CronExpressionDescriptor.resources.dll", "nl")]
         public void TestMinutesPastTheHourRange()
         {
-            Assert.AreEqual("Op 30 minuten na het uur, tussen 10:00 AM en 02:00 PM, alleen op woensdag en vrijdag", ExpressionDescriptor.GetDescription("0 30 10-13 ? * WED,FRI"));
+            Assert.AreEqual("Op 30 minuten na het uur, tussen 10:00 AM en 01:59 PM, alleen op woensdag en vrijdag", ExpressionDescriptor.GetDescription("0 30 10-13 ? * WED,FRI"));
         }
 
         [TestMethod]
@@ -346,7 +346,7 @@ namespace CronExpressionDescriptor.Test
         [DeploymentItem(@"nl\CronExpressionDescriptor.resources.dll", "nl")]
         public void TestHourRange()
         {
-            Assert.AreEqual("Elke 30 minuten, tussen 08:00 AM en 10:00 AM, op dag 5 en 20 van de maand", ExpressionDescriptor.GetDescription("0 0/30 8-9 5,20 * ?"));
+            Assert.AreEqual("Elke 30 minuten, tussen 08:00 AM en 09:59 AM, op dag 5 en 20 van de maand", ExpressionDescriptor.GetDescription("0 0/30 8-9 5,20 * ?"));
         }
 
         [TestMethod]
@@ -370,14 +370,14 @@ namespace CronExpressionDescriptor.Test
         [DeploymentItem(@"nl\CronExpressionDescriptor.resources.dll", "nl")]
         public void TestHourRangeWithEveryPortion()
         {
-            Assert.AreEqual("Op 25 minuten na het uur, elke 13 uur, tussen 07:00 AM en 07:00 PM", ExpressionDescriptor.GetDescription("0 25 7-19/13 ? * *"));
+            Assert.AreEqual("Op 25 minuten na het uur, elke 13 uur, tussen 07:00 AM en 07:59 PM", ExpressionDescriptor.GetDescription("0 25 7-19/13 ? * *"));
         }
 
         [TestMethod]
         [DeploymentItem(@"nl\CronExpressionDescriptor.resources.dll", "nl")]
         public void TestHourRangeWithTrailingZeroWithEveryPortion()
         {
-            Assert.AreEqual("Op 25 minuten na het uur, elke 13 uur, tussen 07:00 AM en 08:00 PM", ExpressionDescriptor.GetDescription("0 25 7-20/13 ? * *"));
+            Assert.AreEqual("Op 25 minuten na het uur, elke 13 uur, tussen 07:00 AM en 08:59 PM", ExpressionDescriptor.GetDescription("0 25 7-20/13 ? * *"));
         }
     }
 }

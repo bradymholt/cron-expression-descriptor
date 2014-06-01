@@ -248,7 +248,7 @@ namespace CronExpressionDescriptor.Test
         [DeploymentItem(@"tr\CronExpressionDescriptor.resources.dll", "tr")]
         public void TestSecondMinutesHoursIntervals()
         {
-            Assert.AreEqual("Dakikaların 05. ve 10. saniyeleri arası, saatlerin 30. ve 35. dakikaları arası, 10:00 AM ile 01:00 PM arasında", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
+            Assert.AreEqual("Dakikaların 05. ve 10. saniyeleri arası, saatlerin 30. ve 35. dakikaları arası, 10:00 AM ile 12:59 PM arasında", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
         }
 
         [TestMethod]
@@ -262,7 +262,7 @@ namespace CronExpressionDescriptor.Test
         [DeploymentItem(@"tr\CronExpressionDescriptor.resources.dll", "tr")]
         public void TestMinutesPastTheHourRange()
         {
-            Assert.AreEqual("Saatlerin 30. dakikasında, 10:00 AM ile 02:00 PM arasında, sadece Çarşamba ve Cuma günü", ExpressionDescriptor.GetDescription("0 30 10-13 ? * WED,FRI"));
+            Assert.AreEqual("Saatlerin 30. dakikasında, 10:00 AM ile 01:59 PM arasında, sadece Çarşamba ve Cuma günü", ExpressionDescriptor.GetDescription("0 30 10-13 ? * WED,FRI"));
         }
         [TestMethod]
         [DeploymentItem(@"tr\CronExpressionDescriptor.resources.dll", "tr")]
@@ -327,7 +327,7 @@ namespace CronExpressionDescriptor.Test
         [DeploymentItem(@"tr\CronExpressionDescriptor.resources.dll", "tr")]
         public void TestHourRange()
         {
-            Assert.AreEqual("Her 30 dakikada bir, 08:00 AM ile 10:00 AM arasında, ayın 5 ve 20. günü", ExpressionDescriptor.GetDescription("0 0/30 8-9 5,20 * ?"));
+            Assert.AreEqual("Her 30 dakikada bir, 08:00 AM ile 09:59 AM arasında, ayın 5 ve 20. günü", ExpressionDescriptor.GetDescription("0 0/30 8-9 5,20 * ?"));
         }
 
         [TestMethod]

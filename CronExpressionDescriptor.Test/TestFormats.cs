@@ -230,7 +230,7 @@ namespace CronExpressionDescriptor.Test
         [TestMethod]
         public void TestSecondMinutesHoursIntervals()
         {
-            Assert.AreEqual("Seconds 05 through 10 past the minute, minutes 30 through 35 past the hour, between 10:00 AM and 01:00 PM", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
+            Assert.AreEqual("Seconds 05 through 10 past the minute, minutes 30 through 35 past the hour, between 10:00 AM and 12:59 PM", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
         }
 
         [TestMethod]
@@ -242,7 +242,7 @@ namespace CronExpressionDescriptor.Test
         [TestMethod]
         public void TestMinutesPastTheHourRange()
         {
-            Assert.AreEqual("At 30 minutes past the hour, between 10:00 AM and 02:00 PM, only on Wednesday and Friday", ExpressionDescriptor.GetDescription("0 30 10-13 ? * WED,FRI"));
+            Assert.AreEqual("At 30 minutes past the hour, between 10:00 AM and 01:59 PM, only on Wednesday and Friday", ExpressionDescriptor.GetDescription("0 30 10-13 ? * WED,FRI"));
         }
 
         [TestMethod]
@@ -302,7 +302,7 @@ namespace CronExpressionDescriptor.Test
         [TestMethod]
         public void TestHourRange()
         {
-            Assert.AreEqual("Every 30 minutes, between 08:00 AM and 10:00 AM, on day 5 and 20 of the month", ExpressionDescriptor.GetDescription("0 0/30 8-9 5,20 * ?"));
+            Assert.AreEqual("Every 30 minutes, between 08:00 AM and 09:59 AM, on day 5 and 20 of the month", ExpressionDescriptor.GetDescription("0 0/30 8-9 5,20 * ?"));
         }
 
         [TestMethod]
@@ -323,13 +323,13 @@ namespace CronExpressionDescriptor.Test
         [TestMethod]
         public void TestHourRangeWithEveryPortion()
         {
-            Assert.AreEqual("At 25 minutes past the hour, every 13 hours, between 07:00 AM and 07:00 PM", ExpressionDescriptor.GetDescription("0 25 7-19/13 ? * *"));
+            Assert.AreEqual("At 25 minutes past the hour, every 13 hours, between 07:00 AM and 07:59 PM", ExpressionDescriptor.GetDescription("0 25 7-19/13 ? * *"));
         }
 
         [TestMethod]
         public void TestHourRangeWithTrailingZeroWithEveryPortion()
         {
-            Assert.AreEqual("At 25 minutes past the hour, every 13 hours, between 07:00 AM and 08:00 PM", ExpressionDescriptor.GetDescription("0 25 7-20/13 ? * *"));
+            Assert.AreEqual("At 25 minutes past the hour, every 13 hours, between 07:00 AM and 08:59 PM", ExpressionDescriptor.GetDescription("0 25 7-20/13 ? * *"));
         }
     }
 }

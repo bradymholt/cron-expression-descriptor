@@ -229,7 +229,7 @@ namespace CronExpressionDescriptor.Test
         [TestMethod]
         public void TestSecondMinutesHoursIntervals()
         {
-            Assert.AreEqual("在每分钟的 05 到 10 秒, 在每小时的 30 到 35 分钟, 在 10:00 AM 和 01:00 PM 之间", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
+            Assert.AreEqual("在每分钟的 05 到 10 秒, 在每小时的 30 到 35 分钟, 在 10:00 AM 和 12:59 PM 之间", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
         }
 
         [TestMethod]
@@ -241,7 +241,7 @@ namespace CronExpressionDescriptor.Test
         [TestMethod]
         public void TestMinutesPastTheHourRange()
         {
-            Assert.AreEqual("在每小时的 30 分, 在 10:00 AM 和 02:00 PM 之间, 仅在 星期三 和 星期五", ExpressionDescriptor.GetDescription("0 30 10-13 ? * WED,FRI"));
+            Assert.AreEqual("在每小时的 30 分, 在 10:00 AM 和 01:59 PM 之间, 仅在 星期三 和 星期五", ExpressionDescriptor.GetDescription("0 30 10-13 ? * WED,FRI"));
         }
 
         [TestMethod]
@@ -301,7 +301,7 @@ namespace CronExpressionDescriptor.Test
         [TestMethod]
         public void TestHourRange()
         {
-            Assert.AreEqual("每 30 分钟, 在 08:00 AM 和 10:00 AM 之间, 每月的 5 和 20 号", ExpressionDescriptor.GetDescription("0 0/30 8-9 5,20 * ?"));
+            Assert.AreEqual("每 30 分钟, 在 08:00 AM 和 09:59 AM 之间, 每月的 5 和 20 号", ExpressionDescriptor.GetDescription("0 0/30 8-9 5,20 * ?"));
         }
 
         [TestMethod]
@@ -322,13 +322,13 @@ namespace CronExpressionDescriptor.Test
         [TestMethod]
         public void TestHourRangeWithEveryPortion()
         {
-            Assert.AreEqual("在每小时的 25 分, 每 13 小时, 在 07:00 AM 和 07:00 PM 之间", ExpressionDescriptor.GetDescription("0 25 7-19/13 ? * *"));
+            Assert.AreEqual("在每小时的 25 分, 每 13 小时, 在 07:00 AM 和 07:59 PM 之间", ExpressionDescriptor.GetDescription("0 25 7-19/13 ? * *"));
         }
 
         [TestMethod]
         public void TestHourRangeWithTrailingZeroWithEveryPortion()
         {
-            Assert.AreEqual("在每小时的 25 分, 每 13 小时, 在 07:00 AM 和 08:00 PM 之间", ExpressionDescriptor.GetDescription("0 25 7-20/13 ? * *"));
+            Assert.AreEqual("在每小时的 25 分, 每 13 小时, 在 07:00 AM 和 08:59 PM 之间", ExpressionDescriptor.GetDescription("0 25 7-20/13 ? * *"));
         }
     }
 }

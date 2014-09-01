@@ -451,20 +451,29 @@ namespace CronExpressionDescriptor
             return FormatTime(hourExpression, minuteExpression, string.Empty);
         }
 
-        protected string FormatTime(string hourExpression, string minuteExpression, string secondExpression)
+        protected string FormatTime(string hourExpression, string minuteExpression, string secondExpression, bool? twentyFourHourFormat = null)
         {
+			if(!twentyFourHourFormat.HasValue)
+				twentyFourHourFormat = m_culture.Equals(new CultureInfo("ru"));
+
             int hour = Convert.ToInt32(hourExpression);
-            string amPM = hour >= 12 ? "PM" : "AM";
-            if (hour > 12) { hour -= 12; }
-            string minute = Convert.ToInt32(minuteExpression).ToString();
+			
+			string amPM = null;
+            if (!twentyFourHourFormat.Value)
+            {
+                amPM = hour >= 12 ? "PM" : "AM";
+                if (hour > 12) { hour -= 12; }
+            }
+			
+			string minute = Convert.ToInt32(minuteExpression).ToString();
             string second = string.Empty;
             if (!string.IsNullOrEmpty(secondExpression))
             {
                 second = string.Concat(":", Convert.ToInt32(secondExpression).ToString().PadLeft(2, '0'));
             }
 
-            return string.Format("{0}:{1}{2} {3}",
-                hour.ToString().PadLeft(2, '0'), minute.PadLeft(2, '0'), second, amPM);
+            return string.Format("{0}:{1}{2}{3}",
+                hour.ToString().PadLeft(2, '0'), minute.PadLeft(2, '0'), second, amPM != null ? " " + amPM : "");
         }
 
         protected string TransformVerbosity(string description)

@@ -288,4 +288,12 @@
     <value>ukedag nærmest dag {0}</value>
     <comment>WeekdayNearestDayX0 description</comment>
   </data>
+  <data name="ComaDaysX0ThroughX1" xml:space="preserve">
+    <value>, {0} til og med {1}</value>
+    <comment>ComaDaysX0ThroughX1 description</comment>
+  </data>
+  <data name="WeekSpaceAndSpace" xml:space="preserve">
+    <value> og </value>
+    <comment>WeekSpaceAndSpace description</comment>
+  </data>
 </root>

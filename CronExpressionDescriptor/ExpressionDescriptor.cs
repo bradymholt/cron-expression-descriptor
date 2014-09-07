@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Text.RegularExpressions;
-using System.Resources;
 using System.Globalization;
 
 namespace CronExpressionDescriptor
@@ -14,12 +11,12 @@ namespace CronExpressionDescriptor
     /// </summary>
     public class ExpressionDescriptor
     {
-        private readonly char[] m_specialCharacters = new char[] { '/', '-', ',', '*' };
+        private readonly char[] m_specialCharacters = { '/', '-', ',', '*' };
         private string m_expression;
         private Options m_options;
         private string[] m_expressionParts;
         private bool m_parsed;
-        private CultureInfo m_culture;
+        private readonly CultureInfo m_culture;
 
         public ExpressionDescriptor(string expression) : this(expression, new Options()) { }
         public ExpressionDescriptor(string expression, Options options)
@@ -39,7 +36,7 @@ namespace CronExpressionDescriptor
             {
                 if (!m_parsed)
                 {
-                    ExpressionParser parser = new ExpressionParser(m_expression, m_options);
+                    var parser = new ExpressionParser(m_expression, m_options);
                     m_expressionParts = parser.Parse();
                     m_parsed = true;
                 }
@@ -134,7 +131,7 @@ namespace CronExpressionDescriptor
             string minuteExpression = m_expressionParts[1];
             string hourExpression = m_expressionParts[2];
 
-            StringBuilder description = new StringBuilder();
+            var description = new StringBuilder();
 
             //handle special cases first
             if (minuteExpression.IndexOfAny(m_specialCharacters) == -1
@@ -203,11 +200,12 @@ namespace CronExpressionDescriptor
         protected string GetSecondsDescription()
         {
             string description = GetSegmentDescription(m_expressionParts[0],
-                 CronExpressionDescriptor.Resources.EverySecond,
-               (s => s.PadLeft(2, '0')),
-               (s => string.Format(CronExpressionDescriptor.Resources.EveryX0Seconds, s)),
-               (s => CronExpressionDescriptor.Resources.SecondsX0ThroughX1PastTheMinute),
-               (s => CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute));
+                CronExpressionDescriptor.Resources.EverySecond,
+                (FormatNumberWithPaddingForLegacy),
+                (s => CronExpressionDescriptor.Resources.EveryX0Seconds),
+                (s => CronExpressionDescriptor.Resources.SecondsX0ThroughX1PastTheMinute),
+                (s => CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute),
+                CronExpressionDescriptor.Resources.SpaceAndSpace);
 
             return description;
         }
@@ -215,11 +213,12 @@ namespace CronExpressionDescriptor
         protected string GetMinutesDescription()
         {
             string description = GetSegmentDescription(m_expressionParts[1],
-                  CronExpressionDescriptor.Resources.EveryMinute,
-                (s => s.PadLeft(2, '0')),
-                (s => string.Format(CronExpressionDescriptor.Resources.EveryX0Minutes, s.PadLeft(2, '0'))),
+                CronExpressionDescriptor.Resources.EveryMinute,
+                (FormatNumberWithPaddingForLegacy),
+                (s => CronExpressionDescriptor.Resources.EveryX0Minutes),
                 (s => CronExpressionDescriptor.Resources.MinutesX0ThroughX1PastTheHour),
-                (s => s == "0" ? string.Empty : CronExpressionDescriptor.Resources.AtX0MinutesPastTheHour));
+                (s => s == "0" ? string.Empty : CronExpressionDescriptor.Resources.AtX0MinutesPastTheHour),
+                CronExpressionDescriptor.Resources.SpaceAndSpace);
 
             return description;
         }
@@ -228,11 +227,12 @@ namespace CronExpressionDescriptor
         {
             string expression = m_expressionParts[2];
             string description = GetSegmentDescription(expression,
-                 CronExpressionDescriptor.Resources.EveryHour,
-               (s => FormatTime(s, "0")),
-               (s => string.Format(CronExpressionDescriptor.Resources.EveryX0Hours, s.PadLeft(2, '0'))),
-               (s => CronExpressionDescriptor.Resources.BetweenX0AndX1),
-               (s => CronExpressionDescriptor.Resources.AtX0));
+                CronExpressionDescriptor.Resources.EveryHour,
+                (s => FormatTime(s, "0")),
+                (s => string.Format(CronExpressionDescriptor.Resources.EveryX0Hours, FormatNumberWithPaddingForLegacy(s))),
+                (s => CronExpressionDescriptor.Resources.BetweenX0AndX1),
+                (s => CronExpressionDescriptor.Resources.AtX0),
+                CronExpressionDescriptor.Resources.SpaceAndSpace);
 
             return description;
         }
@@ -241,63 +241,64 @@ namespace CronExpressionDescriptor
         {
             string description = GetSegmentDescription(m_expressionParts[5],
                 CronExpressionDescriptor.Resources.ComaEveryDay,
-              (s =>
-              {
-                  string exp = s;
-                  if (s.Contains("#"))
-                  {
-                      exp = s.Remove(s.IndexOf("#"));
-                  }
-                  else if (s.Contains("L"))
-                  {
-                      exp = exp.Replace("L", string.Empty);
-                  }
+                (s =>
+                {
+                    string exp = s;
+                    if (s.Contains("#"))
+                    {
+                        exp = s.Remove(s.IndexOf("#"));
+                    }
+                    else if (s.Contains("L"))
+                    {
+                        exp = exp.Replace("L", string.Empty);
+                    }
 
-                  return m_culture.DateTimeFormat.GetDayName(((DayOfWeek)Convert.ToInt32(exp)));
-              }),
-              (s => string.Format(CronExpressionDescriptor.Resources.ComaEveryX0DaysOfTheWeek, s)),
-              (s => CronExpressionDescriptor.Resources.ComaX0ThroughX1),
-              (s =>
-              {
-                  string format = null;
-                  if (s.Contains("#"))
-                  {
-                      string dayOfWeekOfMonthNumber = s.Substring(s.IndexOf("#") + 1);
-                      string dayOfWeekOfMonthDescription = null;
-                      switch (dayOfWeekOfMonthNumber)
-                      {
-                          case "1":
-                              dayOfWeekOfMonthDescription = CronExpressionDescriptor.Resources.First;
-                              break;
-                          case "2":
-                              dayOfWeekOfMonthDescription = CronExpressionDescriptor.Resources.Second;
-                              break;
-                          case "3":
-                              dayOfWeekOfMonthDescription = CronExpressionDescriptor.Resources.Third;
-                              break;
-                          case "4":
-                              dayOfWeekOfMonthDescription = CronExpressionDescriptor.Resources.Forth;
-                              break;
-                          case "5":
-                              dayOfWeekOfMonthDescription = CronExpressionDescriptor.Resources.Fifth;
-                              break;
-                      }
+                    return m_culture.DateTimeFormat.GetDayName(((DayOfWeek) Convert.ToInt32(exp)));
+                }),
+                (s => string.Format(CronExpressionDescriptor.Resources.ComaEveryX0DaysOfTheWeek, s)),
+                (s => CronExpressionDescriptor.Resources.ComaDaysX0ThroughX1),
+                (s =>
+                {
+                    string format;
+                    if (s.Contains("#"))
+                    {
+                        string dayOfWeekOfMonthNumber = s.Substring(s.IndexOf("#") + 1);
+                        string dayOfWeekOfMonthDescription = null;
+                        switch (dayOfWeekOfMonthNumber)
+                        {
+                            case "1":
+                                dayOfWeekOfMonthDescription = CronExpressionDescriptor.Resources.First;
+                                break;
+                            case "2":
+                                dayOfWeekOfMonthDescription = CronExpressionDescriptor.Resources.Second;
+                                break;
+                            case "3":
+                                dayOfWeekOfMonthDescription = CronExpressionDescriptor.Resources.Third;
+                                break;
+                            case "4":
+                                dayOfWeekOfMonthDescription = CronExpressionDescriptor.Resources.Forth;
+                                break;
+                            case "5":
+                                dayOfWeekOfMonthDescription = CronExpressionDescriptor.Resources.Fifth;
+                                break;
+                        }
 
 
-                      format = string.Concat(CronExpressionDescriptor.Resources.ComaOnThe,
-                          dayOfWeekOfMonthDescription, CronExpressionDescriptor.Resources.SpaceX0OfTheMonth);
-                  }
-                  else if (s.Contains("L"))
-                  {
-                      format = CronExpressionDescriptor.Resources.ComaOnTheLastX0OfTheMonth;
-                  }
-                  else
-                  {
-                      format = CronExpressionDescriptor.Resources.ComaOnlyOnX0;
-                  }
+                        format = string.Concat(CronExpressionDescriptor.Resources.ComaOnThe,
+                            dayOfWeekOfMonthDescription, CronExpressionDescriptor.Resources.SpaceX0OfTheMonth);
+                    }
+                    else if (s.Contains("L"))
+                    {
+                        format = CronExpressionDescriptor.Resources.ComaOnTheLastX0OfTheMonth;
+                    }
+                    else
+                    {
+                        format = CronExpressionDescriptor.Resources.ComaOnlyOnX0;
+                    }
 
-                  return format;
-              }));
+                    return format;
+                }),
+                CronExpressionDescriptor.Resources.WeekSpaceAndSpace);
 
             return description;
         }
@@ -306,10 +307,11 @@ namespace CronExpressionDescriptor
         {
             string description = GetSegmentDescription(m_expressionParts[4],
                 string.Empty,
-               (s => new DateTime(DateTime.Now.Year, Convert.ToInt32(s), 1).ToString("MMMM")),
-               (s => string.Format(CronExpressionDescriptor.Resources.ComaEveryX0Months, s)),
-               (s => CronExpressionDescriptor.Resources.ComaX0ThroughX1),
-               (s => CronExpressionDescriptor.Resources.ComaOnlyInX0));
+                (s => new DateTime(DateTime.Now.Year, Convert.ToInt32(s), 1).ToString("MMMM")),
+                (s => string.Format(CronExpressionDescriptor.Resources.ComaEveryX0Months, s)),
+                (s => CronExpressionDescriptor.Resources.ComaX0ThroughX1),
+                (s => CronExpressionDescriptor.Resources.ComaOnlyInX0),
+                CronExpressionDescriptor.Resources.SpaceAndSpace);
 
             return description;
         }
@@ -330,7 +332,7 @@ namespace CronExpressionDescriptor
                     description = CronExpressionDescriptor.Resources.ComaOnTheLastWeekdayOfTheMonth;
                     break;
                 default:
-                    Regex regex = new Regex("(\\dW)|(W\\d)");
+                    var regex = new Regex("(\\dW)|(W\\d)");
                     if (regex.IsMatch(expression))
                     {
                         Match m = regex.Match(expression);
@@ -350,7 +352,8 @@ namespace CronExpressionDescriptor
                             (s => s == "1" ? CronExpressionDescriptor.Resources.ComaEveryDay :
                                 CronExpressionDescriptor.Resources.ComaEveryX0Days),
                             (s => CronExpressionDescriptor.Resources.ComaBetweenDayX0AndX1OfTheMonth),
-                            (s => CronExpressionDescriptor.Resources.ComaOnDayX0OfTheMonth));
+                            (s => CronExpressionDescriptor.Resources.ComaOnDayX0OfTheMonth),
+                            CronExpressionDescriptor.Resources.WeekSpaceAndSpace);
                         break;
                     }
             }
@@ -362,10 +365,11 @@ namespace CronExpressionDescriptor
         {
             string description = GetSegmentDescription(m_expressionParts[6],
                 string.Empty,
-               (s => new DateTime(Convert.ToInt32(s), 1, 1).ToString("yyyy")),
-               (s => string.Format(CronExpressionDescriptor.Resources.ComaEveryX0Years, s)),
-               (s => CronExpressionDescriptor.Resources.ComaX0ThroughX1),
-               (s => CronExpressionDescriptor.Resources.ComaOnlyInX0));
+                (s => new DateTime(Convert.ToInt32(s), 1, 1).ToString("yyyy")),
+                (s => string.Format(CronExpressionDescriptor.Resources.ComaEveryX0Years, s)),
+                (s => CronExpressionDescriptor.Resources.ComaX0ThroughX1),
+                (s => CronExpressionDescriptor.Resources.ComaOnlyInX0),
+                CronExpressionDescriptor.Resources.SpaceAndSpace);
 
             return description;
         }
@@ -375,7 +379,8 @@ namespace CronExpressionDescriptor
             Func<string, string> getSingleItemDescription,
             Func<string, string> getIntervalDescriptionFormat,
             Func<string, string> getBetweenDescriptionFormat,
-            Func<string, string> getDescriptionFormat)
+            Func<string, string> getDescriptionFormat,
+            string beforeLastDescriptionFormat)
         {
             string description = null;
 
@@ -434,7 +439,7 @@ namespace CronExpressionDescriptor
 
                     if (i > 0 && segments.Length > 1 && (i == segments.Length - 1 || segments.Length == 2))
                     {
-                        descriptionContent += CronExpressionDescriptor.Resources.SpaceAndSpace;
+                        descriptionContent += beforeLastDescriptionFormat;
                     }
 
                     descriptionContent += getSingleItemDescription(segments[i]);
@@ -454,17 +459,48 @@ namespace CronExpressionDescriptor
         protected string FormatTime(string hourExpression, string minuteExpression, string secondExpression)
         {
             int hour = Convert.ToInt32(hourExpression);
-            string amPM = hour >= 12 ? "PM" : "AM";
-            if (hour > 12) { hour -= 12; }
-            string minute = Convert.ToInt32(minuteExpression).ToString();
-            string second = string.Empty;
+            int minute = Convert.ToInt32(minuteExpression);
+            int? second = null;
             if (!string.IsNullOrEmpty(secondExpression))
             {
-                second = string.Concat(":", Convert.ToInt32(secondExpression).ToString().PadLeft(2, '0'));
+                second = Convert.ToInt32(secondExpression);
             }
 
-            return string.Format("{0}:{1}{2} {3}",
-                hour.ToString().PadLeft(2, '0'), minute.PadLeft(2, '0'), second, amPM);
+            switch (m_options.FormatsType)
+            {
+                case FormatsTypeEnum.Legacy:
+                    string amPM = hour >= 12 ? "PM" : "AM";
+                    if (hour > 12) { hour -= 12; }
+                    string secondString = second == null
+                        ? string.Empty
+                        : string.Format(":{0:00}", second.Value);
+                    return string.Format("{0:00}:{1:00}{2} {3}", hour, minute, secondString, amPM);
+                case FormatsTypeEnum.CultureProvided:
+                    string pattern = second == null
+                        ? DateTimeFormatInfo.CurrentInfo.ShortTimePattern
+                        : DateTimeFormatInfo.CurrentInfo.LongTimePattern;
+                    DateTime time = new DateTime(1, 1, 1, hour, minute, second ?? 0);
+                    return time.ToString(pattern);
+                default:
+                    throw new ArgumentOutOfRangeException("formatType");
+            }
+            
+            
+
+            
+        }
+
+        protected string FormatNumberWithPaddingForLegacy(string s)
+        {
+            switch (m_options.FormatsType)
+            {
+                case FormatsTypeEnum.Legacy:
+                    return s.PadLeft(2, '0');
+                case FormatsTypeEnum.CultureProvided:
+                    return s;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         protected string TransformVerbosity(string description)
@@ -499,7 +535,7 @@ namespace CronExpressionDescriptor
 
         public static string GetDescription(string expression)
         {
-            return GetDescription(expression, new Options());
+            return GetDescription(expression, Options.Default);
         }
 
         public static string GetDescription(string expression, Options options)

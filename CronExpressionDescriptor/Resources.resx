@@ -288,4 +288,12 @@
     <value>, every {0} years</value>
     <comment>ComaEveryX0Years description</comment>
   </data>
+  <data name="ComaDaysX0ThroughX1" xml:space="preserve">
+    <value>, {0} through {1}</value>
+    <comment>ComaDaysX0ThroughX1 description</comment>
+  </data>
+  <data name="WeekSpaceAndSpace" xml:space="preserve">
+    <value> and </value>
+    <comment>WeekSpaceAndSpace description</comment>
+  </data>
 </root>

@@ -288,4 +288,12 @@
     <value>, {0} yılda bir</value>
     <comment>ComaEveryX0Years description</comment>
   </data>
+  <data name="ComaDaysX0ThroughX1" xml:space="preserve">
+    <value>, {0} ile {1} arasında</value>
+    <comment>ComaDaysX0ThroughX1 description</comment>
+  </data>
+  <data name="WeekSpaceAndSpace" xml:space="preserve">
+    <value> ve </value>
+    <comment>WeekSpaceAndSpace description</comment>
+  </data>
 </root>

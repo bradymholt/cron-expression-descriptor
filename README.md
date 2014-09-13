@@ -11,7 +11,7 @@ Features
  * Supports all cron expression special characters including * / , - ? L W, #
  * Supports 5, 6 (w/ seconds or year), or 7 (w/ seconds and year) part cron expressions
  * Provides casing options (Sentence, Title, Lower, etc.)
- * Localization with support for 5 languages
+ * Localization with support for 8 languages
  
 Languages Available
 --------
@@ -23,6 +23,7 @@ Languages Available
  * Turkish ([Mustafa SADEDİL](https://github.com/sadedil))
  * Dutch ([TotalMace](https://github.com/TotalMace))
  * Chinese Simplified ([Star Peng](https://github.com/starpeng))
+ * Russian ([LbISS](https://github.com/LbISS))
 
 Download
 ----------

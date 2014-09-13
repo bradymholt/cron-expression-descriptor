@@ -5,7 +5,6 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading;
 using System.Globalization;
-using System.IO;
 
 namespace CronExpressionDescriptor.Test
 {

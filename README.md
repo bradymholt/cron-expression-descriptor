@@ -24,6 +24,7 @@ Languages Available
  * Dutch ([TotalMace](https://github.com/TotalMace))
  * Chinese Simplified ([Star Peng](https://github.com/starpeng))
  * Russian ([LbISS](https://github.com/LbISS))
+ * French ([Arnaud TAMAILLON](https://github.com/Greybird))
 
 Download
 ----------

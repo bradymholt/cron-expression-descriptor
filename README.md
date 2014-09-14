@@ -3,7 +3,7 @@
 A .NET library that converts cron expressions into human readable strings.
 
 **Author**: Brady Holt (http://www.geekytidbits.com)  
-**Contributors**: Renato Lima, Ivan Santos, Fabien Brooke, Siarhei Khalipski, Mustafa SADEDİL  
+**Contributors**: Renato Lima, Ivan Santos, Fabien Brooke, Siarhei Khalipski, Mustafa SADEDİL, TotalMace, Star Peng, LbISS, Arnaud TAMAILLON  
 **License**: [MIT](http://opensource.org/licenses/MIT)
 
 Features         

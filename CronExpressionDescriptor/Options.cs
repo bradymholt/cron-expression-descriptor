@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
+﻿using System.Globalization;
 using System.Threading;
 
 namespace CronExpressionDescriptor
@@ -20,6 +16,10 @@ namespace CronExpressionDescriptor
             //culture specific default options
             CultureInfo cultureInfo = Thread.CurrentThread.CurrentUICulture;
             if (cultureInfo.Equals(new CultureInfo("ru"))) //Russian
+            {
+                this.Use24HourTimeFormat = true;
+            }
+            if (cultureInfo.Equals(new CultureInfo("de"))) //German
             {
                 this.Use24HourTimeFormat = true;
             }

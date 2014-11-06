@@ -118,17 +118,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EveryMinute" xml:space="preserve">
-    <value>Jede Minute</value>
+    <value>jede Minute</value>
   </data>
   <data name="EveryHour" xml:space="preserve">
-    <value>Jede Stunde</value>
+    <value>jede Stunde</value>
     <comment>EveryHour description</comment>
   </data>
   <data name="AnErrorOccuredWhenGeneratingTheExpressionD" xml:space="preserve">
     <value>An error occured when generating the expression description.  Check the cron expression syntax.</value>
     <comment>AnErrorOccuredWhenGeneratingTheExpressionD description</comment>
   </data>
-  <data name="on" xml:space="preserve">
+  <data name="AtSpace" xml:space="preserve">
     <value>Um </value>
     <comment>At description</comment>
   </data>
@@ -149,27 +149,27 @@
     <comment>EverySecond description</comment>
   </data>
   <data name="EveryX0Seconds" xml:space="preserve">
-    <value>Alle {0} Sekunden</value>
+    <value>alle {0} Sekunden</value>
     <comment>EveryX0Seconds description</comment>
   </data>
   <data name="SecondsX0ThroughX1PastTheMinute" xml:space="preserve">
-    <value>seconds {0} through {1} past the minute</value>
+    <value>Sekunden {0} bis {1}</value>
     <comment>SecondsX0ThroughX1PastTheMinute description</comment>
   </data>
   <data name="AtX0SecondsPastTheMinute" xml:space="preserve">
-    <value>at {0} seconds past the minute</value>
+    <value>bei Sekunde {0}</value>
     <comment>AtX0SecondsPastTheMinute description</comment>
   </data>
   <data name="EveryX0Minutes" xml:space="preserve">
-    <value>Alle {0} Minuten</value>
+    <value>alle {0} Minuten</value>
     <comment>EveryX0Minutes description</comment>
   </data>
   <data name="MinutesX0ThroughX1PastTheHour" xml:space="preserve">
-    <value>minutes {0} through {1} past the hour</value>
+    <value>Minuten {0} bis {1}</value>
     <comment>MinutesX0ThroughX1PastTheHour description</comment>
   </data>
   <data name="AtX0MinutesPastTheHour" xml:space="preserve">
-    <value>at {0} minutes past the hour</value>
+    <value>bei Minute {0}</value>
     <comment>AtX0MinutesPastTheHour description</comment>
   </data>
   <data name="EveryX0Hours" xml:space="preserve">
@@ -177,11 +177,11 @@
     <comment>EveryX0Hours description</comment>
   </data>
   <data name="BetweenX0AndX1" xml:space="preserve">
-    <value>between {0} and {1}</value>
+    <value>zwischen {0} und {1}</value>
     <comment>BetweenX0AndX1 description</comment>
   </data>
   <data name="AtX0" xml:space="preserve">
-    <value>Um {0}</value>
+    <value>um {0}</value>
     <comment>AtX0 description</comment>
   </data>
   <data name="ComaEveryDay" xml:space="preserve">
@@ -197,35 +197,35 @@
     <comment>X0ThroughX1 description</comment>
   </data>
   <data name="First" xml:space="preserve">
-    <value>first</value>
+    <value>ersten</value>
     <comment>First description</comment>
   </data>
   <data name="Second" xml:space="preserve">
-    <value>second</value>
+    <value>zweiten</value>
     <comment>Second description</comment>
   </data>
   <data name="Third" xml:space="preserve">
-    <value>third</value>
+    <value>dritten</value>
     <comment>Third description</comment>
   </data>
   <data name="Forth" xml:space="preserve">
-    <value>forth</value>
+    <value>vierten</value>
     <comment>Forth description</comment>
   </data>
   <data name="Fifth" xml:space="preserve">
-    <value>fifth</value>
+    <value>fünften</value>
     <comment>Fifth description</comment>
   </data>
   <data name="ComaOnThe" xml:space="preserve">
-    <value>, on the </value>
+    <value>, am </value>
     <comment>OnThe description</comment>
   </data>
   <data name="SpaceX0OfTheMonth" xml:space="preserve">
-    <value> {0} of the month</value>
+    <value> {0} des Monats</value>
     <comment>X0OfTheMonth description</comment>
   </data>
   <data name="ComaOnTheLastX0OfTheMonth" xml:space="preserve">
-    <value>, on the last {0} of the month</value>
+    <value>, am letzten {0} des Monats</value>
     <comment>OnTheLastX0OfTheMonth description</comment>
   </data>
   <data name="ComaOnlyOnX0" xml:space="preserve">
@@ -241,35 +241,35 @@
     <comment>ComaOnlyInX0 description</comment>
   </data>
   <data name="ComaOnTheLastDayOfTheMonth" xml:space="preserve">
-    <value>, on the last day of the month</value>
+    <value>, am letzten Tag des Monats</value>
     <comment>ComaOnTheLastDayOfTheMonth description</comment>
   </data>
   <data name="ComaOnTheLastWeekdayOfTheMonth" xml:space="preserve">
-    <value>, on the last weekday of the month</value>
+    <value>, am letzten Werktag des Monats</value>
     <comment>OnTheLastWeekdayOfTheMonth description</comment>
   </data>
   <data name="FirstWeekday" xml:space="preserve">
-    <value>first weekday</value>
+    <value>ersten Werktag</value>
     <comment>FirstWeekday description</comment>
   </data>
   <data name="WeekdayNearestDayX0" xml:space="preserve">
-    <value>weekday nearest day {0}</value>
+    <value>Werktag am nächsten zum {0} Tag</value>
     <comment>WeekdayNearestDayX0 description</comment>
   </data>
   <data name="ComaOnTheX0OfTheMonth" xml:space="preserve">
-    <value>, on the {0} of the month</value>
+    <value>, am {0} des Monats</value>
     <comment>ComaOnTheX0OfTheMonth description</comment>
   </data>
   <data name="ComaEveryX0Days" xml:space="preserve">
-    <value>, every {0} days</value>
+    <value>, alle {0} Tage</value>
     <comment>ComaEveryX0Days description</comment>
   </data>
   <data name="ComaBetweenDayX0AndX1OfTheMonth" xml:space="preserve">
-    <value>, between day {0} and {1} of the month</value>
+    <value>, zwischen Tag {0} und {1} des Monats</value>
     <comment>BetweenDayX0AndX1OfTheMonth description</comment>
   </data>
   <data name="ComaOnDayX0OfTheMonth" xml:space="preserve">
-    <value>, am {0}. Tag des Monats</value>
+    <value>, am {0} Tag des Monats</value>
     <comment>ComaOnDayX0OfTheMonth description</comment>
   </data>
   <data name="SpaceAndSpace" xml:space="preserve">

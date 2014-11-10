@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Cron Expression Descriptor")]
-[assembly: AssemblyDescription("A library that converts cron expressions into human readable strings.  Supports 9 languages: English, Brazillian, Spanish, Norwgian, Turkish, Dutch, Chinese Simplified, Russian, French.")]
+[assembly: AssemblyDescription("A library that converts cron expressions into human readable strings.  Supports 11 languages: English, Brazillian, Spanish, Norwgian, Turkish, Dutch, Chinese Simplified, Russian, French, German and Ukrainian.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Brady Holt")]
 [assembly: AssemblyProduct("CronExpressionDescriptor")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.11.0")]
-[assembly: AssemblyFileVersion("1.11.0")]
+[assembly: AssemblyVersion("1.12.0")]
+[assembly: AssemblyFileVersion("1.12.0")]

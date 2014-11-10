@@ -1,9 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CronExpressionDescriptor;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Globalization;
 using System.Threading;
 
@@ -330,6 +325,30 @@ namespace CronExpressionDescriptor.Test
         public void TestHourRangeWithTrailingZeroWithEveryPortion()
         {
             Assert.AreEqual("At 25 minutes past the hour, every 13 hours, between 07:00 AM and 08:59 PM", ExpressionDescriptor.GetDescription("0 25 7-20/13 ? * *"));
+        }
+
+        [TestMethod]
+        public void TestEvery3Day()
+        {
+            Assert.AreEqual("At 08:00 AM, every 3 days", ExpressionDescriptor.GetDescription("0 0 8 1/3 * ? *"));
+        }
+
+        [TestMethod]
+        public void TestsEvery3DayOfTheWeek()
+        {
+            Assert.AreEqual("At 10:15 AM, every 3 days of the week", ExpressionDescriptor.GetDescription("0 15 10 ? * */3"));
+        }
+
+        [TestMethod]
+        public void TestEvery3Month()
+        {
+            Assert.AreEqual("At 07:05 AM, on day 2 of the month, every 3 months", ExpressionDescriptor.GetDescription("0 5 7 2 1/3 ? *"));
+        }
+
+        [TestMethod]
+        public void TestEvery2Years()
+        {
+            Assert.AreEqual("At 06:15 AM, on day 1 of the month, only in January, every 2 years", ExpressionDescriptor.GetDescription("0 15 6 1 1 ? 1/2"));
         }
     }
 }

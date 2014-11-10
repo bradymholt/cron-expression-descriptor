@@ -1,5 +1,5 @@
 ﻿#CronExpressionDescriptor
-#Example usage: rake release["1.7.0, Release notes here..."]
+#Example usage: rake release[1.7.0,"Release notes here..."]
 
 require 'albacore'
 require 'date'

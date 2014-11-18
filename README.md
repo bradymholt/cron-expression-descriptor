@@ -26,7 +26,7 @@ Languages Available
  * Russian ([LbISS](https://github.com/LbISS))
  * French ([Arnaud TAMAILLON](https://github.com/Greybird))
  * German ([Michael Schuler](https://github.com/mschuler))
- * Ukrainian ([Taras](https://github.com/mschuler))
+ * Ukrainian ([Taras](https://github.com/tbudurovych))
 
 Download
 ----------

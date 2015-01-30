@@ -17,7 +17,9 @@ namespace CronExpressionDescriptor
             CultureInfo cultureInfo = Thread.CurrentThread.CurrentUICulture;
             if (cultureInfo.Equals(new CultureInfo("ru")) //Russian
                 || cultureInfo.Equals(new CultureInfo("uk")) //Ukraninian
-                || cultureInfo.Equals(new CultureInfo("de"))) //German
+                || cultureInfo.Equals(new CultureInfo("de")) //German
+                || cultureInfo.Equals(new CultureInfo("it")) //Italian
+                )
             {
                 this.Use24HourTimeFormat = true;
             }

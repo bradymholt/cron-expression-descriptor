@@ -79,6 +79,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources.it.resx" />
     <EmbeddedResource Include="Resources.uk.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.uk.Designer.cs</LastGenOutput>

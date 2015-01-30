@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Cron Expression Descriptor")]
-[assembly: AssemblyDescription("A library that converts cron expressions into human readable strings.  Supports 11 languages: English, Brazillian, Spanish, Norwgian, Turkish, Dutch, Chinese Simplified, Russian, French, German, Italian and Ukrainian.")]
+[assembly: AssemblyDescription("A library that converts cron expressions into human readable strings.  Supports 12 languages: English, Brazillian, Spanish, Norwgian, Turkish, Dutch, Chinese Simplified, Russian, French, German, Ukrainian and Italian.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Brady Holt")]
 [assembly: AssemblyProduct("CronExpressionDescriptor")]
-[assembly: AssemblyCopyright("Copyright 2014")]
+[assembly: AssemblyCopyright("Copyright 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

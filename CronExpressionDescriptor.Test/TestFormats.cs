@@ -350,5 +350,11 @@ namespace CronExpressionDescriptor.Test
         {
             Assert.AreEqual("At 06:15 AM, on day 1 of the month, only in January, every 2 years", ExpressionDescriptor.GetDescription("0 15 6 1 1 ? 1/2"));
         }
+
+        [TestMethod]
+        public void TestMutiPartRangeSeconds()
+        {
+            Assert.AreEqual("Minutes 2,4 through 05 past the hour, at 01:00 AM", ExpressionDescriptor.GetDescription("2,4-5 1 * * *"));
+        }
     }
 }

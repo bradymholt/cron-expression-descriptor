@@ -144,7 +144,9 @@ namespace CronExpressionDescriptor
                 //specific time of day (i.e. 10 14)
                 description.Append(CronExpressionDescriptor.Resources.AtSpace).Append(FormatTime(hourExpression, minuteExpression, secondsExpression));
             }
-            else if (minuteExpression.Contains("-") && hourExpression.IndexOfAny(m_specialCharacters) == -1)
+            else if (minuteExpression.Contains("-") 
+                && !minuteExpression.Contains(",")
+                && hourExpression.IndexOfAny(m_specialCharacters) == -1)
             {
                 //minute range in single hour (i.e. 0-10 11)
                 string[] minuteParts = minuteExpression.Split('-');

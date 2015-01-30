@@ -45,6 +45,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TestFormats.it.cs" />
     <Compile Include="TestFormats.uk.cs" />
     <Compile Include="TestFormats.de.cs" />
     <Compile Include="TestFormats.fr.cs" />

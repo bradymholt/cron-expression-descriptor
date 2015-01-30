@@ -11,7 +11,7 @@ Features
  * Supports all cron expression special characters including * / , - ? L W, #
  * Supports 5, 6 (w/ seconds or year), or 7 (w/ seconds and year) part cron expressions
  * Provides casing options (Sentence, Title, Lower, etc.)
- * Localization with support for 11 languages
+ * Localization with support for 12 languages
  
 Languages Available
 --------

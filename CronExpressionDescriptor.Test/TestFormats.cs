@@ -356,5 +356,11 @@ namespace CronExpressionDescriptor.Test
         {
             Assert.AreEqual("Minutes 2,4 through 05 past the hour, at 01:00 AM", ExpressionDescriptor.GetDescription("2,4-5 1 * * *"));
         }
+
+        [TestMethod]
+        public void TestMutiPartRangeSeconds2()
+        {
+            Assert.AreEqual("Minutes 2,26 through 28 past the hour, at 06:00 PM", ExpressionDescriptor.GetDescription("2,26-28 18 * * *"));
+        }
     }
 }

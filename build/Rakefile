@@ -7,8 +7,8 @@ require 'date'
 project_name = "CronExpressionDescriptor"
 project_title = "Cron Expression Descriptor"
 project_owner = "Brady Holt"
-project_authors = "Brady Holt, Renato Lima, Ivan Santos, Siarhei Khalipski, Mustafa SADEDİL, Star Peng, TotalMace, LbISS, Arnaud TAMAILLON, Michael Schuler, Taras(tbudurovych)"
-project_description = "A library that converts cron expressions into human readable strings.  Supports 11 languages: English, Brazillian, Spanish, Norwgian, Turkish, Dutch, Chinese Simplified, Russian, French, German and Ukrainian."
+project_authors = "Brady Holt, Renato Lima, Ivan Santos, Siarhei Khalipski, Mustafa SADEDİL, Star Peng, TotalMace, LbISS, Arnaud TAMAILLON, Michael Schuler, Taras(tbudurovych), rinaldihno"
+project_description = "A library that converts cron expressions into human readable strings.  Supports 11 languages: English, Brazillian, Spanish, Norwgian, Turkish, Dutch, Chinese Simplified, Russian, French, German, Ukrainian and Italian."
 project_copyright = "Copyright #{DateTime.now.strftime('%Y')}"
 
 task :version, [:version_number, :notes] do |t, args|

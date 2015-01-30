@@ -27,6 +27,7 @@ Languages Available
  * French ([Arnaud TAMAILLON](https://github.com/Greybird))
  * German ([Michael Schuler](https://github.com/mschuler))
  * Ukrainian ([Taras](https://github.com/tbudurovych))
+ * Italian ([rinaldihno](https://github.com/rinaldihno))
 
 Demo
 ----------

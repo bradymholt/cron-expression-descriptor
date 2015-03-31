@@ -41,6 +41,10 @@ Cron Expression Descriptor releases can be installed with **NuGet**.  [Visit the
 
 View [Releases](https://github.com/bradyholt/cron-expression-descriptor/releases) for release version history.
 
+Ports
+---------
+ - Java - [https://github.com/RedHogs/cron-parser](https://github.com/RedHogs/cron-parser)
+
 Usage Examples (as Unit Tests)
 --------
 

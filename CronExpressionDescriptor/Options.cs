@@ -3,6 +3,9 @@ using System.Threading;
 
 namespace CronExpressionDescriptor
 {
+    /// <summary>
+    /// Options for parsing and describing a Cron Expression
+    /// </summary>
     public class Options
     {
         public Options()

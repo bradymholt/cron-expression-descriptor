@@ -7,19 +7,31 @@ using System.Globalization;
 
 namespace CronExpressionDescriptor
 {
+    /// <summary>
+    /// Cron Expression Parser 
+    /// </summary>
     public class ExpressionParser
     {
         private string m_expression;
         private Options m_options;
         private CultureInfo m_en_culture;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExpressionParser"/> class
+        /// </summary>
+        /// <param name="expression">The cron expression string</param>
+        /// <param name="options">Parsing options</param>
         public ExpressionParser(string expression, Options options)
         {
             m_expression = expression;
             m_options = options;
-            m_en_culture = new CultureInfo("en");
+            m_en_culture = new CultureInfo("en"); //Default to English
         }
 
+        /// <summary>
+        /// Parses the cron expression string
+        /// </summary>
+        /// <returns>A 7 part string array, one part for each component of the cron expression (seconds, minutes, etc.)</returns>
         public string[] Parse()
         {
             // Initialize all elements of parsed array to empty strings
@@ -70,6 +82,10 @@ namespace CronExpressionDescriptor
             return parsed;
         }
 
+        /// <summary>
+        /// Converts cron expression components into consistent, predictable formats. 
+        /// </summary>
+        /// <param name="expressionParts">A 7 part string array, one part for each component of the cron expression</param>
         private void NormalizeExpression(string[] expressionParts)
         {
             //convert ? to * only for DOM and DOW
@@ -118,21 +134,21 @@ namespace CronExpressionDescriptor
             }
 
             //handle DayOfWeekStartIndexZero option where SUN=1 rather than SUN=0
-             if (!m_options.DayOfWeekStartIndexZero)
-             {
-                 char[] dowChars = expressionParts[5].ToCharArray();
-                 for (int i = 0; i < dowChars.Length; i++)
-                 {
-                     int charNumeric;
-                     if ((i == 0 || dowChars[i - 1] != '#') 
-                         && int.TryParse(dowChars[i].ToString(), out charNumeric))
-                     {
-                         dowChars[i] = (charNumeric - 1).ToString()[0];
-                     } 
-                 }
+            if (!m_options.DayOfWeekStartIndexZero)
+            {
+                char[] dowChars = expressionParts[5].ToCharArray();
+                for (int i = 0; i < dowChars.Length; i++)
+                {
+                    int charNumeric;
+                    if ((i == 0 || dowChars[i - 1] != '#')
+                        && int.TryParse(dowChars[i].ToString(), out charNumeric))
+                    {
+                        dowChars[i] = (charNumeric - 1).ToString()[0];
+                    }
+                }
 
-                 expressionParts[5] = new string(dowChars);
-             }
+                expressionParts[5] = new string(dowChars);
+            }
 
             //convert SUN-SAT format to 0-6 format
             for (int i = 0; i <= 6; i++)

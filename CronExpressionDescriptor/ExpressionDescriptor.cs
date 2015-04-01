@@ -10,7 +10,7 @@ using System.Globalization;
 namespace CronExpressionDescriptor
 {
     /// <summary>
-    /// Converts cron expressions into human readable strings.
+    /// Converts a Cron Expression into a human readable string
     /// </summary>
     public class ExpressionDescriptor
     {
@@ -21,7 +21,17 @@ namespace CronExpressionDescriptor
         private bool m_parsed;
         private CultureInfo m_culture;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExpressionDescriptor"/> class
+        /// </summary>
+        /// <param name="expression">The cron expression string</param>
         public ExpressionDescriptor(string expression) : this(expression, new Options()) { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExpressionDescriptor"/> class
+        /// </summary>
+        /// <param name="expression">The cron expression string</param>
+        /// <param name="options">Options to control the output description</param>
         public ExpressionDescriptor(string expression, Options options)
         {
             m_expression = expression;
@@ -31,6 +41,11 @@ namespace CronExpressionDescriptor
             m_culture = Thread.CurrentThread.CurrentUICulture;
         }
 
+        /// <summary>
+        /// Generates a human readable string for the Cron Expression
+        /// </summary>
+        /// <param name="type">Which part(s) of the expression to describe</param>
+        /// <returns>The cron expression description</returns>
         public string GetDescription(DescriptionTypeEnum type)
         {
             string description = string.Empty;
@@ -93,7 +108,10 @@ namespace CronExpressionDescriptor
             return description;
         }
 
-
+        /// <summary>
+        /// Generates the FULL description
+        /// </summary>
+        /// <returns>The FULL description</returns>
         protected string GetFullDescription()
         {
             string description;
@@ -112,8 +130,8 @@ namespace CronExpressionDescriptor
                     monthDesc,
                     yearDesc);
 
-                description = TransformVerbosity(description);
-                description = TransformCase(description);
+                description = TransformVerbosity(description, m_options.Verbose);
+                description = TransformCase(description, m_options.CasingType);
             }
             catch (Exception ex)
             {
@@ -128,6 +146,10 @@ namespace CronExpressionDescriptor
             return description;
         }
 
+        /// <summary>
+        /// Generates a description for only the TIMEOFDAY portion of the expression
+        /// </summary>
+        /// <returns>The TIMEOFDAY description</returns>
         protected string GetTimeOfDayDescription()
         {
             string secondsExpression = m_expressionParts[0];
@@ -144,7 +166,7 @@ namespace CronExpressionDescriptor
                 //specific time of day (i.e. 10 14)
                 description.Append(CronExpressionDescriptor.Resources.AtSpace).Append(FormatTime(hourExpression, minuteExpression, secondsExpression));
             }
-            else if (minuteExpression.Contains("-") 
+            else if (minuteExpression.Contains("-")
                 && !minuteExpression.Contains(",")
                 && hourExpression.IndexOfAny(m_specialCharacters) == -1)
             {
@@ -202,6 +224,10 @@ namespace CronExpressionDescriptor
             return description.ToString();
         }
 
+        /// <summary>
+        /// Generates a description for only the SECONDS portion of the expression
+        /// </summary>
+        /// <returns>The SECONDS description</returns>
         protected string GetSecondsDescription()
         {
             string description = GetSegmentDescription(m_expressionParts[0],
@@ -214,6 +240,10 @@ namespace CronExpressionDescriptor
             return description;
         }
 
+        /// <summary>
+        /// Generates a description for only the MINUTE portion of the expression
+        /// </summary>
+        /// <returns>The MINUTE description</returns>
         protected string GetMinutesDescription()
         {
             string description = GetSegmentDescription(m_expressionParts[1],
@@ -226,6 +256,10 @@ namespace CronExpressionDescriptor
             return description;
         }
 
+        /// <summary>
+        /// Generates a description for only the HOUR portion of the expression 
+        /// </summary>
+        /// <returns>The HOUR description</returns>
         protected string GetHoursDescription()
         {
             string expression = m_expressionParts[2];
@@ -239,6 +273,10 @@ namespace CronExpressionDescriptor
             return description;
         }
 
+        /// <summary>
+        /// Generates a description for only the DAYOFWEEK portion of the expression 
+        /// </summary>
+        /// <returns>The DAYOFWEEK description</returns>
         protected string GetDayOfWeekDescription()
         {
             string description = GetSegmentDescription(m_expressionParts[5],
@@ -304,6 +342,10 @@ namespace CronExpressionDescriptor
             return description;
         }
 
+        /// <summary>
+        /// Generates a description for only the MONTH portion of the expression 
+        /// </summary>
+        /// <returns>The MONTH description</returns>
         protected string GetMonthDescription()
         {
             string description = GetSegmentDescription(m_expressionParts[4],
@@ -316,6 +358,10 @@ namespace CronExpressionDescriptor
             return description;
         }
 
+        /// <summary>
+        /// Generates a description for only the DAYOFMONTH portion of the expression 
+        /// </summary>
+        /// <returns>The DAYOFMONTH description</returns>
         protected string GetDayOfMonthDescription()
         {
             string description = null;
@@ -360,6 +406,10 @@ namespace CronExpressionDescriptor
             return description;
         }
 
+        /// <summary>
+        /// Generates a description for only the YEAR portion of the expression 
+        /// </summary>
+        /// <returns>The YEAR description</returns>
         private string GetYearDescription()
         {
             string description = GetSegmentDescription(m_expressionParts[6],
@@ -372,6 +422,16 @@ namespace CronExpressionDescriptor
             return description;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="expression"></param>
+        /// <param name="allDescription"></param>
+        /// <param name="getSingleItemDescription"></param>
+        /// <param name="getIntervalDescriptionFormat"></param>
+        /// <param name="getBetweenDescriptionFormat"></param>
+        /// <param name="getDescriptionFormat"></param>
+        /// <returns></returns>
         protected string GetSegmentDescription(string expression,
             string allDescription,
             Func<string, string> getSingleItemDescription,
@@ -448,16 +508,29 @@ namespace CronExpressionDescriptor
             return description;
         }
 
+        /// <summary>
+        /// Given time parts, will contruct a formatted time description 
+        /// </summary>
+        /// <param name="hourExpression">Hours part</param>
+        /// <param name="minuteExpression">Minutes part</param>
+        /// <returns>Formatted time description</returns>
         protected string FormatTime(string hourExpression, string minuteExpression)
         {
             return FormatTime(hourExpression, minuteExpression, string.Empty);
         }
 
+        /// <summary>
+        /// Given time parts, will contruct a formatted time description
+        /// </summary>
+        /// <param name="hourExpression">Hours part</param>
+        /// <param name="minuteExpression">Minutes part</param>
+        /// <param name="secondExpression">Seconds part</param>
+        /// <returns>Formatted time description</returns>
         protected string FormatTime(string hourExpression, string minuteExpression, string secondExpression)
         {
             int hour = Convert.ToInt32(hourExpression);
 
-            string period = string.Empty; 
+            string period = string.Empty;
             if (!m_options.Use24HourTimeFormat)
             {
                 period = (hour >= 12) ? " PM" : " AM";
@@ -465,7 +538,7 @@ namespace CronExpressionDescriptor
                 {
                     hour -= 12;
                 }
-            } 
+            }
 
             string minute = Convert.ToInt32(minuteExpression).ToString();
             string second = string.Empty;
@@ -478,9 +551,15 @@ namespace CronExpressionDescriptor
                 hour.ToString().PadLeft(2, '0'), minute.PadLeft(2, '0'), second, period);
         }
 
-        protected string TransformVerbosity(string description)
+        /// <summary>
+        /// Transforms the verbosity of the expression description by stripping verbosity from original description
+        /// </summary>
+        /// <param name="description">The description to transform</param>
+        /// <param name="isVerbose">If true, will leave description as it, if false, will strip verbose parts</param>
+        /// <returns>The transformed description with proper verbosity</returns>
+        protected string TransformVerbosity(string description, bool useVerboseFormat)
         {
-            if (!m_options.Verbose)
+            if (!useVerboseFormat)
             {
                 description = description.Replace(CronExpressionDescriptor.Resources.ComaEveryMinute, string.Empty);
                 description = description.Replace(CronExpressionDescriptor.Resources.ComaEveryHour, string.Empty);
@@ -490,9 +569,15 @@ namespace CronExpressionDescriptor
             return description;
         }
 
-        protected string TransformCase(string description)
+        /// <summary>
+        /// Transforms the case of the expression description, based on options
+        /// </summary>
+        /// <param name="description">The description to transform</param>
+        /// <param name="caseType">The casing type that controls the output casing</param>
+        /// <returns>The transformed description with proper casing</returns>
+        protected string TransformCase(string description, CasingTypeEnum caseType)
         {
-            switch (m_options.CasingType)
+            switch (caseType)
             {
                 case CasingTypeEnum.Sentence:
                     description = string.Concat(char.ToUpper(description[0]), description.Substring(1));
@@ -508,16 +593,29 @@ namespace CronExpressionDescriptor
             return description;
         }
 
+        #region Static
+        /// <summary>
+        /// Generates a human readable string for the Cron Expression 
+        /// </summary>
+        /// <param name="expression">The cron expression string</param>
+        /// <returns>The cron expression description</returns>
         public static string GetDescription(string expression)
         {
             return GetDescription(expression, new Options());
         }
 
+        /// <summary>
+        /// Generates a human readable string for the Cron Expression  
+        /// </summary>
+        /// <param name="expression">The cron expression string</param>
+        /// <param name="options">Options to control the output description</param>
+        /// <returns>The cron expression description</returns>
         public static string GetDescription(string expression, Options options)
         {
             ExpressionDescriptor descripter = new ExpressionDescriptor(expression, options);
             return descripter.GetDescription(DescriptionTypeEnum.FULL);
         }
+        #endregion
     }
 
 

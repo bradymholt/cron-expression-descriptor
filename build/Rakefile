@@ -41,6 +41,7 @@ task :package, [:version_number, :notes] => [:build] do |t, args|
 end
 
 task :push, [:version_number, :notes] do |t, args|
+	#apiKey assumed to be in %APPDATA%\Roaming\NuGet\NuGet.Config (set using 'nuget SetApiKey')
 	sh "nuget.exe push #{project_name}.#{args.version_number}.nupkg"
 end
 

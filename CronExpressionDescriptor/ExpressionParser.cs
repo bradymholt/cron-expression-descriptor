@@ -21,11 +21,19 @@ namespace CronExpressionDescriptor
         /// </summary>
         /// <param name="expression">The cron expression string</param>
         /// <param name="options">Parsing options</param>
-        public ExpressionParser(string expression, Options options)
+        public ExpressionParser(string expression, Options options) : this(expression, options, new CultureInfo("en-GB")) { }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="expression"></param>
+        /// <param name="options"></param>
+        /// <param name="culture">allows setting of en-GB</param>
+        public ExpressionParser(string expression, Options options, CultureInfo culture)
         {
             m_expression = expression;
             m_options = options;
-            m_en_culture = new CultureInfo("en"); //Default to English
+            m_en_culture = culture;
         }
 
         /// <summary>
@@ -162,7 +170,7 @@ namespace CronExpressionDescriptor
             for (int i = 1; i <= 12; i++)
             {
                 DateTime currentMonth = new DateTime(DateTime.Now.Year, i, 1);
-                string currentMonthDescription = currentMonth.ToString("MMM", m_en_culture).ToUpperInvariant();
+                string currentMonthDescription = currentMonth.ToString("MMM", m_en_culture).ToUpperInvariant(); //broken here
                 expressionParts[4] = expressionParts[4].Replace(currentMonthDescription, i.ToString());
             }
 

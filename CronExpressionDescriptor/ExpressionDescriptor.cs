@@ -580,7 +580,7 @@ namespace CronExpressionDescriptor
             switch (caseType)
             {
                 case CasingTypeEnum.Sentence:
-                    description = string.Concat(char.ToUpper(description[0]), description.Substring(1));
+                    description = string.Concat(Thread.CurrentThread.CurrentCulture.TextInfo.ToUpper(description[0]), description.Substring(1));
                     break;
                 case CasingTypeEnum.Title:
                     description = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(description);

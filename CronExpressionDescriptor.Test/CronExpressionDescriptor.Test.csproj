@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{87B5F492-770D-454F-A65B-84FB595A1783}</ProjectGuid>
+    <ProjectGuid>{75F6449D-44EB-4602-A420-DB7998FCE540}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CronExpressionDescriptor.Test</RootNamespace>
@@ -21,7 +21,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,23 +29,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.core">
-      <HintPath>..\packages\NUnitTestAdapter.2.0.0\lib\nunit.core.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.core.interfaces">
-      <HintPath>..\packages\NUnitTestAdapter.2.0.0\lib\nunit.core.interfaces.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.util">
-      <HintPath>..\packages\NUnitTestAdapter.2.0.0\lib\nunit.util.dll</HintPath>
-    </Reference>
-    <Reference Include="NUnit.VisualStudio.TestAdapter">
-      <HintPath>..\packages\NUnitTestAdapter.2.0.0\lib\NUnit.VisualStudio.TestAdapter.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -61,33 +47,26 @@
     <Compile Include="TestExceptions.cs" />
     <Compile Include="TestFormats.cs" />
     <Compile Include="TestFormats.de.cs" />
-    <Compile Include="TestFormats.es.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="TestFormats.fr.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="TestFormats.it.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="TestFormats.nl.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="TestFormats.es.cs" />
+    <Compile Include="TestFormats.fr.cs" />
+    <Compile Include="TestFormats.it.cs" />
+    <Compile Include="TestFormats.nl.cs" />
     <Compile Include="TestFormats.no.cs" />
     <Compile Include="TestFormats.pt-br.cs" />
     <Compile Include="TestFormats.ru.cs" />
     <Compile Include="TestFormats.tr.cs" />
     <Compile Include="TestFormats.uk.cs" />
-    <Compile Include="TestFormats.zh-CHS.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <Compile Include="TestFormats.zh-CN.cs" />
+    <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CronExpressionDescriptor\CronExpressionDescriptor.csproj">
       <Project>{bd023841-603a-4b09-a3b1-522664c1e274}</Project>
       <Name>CronExpressionDescriptor</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

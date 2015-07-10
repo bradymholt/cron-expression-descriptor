@@ -95,14 +95,16 @@ namespace CronExpressionDescriptor.Test
        
         public void TestOneMonthOnly()
         {
-            Assert.AreEqual("Cada minuto, sólo en marzo", ExpressionDescriptor.GetDescription("* * * 3 *"));
+            Assert.IsTrue(string.Equals("Cada minuto, sólo en marzo", ExpressionDescriptor.GetDescription("* * * 3 *"),
+                 Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
         }
 
         [Test]
        
         public void TestTwoMonthsOnly()
         {
-            Assert.AreEqual("Cada minuto, sólo en marzo y junio", ExpressionDescriptor.GetDescription("* * * 3,6 *"));
+            Assert.IsTrue(string.Equals("Cada minuto, sólo en marzo y junio", ExpressionDescriptor.GetDescription("* * * 3,6 *"),
+                 Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
         }
         [Test]
         public void TestTwoTimesEachAfternoon()
@@ -134,27 +136,31 @@ namespace CronExpressionDescriptor.Test
        
         public void TestMonthName()
         {
-            Assert.AreEqual("A las 12:23 PM, sólo en enero", ExpressionDescriptor.GetDescription("23 12 * JAN *"));
+            Assert.IsTrue(string.Equals("A las 12:23 PM, sólo en enero", ExpressionDescriptor.GetDescription("23 12 * JAN *"),
+                 Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
         }
 
         [Test]
        
         public void TestDayOfMonthWithQuestionMark()
         {
-            Assert.AreEqual("A las 12:23 PM, sólo en enero", ExpressionDescriptor.GetDescription("23 12 ? JAN *"));
+            Assert.IsTrue(string.Equals("A las 12:23 PM, sólo en enero", ExpressionDescriptor.GetDescription("23 12 ? JAN *"),
+                 Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
         }
         [Test]
        
         public void TestMonthNameRange2()
         {
-            Assert.AreEqual("A las 12:23 PM, de enero a febrero", ExpressionDescriptor.GetDescription("23 12 * JAN-FEB *"));
+            Assert.IsTrue(string.Equals("A las 12:23 PM, de enero a febrero", ExpressionDescriptor.GetDescription("23 12 * JAN-FEB *"),
+                 Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
         }
 
         [Test]
        
         public void TestMonthNameRange3()
         {
-            Assert.AreEqual("A las 12:23 PM, de enero a marzo", ExpressionDescriptor.GetDescription("23 12 * JAN-MAR *"));
+            Assert.IsTrue(string.Equals("A las 12:23 PM, de enero a marzo", ExpressionDescriptor.GetDescription("23 12 * JAN-MAR *"),
+                 Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
         }
 
         [Test]
@@ -187,7 +193,8 @@ namespace CronExpressionDescriptor.Test
        
         public void TestLastDayOfTheMonth()
         {
-            Assert.AreEqual("Cada 05 minutos, en el último día del mes, sólo en enero", ExpressionDescriptor.GetDescription("*/5 * L JAN *"));
+            Assert.IsTrue(string.Equals("Cada 05 minutos, en el último día del mes, sólo en enero", ExpressionDescriptor.GetDescription("*/5 * L JAN *"),
+                 Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
         }
 
         [Test]
@@ -273,7 +280,8 @@ namespace CronExpressionDescriptor.Test
        
         public void TestBetweenWithInterval()
         {
-            Assert.AreEqual("Cada 03 minutos, del minuto 02 al 59 pasada la hora, a las 01:00 AM, 09:00 AM, y 10:00 PM, entre los días 11 y 26 del mes, de enero a junio", ExpressionDescriptor.GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
+            Assert.IsTrue(string.Equals("Cada 03 minutos, del minuto 02 al 59 pasada la hora, a las 01:00 AM, 09:00 AM, y 10:00 PM, entre los días 11 y 26 del mes, de enero a junio", ExpressionDescriptor.GetDescription("2-59/3 1,9,22 11-26 1-6 ?"),
+                 Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
         }
         [Test]
        
@@ -312,14 +320,16 @@ namespace CronExpressionDescriptor.Test
        
         public void TestYearRange2()
         {
-            Assert.AreEqual("A las 12:23 PM, de enero a febrero, de 2013 a 2014", ExpressionDescriptor.GetDescription("23 12 * JAN-FEB * 2013-2014"));
+            Assert.IsTrue(string.Equals("A las 12:23 PM, de enero a febrero, de 2013 a 2014", ExpressionDescriptor.GetDescription("23 12 * JAN-FEB * 2013-2014"),
+                 Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
         }
 
         [Test]
        
         public void TestYearRange3()
         {
-            Assert.AreEqual("A las 12:23 PM, de enero a marzo, de 2013 a 2015", ExpressionDescriptor.GetDescription("23 12 * JAN-MAR * 2013-2015"));
+            Assert.IsTrue(string.Equals("A las 12:23 PM, de enero a marzo, de 2013 a 2015", ExpressionDescriptor.GetDescription("23 12 * JAN-MAR * 2013-2015"),
+                 Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
         }
     }
 }

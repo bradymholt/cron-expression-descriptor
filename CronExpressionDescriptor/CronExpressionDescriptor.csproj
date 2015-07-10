@@ -72,10 +72,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.tr.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources.zh-CHS.Designer.cs">
+    <Compile Include="Resources.zh-cn.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.zh-CHS.resx</DependentUpon>
+      <DependentUpon>Resources.zh-cn.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -114,9 +114,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.tr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources.zh-CHS.resx">
+    <EmbeddedResource Include="Resources.zh-cn.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.zh-CHS.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.zh-cn.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

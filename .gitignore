@@ -19,3 +19,5 @@ build/*.nupkg
 /CronExpressionDescriptor.sln.DotSettings.user
 *.user
 packages
+testrunner
+TestResult.xml

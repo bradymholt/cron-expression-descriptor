@@ -4,37 +4,37 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using CronExpressionDescriptor;
 
 namespace CronExpressionDescriptor.Test
 {
-    [TestClass]
+    [TestFixture]
     public class TestCasing
     {
-        [TestInitialize]
+        [TestFixtureSetUp]
         public void SetUp()
         {
-            CultureInfo myCultureInfo = new CultureInfo("en");
+            CultureInfo myCultureInfo = new CultureInfo("en-US");
             Thread.CurrentThread.CurrentCulture = myCultureInfo;
             Thread.CurrentThread.CurrentUICulture = myCultureInfo;
         }
 
-        [TestMethod]
+        [Test]
         public void TestSentenceCasing()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("* * * * *", new Options() { CasingType = CasingTypeEnum.Sentence });
             Assert.AreEqual("Every minute", ceh.GetDescription(DescriptionTypeEnum.FULL));
         }
 
-        [TestMethod]
+        [Test]
         public void TestTitleCasing()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("* * * * *", new Options() { CasingType = CasingTypeEnum.Title });
             Assert.AreEqual("Every Minute", ceh.GetDescription(DescriptionTypeEnum.FULL));
         }
 
-        [TestMethod]
+        [Test]
         public void TestLowerCasing()
         {
             ExpressionDescriptor ceh = new ExpressionDescriptor("* * * * *", new Options() { CasingType = CasingTypeEnum.LowerCase });

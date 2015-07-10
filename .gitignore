@@ -17,3 +17,5 @@ TestResults
 build/lib
 build/*.nupkg
 /CronExpressionDescriptor.sln.DotSettings.user
+*.user
+packages

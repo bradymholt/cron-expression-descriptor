@@ -25,7 +25,7 @@ namespace CronExpressionDescriptor
         {
             m_expression = expression;
             m_options = options;
-            m_en_culture = new CultureInfo("en"); //Default to English
+            m_en_culture = new CultureInfo("en-US"); //Default to English
         }
 
         /// <summary>

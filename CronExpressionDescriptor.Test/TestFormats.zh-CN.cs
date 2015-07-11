@@ -10,6 +10,9 @@ using System.Threading;
 namespace CronExpressionDescriptor.Test
 {
     [TestFixture]
+#if __MonoCS__
+    [Ignore()]
+#endif
     public class TestFormatsCN
     {
         [TestFixtureSetUp]

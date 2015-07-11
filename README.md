@@ -2,6 +2,8 @@
 ==========================
 A .NET library that converts cron expressions into human readable strings.
 
+[![Build Status](https://travis-ci.org/bradyholt/cron-expression-descriptor.svg?branch=master)](https://travis-ci.org/bradyholt/cron-expression-descriptor)
+
 **Author**: Brady Holt (http://www.geekytidbits.com)  
 **Contributors**: Renato Lima, Ivan Santos, Fabien Brooke, Siarhei Khalipski, Mustafa SADEDİL, TotalMace, Star Peng, LbISS, Arnaud TAMAILLON, Michael Schuler, Taras(tbudurovych)  
 **License**: [MIT](http://opensource.org/licenses/MIT)

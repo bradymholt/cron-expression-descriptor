@@ -4,5 +4,5 @@ install:
   - nuget restore CronExpressionDescriptor.Test/packages.config -PackagesDirectory ../packages
   - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
 script:
-  - xbuild /p:Configuration=Release CronExpressionDescriptor.sln
+  - xbuild /p:Configuration=Release CronExpressionDescriptor.Test/CronExpressionDescriptor.Test.csproj
   - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./CronExpressionDescriptor.Test/bin/Release/CronExpressionDescriptor.Test.dll

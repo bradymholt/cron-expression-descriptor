@@ -10,9 +10,6 @@ using System.IO;
 namespace CronExpressionDescriptor.Test
 {
     [TestFixture]
-#if __MonoCS__
-        [Ignore("Mono issues")]
-#endif
     public class TestFormatsPTBR
     {
         [TestFixtureSetUp]

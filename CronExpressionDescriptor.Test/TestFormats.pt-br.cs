@@ -10,6 +10,7 @@ using System.IO;
 namespace CronExpressionDescriptor.Test
 {
     [TestFixture]
+    [Ignore()]
     public class TestFormatsPTBR
     {
         [TestFixtureSetUp]

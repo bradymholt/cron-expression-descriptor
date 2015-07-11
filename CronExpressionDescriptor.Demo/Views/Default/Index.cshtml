@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Demo - Cron Expression Descriptor";
+}
+
+<h1>Demo - Cron Expression Descriptor</h1>
+<form method="get" action="/">
+    <input type="text" name="e" id="expression" placeholder="Cron Expression" value="@ViewBag.Expression" />
+    <button type="submit" id="get-description">Get Description</button>
+    @if (!string.IsNullOrEmpty(ViewBag.Description))
+    {
+        <p><strong>Description:</strong> @ViewBag.Description</p>
+    }
+
+    <hr />
+    <footer>
+        <a href="http://bradyholt.github.io/cron-expression-descriptor/">Project</a> |
+        <a href="http://github.com/bradyholt/cron-expression-descriptor">GitHub</a> |
+        <a href="http://www.nuget.org/packages/CronExpressionDescriptor/">NuGet</a>
+        <p>[Running Cron Expression Descriptor <a href="http://www.nuget.org/packages/CronExpressionDescriptor/@ViewBag.ExpressionDescriptorVersion">version @ViewBag.ExpressionDescriptorVersion</a>]</p>
+    </footer>
+</form>

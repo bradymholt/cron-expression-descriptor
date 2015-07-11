@@ -1,0 +1,29 @@
+﻿body
+{
+    font-family: 'Oxygen', sans-serif;
+}
+
+input#expression
+{
+    width: 300px;
+    line-height: 1.25;
+    padding: .556em .5em;
+    border: 1px solid black;
+    border-radius: 4px;
+    vertical-align: top;
+    font-size: 1.3em;
+}
+
+button#get-description
+{
+    height: 51px;
+    margin-left: -8px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: #0bc117;
+    color: white;
+    border: none;
+    font-size: 1.3em;
+    padding: 0 10px 0 10px;
+    cursor:pointer;
+}

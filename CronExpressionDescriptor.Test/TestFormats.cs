@@ -193,6 +193,12 @@ namespace CronExpressionDescriptor.Test
         }
 
         [Test]
+        public void TestThirteenthWeekdayOfTheMonth()
+        {
+            Assert.AreEqual("Every minute, on the weekday nearest day 13 of the month", ExpressionDescriptor.GetDescription("* * 13W * *"));
+        }
+
+        [Test]
         public void TestFirstWeekdayOfTheMonth2()
         {
             Assert.AreEqual("Every minute, on the first weekday of the month", ExpressionDescriptor.GetDescription("* * W1 * *"));

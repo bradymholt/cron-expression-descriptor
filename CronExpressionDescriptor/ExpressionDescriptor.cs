@@ -378,7 +378,7 @@ namespace CronExpressionDescriptor
                     description = CronExpressionDescriptor.Resources.ComaOnTheLastWeekdayOfTheMonth;
                     break;
                 default:
-                    Regex regex = new Regex("(\\dW)|(W\\d)");
+                    Regex regex = new Regex("(\\d{1,2}W)|(W\\d{1,2})");
                     if (regex.IsMatch(expression))
                     {
                         Match m = regex.Match(expression);

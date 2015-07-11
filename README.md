@@ -1,4 +1,4 @@
-﻿TEST Cron Expression Descriptor
+Cron Expression Descriptor
 ==========================
 A .NET library that converts cron expressions into human readable strings.
 

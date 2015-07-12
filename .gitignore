@@ -14,7 +14,7 @@ TestResults
 *.suo
 .DS_Store
 *.userprefs
-build/lib
+build/pack/lib
 build/*.nupkg
 /CronExpressionDescriptor.sln.DotSettings.user
 *.user

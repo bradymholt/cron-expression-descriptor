@@ -23,6 +23,7 @@
     <IISExpressUseClassicPipelineMode />
     <NuGetPackageImportStamp>26851ef5</NuGetPackageImportStamp>
     <ApplicationInsightsResourceId>/subscriptions/92462cac-921a-4110-8c5f-1d982cf7be86/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/CronExpressionDescriptorDemo</ApplicationInsightsResourceId>
+    <DisableOutOfProcTaskHost>true</DisableOutOfProcTaskHost>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

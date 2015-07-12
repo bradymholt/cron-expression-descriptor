@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.travis.yml = .travis.yml
 		build\CronExpressionDescriptor.nuspec = build\CronExpressionDescriptor.nuspec
 		build\exclude.txt = build\exclude.txt
+		build\Gemfile = build\Gemfile
 		LICENSE = LICENSE
 		build\Rakefile = build\Rakefile
 		README.md = README.md
@@ -16,11 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronExpressionDescriptor", "CronExpressionDescriptor\CronExpressionDescriptor.csproj", "{BD023841-603A-4B09-A3B1-522664C1E274}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A1C113DD-2F25-4B6D-838F-09E42D58BA34}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\packages.config = .nuget\packages.config
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronExpressionDescriptor.Test", "CronExpressionDescriptor.Test\CronExpressionDescriptor.Test.csproj", "{75F6449D-44EB-4602-A420-DB7998FCE540}"
 EndProject

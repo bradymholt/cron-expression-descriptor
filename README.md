@@ -34,7 +34,7 @@ Languages Available
 Demo
 ----------
 
-[http://cronexpressiondescriptordemo.azurewebsites.net/](http://cronexpressiondescriptordemo.azurewebsites.net)
+[http://cronexpressiondescriptor.azurewebsites.net](http://cronexpressiondescriptor.azurewebsites.net)
 
 Download
 ----------

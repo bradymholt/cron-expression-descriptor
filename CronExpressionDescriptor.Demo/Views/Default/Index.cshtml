@@ -1,21 +1,94 @@
-﻿@{
-    ViewBag.Title = "Cron Expression Descriptor - Demo";
-}
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cron Expression Descriptor</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+         body {
+             font-family: 'Open Sans Condensed', sans-serif;
+             margin-top: 50px;
+             color: #8b8c8b;
+         }
 
-<h1>Cron Expression Descriptor - Demo</h1>
-<form method="get" action="/">
-    <input type="text" name="e" id="expression" placeholder="Cron Expression" value="@ViewBag.Expression" />
-    <button type="submit" id="get-description">Get Description</button>
-    @if (!string.IsNullOrEmpty(ViewBag.Description))
-    {
-        <p><strong>Description:</strong> @ViewBag.Description</p>
-    }
+         .container {
+             width: 710px;
+         }
 
-    <hr />
-    <footer>
-        <a href="http://bradyholt.github.io/cron-expression-descriptor/">Project</a> |
-        <a href="http://github.com/bradyholt/cron-expression-descriptor">GitHub</a> |
-        <a href="http://www.nuget.org/packages/CronExpressionDescriptor/">NuGet</a>
-        <p>[Running Cron Expression Descriptor <a href="http://www.nuget.org/packages/CronExpressionDescriptor/@ViewBag.ExpressionDescriptorVersion">version @ViewBag.ExpressionDescriptorVersion</a>]</p>
-    </footer>
-</form>
+         h1 {
+             font-family: 'Open Sans Condensed', sans-serif;
+             font-size: 70px;
+             text-transform: uppercase;
+             text-align: center;
+             margin-bottom: 20px;
+         }
+
+         input#expression {
+             width: 535px;
+             padding-left: 10px;
+             padding-right: 10px;
+             border: 1px solid #858685;
+             border-radius: 10px 0 0 10px;
+             font-size: 45px;
+             vertical-align: top;
+             color: black;
+         }
+
+         button#get-description {
+             height: 68px;
+             margin-left: -8px;
+             border-radius: 0 5px 5px 0;
+             font-size: 32px;
+             padding: 0 10px 0 10px;
+             border: solid 1px #858685;
+             border-left: none;
+             text-transform: uppercase;
+         }
+
+         div#description {
+             font-size: 30px;
+             color:#659CEF;
+             font-style: italic;
+         }
+
+         footer {
+             font-size: 20px;
+         }
+
+             footer ul {
+                 padding: 0px;
+                 list-style-type: none;
+             }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cron Expression Descriptor</h1>
+        <form method="get" class="center-block" action="/">
+            <input type="text" name="e" id="expression" placeholder="Cron Expression" value="@ViewBag.Expression" />
+            <button type="submit" id="get-description" class="btn btn-success">Describe</button>
+            @if (!string.IsNullOrEmpty(ViewBag.Description))
+            {
+                <hr />
+                <div id="description">@ViewBag.Description</div>
+            }
+            <hr />
+            <footer>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li><a href="http://bradyholt.github.io/cron-expression-descriptor/">Project Page</a></li>
+                            <li><a href="http://github.com/bradyholt/cron-expression-descriptor">GitHub</a></li>
+                            <li><a href="http://www.nuget.org/packages/CronExpressionDescriptor/">NuGet</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 text-right">Running Cron Expression Descriptor <a href="http://www.nuget.org/packages/CronExpressionDescriptor/@ViewBag.ExpressionDescriptorVersion">version @ViewBag.ExpressionDescriptorVersion</a></div>
+                </div>
+            </footer>
+        </form>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js" />
+</body>
+</html>

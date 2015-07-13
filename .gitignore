@@ -21,3 +21,4 @@ build/*.nupkg
 packages
 testrunner
 TestResult.xml
+applicationhost.config

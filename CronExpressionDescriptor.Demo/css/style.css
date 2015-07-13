@@ -13,8 +13,12 @@ h1 {
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 70px;
     text-transform: uppercase;
-    text-align: center;
+    color:black;
+}
+
+h1, h2 {
     margin-bottom: 20px;
+    text-align: center;
 }
 
 input#expression {

@@ -2,8 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -13,26 +16,31 @@ namespace CronExpressionDescriptorDemo.Controllers
     {
         private const string DEFAULT_EXPRESSION = "0 30 10-13 ? * WED,FRI";
 
-        public ActionResult Index(string e)
+        public ActionResult Index(ViewModel model)
         {
-            SetVersionViewBag();
-            EvaluateExpression(e ?? DEFAULT_EXPRESSION);
-            return View();
+            if (model.Expression == null)
+            {
+                model.Expression = DEFAULT_EXPRESSION;
+            }
+
+            EvaluateExpression(model);
+            return View(model);
         }
 
-        private void EvaluateExpression(string expression)
+        private void EvaluateExpression(ViewModel model)
         {
             Options options = new Options() { ThrowExceptionOnParseError = false };
+            options.Use24HourTimeFormat = model.Use24HourFormat;
+            options.Verbose = model.VerboseDescription;
 
-            ViewBag.Expression = expression;
-            ViewBag.Description = ExpressionDescriptor.GetDescription(expression, options);
-        }
+            if (!string.IsNullOrEmpty(model.Language))
+            {
+                CultureInfo myCultureInfo = new CultureInfo(model.Language);
+                Thread.CurrentThread.CurrentCulture = myCultureInfo;
+                Thread.CurrentThread.CurrentUICulture = myCultureInfo;
+            }
 
-        private void SetVersionViewBag()
-        {
-            Assembly assembly = Assembly.GetAssembly(typeof(ExpressionDescriptor));
-            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
-            ViewBag.ExpressionDescriptorVersion = fvi.FileVersion;
+            model.ExpressionDescription = ExpressionDescriptor.GetDescription(model.Expression, options);
         }
     }
 }

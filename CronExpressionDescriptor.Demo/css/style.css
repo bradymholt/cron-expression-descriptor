@@ -16,12 +16,21 @@ h1 {
     color:black;
 }
 
-h1, h2 {
-    margin-bottom: 20px;
+h1, h2, h3 {   
     text-align: center;
 }
 
-input#expression {
+h1 {
+     margin-bottom: 20px;
+}
+
+h3 {
+    margin-top:0px;
+    font-style:italic;
+    font-size:14px;
+}
+
+input#Expression {
     width: 535px;
     padding-left: 10px;
     padding-right: 10px;

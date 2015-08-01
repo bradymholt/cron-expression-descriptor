@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model ViewModel
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -12,13 +14,37 @@
     <div class="container">
         <h1>Cron Expression Descriptor</h1>
         <h2>Describe Cron expressions as human readable text</h2>
+        <h3>Supports @Model.AvailableLanguages.Count() Languages and can handle just about any cron expression you throw at it!</h3>
+        <hr/>
         <form method="get" class="center-block" action="/">
-            <input type="text" name="e" id="expression" placeholder="Cron Expression" value="@ViewBag.Expression" />
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Languaage">Language</label>
+                            @Html.DropDownListFor(m => m.Language, Model.AvailableLanguages, new { @class = "form-control" })
+                        </div>
+
+                    </div>
+                    <div class="col-md-3 col-md-offset-2">
+                        <div class="checkbox">
+                            <label>
+                                @Html.CheckBoxFor(m=> m.Use24HourFormat) 24 Hour Time Format
+                            </label>
+                            <br />
+                            <label>
+                                @Html.CheckBoxFor(m=>m.VerboseDescription) Verbose
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @Html.TextBoxFor(m=>m.Expression, new { @placeholder = "Cron Expression" })
             <button type="submit" id="get-description" class="btn btn-success">Describe</button>
-            @if (!string.IsNullOrEmpty(ViewBag.Description))
+            @if (!string.IsNullOrEmpty(@Model.ExpressionDescription))
             {
                 <hr />
-                <div id="description">@ViewBag.Description</div>
+                <div id="description">@Model.ExpressionDescription </div>
             }
             <hr />
             <footer>
@@ -29,13 +55,13 @@
                             <li><a href="http://www.nuget.org/packages/CronExpressionDescriptor/">NuGet</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-6 text-right">Running Cron Expression Descriptor <a href="http://www.nuget.org/packages/CronExpressionDescriptor/@ViewBag.ExpressionDescriptorVersion">version @ViewBag.ExpressionDescriptorVersion</a>
-                        <p><a href="http://www.nuget.org/packages/CronExpressionDescriptor"><img alt="Downloads Count" src="https://img.shields.io/nuget/dt/CronExpressionDescriptor.svg"/></a></p>
+                    <div class="col-md-6 text-right">
+                        Running Cron Expression Descriptor <a href="http://www.nuget.org/packages/CronExpressionDescriptor/@Model.AssemblyVersion">version @Model.AssemblyVersion</a>
+                        <p><a href="http://www.nuget.org/packages/CronExpressionDescriptor"><img alt="Downloads Count" src="https://img.shields.io/nuget/dt/CronExpressionDescriptor.svg" /></a></p>
                     </div>
                 </div>
             </footer>
         </form>
     </div>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js" />
 </body>
 </html>

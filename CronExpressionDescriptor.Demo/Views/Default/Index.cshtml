@@ -15,7 +15,28 @@
         <h1>Cron Expression Descriptor</h1>
         <h2>Describe Cron expressions as human readable text</h2>
         <h3>Supports @Model.AvailableLanguages.Count() Languages and can handle just about any cron expression you throw at it!</h3>
-        <hr/>
+        <div class="container-fluid">
+            <h3>Examples</h3>
+            <div class="row examples">
+
+                <div class="col-md-2">
+                    <a href="/?expression=*+*+*+*+MON%233">* * * * MON#3</a>
+                </div>
+                <div class="col-md-3">
+                    <a href="/?expression=0+23+%3F+*+MON-FRI">0 23 ? * MON-FRI</a>
+                </div>
+                <div class="col-md-2">
+                    <a href="/?expression=*+*+*+*+*">* * * * *</a>
+                </div>
+                <div class="col-md-2">
+                    <a href="/?expression=30+*%2F5+*+*+*+*">30 */5 * * * *</a>
+                </div>
+                <div class="col-md-3">
+                    <a href="/?expression=0+0%2F30+8-9+5%2C20+*+%3F">0 0/30 8-9 5,20 * ?</a>
+                </div>
+            </div>
+        </div>
+        <hr />
         <form method="get" class="center-block" action="/">
             <div class="container-fluid">
                 <div class="row">
@@ -29,17 +50,17 @@
                     <div class="col-md-3 col-md-offset-2">
                         <div class="checkbox">
                             <label>
-                                @Html.CheckBoxFor(m=> m.Use24HourFormat) 24 Hour Time Format
+                                @Html.CheckBoxFor(m => m.Use24HourFormat) 24 Hour Time Format
                             </label>
                             <br />
                             <label>
-                                @Html.CheckBoxFor(m=>m.VerboseDescription) Verbose
+                                @Html.CheckBoxFor(m => m.VerboseDescription) Verbose
                             </label>
                         </div>
                     </div>
                 </div>
             </div>
-            @Html.TextBoxFor(m=>m.Expression, new { @placeholder = "Cron Expression" })
+            @Html.TextBoxFor(m => m.Expression, new { @placeholder = "Cron Expression" })
             <button type="submit" id="get-description" class="btn btn-success">Describe</button>
             @if (!string.IsNullOrEmpty(@Model.ExpressionDescription))
             {

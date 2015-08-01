@@ -13,21 +13,21 @@ h1 {
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 70px;
     text-transform: uppercase;
-    color:black;
+    color: black;
 }
 
-h1, h2, h3 {   
+h1, h2, h3 {
     text-align: center;
 }
 
 h1 {
-     margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 h3 {
-    margin-top:0px;
-    font-style:italic;
-    font-size:14px;
+    margin-top: 0px;
+    font-style: italic;
+    font-size: 14px;
 }
 
 input#Expression {
@@ -66,3 +66,12 @@ footer {
         padding: 0px;
         list-style-type: none;
     }
+
+hr {
+    margin-bottom: 0px;
+}
+
+.examples {
+    margin-top: 10px;
+    text-align: center;
+}

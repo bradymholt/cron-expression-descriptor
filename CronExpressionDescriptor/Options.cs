@@ -22,6 +22,7 @@ namespace CronExpressionDescriptor
                 || cultureInfo.Equals(new CultureInfo("uk-UA")) //Ukraninian
                 || cultureInfo.Equals(new CultureInfo("de-DE")) //German
                 || cultureInfo.Equals(new CultureInfo("it-IT")) //Italian
+                || cultureInfo.Equals(new CultureInfo("tr-TR")) //Turkish
                 )
             {
                 this.Use24HourTimeFormat = true;

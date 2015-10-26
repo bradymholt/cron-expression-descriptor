@@ -48,6 +48,7 @@ View [Releases](https://github.com/bradyholt/cron-expression-descriptor/releases
 Ports
 ---------
  - Java - [https://github.com/RedHogs/cron-parser](https://github.com/RedHogs/cron-parser)
+ - Ruby - [https://github.com/alpinweis/cronex](https://github.com/alpinweis/cronex)
 
 Usage Examples (as Unit Tests)
 --------

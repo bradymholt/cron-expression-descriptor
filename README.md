@@ -49,7 +49,7 @@ Ports
 ---------
  - Java - [https://github.com/RedHogs/cron-parser](https://github.com/RedHogs/cron-parser)
  - Ruby - [https://github.com/alpinweis/cronex](https://github.com/alpinweis/cronex)
- - Python [https://github.com/Salamek/cron-descriptor](https://github.com/Salamek/cron-descriptor)
+ - Python - [https://github.com/Salamek/cron-descriptor](https://github.com/Salamek/cron-descriptor)
 
 Usage Examples (as Unit Tests)
 --------

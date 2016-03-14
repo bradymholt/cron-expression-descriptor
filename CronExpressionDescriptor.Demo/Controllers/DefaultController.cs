@@ -31,6 +31,7 @@ namespace CronExpressionDescriptorDemo.Controllers
         {
             Options options = new Options() { ThrowExceptionOnParseError = false };
             options.Use24HourTimeFormat = model.Use24HourFormat;
+            options.DayOfWeekStartIndexZero = !model.DayOfWeekStartIndexOne;
             options.Verbose = model.VerboseDescription;
 
             if (!string.IsNullOrEmpty(model.Language))

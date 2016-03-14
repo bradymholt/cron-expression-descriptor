@@ -46,8 +46,12 @@
                         </div>
 
                     </div>
-                    <div class="col-md-3 col-md-offset-2">
+                    <div class="col-md-4 col-md-offset-2">
                         <div class="checkbox">
+                            <label>
+                                @Html.CheckBoxFor(m => m.DayOfWeekStartIndexOne) Day Of Week / Sunday = 1
+                            </label>
+                            <br/>
                             <label>
                                 @Html.CheckBoxFor(m => m.Use24HourFormat) 24 Hour Time Format
                             </label>

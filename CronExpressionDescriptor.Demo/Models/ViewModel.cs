@@ -19,6 +19,7 @@ namespace CronExpressionDescriptorDemo
         public string Expression { get; set; }
         public string ExpressionDescription { get; set; }
         public bool Use24HourFormat { get; set; }
+        public bool DayOfWeekStartIndexOne { get; set; }
         public bool VerboseDescription { get; set; }
         public string Language { get; set; }
 

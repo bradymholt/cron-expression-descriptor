@@ -283,17 +283,26 @@ namespace CronExpressionDescriptor
                 CronExpressionDescriptor.Resources.ComaEveryDay,
               (s =>
               {
-                  string exp = s;
-                  if (s.Contains("#"))
+                  // This is a crude fix for https://github.com/bradyholt/cron-expression-descriptor/issues/44.
+                  if (s.Contains(","))
                   {
-                      exp = s.Remove(s.IndexOf("#"));
-                  }
-                  else if (s.Contains("L"))
-                  {
-                      exp = exp.Replace("L", string.Empty);
+                      // We get here, if the input expression looked something like this:
+                      //    0 00 10 ? * MON-THU,SUN *
+                      //                ^^^^^^^^^^^
+                      // GetSegmentDescription() splits by '-' and thus returns "s"
+                      // strings that still contain the comma.    
+
+                      var sb = new StringBuilder();
+                      foreach (var entry in s.Split(','))
+                      {
+                          if (sb.Length > 0)
+                              sb.Append(", ");
+                          sb.Append(GetDayOfWeekSingleItem(entry));
+                      }
+                      return sb.ToString();
                   }
 
-                  return m_culture.DateTimeFormat.GetDayName(((DayOfWeek)Convert.ToInt32(exp)));
+                  return GetDayOfWeekSingleItem(s);
               }),
               (s => string.Format(CronExpressionDescriptor.Resources.ComaEveryX0DaysOfTheWeek, s)),
               (s => CronExpressionDescriptor.Resources.ComaX0ThroughX1),
@@ -340,6 +349,21 @@ namespace CronExpressionDescriptor
               }));
 
             return description;
+        }
+
+        private string GetDayOfWeekSingleItem(string s)
+        {
+            string exp = s;
+            if (s.Contains("#"))
+            {
+                exp = s.Remove(s.IndexOf("#"));
+            }
+            else if (s.Contains("L"))
+            {
+                exp = exp.Replace("L", string.Empty);
+            }
+
+            return m_culture.DateTimeFormat.GetDayName(((DayOfWeek) Convert.ToInt32(exp)));
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using System.Globalization;
 using System.Threading;
 
@@ -13,6 +14,12 @@ namespace CronExpressionDescriptor.Test
             CultureInfo myCultureInfo = new CultureInfo("en-US");
             Thread.CurrentThread.CurrentCulture = myCultureInfo;
             Thread.CurrentThread.CurrentUICulture = myCultureInfo;
+        }
+
+        [Test]
+        public void TestIssue44()
+        {
+            Assert.AreEqual("At 10:00 AM, Monday through Thursday, Sunday", ExpressionDescriptor.GetDescription("0 00 10 ? * MON-THU,SUN *"));
         }
 
         [Test]

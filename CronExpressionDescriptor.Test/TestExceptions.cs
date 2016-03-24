@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Globalization;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using NUnit.Framework;
 
 namespace CronExpressionDescriptor.Test
@@ -9,6 +11,14 @@ namespace CronExpressionDescriptor.Test
     [TestFixture]
     public class TestExceptions
     {
+        [TestFixtureSetUp]
+        public void SetUp()
+        {
+            CultureInfo myCultureInfo = new CultureInfo("en-US");
+            Thread.CurrentThread.CurrentCulture = myCultureInfo;
+            Thread.CurrentThread.CurrentUICulture = myCultureInfo;
+        }
+
         [Test]
         [ExpectedException(typeof(MissingFieldException))]
         public void TestNullCronExpressionException()

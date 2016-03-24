@@ -368,5 +368,12 @@ namespace CronExpressionDescriptor.Test
         {
             Assert.AreEqual("Minutes 2,26 through 28 past the hour, at 06:00 PM", ExpressionDescriptor.GetDescription("2,26-28 18 * * *"));
         }
+
+        [Test]
+        public void TrailingSpaceDoesNotCauseAWrongDescription()
+        {
+            // GitHub Issue #51: https://github.com/bradyholt/cron-expression-descriptor/issues/51
+            Assert.AreEqual("At 07:00 AM", ExpressionDescriptor.GetDescription("0 7 * * * "));
+        }
     }
 }

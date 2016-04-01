@@ -43,7 +43,7 @@ namespace CronExpressionDescriptor
             }
             else
             {
-                string[] expressionPartsTemp = m_expression.Split(new [] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] expressionPartsTemp = m_expression.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
                 if (expressionPartsTemp.Length < 5)
                 {

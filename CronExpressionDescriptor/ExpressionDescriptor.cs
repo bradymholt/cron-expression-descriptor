@@ -469,14 +469,6 @@ namespace CronExpressionDescriptor
                     description += ", " + string.Format(getBetweenDescriptionFormat(betweenSegmentOfInterval), betweenSegment1Description, betweenSegment2Description);
                 }
             }
-            else if (expression.Contains("-"))
-            {
-                string[] segments = expression.Split('-');
-                string betweenSegment1Description = getSingleItemDescription(segments[0]);
-                string betweenSegment2Description = getSingleItemDescription(segments[1]);
-                betweenSegment2Description = betweenSegment2Description.Replace(":00", ":59");
-                description = string.Format(getBetweenDescriptionFormat(expression), betweenSegment1Description, betweenSegment2Description);
-            }
             else if (expression.Contains(","))
             {
                 string[] segments = expression.Split(',');
@@ -499,10 +491,34 @@ namespace CronExpressionDescriptor
                         descriptionContent += CronExpressionDescriptor.Resources.SpaceAndSpace;
                     }
 
-                    descriptionContent += getSingleItemDescription(segments[i]);
+                    if (segments[i].Contains("-"))
+                    {
+                        string[] betweenSegments = segments[i].Split('-');
+                        string betweenSegment1Description = getSingleItemDescription(betweenSegments[0]);
+                        string betweenSegment2Description = getSingleItemDescription(betweenSegments[1]);
+                        betweenSegment2Description = betweenSegment2Description.Replace(":00", ":59");
+                        var betweenDescription = string.Format(CronExpressionDescriptor.Resources.ComaX0ThroughX1, betweenSegment1Description, betweenSegment2Description);
+                        
+                        //remove leading comma
+                        betweenDescription = betweenDescription.Replace(", ", "");
+
+                        descriptionContent += betweenDescription;
+                    }
+                    else
+                    {
+                        descriptionContent += getSingleItemDescription(segments[i]);
+                    }
                 }
 
                 description = string.Format(getDescriptionFormat(expression), descriptionContent);
+            }
+            else if (expression.Contains("-"))
+            {
+                string[] segments = expression.Split('-');
+                string betweenSegment1Description = getSingleItemDescription(segments[0]);
+                string betweenSegment2Description = getSingleItemDescription(segments[1]);
+                betweenSegment2Description = betweenSegment2Description.Replace(":00", ":59");
+                description = string.Format(getBetweenDescriptionFormat(expression), betweenSegment1Description, betweenSegment2Description);
             }
 
             return description;

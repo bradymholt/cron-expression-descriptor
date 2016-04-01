@@ -96,13 +96,13 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestOneMonthOnly()
         {
-            Assert.AreEqual("Щохвилини, тільки в Березень", ExpressionDescriptor.GetDescription("* * * 3 *"));
+            Assert.AreEqual("Щохвилини, тільки в березень", ExpressionDescriptor.GetDescription("* * * 3 *"));
         }
 
         [Test]
         public void TestTwoMonthsOnly()
         {
-            Assert.AreEqual("Щохвилини, тільки в Березень та Червень", ExpressionDescriptor.GetDescription("* * * 3,6 *"));
+            Assert.AreEqual("Щохвилини, тільки в березень та червень", ExpressionDescriptor.GetDescription("* * * 3,6 *"));
         }
 
         [Test]
@@ -132,25 +132,25 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestMonthName()
         {
-            Assert.AreEqual("О 12:23, тільки в Січень", ExpressionDescriptor.GetDescription("23 12 * JAN *"));
+            Assert.AreEqual("О 12:23, тільки в січень", ExpressionDescriptor.GetDescription("23 12 * JAN *"));
         }
 
         [Test]
         public void TestDayOfMonthWithQuestionMark()
         {
-            Assert.AreEqual("О 12:23, тільки в Січень", ExpressionDescriptor.GetDescription("23 12 ? JAN *"));
+            Assert.AreEqual("О 12:23, тільки в січень", ExpressionDescriptor.GetDescription("23 12 ? JAN *"));
         }
 
         [Test]
         public void TestMonthNameRange2()
         {
-            Assert.AreEqual("О 12:23, Січень по Лютий", ExpressionDescriptor.GetDescription("23 12 * JAN-FEB *"));
+            Assert.AreEqual("О 12:23, січень по лютий", ExpressionDescriptor.GetDescription("23 12 * JAN-FEB *"));
         }
 
         [Test]
         public void TestMonthNameRange3()
         {
-            Assert.AreEqual("О 12:23, Січень по Березень", ExpressionDescriptor.GetDescription("23 12 * JAN-MAR *"));
+            Assert.AreEqual("О 12:23, січень по березень", ExpressionDescriptor.GetDescription("23 12 * JAN-MAR *"));
         }
 
         [Test]
@@ -183,7 +183,7 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestLastDayOfTheMonth()
         {
-            Assert.AreEqual("Кожні 05 хвилин, в останній день місяця, тільки в Січень", ExpressionDescriptor.GetDescription("*/5 * L JAN *"));
+            Assert.AreEqual("Кожні 05 хвилин, в останній день місяця, тільки в січень", ExpressionDescriptor.GetDescription("*/5 * L JAN *"));
         }
 
         [Test]
@@ -264,7 +264,7 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestBetweenWithInterval()
         {
-            Assert.AreEqual("Кожні 03 хвилин, з 02 по 59 хвилину, о 01:00, 09:00, та 22:00, між 11 та 26 днями місяця, Січень по Червень", ExpressionDescriptor.GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
+            Assert.AreEqual("Кожні 03 хвилин, з 02 по 59 хвилину, о 01:00, 09:00, та 22:00, між 11 та 26 днями місяця, січень по червень", ExpressionDescriptor.GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
         }
 
         [Test]
@@ -300,13 +300,13 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestYearRange2()
         {
-            Assert.AreEqual("О 12:23, Січень по Лютий, 2013 по 2014", ExpressionDescriptor.GetDescription("23 12 * JAN-FEB * 2013-2014"));
+            Assert.AreEqual("О 12:23, січень по лютий, 2013 по 2014", ExpressionDescriptor.GetDescription("23 12 * JAN-FEB * 2013-2014"));
         }
 
         [Test]
         public void TestYearRange3()
         {
-            Assert.AreEqual("О 12:23, Січень по Березень, 2013 по 2015", ExpressionDescriptor.GetDescription("23 12 * JAN-MAR * 2013-2015"));
+            Assert.AreEqual("О 12:23, січень по березень, 2013 по 2015", ExpressionDescriptor.GetDescription("23 12 * JAN-MAR * 2013-2015"));
         }
 
         [Test]
@@ -363,7 +363,7 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestEvery2Years()
         {
-            Assert.AreEqual("О 06:15, на 1 день місяця, тільки в Січень, кожні 2 роки", ExpressionDescriptor.GetDescription("0 15 6 1 1 ? 1/2"));
+            Assert.AreEqual("О 06:15, на 1 день місяця, тільки в січень, кожні 2 роки", ExpressionDescriptor.GetDescription("0 15 6 1 1 ? 1/2"));
         }
     }
 }

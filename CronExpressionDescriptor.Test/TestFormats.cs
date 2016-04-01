@@ -360,13 +360,13 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestMutiPartRangeSeconds()
         {
-            Assert.AreEqual("Minutes 2,4 through 05 past the hour, at 01:00 AM", ExpressionDescriptor.GetDescription("2,4-5 1 * * *"));
+            Assert.AreEqual("At 02 and 04 through 05 minutes past the hour, at 01:00 AM", ExpressionDescriptor.GetDescription("2,4-5 1 * * *"));
         }
 
         [Test]
         public void TestMutiPartRangeSeconds2()
         {
-            Assert.AreEqual("Minutes 2,26 through 28 past the hour, at 06:00 PM", ExpressionDescriptor.GetDescription("2,26-28 18 * * *"));
+            Assert.AreEqual("At 02 and 26 through 28 minutes past the hour, at 06:00 PM", ExpressionDescriptor.GetDescription("2,26-28 18 * * *"));
         }
 
         [Test]
@@ -375,5 +375,12 @@ namespace CronExpressionDescriptor.Test
             // GitHub Issue #51: https://github.com/bradyholt/cron-expression-descriptor/issues/51
             Assert.AreEqual("At 07:00 AM", ExpressionDescriptor.GetDescription("0 7 * * * "));
         }
-    }
+
+        [Test]
+        public void TestMultiPartDayOfTheWeek()
+        {
+            // GitHub Issue #44: https://github.com/bradyholt/cron-expression-descriptor/issues/44
+            Assert.AreEqual("At 10:00 AM, only on Monday through Thursday and Sunday", ExpressionDescriptor.GetDescription("0 00 10 ? * MON-THU,SUN *"));
+        }
+}
 }

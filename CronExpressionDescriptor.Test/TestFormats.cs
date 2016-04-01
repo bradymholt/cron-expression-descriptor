@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 ﻿using NUnit.Framework;
 using System.Globalization;
 using System.Threading;
@@ -191,207 +190,6 @@ namespace CronExpressionDescriptor.Test
         public void TestFirstWeekdayOfTheMonth()
         {
             Assert.AreEqual("Every minute, on the first weekday of the month", ExpressionDescriptor.GetDescription("* * 1W * *"));
-=======
-﻿using System;
-using NUnit.Framework;
-using System.Globalization;
-using System.Threading;
-
-namespace CronExpressionDescriptor.Test
-{
-    [TestFixture]
-    public class TestFormats
-    {
-        [TestFixtureSetUp]
-        public void SetUp()
-        {
-            CultureInfo myCultureInfo = new CultureInfo("en-US");
-            Thread.CurrentThread.CurrentCulture = myCultureInfo;
-            Thread.CurrentThread.CurrentUICulture = myCultureInfo;
-        }
-
-        [Test]
-        public void TestMultiPartDayOfTheWeek()
-        {
-            Assert.AreEqual("At 10:00 AM, only on Monday through Thursday and Sunday", ExpressionDescriptor.GetDescription("0 00 10 ? * MON-THU,SUN *"));
-        }
-
-        [Test]
-        public void TestEveryMinute()
-        {
-           Assert.AreEqual("Every minute", ExpressionDescriptor.GetDescription("* * * * *"));
-        }
-
-        [Test]
-        public void TestEvery1Minute()
-        {
-            Assert.AreEqual("Every minute", ExpressionDescriptor.GetDescription("*/1 * * * *"));
-            Assert.AreEqual("Every minute", ExpressionDescriptor.GetDescription("0 0/1 * * * ?"));
-        }
-
-        [Test]
-        public void TestEveryHour()
-        {
-            Assert.AreEqual("Every hour", ExpressionDescriptor.GetDescription("0 0 * * * ?"));
-            Assert.AreEqual("Every hour", ExpressionDescriptor.GetDescription("0 0 0/1 * * ?"));
-        }
-
-        [Test]
-        public void TestTimeOfDayCertainDaysOfWeek()
-        {
-            Assert.AreEqual("At 11:00 PM, Monday through Friday", ExpressionDescriptor.GetDescription("0 23 ? * MON-FRI"));
-        }
-
-        [Test]
-        public void TestEverySecond()
-        {
-            Assert.AreEqual("Every second", ExpressionDescriptor.GetDescription("* * * * * *"));
-        }
-
-        [Test]
-        public void TestEvery45Seconds()
-        {
-            Assert.AreEqual("Every 45 seconds", ExpressionDescriptor.GetDescription("*/45 * * * * *"));
-        }
-
-        [Test]
-        public void TestEvery5Minutes()
-        {
-            Assert.AreEqual("Every 05 minutes", ExpressionDescriptor.GetDescription("*/5 * * * *"));
-            Assert.AreEqual("Every 10 minutes", ExpressionDescriptor.GetDescription("0 0/10 * * * ?"));
-        }
-
-        [Test]
-        public void TestEvery5MinutesOnTheSecond()
-        {
-            Assert.AreEqual("Every 05 minutes", ExpressionDescriptor.GetDescription("0 */5 * * * *"));
-        }
-
-        [Test]
-        public void TestWeekdaysAtTime()
-        {
-            Assert.AreEqual("At 11:30 AM, Monday through Friday", ExpressionDescriptor.GetDescription("30 11 * * 1-5"));
-        }
-
-        [Test]
-        public void TestDailyAtTime()
-        {
-            Assert.AreEqual("At 11:30 AM", ExpressionDescriptor.GetDescription("30 11 * * *"));
-        }
-
-        [Test]
-        public void TestMinuteSpan()
-        {
-            Assert.AreEqual("Every minute between 11:00 AM and 11:10 AM", ExpressionDescriptor.GetDescription("0-10 11 * * *"));
-        }
-
-        [Test]
-        public void TestOneMonthOnly()
-        {
-            Assert.AreEqual("Every minute, only in March", ExpressionDescriptor.GetDescription("* * * 3 *"));
-        }
-
-        [Test]
-        public void TestTwoMonthsOnly()
-        {
-            Assert.AreEqual("Every minute, only in March and June", ExpressionDescriptor.GetDescription("* * * 3,6 *"));
-        }
-
-        [Test]
-        public void TestTwoTimesEachAfternoon()
-        {
-            Assert.AreEqual("At 02:30 PM and 04:30 PM", ExpressionDescriptor.GetDescription("30 14,16 * * *"));
-        }
-
-        [Test]
-        public void TestThreeTimesDaily()
-        {
-            Assert.AreEqual("At 06:30 AM, 02:30 PM and 04:30 PM", ExpressionDescriptor.GetDescription("30 6,14,16 * * *"));
-        }
-
-        [Test]
-        public void TestOnceAWeek()
-        {
-            Assert.AreEqual("At 09:46 AM, only on Monday", ExpressionDescriptor.GetDescription("46 9 * * 1"));
-        }
-
-        [Test]
-        public void TestDayOfMonth()
-        {
-            Assert.AreEqual("At 12:23 PM, on day 15 of the month", ExpressionDescriptor.GetDescription("23 12 15 * *"));
-        }
-
-        [Test]
-        public void TestMonthName()
-        {
-            Assert.AreEqual("At 12:23 PM, only in January", ExpressionDescriptor.GetDescription("23 12 * JAN *"));
-        }
-
-        [Test]
-        public void TestDayOfMonthWithQuestionMark()
-        {
-            Assert.AreEqual("At 12:23 PM, only in January", ExpressionDescriptor.GetDescription("23 12 ? JAN *"));
-        }
-
-        [Test]
-        public void TestMonthNameRange2()
-        {
-            Assert.AreEqual("At 12:23 PM, January through February", ExpressionDescriptor.GetDescription("23 12 * JAN-FEB *"));
-        }
-
-        [Test]
-        public void TestMonthNameRange3()
-        {
-            Assert.AreEqual("At 12:23 PM, January through March", ExpressionDescriptor.GetDescription("23 12 * JAN-MAR *"));
-        }
-
-        [Test]
-        public void TestDayOfWeekName()
-        {
-            Assert.AreEqual("At 12:23 PM, only on Sunday", ExpressionDescriptor.GetDescription("23 12 * * SUN"));
-        }
-
-        [Test]
-        public void TestDayOfWeekRange()
-        {
-            Assert.AreEqual("Every 05 minutes, at 03:00 PM, Monday through Friday", ExpressionDescriptor.GetDescription("*/5 15 * * MON-FRI"));
-        }
-
-        [Test]
-        public void TestDayOfWeekOnceInMonth()
-        {
-            Assert.AreEqual("Every minute, on the third Monday of the month", ExpressionDescriptor.GetDescription("* * * * MON#3"));
-        }
-
-        [Test]
-        public void TestLastDayOfTheWeekOfTheMonth()
-        {
-            Assert.AreEqual("Every minute, on the last Thursday of the month", ExpressionDescriptor.GetDescription("* * * * 4L"));
-        }
-
-        [Test]
-        public void TestLastDayOfTheMonth()
-        {
-            Assert.AreEqual("Every 05 minutes, on the last day of the month, only in January", ExpressionDescriptor.GetDescription("*/5 * L JAN *"));
-        }
-
-        [Test]
-        public void TestLastWeekdayOfTheMonth()
-        {
-            Assert.AreEqual("Every minute, on the last weekday of the month", ExpressionDescriptor.GetDescription("* * LW * *"));
-        }
-
-        [Test]
-        public void TestLastWeekdayOfTheMonth2()
-        {
-            Assert.AreEqual("Every minute, on the last weekday of the month", ExpressionDescriptor.GetDescription("* * WL * *"));
-        }
-
-        [Test]
-        public void TestFirstWeekdayOfTheMonth()
-        {
-            Assert.AreEqual("Every minute, on the first weekday of the month", ExpressionDescriptor.GetDescription("* * 1W * *"));
->>>>>>> Stashed changes
         }
 
         [Test]
@@ -560,15 +358,15 @@ namespace CronExpressionDescriptor.Test
         }
 
         [Test]
-        public void TestMutiPartRangeMinutes()
+        public void TestMutiPartRangeSeconds()
         {
-            Assert.AreEqual("At 02 and 04 through 05 minutes past the hour, at 01:00 AM", ExpressionDescriptor.GetDescription("2,4-5 1 * * *"));
+            Assert.AreEqual("Minutes 2,4 through 05 past the hour, at 01:00 AM", ExpressionDescriptor.GetDescription("2,4-5 1 * * *"));
         }
 
         [Test]
-        public void TestMutiPartRangeMinutes2()
+        public void TestMutiPartRangeSeconds2()
         {
-            Assert.AreEqual("At 02 and 26 through 28 minutes past the hour, at 06:00 PM", ExpressionDescriptor.GetDescription("2,26-28 18 * * *"));
+            Assert.AreEqual("Minutes 2,26 through 28 past the hour, at 06:00 PM", ExpressionDescriptor.GetDescription("2,26-28 18 * * *"));
         }
 
         [Test]
@@ -577,5 +375,12 @@ namespace CronExpressionDescriptor.Test
             // GitHub Issue #51: https://github.com/bradyholt/cron-expression-descriptor/issues/51
             Assert.AreEqual("At 07:00 AM", ExpressionDescriptor.GetDescription("0 7 * * * "));
         }
-    }
+
+        [Test]
+        public void TestMultiPartDayOfTheWeek()
+        {
+            // GitHub Issue #44: https://github.com/bradyholt/cron-expression-descriptor/issues/44
+            Assert.AreEqual("At 10:00 AM, only on Monday through Thursday and Sunday", ExpressionDescriptor.GetDescription("0 00 10 ? * MON-THU,SUN *"));
+        }
+}
 }

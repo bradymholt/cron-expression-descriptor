@@ -88,6 +88,7 @@
     <EmbeddedResource Include="Resources.ru.resx" />
     <EmbeddedResource Include="Resources.nl.resx" />
     <EmbeddedResource Include="Resources.no.resx" />
+    <EmbeddedResource Include="Resources.pl.resx" />
     <EmbeddedResource Include="Resources.pt.resx" />
     <EmbeddedResource Include="Resources.es.resx" />
     <EmbeddedResource Include="Resources.resx">

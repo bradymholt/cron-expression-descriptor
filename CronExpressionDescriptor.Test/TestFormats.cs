@@ -346,6 +346,13 @@ namespace CronExpressionDescriptor.Test
         }
 
         [Test]
+        public void TestEvery2DayOfTheWeekInRange()
+        {
+            // GitHub Issue #58: https://github.com/bradyholt/cron-expression-descriptor/issues/58
+            Assert.AreEqual("Every second, every 2 days of the week, Monday through Friday", ExpressionDescriptor.GetDescription("* * * ? * 1-5/2"));
+        }
+
+        [Test]
         public void TestEvery3Month()
         {
             Assert.AreEqual("At 07:05 AM, on day 2 of the month, every 3 months", ExpressionDescriptor.GetDescription("0 5 7 2 1/3 ? *"));
@@ -382,5 +389,5 @@ namespace CronExpressionDescriptor.Test
             // GitHub Issue #44: https://github.com/bradyholt/cron-expression-descriptor/issues/44
             Assert.AreEqual("At 10:00 AM, only on Monday through Thursday and Sunday", ExpressionDescriptor.GetDescription("0 00 10 ? * MON-THU,SUN *"));
         }
-}
+    }
 }

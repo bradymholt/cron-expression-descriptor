@@ -235,7 +235,12 @@ namespace CronExpressionDescriptor
                (s => s.PadLeft(2, '0')),
                (s => string.Format(CronExpressionDescriptor.Resources.EveryX0Seconds, s)),
                (s => CronExpressionDescriptor.Resources.SecondsX0ThroughX1PastTheMinute),
-               (s => CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute));
+               (s => s == "0" 
+                    ? string.Empty 
+                    : (int.Parse(s) < 20)
+                        ? CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute
+                        : CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinuteGt20 ?? CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute
+               ));
 
             return description;
         }
@@ -247,11 +252,18 @@ namespace CronExpressionDescriptor
         protected string GetMinutesDescription()
         {
             string description = GetSegmentDescription(m_expressionParts[1],
-                  CronExpressionDescriptor.Resources.EveryMinute,
+                CronExpressionDescriptor.Resources.EveryMinute,
                 (s => s.PadLeft(2, '0')),
                 (s => string.Format(CronExpressionDescriptor.Resources.EveryX0Minutes, s.PadLeft(2, '0'))),
                 (s => CronExpressionDescriptor.Resources.MinutesX0ThroughX1PastTheHour),
-                (s => s == "0" ? string.Empty : CronExpressionDescriptor.Resources.AtX0MinutesPastTheHour));
+                (s => { try {
+                          return s == "0" 
+                            ? string.Empty 
+                            : (int.Parse(s) < 20)
+                                ? CronExpressionDescriptor.Resources.AtX0MinutesPastTheHour
+                                : CronExpressionDescriptor.Resources.AtX0MinutesPastTheHourGt20 ?? CronExpressionDescriptor.Resources.AtX0MinutesPastTheHour;}
+                        catch { return CronExpressionDescriptor.Resources.AtX0MinutesPastTheHour; }} ),
+                CronExpressionDescriptor.Resources.ComaMinX0ThroughMinX1 );
 
             return description;
         }
@@ -352,7 +364,7 @@ namespace CronExpressionDescriptor
                 string.Empty,
                (s => new DateTime(DateTime.Now.Year, Convert.ToInt32(s), 1).ToString("MMMM")),
                (s => string.Format(CronExpressionDescriptor.Resources.ComaEveryX0Months, s)),
-               (s => CronExpressionDescriptor.Resources.ComaX0ThroughX1),
+               (s => CronExpressionDescriptor.Resources.ComaMonthX0ThroughMonthX1 ?? CronExpressionDescriptor.Resources.ComaX0ThroughX1),
                (s => CronExpressionDescriptor.Resources.ComaOnlyInX0));
 
             return description;
@@ -416,7 +428,7 @@ namespace CronExpressionDescriptor
                 string.Empty,
                (s => new DateTime(Convert.ToInt32(s), 1, 1).ToString("yyyy")),
                (s => string.Format(CronExpressionDescriptor.Resources.ComaEveryX0Years, s)),
-               (s => CronExpressionDescriptor.Resources.ComaX0ThroughX1),
+               (s =>  CronExpressionDescriptor.Resources.ComaYearX0ThroughYearX1 ?? CronExpressionDescriptor.Resources.ComaX0ThroughX1),
                (s => CronExpressionDescriptor.Resources.ComaOnlyInX0));
 
             return description;
@@ -437,7 +449,9 @@ namespace CronExpressionDescriptor
             Func<string, string> getSingleItemDescription,
             Func<string, string> getIntervalDescriptionFormat,
             Func<string, string> getBetweenDescriptionFormat,
-            Func<string, string> getDescriptionFormat)
+            Func<string, string> getDescriptionFormat,
+            string multiPartRangeFormat = null
+            )
         {
             string description = null;
 
@@ -500,7 +514,7 @@ namespace CronExpressionDescriptor
                         string betweenSegment1Description = getSingleItemDescription(betweenSegments[0]);
                         string betweenSegment2Description = getSingleItemDescription(betweenSegments[1]);
                         betweenSegment2Description = betweenSegment2Description.Replace(":00", ":59");
-                        var betweenDescription = string.Format(CronExpressionDescriptor.Resources.ComaX0ThroughX1, betweenSegment1Description, betweenSegment2Description);
+                        var betweenDescription = string.Format(multiPartRangeFormat ?? CronExpressionDescriptor.Resources.ComaX0ThroughX1, betweenSegment1Description, betweenSegment2Description);
                         
                         //remove leading comma
                         betweenDescription = betweenDescription.Replace(", ", "");

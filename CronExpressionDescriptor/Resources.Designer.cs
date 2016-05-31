@@ -99,11 +99,12 @@ namespace CronExpressionDescriptor {
         /// <summary>
         ///   Looks up a localized string similar to at {0} minutes past the hour.
         /// </summary>
-        internal static string AtX0MinutesPastTheHour {
+        internal static string AtX0MinutesPastTheHour { 
             get {
                 return ResourceManager.GetString("AtX0MinutesPastTheHour", resourceCulture);
             }
         }
+        internal static string AtX0MinutesPastTheHourGt20 { get { return ResourceManager.GetString("AtX0MinutesPastTheHourGt20", resourceCulture); } }
         
         /// <summary>
         ///   Looks up a localized string similar to at {0} seconds past the minute.
@@ -113,7 +114,8 @@ namespace CronExpressionDescriptor {
                 return ResourceManager.GetString("AtX0SecondsPastTheMinute", resourceCulture);
             }
         }
-        
+        internal static string AtX0SecondsPastTheMinuteGt20 { get { return ResourceManager.GetString("AtX0SecondsPastTheMinuteGt20", resourceCulture); } }
+
         /// <summary>
         ///   Looks up a localized string similar to between {0} and {1}.
         /// </summary>
@@ -275,7 +277,16 @@ namespace CronExpressionDescriptor {
                 return ResourceManager.GetString("ComaX0ThroughX1", resourceCulture);
             }
         }
-        
+
+        /// <summary> Looks up a localized string similar to: from minute {0} through minute {1}. </summary>
+        internal static string ComaMinX0ThroughMinX1 { get { return ResourceManager.GetString("ComaMinX0ThroughMinX1", resourceCulture); } }
+
+        /// <summary> Looks up a localized string similar to: from minute {0} through minute {1}. </summary>
+        internal static string ComaMonthX0ThroughMonthX1 { get { return ResourceManager.GetString("ComaMonthX0ThroughMonthX1", resourceCulture); } }
+
+        /// <summary> Looks up a localized string similar to: from minute {0} through minute {1}. </summary>
+        internal static string ComaYearX0ThroughYearX1 { get { return ResourceManager.GetString("ComaYearX0ThroughYearX1", resourceCulture); } }
+
         /// <summary>
         ///   Looks up a localized string similar to every hour.
         /// </summary>

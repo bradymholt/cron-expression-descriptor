@@ -32,6 +32,7 @@ Languages Available
  * Ukrainian ([Taras](https://github.com/tbudurovych))
  * Italian ([rinaldihno](https://github.com/rinaldihno))
  * Polish ([foka](https://github.com/foka))
+ * Romanian ([Illegitimis](https://github.com/illegitimis))
 
 Demo
 ----------

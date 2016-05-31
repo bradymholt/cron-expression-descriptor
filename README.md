@@ -31,7 +31,7 @@ Languages Available
  * German ([Michael Schuler](https://github.com/mschuler))
  * Ukrainian ([Taras](https://github.com/tbudurovych))
  * Italian ([rinaldihno](https://github.com/rinaldihno))
- * Polish ([foka](https://github.com/rinaldihno))
+ * Polish ([foka](https://github.com/foka))
 
 Demo
 ----------

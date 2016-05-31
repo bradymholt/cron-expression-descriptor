@@ -466,7 +466,10 @@ namespace CronExpressionDescriptor
                     string betweenSegment1Description = getSingleItemDescription(betweenSegements[0]);
                     string betweenSegment2Description = getSingleItemDescription(betweenSegements[1]);
                     betweenSegment2Description = betweenSegment2Description.Replace(":00", ":59");
-                    description += ", " + string.Format(getBetweenDescriptionFormat(betweenSegmentOfInterval), betweenSegment1Description, betweenSegment2Description);
+                    var betweenDescriptionFormat = getBetweenDescriptionFormat(betweenSegmentOfInterval);
+                    if (! betweenDescriptionFormat.StartsWith(", "))
+                        description += ", ";
+                    description += string.Format(betweenDescriptionFormat, betweenSegment1Description, betweenSegment2Description);
                 }
             }
             else if (expression.Contains(","))

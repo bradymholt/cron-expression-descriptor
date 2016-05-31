@@ -86,6 +86,7 @@
     <Compile Include="TestFormats.it.cs" />
     <Compile Include="TestFormats.nl.cs" />
     <Compile Include="TestFormats.no.cs" />
+    <Compile Include="TestFormats.pl.cs" />
     <Compile Include="TestFormats.pt-br.cs" />
     <Compile Include="TestFormats.ru.cs" />
     <Compile Include="TestFormats.tr.cs" />

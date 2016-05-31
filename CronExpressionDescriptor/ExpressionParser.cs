@@ -136,18 +136,7 @@ namespace CronExpressionDescriptor
             //handle DayOfWeekStartIndexZero option where SUN=1 rather than SUN=0
             if (!m_options.DayOfWeekStartIndexZero)
             {
-                char[] dowChars = expressionParts[5].ToCharArray();
-                for (int i = 0; i < dowChars.Length; i++)
-                {
-                    int charNumeric;
-                    if ((i == 0 || dowChars[i - 1] != '#')
-                        && int.TryParse(dowChars[i].ToString(), out charNumeric))
-                    {
-                        dowChars[i] = (charNumeric - 1).ToString()[0];
-                    }
-                }
-
-                expressionParts[5] = new string(dowChars);
+                expressionParts[5] = DecreaseDaysOfWeek(expressionParts[5]);
             }
 
             //convert SUN-SAT format to 0-6 format
@@ -171,6 +160,22 @@ namespace CronExpressionDescriptor
             {
                 expressionParts[0] = string.Empty;
             }
+        }
+
+        private static string DecreaseDaysOfWeek(string dayOfWeekExpressionPart)
+        {
+            char[] dowChars = dayOfWeekExpressionPart.ToCharArray();
+            for (int i = 0; i < dowChars.Length; i++)
+            {
+                int charNumeric;
+                if ((i == 0 || dowChars[i - 1] != '#' && dowChars[i - 1] != '/')
+                    && int.TryParse(dowChars[i].ToString(), out charNumeric))
+                {
+                    dowChars[i] = (charNumeric - 1).ToString()[0];
+                }
+            }
+
+            return new string(dowChars);
         }
     }
 }

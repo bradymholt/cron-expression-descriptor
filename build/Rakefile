@@ -15,7 +15,7 @@ project_authors = "Brady Holt, Renato Lima, Ivan Santos, Siarhei Khalipski, Must
 project_description = "A library that converts cron expressions into human readable strings.  Supports 14 languages: English, Brazillian, Spanish, Norwgian, Turkish, Dutch, Chinese Simplified, Russian, French, German, Ukrainian, Polish, Romanian and Italian."
 project_copyright = "Copyright #{DateTime.now.strftime('%Y')}"
 
-version_info = File.read('version.txt').split(':')
+version_info = open("version.txt").gets.split(':')
 version_number = version_info[0]
 version_notes = version_info[1]
 

@@ -16,6 +16,6 @@
 # Release to NuGet
 
 - cd `/build`
-- Append new line to `version.txt` with new version number and release notes
+- Prepend line to `version.txt` with new version number and release notes
 - Run `rake release`
 

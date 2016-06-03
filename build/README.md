@@ -2,6 +2,7 @@
 # Setup
 
 - cd `/build`
+- Dowload latest [nuget.exe](https://nuget.org/nuget.exe) and save
 - Run 'nuget SetApiKey' to add NuGet API Key to NuGet config
 - Install Ruby
 - Install Bundler: `gem install bundler`

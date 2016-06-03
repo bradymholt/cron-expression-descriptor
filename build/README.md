@@ -1,4 +1,4 @@
-**NOTE:** The build process should be done from Windows.  Building from Mac/Linux is not supported"
+**NOTE:** The build process should be done from Windows.  Building from Mac/Linux is not supported currently.
 
 # Setup
 

@@ -9,7 +9,7 @@
             "isBuildCommand": true,
             "taskName": "build",
             // Show the output window only if unrecognized errors occur.
-            "showOutput": "silent",
+            "showOutput": "always",
             // Use the standard MS compiler pattern to detect errors, warnings and infos
             "problemMatcher": "$msCompile"
         },
@@ -17,7 +17,7 @@
             "isTestCommand": true,
             "taskName": "test",
             // Show the output window only if unrecognized errors occur.
-            "showOutput": "silent"
+            "showOutput": "always"
         }
     ]
 }

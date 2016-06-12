@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22823.1
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EBD2EEF7-FE3F-4627-8931-BACA70D80B03}"
 	ProjectSection(SolutionItems) = preProject
@@ -25,6 +25,7 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		DebugNoDemo|Any CPU = DebugNoDemo|Any CPU
 		Net35Release|Any CPU = Net35Release|Any CPU
 		Net40Release|Any CPU = Net40Release|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -32,6 +33,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BD023841-603A-4B09-A3B1-522664C1E274}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BD023841-603A-4B09-A3B1-522664C1E274}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD023841-603A-4B09-A3B1-522664C1E274}.DebugNoDemo|Any CPU.ActiveCfg = DebugNoDemo|Any CPU
+		{BD023841-603A-4B09-A3B1-522664C1E274}.DebugNoDemo|Any CPU.Build.0 = DebugNoDemo|Any CPU
 		{BD023841-603A-4B09-A3B1-522664C1E274}.Net35Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD023841-603A-4B09-A3B1-522664C1E274}.Net35Release|Any CPU.Build.0 = Release|Any CPU
 		{BD023841-603A-4B09-A3B1-522664C1E274}.Net40Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -40,6 +43,8 @@ Global
 		{BD023841-603A-4B09-A3B1-522664C1E274}.Release|Any CPU.Build.0 = Release|Any CPU
 		{75F6449D-44EB-4602-A420-DB7998FCE540}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{75F6449D-44EB-4602-A420-DB7998FCE540}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75F6449D-44EB-4602-A420-DB7998FCE540}.DebugNoDemo|Any CPU.ActiveCfg = DebugNoDemo|Any CPU
+		{75F6449D-44EB-4602-A420-DB7998FCE540}.DebugNoDemo|Any CPU.Build.0 = DebugNoDemo|Any CPU
 		{75F6449D-44EB-4602-A420-DB7998FCE540}.Net35Release|Any CPU.ActiveCfg = Net35Release|Any CPU
 		{75F6449D-44EB-4602-A420-DB7998FCE540}.Net35Release|Any CPU.Build.0 = Net35Release|Any CPU
 		{75F6449D-44EB-4602-A420-DB7998FCE540}.Net40Release|Any CPU.ActiveCfg = Net40Release|Any CPU
@@ -48,6 +53,7 @@ Global
 		{75F6449D-44EB-4602-A420-DB7998FCE540}.Release|Any CPU.Build.0 = Release|Any CPU
 		{43DB8B88-B8EE-4276-9F39-0FB2D6975583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{43DB8B88-B8EE-4276-9F39-0FB2D6975583}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43DB8B88-B8EE-4276-9F39-0FB2D6975583}.DebugNoDemo|Any CPU.ActiveCfg = DebugNoDemo|Any CPU
 		{43DB8B88-B8EE-4276-9F39-0FB2D6975583}.Net35Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43DB8B88-B8EE-4276-9F39-0FB2D6975583}.Net40Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43DB8B88-B8EE-4276-9F39-0FB2D6975583}.Release|Any CPU.ActiveCfg = Release|Any CPU

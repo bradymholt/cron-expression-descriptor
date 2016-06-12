@@ -1,2 +1,0 @@
-before_build:
-  - nuget restore

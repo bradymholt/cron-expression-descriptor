@@ -262,8 +262,7 @@ namespace CronExpressionDescriptor
                             : (int.Parse(s) < 20)
                                 ? CronExpressionDescriptor.Resources.AtX0MinutesPastTheHour
                                 : CronExpressionDescriptor.Resources.AtX0MinutesPastTheHourGt20 ?? CronExpressionDescriptor.Resources.AtX0MinutesPastTheHour;}
-                        catch { return CronExpressionDescriptor.Resources.AtX0MinutesPastTheHour; }} ),
-                CronExpressionDescriptor.Resources.ComaMinX0ThroughMinX1 );
+                        catch { return CronExpressionDescriptor.Resources.AtX0MinutesPastTheHour; }} ));
 
             return description;
         }
@@ -449,8 +448,7 @@ namespace CronExpressionDescriptor
             Func<string, string> getSingleItemDescription,
             Func<string, string> getIntervalDescriptionFormat,
             Func<string, string> getBetweenDescriptionFormat,
-            Func<string, string> getDescriptionFormat,
-            string multiPartRangeFormat = null
+            Func<string, string> getDescriptionFormat
             )
         {
             string description = null;
@@ -475,15 +473,14 @@ namespace CronExpressionDescriptor
                 //interval contains 'between' piece (i.e. 2-59/3 )
                 if (segments[0].Contains("-"))
                 {
-                    string betweenSegmentOfInterval = segments[0];
-                    string[] betweenSegements = betweenSegmentOfInterval.Split('-');
-                    string betweenSegment1Description = getSingleItemDescription(betweenSegements[0]);
-                    string betweenSegment2Description = getSingleItemDescription(betweenSegements[1]);
-                    betweenSegment2Description = betweenSegment2Description.Replace(":00", ":59");
-                    var betweenDescriptionFormat = getBetweenDescriptionFormat(betweenSegmentOfInterval);
-                    if (! betweenDescriptionFormat.StartsWith(", "))
+                    string betweenSegmentDescription = GenerateBetweenSegmentDescription(segments[0], getBetweenDescriptionFormat, getSingleItemDescription); 
+
+                    if (!betweenSegmentDescription.StartsWith(", "))
+                    {
                         description += ", ";
-                    description += string.Format(betweenDescriptionFormat, betweenSegment1Description, betweenSegment2Description);
+                    }
+
+                    description += betweenSegmentDescription;
                 }
             }
             else if (expression.Contains(","))
@@ -510,16 +507,13 @@ namespace CronExpressionDescriptor
 
                     if (segments[i].Contains("-"))
                     {
-                        string[] betweenSegments = segments[i].Split('-');
-                        string betweenSegment1Description = getSingleItemDescription(betweenSegments[0]);
-                        string betweenSegment2Description = getSingleItemDescription(betweenSegments[1]);
-                        betweenSegment2Description = betweenSegment2Description.Replace(":00", ":59");
-                        var betweenDescription = string.Format(multiPartRangeFormat ?? CronExpressionDescriptor.Resources.ComaX0ThroughX1, betweenSegment1Description, betweenSegment2Description);
+                        string betweenSegmentDescription = GenerateBetweenSegmentDescription(segments[i], 
+                        (s => CronExpressionDescriptor.Resources.ComaX0ThroughX1), getSingleItemDescription);
                         
                         //remove leading comma
-                        betweenDescription = betweenDescription.Replace(", ", "");
+                        betweenSegmentDescription = betweenSegmentDescription.Replace(", ", "");
 
-                        descriptionContent += betweenDescription;
+                        descriptionContent += betweenSegmentDescription;
                     }
                     else
                     {
@@ -531,12 +525,21 @@ namespace CronExpressionDescriptor
             }
             else if (expression.Contains("-"))
             {
-                string[] segments = expression.Split('-');
-                string betweenSegment1Description = getSingleItemDescription(segments[0]);
-                string betweenSegment2Description = getSingleItemDescription(segments[1]);
-                betweenSegment2Description = betweenSegment2Description.Replace(":00", ":59");
-                description = string.Format(getBetweenDescriptionFormat(expression), betweenSegment1Description, betweenSegment2Description);
+                description = GenerateBetweenSegmentDescription(expression, getBetweenDescriptionFormat, getSingleItemDescription);
             }
+
+            return description;
+        }
+
+        protected string GenerateBetweenSegmentDescription(string betweenExpression, Func<string, string> getBetweenDescriptionFormat, Func<string, string> getSingleItemDescription)
+        {
+            string description = string.Empty;
+            string[] betweenSegments = betweenExpression.Split('-');
+            string betweenSegment1Description = getSingleItemDescription(betweenSegments[0]);
+            string betweenSegment2Description = getSingleItemDescription(betweenSegments[1]);
+            betweenSegment2Description = betweenSegment2Description.Replace(":00", ":59");
+            var betweenDescriptionFormat = getBetweenDescriptionFormat(betweenExpression);
+            description += string.Format(betweenDescriptionFormat, betweenSegment1Description, betweenSegment2Description);
 
             return description;
         }

@@ -419,5 +419,12 @@ namespace CronExpressionDescriptor.Test
 
             Assert.AreEqual("At 07:05 AM, every 4 years, 2016 through ?", ExpressionDescriptor.GetDescription("0 5 7 ? * ? 2016/4"));
         }
+
+        [Test]
+        public void TestDayOfWeekWithDayOfMonth()
+        {
+            // GitHub Issue #46: https://github.com/bradyholt/cron-expression-descriptor/issues/46
+            Assert.AreEqual("At 00:00 AM, on day 1, 2, and 3 of the month, only on Wednesday and Friday", ExpressionDescriptor.GetDescription("0 0 0 1,2,3 * WED,FRI"));
+        }
     }
 }

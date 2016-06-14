@@ -124,9 +124,10 @@ namespace CronExpressionDescriptor
                 string dayOfWeekDesc = GetDayOfWeekDescription();
                 string yearDesc = GetYearDescription();
 
-                description = string.Format("{0}{1}{2}{3}",
+                description = string.Format("{0}{1}{2}{3}{4}",
                     timeSegment,
-                    (m_expressionParts[3] == "*" ? dayOfWeekDesc : dayOfMonthDesc),
+                    dayOfMonthDesc,
+                    dayOfWeekDesc,
                     monthDesc,
                     yearDesc);
 
@@ -377,7 +378,6 @@ namespace CronExpressionDescriptor
         {
             string description = null;
             string expression = m_expressionParts[3];
-            expression = expression.Replace("?", "*");
 
             switch (expression)
             {
@@ -435,7 +435,7 @@ namespace CronExpressionDescriptor
         }
 
         /// <summary>
-        /// 
+        /// Generates the segment description
         /// </summary>
         /// <param name="expression"></param>
         /// <param name="allDescription"></param>
@@ -532,6 +532,13 @@ namespace CronExpressionDescriptor
             return description;
         }
 
+        /// <summary>
+        /// Generates the between segment description 
+        /// </summary>
+        /// <param name="betweenExpression"></param>
+        /// <param name="getBetweenDescriptionFormat"></param>
+        /// <param name="getSingleItemDescription"></param>
+        /// <returns>The between segment description</returns>
         protected string GenerateBetweenSegmentDescription(string betweenExpression, Func<string, string> getBetweenDescriptionFormat, Func<string, string> getSingleItemDescription)
         {
             string description = string.Empty;

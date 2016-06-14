@@ -1,2 +1,3 @@
+1.19.0:Support for step value ranges, handle expression description when both DOW and DOM are specified, and other misc bug fixes
 1.18.0:New Polish and Romanian translations; misc bug fixes
 1.17.0:Package with multiple .NET framework versions (3.5, 4.0, and 4.5)

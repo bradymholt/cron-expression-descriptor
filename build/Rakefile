@@ -16,8 +16,8 @@ project_description = "A library that converts cron expressions into human reada
 project_copyright = "Copyright #{DateTime.now.strftime('%Y')}"
 
 version_info = open("version.txt").gets.split(':')
-version_number = version_info[0]
-version_notes = version_info[1]
+version_number = version_info[0].strip
+version_notes = version_info[1].strip
 
 task :version do |t, args|
 	desc "Version the assembly"

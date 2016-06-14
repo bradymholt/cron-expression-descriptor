@@ -63,14 +63,14 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestEvery5Minutes()
         {
-            Assert.AreEqual("Кожні 05 хвилин", ExpressionDescriptor.GetDescription("*/5 * * * *"));
+            Assert.AreEqual("Кожні 5 хвилин", ExpressionDescriptor.GetDescription("*/5 * * * *"));
             Assert.AreEqual("Кожні 10 хвилин", ExpressionDescriptor.GetDescription("0 0/10 * * * ?"));
         }
 
         [Test]
         public void TestEvery5MinutesOnTheSecond()
         {
-            Assert.AreEqual("Кожні 05 хвилин", ExpressionDescriptor.GetDescription("0 */5 * * * *"));
+            Assert.AreEqual("Кожні 5 хвилин", ExpressionDescriptor.GetDescription("0 */5 * * * *"));
         }
 
         [Test]
@@ -172,7 +172,7 @@ namespace CronExpressionDescriptor.Test
 #endif
         public void TestDayOfWeekRange()
         {
-            Assert.AreEqual("Кожні 05 хвилин, о 15:00, понеділок по п'ятниця", ExpressionDescriptor.GetDescription("*/5 15 * * MON-FRI"));
+            Assert.AreEqual("Кожні 5 хвилин, о 15:00, понеділок по п'ятниця", ExpressionDescriptor.GetDescription("*/5 15 * * MON-FRI"));
         }
 
         [Test]
@@ -190,7 +190,7 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestLastDayOfTheMonth()
         {
-            Assert.IsTrue(string.Equals("Кожні 05 хвилин, в останній день місяця, тільки в січень", ExpressionDescriptor.GetDescription("*/5 * L JAN *"),
+            Assert.IsTrue(string.Equals("Кожні 5 хвилин, в останній день місяця, тільки в січень", ExpressionDescriptor.GetDescription("*/5 * L JAN *"),
               Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
         }
 
@@ -239,19 +239,19 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestSecondInternvals()
         {
-            Assert.AreEqual("З 05 по 10 секунду", ExpressionDescriptor.GetDescription("5-10 * * * * *"));
+            Assert.AreEqual("З 5 по 10 секунду", ExpressionDescriptor.GetDescription("5-10 * * * * *"));
         }
 
         [Test]
         public void TestSecondMinutesHoursIntervals()
         {
-            Assert.AreEqual("З 05 по 10 секунду, з 30 по 35 хвилину, між 10:00 та 12:59", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
+            Assert.AreEqual("З 5 по 10 секунду, з 30 по 35 хвилину, між 10:00 та 12:59", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
         }
 
         [Test]
         public void TestEvery5MinutesAt30Seconds()
         {
-            Assert.AreEqual("О 30 секунді, кожні 05 хвилин", ExpressionDescriptor.GetDescription("30 */5 * * * *"));
+            Assert.AreEqual("О 30 секунді, кожні 5 хвилин", ExpressionDescriptor.GetDescription("30 */5 * * * *"));
         }
 
         [Test]
@@ -266,13 +266,13 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestSecondsPastTheMinuteInterval()
         {
-            Assert.AreEqual("О 10 секунді, кожні 05 хвилин", ExpressionDescriptor.GetDescription("10 0/5 * * * ?"));
+            Assert.AreEqual("О 10 секунді, кожні 5 хвилин", ExpressionDescriptor.GetDescription("10 0/5 * * * ?"));
         }
 
         [Test]
         public void TestBetweenWithInterval()
         {
-            Assert.IsTrue(string.Equals("Кожні 03 хвилин, з 02 по 59 хвилину, о 01:00, 09:00, та 22:00, між 11 та 26 днями місяця, січень по червень", ExpressionDescriptor.GetDescription("2-59/3 1,9,22 11-26 1-6 ?"),
+            Assert.IsTrue(string.Equals("Кожні 3 хвилин, з 2 по 59 хвилину, о 01:00, 09:00, та 22:00, між 11 та 26 днями місяця, січень по червень", ExpressionDescriptor.GetDescription("2-59/3 1,9,22 11-26 1-6 ?"),
               Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
         }
 
@@ -285,7 +285,7 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestMinutesPastTheHour()
         {
-            Assert.AreEqual("О 05 хвилині", ExpressionDescriptor.GetDescription("0 5 0/1 * * ?"));
+            Assert.AreEqual("О 5 хвилині", ExpressionDescriptor.GetDescription("0 5 0/1 * * ?"));
         }
 
         [Test]

@@ -379,13 +379,13 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestMutiPartRangeSeconds()
         {
-            Assert.AreEqual("W 02 i od 04 do 05 minucie, o 01:00", ExpressionDescriptor.GetDescription("2,4-5 1 * * *"));
+            Assert.AreEqual("W 2 i od 04 do 05 minucie, o 01:00", ExpressionDescriptor.GetDescription("2,4-5 1 * * *"));
         }
 
         [Test]
         public void TestMutiPartRangeSeconds2()
         {
-            Assert.AreEqual("W 02 i od 26 do 28 minucie, o 18:00", ExpressionDescriptor.GetDescription("2,26-28 18 * * *"));
+            Assert.AreEqual("W 2 i od 26 do 28 minucie, o 18:00", ExpressionDescriptor.GetDescription("2,26-28 18 * * *"));
         }
 
         [Test]

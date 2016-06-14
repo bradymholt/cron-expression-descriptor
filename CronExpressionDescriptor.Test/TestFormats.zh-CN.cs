@@ -63,14 +63,14 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestEvery5Minutes()
         {
-            Assert.AreEqual("每 05 分钟", ExpressionDescriptor.GetDescription("*/5 * * * *"));
+            Assert.AreEqual("每 5 分钟", ExpressionDescriptor.GetDescription("*/5 * * * *"));
             Assert.AreEqual("每 10 分钟", ExpressionDescriptor.GetDescription("0 0/10 * * * ?"));
         }
 
         [Test]
         public void TestEvery5MinutesOnTheSecond()
         {
-            Assert.AreEqual("每 05 分钟", ExpressionDescriptor.GetDescription("0 */5 * * * *"));
+            Assert.AreEqual("每 5 分钟", ExpressionDescriptor.GetDescription("0 */5 * * * *"));
         }
 
         [Test]
@@ -160,7 +160,7 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestDayOfWeekRange()
         {
-            Assert.AreEqual("每 05 分钟, 在 03:00 PM, 星期一 到 星期五", ExpressionDescriptor.GetDescription("*/5 15 * * MON-FRI"));
+            Assert.AreEqual("每 5 分钟, 在 03:00 PM, 星期一 到 星期五", ExpressionDescriptor.GetDescription("*/5 15 * * MON-FRI"));
         }
 
         [Test]
@@ -178,7 +178,7 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestLastDayOfTheMonth()
         {
-            Assert.AreEqual("每 05 分钟, 每月的最后一天, 仅在 一月", ExpressionDescriptor.GetDescription("*/5 * L JAN *"));
+            Assert.AreEqual("每 5 分钟, 每月的最后一天, 仅在 一月", ExpressionDescriptor.GetDescription("*/5 * L JAN *"));
         }
 
         [Test]
@@ -226,19 +226,19 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestSecondInternvals()
         {
-            Assert.AreEqual("在每分钟的 05 到 10 秒", ExpressionDescriptor.GetDescription("5-10 * * * * *"));
+            Assert.AreEqual("在每分钟的 5 到 10 秒", ExpressionDescriptor.GetDescription("5-10 * * * * *"));
         }
 
         [Test]
         public void TestSecondMinutesHoursIntervals()
         {
-            Assert.AreEqual("在每分钟的 05 到 10 秒, 在每小时的 30 到 35 分钟, 在 10:00 AM 和 12:59 PM 之间", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
+            Assert.AreEqual("在每分钟的 5 到 10 秒, 在每小时的 30 到 35 分钟, 在 10:00 AM 和 12:59 PM 之间", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
         }
 
         [Test]
         public void TestEvery5MinutesAt30Seconds()
         {
-            Assert.AreEqual("在每分钟的 30 秒, 每 05 分钟", ExpressionDescriptor.GetDescription("30 */5 * * * *"));
+            Assert.AreEqual("在每分钟的 30 秒, 每 5 分钟", ExpressionDescriptor.GetDescription("30 */5 * * * *"));
         }
 
         [Test]
@@ -250,13 +250,13 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestSecondsPastTheMinuteInterval()
         {
-            Assert.AreEqual("在每分钟的 10 秒, 每 05 分钟", ExpressionDescriptor.GetDescription("10 0/5 * * * ?"));
+            Assert.AreEqual("在每分钟的 10 秒, 每 5 分钟", ExpressionDescriptor.GetDescription("10 0/5 * * * ?"));
         }
 
         [Test]
         public void TestBetweenWithInterval()
         {
-            Assert.AreEqual("每 03 分钟, 在每小时的 02 到 59 分钟, 在 01:00 AM, 09:00 AM, 和 10:00 PM, 在每月的 11 和 26 号之间, 一月 到 六月", ExpressionDescriptor.GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
+            Assert.AreEqual("每 3 分钟, 在每小时的 2 到 59 分钟, 在 01:00 AM, 09:00 AM, 和 10:00 PM, 在每月的 11 和 26 号之间, 一月 到 六月", ExpressionDescriptor.GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
         }
 
         [Test]
@@ -268,7 +268,7 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestMinutesPastTheHour()
         {
-            Assert.AreEqual("在每小时的 05 分", ExpressionDescriptor.GetDescription("0 5 0/1 * * ?"));
+            Assert.AreEqual("在每小时的 5 分", ExpressionDescriptor.GetDescription("0 5 0/1 * * ?"));
         }
 
         [Test]

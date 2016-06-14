@@ -324,7 +324,7 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestHourRangeWithEveryPortion()
         {
-            Assert.AreEqual("At 25 minutes past the hour, every 13 hours, between 07:00 AM and 07:59 PM", ExpressionDescriptor.GetDescription("0 25 7-19/13 ? * *"));
+            Assert.AreEqual("At 25 minutes past the hour, every 8 hours, between 07:00 AM and 07:59 PM", ExpressionDescriptor.GetDescription("0 25 7-19/8 ? * *"));
         }
 
         [Test]
@@ -409,7 +409,7 @@ namespace CronExpressionDescriptor.Test
             
             Assert.AreEqual("Every 30 minutes, minutes 05 through 59 past the hour", ExpressionDescriptor.GetDescription("0 5/30 * * * ?"));
             
-            Assert.AreEqual("Every second, every 08 hours, between 05:00 AM and 11:59 PM", ExpressionDescriptor.GetDescription("* * 5/8 * * ?"));
+            Assert.AreEqual("Every second, every 8 hours, between 05:00 AM and 11:59 PM", ExpressionDescriptor.GetDescription("* * 5/8 * * ?"));
             
             Assert.AreEqual("At 07:05 AM, every 3 days, between day 2 and ? of the month", ExpressionDescriptor.GetDescription("0 5 7 2/3 * ? *"));
             

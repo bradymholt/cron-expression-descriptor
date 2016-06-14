@@ -255,7 +255,7 @@ namespace CronExpressionDescriptor
             string description = GetSegmentDescription(m_expressionParts[1],
                 CronExpressionDescriptor.Resources.EveryMinute,
                 (s => s.PadLeft(2, '0')),
-                (s => string.Format(CronExpressionDescriptor.Resources.EveryX0Minutes, s.PadLeft(2, '0'))),
+                (s => string.Format(CronExpressionDescriptor.Resources.EveryX0Minutes, s),
                 (s => CronExpressionDescriptor.Resources.MinutesX0ThroughX1PastTheHour),
                 (s => { try {
                           return s == "0" 
@@ -278,7 +278,7 @@ namespace CronExpressionDescriptor
             string description = GetSegmentDescription(expression,
                  CronExpressionDescriptor.Resources.EveryHour,
                (s => FormatTime(s, "0")),
-               (s => string.Format(CronExpressionDescriptor.Resources.EveryX0Hours, s.PadLeft(2, '0'))),
+               (s => string.Format(CronExpressionDescriptor.Resources.EveryX0Hours, s)),
                (s => CronExpressionDescriptor.Resources.BetweenX0AndX1),
                (s => CronExpressionDescriptor.Resources.AtX0));
 

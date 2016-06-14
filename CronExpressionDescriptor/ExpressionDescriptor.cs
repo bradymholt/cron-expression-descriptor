@@ -425,7 +425,8 @@ namespace CronExpressionDescriptor
         {
             string description = GetSegmentDescription(m_expressionParts[6],
                 string.Empty,
-               (s => new DateTime(Convert.ToInt32(s), 1, 1).ToString("yyyy")),
+               (s => Regex.IsMatch(s, @"^\d+$") ?
+                new DateTime(Convert.ToInt32(s), 1, 1).ToString("yyyy") : s),
                (s => string.Format(CronExpressionDescriptor.Resources.ComaEveryX0Years, s)),
                (s =>  CronExpressionDescriptor.Resources.ComaYearX0ThroughYearX1 ?? CronExpressionDescriptor.Resources.ComaX0ThroughX1),
                (s => CronExpressionDescriptor.Resources.ComaOnlyInX0));

@@ -88,58 +88,66 @@ namespace CronExpressionDescriptor
         /// <param name="expressionParts">A 7 part string array, one part for each component of the cron expression</param>
         private void NormalizeExpression(string[] expressionParts)
         {
-            //convert ? to * only for DOM and DOW
+            // Convert ? to * only for DOM and DOW
             expressionParts[3] = expressionParts[3].Replace("?", "*");
             expressionParts[5] = expressionParts[5].Replace("?", "*");
 
-            //convert 0/, 1/ to */
+            // Convert 0/, 1/ to */
             if (expressionParts[0].StartsWith("0/"))
             {
-                expressionParts[0] = expressionParts[0].Replace("0/", "*/"); //seconds
+                 // Seconds
+                expressionParts[0] = expressionParts[0].Replace("0/", "*/");
             }
 
             if (expressionParts[1].StartsWith("0/"))
             {
-                expressionParts[1] = expressionParts[1].Replace("0/", "*/"); //minutes
+                 // Minutes
+                expressionParts[1] = expressionParts[1].Replace("0/", "*/");
             }
 
             if (expressionParts[2].StartsWith("0/"))
             {
-                expressionParts[2] = expressionParts[2].Replace("0/", "*/"); //hours
+                 // Hours
+                expressionParts[2] = expressionParts[2].Replace("0/", "*/");
             }
 
             if (expressionParts[3].StartsWith("1/"))
             {
-                expressionParts[3] = expressionParts[3].Replace("1/", "*/"); //DOM
+                 // DOM
+                expressionParts[3] = expressionParts[3].Replace("1/", "*/");
             }
 
             if (expressionParts[4].StartsWith("1/"))
             {
-                expressionParts[4] = expressionParts[4].Replace("1/", "*/"); //Month
+                // Month
+                expressionParts[4] = expressionParts[4].Replace("1/", "*/");
             }
 
             if (expressionParts[5].StartsWith("1/"))
             {
-                expressionParts[5] = expressionParts[5].Replace("1/", "*/"); //DOW
+                // DOW
+                expressionParts[5] = expressionParts[5].Replace("1/", "*/");
             }
 
-            //convert */1 to *
-            int len = expressionParts.Length;
-            for (int i = 0; i < len; i++)
+            if (expressionParts[6].StartsWith("1/"))
             {
-                if (expressionParts[i] == "*/1")
-                {
-                    expressionParts[i] = "*";
-                }
+                // Years
+                expressionParts[6] = expressionParts[6].Replace("1/", "*/");
             }
 
-            //handle DayOfWeekStartIndexZero option where SUN=1 rather than SUN=0
+            // Handle DayOfWeekStartIndexZero option where SUN=1 rather than SUN=0
             if (!m_options.DayOfWeekStartIndexZero)
             {
                 expressionParts[5] = DecreaseDaysOfWeek(expressionParts[5]);
             }
 
-            //convert SUN-SAT format to 0-6 format
+            // Convert DOM '?' to '*'
+            if (expressionParts[3] == "?")
+            {
+                expressionParts[3] = "*";
+            }
+
+            // Convert SUN-SAT format to 0-6 format
             for (int i = 0; i <= 6; i++)
             {
                 DayOfWeek currentDay = (DayOfWeek)i;
@@ -147,7 +155,7 @@ namespace CronExpressionDescriptor
                 expressionParts[5] = expressionParts[5].Replace(currentDayOfWeekDescription, i.ToString());
             }
 
-            //convert JAN-DEC format to 1-12 format
+            // Convert JAN-DEC format to 1-12 format
             for (int i = 1; i <= 12; i++)
             {
                 DateTime currentMonth = new DateTime(DateTime.Now.Year, i, 1);
@@ -155,10 +163,48 @@ namespace CronExpressionDescriptor
                 expressionParts[4] = expressionParts[4].Replace(currentMonthDescription, i.ToString());
             }
 
-            //convert 0 second to (empty)
+            // Convert 0 second to (empty)
             if (expressionParts[0] == "0")
             {
                 expressionParts[0] = string.Empty;
+            }
+
+            // Loop through all parts and apply global normalization 
+            for (int i = 0; i < expressionParts.Length; i++)
+            {
+                // convert all '*/1' to '*'
+                if (expressionParts[i] == "*/1")
+                {
+                    expressionParts[i] = "*";
+                }
+
+                /* Convert all step values with a starting value (i.e. not '*') to between expressions.
+                   This allows us to reuse the between expression handling for step values.
+                   
+                   For Example: 
+                    - minute part '2/3' will be converted to '2-59/3'
+                    - month part '3/2' will be converted to '3-12/2'
+                */
+
+                if (expressionParts[i].Contains("/")
+                    && expressionParts[i].IndexOfAny(new char[] { '*', '-', ',' }) == -1) {
+                    string stepRangeThrough = null;
+                    switch(i) {
+                        case 0: stepRangeThrough = "59"; break;
+                        case 1: stepRangeThrough = "59"; break;
+                        case 2: stepRangeThrough = "23"; break;
+                        case 3: stepRangeThrough = "?"; break;
+                        case 4: stepRangeThrough = "12"; break;
+                        case 5: stepRangeThrough = "6"; break;
+                        case 6: stepRangeThrough = "?"; break;
+                        default: stepRangeThrough = null; break;
+                    }
+
+                    if (stepRangeThrough != null) {
+                        string[] parts = expressionParts[i].Split('/');
+                        expressionParts[i] = string.Format("{0}-{1}/{2}", parts[0], stepRangeThrough, parts[1]);
+                    }
+                }
             }
         }
 

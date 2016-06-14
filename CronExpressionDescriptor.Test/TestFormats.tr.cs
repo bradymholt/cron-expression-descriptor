@@ -62,14 +62,14 @@ namespace CronExpressionDescriptor.Test
         
         public void TestEvery5Minutes()
         {
-            Assert.AreEqual("Her 05 dakikada bir", ExpressionDescriptor.GetDescription("*/5 * * * *"));
+            Assert.AreEqual("Her 5 dakikada bir", ExpressionDescriptor.GetDescription("*/5 * * * *"));
             Assert.AreEqual("Her 10 dakikada bir", ExpressionDescriptor.GetDescription("0 0/10 * * * ?"));
         }
         [Test]
         
         public void TestEvery5MinutesOnTheSecond()
         {
-            Assert.AreEqual("Her 05 dakikada bir", ExpressionDescriptor.GetDescription("0 */5 * * * *"));
+            Assert.AreEqual("Her 5 dakikada bir", ExpressionDescriptor.GetDescription("0 */5 * * * *"));
         }
 
         [Test]
@@ -168,7 +168,7 @@ namespace CronExpressionDescriptor.Test
         
         public void TestDayOfWeekRange()
         {
-            Assert.AreEqual("Her 05 dakikada bir, saat 15:00, Pazartesi ile Cuma arasında", ExpressionDescriptor.GetDescription("*/5 15 * * MON-FRI"));
+            Assert.AreEqual("Her 5 dakikada bir, saat 15:00, Pazartesi ile Cuma arasında", ExpressionDescriptor.GetDescription("*/5 15 * * MON-FRI"));
         }
 
         [Test]
@@ -188,7 +188,7 @@ namespace CronExpressionDescriptor.Test
         
         public void TestLastDayOfTheMonth()
         {
-            Assert.AreEqual("Her 05 dakikada bir, ayın son günü, sadece Ocak için", ExpressionDescriptor.GetDescription("*/5 * L JAN *"));
+            Assert.AreEqual("Her 5 dakikada bir, ayın son günü, sadece Ocak için", ExpressionDescriptor.GetDescription("*/5 * L JAN *"));
         }
 
         [Test]
@@ -242,20 +242,20 @@ namespace CronExpressionDescriptor.Test
         
         public void TestSecondInternvals()
         {
-            Assert.AreEqual("Dakikaların 05. ve 10. saniyeleri arası", ExpressionDescriptor.GetDescription("5-10 * * * * *"));
+            Assert.AreEqual("Dakikaların 5. ve 10. saniyeleri arası", ExpressionDescriptor.GetDescription("5-10 * * * * *"));
         }
         [Test]
         
         public void TestSecondMinutesHoursIntervals()
         {
-            Assert.AreEqual("Dakikaların 05. ve 10. saniyeleri arası, saatlerin 30. ve 35. dakikaları arası, 10:00 ile 12:59 arasında", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
+            Assert.AreEqual("Dakikaların 5. ve 10. saniyeleri arası, saatlerin 30. ve 35. dakikaları arası, 10:00 ile 12:59 arasında", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
         }
 
         [Test]
         
         public void TestEvery5MinutesAt30Seconds()
         {
-            Assert.AreEqual("Dakikaların 30. saniyesinde, her 05 dakikada bir", ExpressionDescriptor.GetDescription("30 */5 * * * *"));
+            Assert.AreEqual("Dakikaların 30. saniyesinde, her 5 dakikada bir", ExpressionDescriptor.GetDescription("30 */5 * * * *"));
         }
 
         [Test]
@@ -268,13 +268,13 @@ namespace CronExpressionDescriptor.Test
         
         public void TestSecondsPastTheMinuteInterval()
         {
-            Assert.AreEqual("Dakikaların 10. saniyesinde, her 05 dakikada bir", ExpressionDescriptor.GetDescription("10 0/5 * * * ?"));
+            Assert.AreEqual("Dakikaların 10. saniyesinde, her 5 dakikada bir", ExpressionDescriptor.GetDescription("10 0/5 * * * ?"));
         }
         [Test]
         
         public void TestBetweenWithInterval()
         {
-            Assert.AreEqual("Her 03 dakikada bir, saatlerin 02. ve 59. dakikaları arası, saat 01:00, 09:00, ve 22:00, ayın 11. ve 26. günleri arası, Ocak ile Haziran arasında", ExpressionDescriptor.GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
+            Assert.AreEqual("Her 3 dakikada bir, saatlerin 2. ve 59. dakikaları arası, saat 01:00, 09:00, ve 22:00, ayın 11. ve 26. günleri arası, Ocak ile Haziran arasında", ExpressionDescriptor.GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
         }
         [Test]
         
@@ -286,7 +286,7 @@ namespace CronExpressionDescriptor.Test
         
         public void TestMinutesPastTheHour()
         {
-            Assert.AreEqual("Saatlerin 05. dakikasında", ExpressionDescriptor.GetDescription("0 5 0/1 * * ?"));
+            Assert.AreEqual("Saatlerin 5. dakikasında", ExpressionDescriptor.GetDescription("0 5 0/1 * * ?"));
         }
         [Test]
         

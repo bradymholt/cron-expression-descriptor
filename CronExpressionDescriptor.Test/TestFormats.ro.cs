@@ -324,10 +324,10 @@
         [Test]
         public void TestBetweenWithInterval()
         {
-           //"Every 03 minutes, minutes 02 through 59 past the hour, at 01:00 AM, 09:00 AM, and 10:00 PM, between day 11 and 26 of the month, January through June"
+           //"Every 03 minutes, minutes 2 through 59 past the hour, at 01:00 AM, 09:00 AM, and 10:00 PM, between day 11 and 26 of the month, January through June"
             Harness( cron: "2-59/3 1,9,22 11-26 1-6 ?",
-                expected: "La fiecare 03 minute, între minutele 02 și 59, la 01:00, 09:00, și 22:00, între zilele 11 și 26 ale lunii, din ianuarie până în iunie", 
-                expectedVerbose: "La fiecare 03 minute, între minutele 02 și 59, la 01:00 AM, 09:00 AM, și 10:00 PM, între zilele 11 și 26 ale lunii, din ianuarie până în iunie");
+                expected: "La fiecare 03 minute, între minutele 2 și 59, la 01:00, 09:00, și 22:00, între zilele 11 și 26 ale lunii, din ianuarie până în iunie", 
+                expectedVerbose: "La fiecare 03 minute, între minutele 2 și 59, la 01:00 AM, 09:00 AM, și 10:00 PM, între zilele 11 și 26 ale lunii, din ianuarie până în iunie");
         }
 
         [Test]

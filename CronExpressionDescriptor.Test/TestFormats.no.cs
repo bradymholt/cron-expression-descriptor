@@ -64,7 +64,7 @@ namespace CronExpressionDescriptor.Test
         
         public void TestEvery5Minutes()
         {
-            Assert.AreEqual("Hvert 05 minutt", ExpressionDescriptor.GetDescription("*/5 * * * *"));
+            Assert.AreEqual("Hvert 5 minutt", ExpressionDescriptor.GetDescription("*/5 * * * *"));
             Assert.AreEqual("Hvert 10 minutt", ExpressionDescriptor.GetDescription("0 0/10 * * * ?"));
         }
 
@@ -72,7 +72,7 @@ namespace CronExpressionDescriptor.Test
         
         public void TestEvery5MinutesOnTheSecond()
         {
-            Assert.AreEqual("Hvert 05 minutt", ExpressionDescriptor.GetDescription("0 */5 * * * *"));
+            Assert.AreEqual("Hvert 5 minutt", ExpressionDescriptor.GetDescription("0 */5 * * * *"));
         }
 
         [Test]
@@ -182,7 +182,7 @@ namespace CronExpressionDescriptor.Test
         public void TestDayOfWeekRange()
         {
             Assert.AreEqual(
-                "Hvert 05 minutt, på 03:00 PM, mandag til og med fredag",
+                "Hvert 5 minutt, på 03:00 PM, mandag til og med fredag",
                 ExpressionDescriptor.GetDescription("*/5 15 * * MON-FRI"));
         }
 
@@ -207,7 +207,7 @@ namespace CronExpressionDescriptor.Test
         public void TestLastDayOfTheMonth()
         {
             Assert.AreEqual(
-                "Hvert 05 minutt, på den siste dagen i måneden, bare i januar",
+                "Hvert 5 minutt, på den siste dagen i måneden, bare i januar",
                 ExpressionDescriptor.GetDescription("*/5 * L JAN *"));
         }
 
@@ -273,7 +273,7 @@ namespace CronExpressionDescriptor.Test
         public void TestSecondInternvals()
         {
             Assert.AreEqual(
-                "Sekundene fra 05 til og med 10 etter minuttet", ExpressionDescriptor.GetDescription("5-10 * * * * *"));
+                "Sekundene fra 5 til og med 10 etter minuttet", ExpressionDescriptor.GetDescription("5-10 * * * * *"));
         }
 
         [Test]
@@ -281,7 +281,7 @@ namespace CronExpressionDescriptor.Test
         public void TestSecondMinutesHoursIntervals()
         {
             Assert.AreEqual(
-                "Sekundene fra 05 til og med 10 etter minuttet, minuttene fra 30 til og med 35 etter timen, mellom 10:00 AM og 12:59 PM",
+                "Sekundene fra 5 til og med 10 etter minuttet, minuttene fra 30 til og med 35 etter timen, mellom 10:00 AM og 12:59 PM",
                 ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
         }
 
@@ -290,7 +290,7 @@ namespace CronExpressionDescriptor.Test
         public void TestEvery5MinutesAt30Seconds()
         {
             Assert.AreEqual(
-                "På 30 sekunder etter minuttet, hvert 05 minutt", ExpressionDescriptor.GetDescription("30 */5 * * * *"));
+                "På 30 sekunder etter minuttet, hvert 5 minutt", ExpressionDescriptor.GetDescription("30 */5 * * * *"));
         }
 
         [Test]
@@ -307,7 +307,7 @@ namespace CronExpressionDescriptor.Test
         public void TestSecondsPastTheMinuteInterval()
         {
             Assert.AreEqual(
-                "På 10 sekunder etter minuttet, hvert 05 minutt", ExpressionDescriptor.GetDescription("10 0/5 * * * ?"));
+                "På 10 sekunder etter minuttet, hvert 5 minutt", ExpressionDescriptor.GetDescription("10 0/5 * * * ?"));
         }
 
         [Test]
@@ -315,7 +315,7 @@ namespace CronExpressionDescriptor.Test
         public void TestBetweenWithInterval()
         {
             Assert.AreEqual(
-                "Hvert 03 minutt, minuttene fra 02 til og med 59 etter timen, på 01:00 AM, 09:00 AM, og 10:00 PM, mellom dag 11 og 26 av måneden, januar til og med juni",
+                "Hvert 3 minutt, minuttene fra 2 til og med 59 etter timen, på 01:00 AM, 09:00 AM, og 10:00 PM, mellom dag 11 og 26 av måneden, januar til og med juni",
                 ExpressionDescriptor.GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
         }
 
@@ -330,7 +330,7 @@ namespace CronExpressionDescriptor.Test
         
         public void TestMinutesPastTheHour()
         {
-            Assert.AreEqual("På 05 minutter etter timen", ExpressionDescriptor.GetDescription("0 5 0/1 * * ?"));
+            Assert.AreEqual("På 5 minutter etter timen", ExpressionDescriptor.GetDescription("0 5 0/1 * * ?"));
         }
 
         [Test]

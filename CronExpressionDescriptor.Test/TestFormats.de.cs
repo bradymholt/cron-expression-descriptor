@@ -56,14 +56,14 @@ namespace CronExpressionDescriptor.Test
         [Test]       
         public void TestEvery5Minutes()
         {
-            Assert.AreEqual("Alle 05 Minuten", ExpressionDescriptor.GetDescription("*/5 * * * *"));
+            Assert.AreEqual("Alle 5 Minuten", ExpressionDescriptor.GetDescription("*/5 * * * *"));
             Assert.AreEqual("Alle 10 Minuten", ExpressionDescriptor.GetDescription("0 0/10 * * * ?"));
         }
 
         [Test]       
         public void TestEvery5MinutesOnTheSecond()
         {
-            Assert.AreEqual("Alle 05 Minuten", ExpressionDescriptor.GetDescription("0 */5 * * * *"));
+            Assert.AreEqual("Alle 5 Minuten", ExpressionDescriptor.GetDescription("0 */5 * * * *"));
         }
 
         [Test]       
@@ -153,7 +153,7 @@ namespace CronExpressionDescriptor.Test
         [Test]       
         public void TestDayOfWeekRange()
         {
-            Assert.AreEqual("Alle 05 Minuten, um 15:00, Montag bis Freitag", ExpressionDescriptor.GetDescription("*/5 15 * * MON-FRI"));
+            Assert.AreEqual("Alle 5 Minuten, um 15:00, Montag bis Freitag", ExpressionDescriptor.GetDescription("*/5 15 * * MON-FRI"));
         }
 
         [Test]       
@@ -171,7 +171,7 @@ namespace CronExpressionDescriptor.Test
         [Test]       
         public void TestLastDayOfTheMonth()
         {
-            Assert.AreEqual("Alle 05 Minuten, am letzten Tag des Monats, nur im Januar", ExpressionDescriptor.GetDescription("*/5 * L JAN *"));
+            Assert.AreEqual("Alle 5 Minuten, am letzten Tag des Monats, nur im Januar", ExpressionDescriptor.GetDescription("*/5 * L JAN *"));
         }
 
         [Test]       
@@ -219,19 +219,19 @@ namespace CronExpressionDescriptor.Test
         [Test]       
         public void TestSecondInternvals()
         {
-            Assert.AreEqual("Sekunden 05 bis 10", ExpressionDescriptor.GetDescription("5-10 * * * * *"));
+            Assert.AreEqual("Sekunden 5 bis 10", ExpressionDescriptor.GetDescription("5-10 * * * * *"));
         }
 
         [Test]       
         public void TestSecondMinutesHoursIntervals()
         {
-            Assert.AreEqual("Sekunden 05 bis 10, Minuten 30 bis 35, zwischen 10:00 und 12:59", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
+            Assert.AreEqual("Sekunden 5 bis 10, Minuten 30 bis 35, zwischen 10:00 und 12:59", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
         }
 
         [Test]       
         public void TestEvery5MinutesAt30Seconds()
         {
-            Assert.AreEqual("Bei Sekunde 30, alle 05 Minuten", ExpressionDescriptor.GetDescription("30 */5 * * * *"));
+            Assert.AreEqual("Bei Sekunde 30, alle 5 Minuten", ExpressionDescriptor.GetDescription("30 */5 * * * *"));
         }
 
         [Test]       
@@ -243,13 +243,13 @@ namespace CronExpressionDescriptor.Test
         [Test]       
         public void TestSecondsPastTheMinuteInterval()
         {
-            Assert.AreEqual("Bei Sekunde 10, alle 05 Minuten", ExpressionDescriptor.GetDescription("10 0/5 * * * ?"));
+            Assert.AreEqual("Bei Sekunde 10, alle 5 Minuten", ExpressionDescriptor.GetDescription("10 0/5 * * * ?"));
         }
 
         [Test]       
         public void TestBetweenWithInterval()
         {
-            Assert.AreEqual("Alle 03 Minuten, Minuten 02 bis 59, um 01:00, 09:00, und 22:00, zwischen Tag 11 und 26 des Monats, Januar bis Juni", ExpressionDescriptor.GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
+            Assert.AreEqual("Alle 3 Minuten, Minuten 2 bis 59, um 01:00, 09:00, und 22:00, zwischen Tag 11 und 26 des Monats, Januar bis Juni", ExpressionDescriptor.GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
         }
 
         [Test]       
@@ -261,7 +261,7 @@ namespace CronExpressionDescriptor.Test
         [Test]       
         public void TestMinutesPastTheHour()
         {
-            Assert.AreEqual("Bei Minute 05", ExpressionDescriptor.GetDescription("0 5 0/1 * * ?"));
+            Assert.AreEqual("Bei Minute 5", ExpressionDescriptor.GetDescription("0 5 0/1 * * ?"));
         }
 
         [Test]       

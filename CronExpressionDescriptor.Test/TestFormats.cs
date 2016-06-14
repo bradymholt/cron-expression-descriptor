@@ -411,7 +411,7 @@ namespace CronExpressionDescriptor.Test
             
             Assert.AreEqual("Every second, every 8 hours, between 05:00 AM and 11:59 PM", ExpressionDescriptor.GetDescription("* * 5/8 * * ?"));
             
-            Assert.AreEqual("At 07:05 AM, every 3 days, between day 2 and ? of the month", ExpressionDescriptor.GetDescription("0 5 7 2/3 * ? *"));
+            Assert.AreEqual("At 07:05 AM, every 3 days, between day 2 and L of the month", ExpressionDescriptor.GetDescription("0 5 7 2/3 * ? *"));
             
             Assert.AreEqual("At 07:05 AM, every 2 months, March through December", ExpressionDescriptor.GetDescription("0 5 7 ? 3/2 ? *"));
             

@@ -193,7 +193,7 @@ namespace CronExpressionDescriptor
                         case 0: stepRangeThrough = "59"; break;
                         case 1: stepRangeThrough = "59"; break;
                         case 2: stepRangeThrough = "23"; break;
-                        case 3: stepRangeThrough = "?"; break;
+                        case 3: stepRangeThrough = "L"; break;
                         case 4: stepRangeThrough = "12"; break;
                         case 5: stepRangeThrough = "6"; break;
                         case 6: stepRangeThrough = "?"; break;

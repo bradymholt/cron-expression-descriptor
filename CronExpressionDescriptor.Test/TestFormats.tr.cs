@@ -347,5 +347,47 @@ namespace CronExpressionDescriptor.Test
             Assert.AreEqual("Saat 12:23, ayın ikinci Pazar günü", ExpressionDescriptor.GetDescription("23 12 * * 1#2", options));
         }
 
+        [Test]
+        public void TestSecondsInternalWithStepValue()
+        {
+            // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
+            Assert.AreEqual("Her 30 saniyede bir, başlangıç dakikaların 5. saniyesinde", ExpressionDescriptor.GetDescription("5/30 * * * * ?"));
+        }
+
+        [Test]
+        public void TestMinutesInternalWithStepValue()
+        {
+            Assert.AreEqual("Her 30 dakikada bir, başlangıç saatlerin 5. dakikasında", ExpressionDescriptor.GetDescription("0 5/30 * * * ?"));
+        }
+        
+        [Test]
+        public void TestHoursInternalWithStepValue()
+        {
+            Assert.AreEqual("Her saniye, her 8 saatte, başlangıç saat 05:00", ExpressionDescriptor.GetDescription("* * 5/8 * * ?"));
+        }
+        
+        [Test]
+        public void TestDayOfMonthInternalWithStepValue()
+        {
+            Assert.AreEqual("Saat 07:05, 3 günde bir, başlangıç ayın 2. günü", ExpressionDescriptor.GetDescription("0 5 7 2/3 * ? *"));
+        }
+        
+        [Test]
+        public void TestMonthInternalWithStepValue()
+        {
+            Assert.AreEqual("Saat 07:05, 2 ayda bir, Mart ile Aralık arasında", ExpressionDescriptor.GetDescription("0 5 7 ? 3/2 ? *"));
+        }
+        
+        [Test]
+        public void TestDayOfWeekInternalWithStepValue()
+        {
+            Assert.AreEqual("Saat 07:05, ayın her 3 günü, Salı ile Cumartesi arasında", ExpressionDescriptor.GetDescription("0 5 7 ? * 2/3 *"));
+        }
+                
+        [Test]
+        public void TestYearInternalWithStepValue()
+        {
+            Assert.AreEqual("Saat 07:05, 4 yılda bir, 2016 ile 9999 arasında", ExpressionDescriptor.GetDescription("0 5 7 ? * ? 2016/4"));
+        }
     }
 }

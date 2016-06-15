@@ -288,4 +288,8 @@
     <value>dzień roboczy najbliższy {0}-ego dnia</value>
     <comment>WeekdayNearestDayX0 description</comment>
   </data>
+  <data name="CommaStartingX0" xml:space="preserve">
+    <value>, startowy {0}</value>
+    <comment>CommaStartingX0 description</comment>
+  </data>
 </root>

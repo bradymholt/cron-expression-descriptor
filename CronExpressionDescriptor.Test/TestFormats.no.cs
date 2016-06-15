@@ -372,5 +372,48 @@ namespace CronExpressionDescriptor.Test
                 "På 12:23 PM, januar til og med mars, 2013 til og med 2015",
                 ExpressionDescriptor.GetDescription("23 12 * JAN-MAR * 2013-2015"));
         }
+
+        [Test]
+        public void TestSecondsInternalWithStepValue()
+        {
+            // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
+            Assert.AreEqual("Hvert 30 sekund, starter på 5 sekunder etter minuttet", ExpressionDescriptor.GetDescription("5/30 * * * * ?"));
+        }
+
+        [Test]
+        public void TestMinutesInternalWithStepValue()
+        {
+            Assert.AreEqual("Hvert 30 minutt, starter på 5 minutter etter timen", ExpressionDescriptor.GetDescription("0 5/30 * * * ?"));
+        }
+        
+        [Test]
+        public void TestHoursInternalWithStepValue()
+        {
+            Assert.AreEqual("Hvert sekund, hver 8 time, starter på 05:00 AM", ExpressionDescriptor.GetDescription("* * 5/8 * * ?"));
+        }
+        
+        [Test]
+        public void TestDayOfMonthInternalWithStepValue()
+        {
+            Assert.AreEqual("På 07:05 AM, hver 3 dag, starter på dag 2 av måneden", ExpressionDescriptor.GetDescription("0 5 7 2/3 * ? *"));
+        }
+        
+        [Test]
+        public void TestMonthInternalWithStepValue()
+        {
+            Assert.AreEqual("På 07:05 AM, hver 2 måned], mars til og med desember", ExpressionDescriptor.GetDescription("0 5 7 ? 3/2 ? *"));
+        }
+        
+        [Test]
+        public void TestDayOfWeekInternalWithStepValue()
+        {
+            Assert.AreEqual("På 07:05 AM, hver 3 ukedag, tirsdag til og med lørdag", ExpressionDescriptor.GetDescription("0 5 7 ? * 2/3 *"));
+        }
+                
+        [Test]
+        public void TestYearInternalWithStepValue()
+        {
+            Assert.AreEqual("På 07:05 AM, hvert 4 år, 2016 til og med 9999", ExpressionDescriptor.GetDescription("0 5 7 ? * ? 2016/4"));
+        }
     }
 }

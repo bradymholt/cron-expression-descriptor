@@ -365,7 +365,48 @@ namespace CronExpressionDescriptor.Test
                 Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
         }
 
+        [Test]
+        public void TestSecondsInternalWithStepValue()
+        {
+            // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
+            Assert.AreEqual("Ogni 30 secondi, a partire al 5 secondo passato il minuto", ExpressionDescriptor.GetDescription("5/30 * * * * ?"));
+        }
 
-
+        [Test]
+        public void TestMinutesInternalWithStepValue()
+        {
+            Assert.AreEqual("Ogni 30 minuti, a partire al 5 minuto passata l'ora", ExpressionDescriptor.GetDescription("0 5/30 * * * ?"));
+        }
+        
+        [Test]
+        public void TestHoursInternalWithStepValue()
+        {
+            Assert.AreEqual("Ogni secondo, ogni 8 ore, a partire alle 05:00", ExpressionDescriptor.GetDescription("* * 5/8 * * ?"));
+        }
+        
+        [Test]
+        public void TestDayOfMonthInternalWithStepValue()
+        {
+            Assert.AreEqual("Alle 07:05, ogni 3 giorni, a partire il giorno 2 del mese", ExpressionDescriptor.GetDescription("0 5 7 2/3 * ? *"));
+        }
+        
+        [Test]
+        public void TestMonthInternalWithStepValue()
+        {
+            Assert.IsTrue(string.Equals("Alle 07:05, ogni 2 mesi, marzo al dicembre", ExpressionDescriptor.GetDescription("0 5 7 ? 3/2 ? *"),
+                Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
+        }
+        
+        [Test]
+        public void TestDayOfWeekInternalWithStepValue()
+        {
+            Assert.AreEqual("Alle 07:05, ogni 3 giorni della settimana, martedì al sabato", ExpressionDescriptor.GetDescription("0 5 7 ? * 2/3 *"));
+        }
+                
+        [Test]
+        public void TestYearInternalWithStepValue()
+        {
+            Assert.AreEqual("Alle 07:05, ogni 4 anni, 2016 al 9999", ExpressionDescriptor.GetDescription("0 5 7 ? * ? 2016/4"));
+        }
     }
 }

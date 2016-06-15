@@ -288,4 +288,8 @@
     <value>, 每 {0} 年</value>
     <comment>ComaEveryX0Years description</comment>
   </data>
+  <data name="CommaStartingX0" xml:space="preserve">
+    <value>, 开始 {0}</value>
+    <comment>CommaStartingX0 description</comment>
+  </data>
 </root>

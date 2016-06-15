@@ -178,25 +178,21 @@ namespace CronExpressionDescriptor
                     expressionParts[i] = "*";
                 }
 
-                /* Convert all step values with a starting value (i.e. not '*') to between expressions.
+                /* Convert Month,DOW,Year step values with a starting value (i.e. not '*') to between expressions.
                    This allows us to reuse the between expression handling for step values.
                    
                    For Example: 
-                    - minute part '2/3' will be converted to '2-59/3'
-                    - month part '3/2' will be converted to '3-12/2'
+                    - month part '3/2' will be converted to '3-12/2' (every 2 months between March and December)
+                    - DOW part '3/2' will be converted to '3-6/2' (every 2 days between Tuesday and Saturday)
                 */
 
                 if (expressionParts[i].Contains("/")
                     && expressionParts[i].IndexOfAny(new char[] { '*', '-', ',' }) == -1) {
                     string stepRangeThrough = null;
                     switch(i) {
-                        case 0: stepRangeThrough = "59"; break;
-                        case 1: stepRangeThrough = "59"; break;
-                        case 2: stepRangeThrough = "23"; break;
-                        case 3: stepRangeThrough = "L"; break;
                         case 4: stepRangeThrough = "12"; break;
                         case 5: stepRangeThrough = "6"; break;
-                        case 6: stepRangeThrough = "?"; break;
+                        case 6: stepRangeThrough = "9999"; break;
                         default: stepRangeThrough = null; break;
                     }
 

@@ -401,5 +401,48 @@ namespace CronExpressionDescriptor.Test
             // GitHub Issue #44: https://github.com/bradyholt/cron-expression-descriptor/issues/44
             Assert.AreEqual("O 10:00, tylko od poniedziałek do czwartek i niedziela", ExpressionDescriptor.GetDescription("0 00 10 ? * MON-THU,SUN *"));
         }
-}
+
+        [Test]
+        public void TestSecondsInternalWithStepValue()
+        {
+            // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
+            Assert.AreEqual("Co 30 sekund, startowy w 5 sekundzie", ExpressionDescriptor.GetDescription("5/30 * * * * ?"));
+        }
+
+        [Test]
+        public void TestMinutesInternalWithStepValue()
+        {
+            Assert.AreEqual("Co 30 minut, startowy w 5 minucie", ExpressionDescriptor.GetDescription("0 5/30 * * * ?"));
+        }
+        
+        [Test]
+        public void TestHoursInternalWithStepValue()
+        {
+            Assert.AreEqual("Co sekundę, co 8 godzin, startowy o 05:00", ExpressionDescriptor.GetDescription("* * 5/8 * * ?"));
+        }
+        
+        [Test]
+        public void TestDayOfMonthInternalWithStepValue()
+        {
+            Assert.AreEqual("O 07:05, co 3 dni, startowy 2-ego dnia miesiąca", ExpressionDescriptor.GetDescription("0 5 7 2/3 * ? *"));
+        }
+        
+        [Test]
+        public void TestMonthInternalWithStepValue()
+        {
+            Assert.AreEqual("O 07:05, co 2 miesięcy, od marzec do grudzień", ExpressionDescriptor.GetDescription("0 5 7 ? 3/2 ? *"));
+        }
+        
+        [Test]
+        public void TestDayOfWeekInternalWithStepValue()
+        {
+            Assert.AreEqual("O 07:05, co 3 dni tygodnia, od wtorek do sobota", ExpressionDescriptor.GetDescription("0 5 7 ? * 2/3 *"));
+        }
+                
+        [Test]
+        public void TestYearInternalWithStepValue()
+        {
+            Assert.AreEqual("O 07:05, co 4 lat, od 2016 do 9999", ExpressionDescriptor.GetDescription("0 5 7 ? * ? 2016/4"));
+        }
+    }
 }

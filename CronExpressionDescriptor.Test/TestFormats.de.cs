@@ -327,5 +327,48 @@ namespace CronExpressionDescriptor.Test
         {
             Assert.AreEqual("Bei Minute 25, alle 13 Stunden, zwischen 07:00 und 20:59", ExpressionDescriptor.GetDescription("0 25 7-20/13 ? * *"));
         }
+
+        [Test]
+        public void TestSecondsInternalWithStepValue()
+        {
+            // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
+            Assert.AreEqual("Alle 30 Sekunden, beginnend bei Sekunde 5", ExpressionDescriptor.GetDescription("5/30 * * * * ?"));
+        }
+
+        [Test]
+        public void TestMinutesInternalWithStepValue()
+        {
+            Assert.AreEqual("Alle 30 Minuten, beginnend bei Minute 5", ExpressionDescriptor.GetDescription("0 5/30 * * * ?"));
+        }
+        
+        [Test]
+        public void TestHoursInternalWithStepValue()
+        {
+            Assert.AreEqual("Jede Sekunde, alle 8 Stunden, beginnend um 05:00", ExpressionDescriptor.GetDescription("* * 5/8 * * ?"));
+        }
+        
+        [Test]
+        public void TestDayOfMonthInternalWithStepValue()
+        {
+            Assert.AreEqual("Um 07:05, alle 3 Tage, beginnend am 2 Tag des Monats", ExpressionDescriptor.GetDescription("0 5 7 2/3 * ? *"));
+        }
+        
+        [Test]
+        public void TestMonthInternalWithStepValue()
+        {
+            Assert.AreEqual("Um 07:05, alle 2 Monate, März bis Dezember", ExpressionDescriptor.GetDescription("0 5 7 ? 3/2 ? *"));
+        }
+        
+        [Test]
+        public void TestDayOfWeekInternalWithStepValue()
+        {
+            Assert.AreEqual("Um 07:05, every 3 days of the week, Dienstag bis Samstag", ExpressionDescriptor.GetDescription("0 5 7 ? * 2/3 *"));
+        }
+                
+        [Test]
+        public void TestYearInternalWithStepValue()
+        {
+            Assert.AreEqual("Um 07:05, alle 4 Jahre, 2016 bis 9999", ExpressionDescriptor.GetDescription("0 5 7 ? * ? 2016/4"));
+        }
     }
 }

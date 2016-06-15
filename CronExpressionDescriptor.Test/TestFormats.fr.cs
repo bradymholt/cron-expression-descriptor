@@ -317,5 +317,48 @@ namespace CronExpressionDescriptor.Test
         {
             Assert.AreEqual("À 12:23 PM, de janvier à mars, de 2013 à 2015", ExpressionDescriptor.GetDescription("23 12 * JAN-MAR * 2013-2015"));
         }
+
+        [Test]
+        public void TestSecondsInternalWithStepValue()
+        {
+            // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
+            Assert.AreEqual("Toutes les 30 secondes, départ 5 secondes après la minute", ExpressionDescriptor.GetDescription("5/30 * * * * ?"));
+        }
+
+        [Test]
+        public void TestMinutesInternalWithStepValue()
+        {
+            Assert.AreEqual("Toutes les 30 minutes, départ 5 minutes après l'heure", ExpressionDescriptor.GetDescription("0 5/30 * * * ?"));
+        }
+        
+        [Test]
+        public void TestHoursInternalWithStepValue()
+        {
+            Assert.AreEqual("Toutes les secondes, toutes les 8 heures, départ à 05:00 AM", ExpressionDescriptor.GetDescription("* * 5/8 * * ?"));
+        }
+        
+        [Test]
+        public void TestDayOfMonthInternalWithStepValue()
+        {
+            Assert.AreEqual("À 07:05 AM, tous les 3 jours, départ le 2 du mois", ExpressionDescriptor.GetDescription("0 5 7 2/3 * ? *"));
+        }
+        
+        [Test]
+        public void TestMonthInternalWithStepValue()
+        {
+            Assert.AreEqual("À 07:05 AM, tous les 2 mois, de mars à décembre", ExpressionDescriptor.GetDescription("0 5 7 ? 3/2 ? *"));
+        }
+        
+        [Test]
+        public void TestDayOfWeekInternalWithStepValue()
+        {
+            Assert.AreEqual("À 07:05 AM, every 3 days of the week, de mardi à samedi", ExpressionDescriptor.GetDescription("0 5 7 ? * 2/3 *"));
+        }
+                
+        [Test]
+        public void TestYearInternalWithStepValue()
+        {
+            Assert.AreEqual("À 07:05 AM, tous les 4 ans, de 2016 à 9999", ExpressionDescriptor.GetDescription("0 5 7 ? * ? 2016/4"));
+        }
     }
 }

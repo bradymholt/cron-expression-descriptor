@@ -377,5 +377,49 @@ namespace CronExpressionDescriptor.Test
             Assert.IsTrue(string.Equals("О 06:15, на 1 день місяця, тільки в січень, кожні 2 роки", ExpressionDescriptor.GetDescription("0 15 6 1 1 ? 1/2"),
                 Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
         }
+        
+        [Test]
+        public void TestSecondsInternalWithStepValue()
+        {
+            // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
+            Assert.AreEqual("Кожні 30 секунд, початок о 5 секунді", ExpressionDescriptor.GetDescription("5/30 * * * * ?"));
+        }
+
+        [Test]
+        public void TestMinutesInternalWithStepValue()
+        {
+            Assert.AreEqual("Кожні 30 хвилин, початок о 5 хвилині", ExpressionDescriptor.GetDescription("0 5/30 * * * ?"));
+        }
+        
+        [Test]
+        public void TestHoursInternalWithStepValue()
+        {
+            Assert.AreEqual("Щосекунди, кожні 8 годин, початок о 05:00", ExpressionDescriptor.GetDescription("* * 5/8 * * ?"));
+        }
+        
+        [Test]
+        public void TestDayOfMonthInternalWithStepValue()
+        {
+            Assert.AreEqual("О 07:05, кожен 3 день, початок на 2 день місяця", ExpressionDescriptor.GetDescription("0 5 7 2/3 * ? *"));
+        }
+        
+        [Test]
+        public void TestMonthInternalWithStepValue()
+        {
+            Assert.IsTrue(string.Equals("О 07:05, кожен 2 місяць, березень по грудень", ExpressionDescriptor.GetDescription("0 5 7 ? 3/2 ? *"),
+                Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
+        }
+        
+        [Test]
+        public void TestDayOfWeekInternalWithStepValue()
+        {
+            Assert.AreEqual("О 07:05, кожен 3 день тижня, вівторок по субота", ExpressionDescriptor.GetDescription("0 5 7 ? * 2/3 *"));
+        }
+                
+        [Test]
+        public void TestYearInternalWithStepValue()
+        {
+            Assert.AreEqual("О 07:05, кожні 4 роки, 2016 по 9999", ExpressionDescriptor.GetDescription("0 5 7 ? * ? 2016/4"));
+        }
     }
 }

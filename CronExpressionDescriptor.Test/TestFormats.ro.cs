@@ -7,7 +7,7 @@
     /// <summary>
     /// Tests for Romanian language
     /// </summary>
-    [TestFixture]
+    [TestFixture, Ignore]
     public class TestFormatsRO
     {
         static readonly Options _verbose = new Options() { Verbose = true };

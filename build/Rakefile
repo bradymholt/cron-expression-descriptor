@@ -73,7 +73,7 @@ end
 
 task :push do
 	#apiKey assumed to be in %APPDATA%\Roaming\NuGet\NuGet.Config (set using 'nuget SetApiKey')
-	sh "nuget.exe push #{project_name}.#{version_number}.nupkg"
+	sh "nuget.exe push #{project_name}.#{version_number}.nupkg -Source https://www.nuget.org/api/v2/package"
 end
 
 task :tag do

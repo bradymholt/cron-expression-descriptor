@@ -18,5 +18,5 @@
 
 - cd `/build`
 - Prepend line to `version.txt` with new version number and release notes
-- Run `rake release`
+- Run `bundle exec rake release`
 

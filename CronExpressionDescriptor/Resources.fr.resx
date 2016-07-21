@@ -296,4 +296,8 @@
     <value> et le </value>
     <comment>WeekSpaceAndSpace description</comment>
   </data>
+  <data name="CommaStartingX0" xml:space="preserve">
+    <value>, départ {0}</value>
+    <comment>CommaStartingX0 description</comment>
+  </data>
 </root>

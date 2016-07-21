@@ -288,4 +288,8 @@
     <value>ukedag nærmest dag {0}</value>
     <comment>WeekdayNearestDayX0 description</comment>
   </data>
+  <data name="CommaStartingX0" xml:space="preserve">
+    <value>, starter {0}</value>
+    <comment>CommaStartingX0 description</comment>
+  </data>
 </root>

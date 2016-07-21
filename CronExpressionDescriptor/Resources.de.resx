@@ -288,4 +288,8 @@
     <value>, alle {0} Jahre</value>
     <comment>ComaEveryX0Years description</comment>
   </data>
+  <data name="CommaStartingX0" xml:space="preserve">
+    <value>, beginnend {0}</value>
+    <comment>CommaStartingX0 description</comment>
+  </data>
 </root>

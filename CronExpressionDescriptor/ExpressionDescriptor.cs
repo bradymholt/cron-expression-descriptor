@@ -428,7 +428,7 @@ namespace CronExpressionDescriptor
                (s => Regex.IsMatch(s, @"^\d+$") ?
                 new DateTime(Convert.ToInt32(s), 1, 1).ToString("yyyy") : s),
                (s => string.Format(CronExpressionDescriptor.Resources.ComaEveryX0Years, s)),
-               (s =>  CronExpressionDescriptor.Resources.ComaYearX0ThroughYearX1 ?? CronExpressionDescriptor.Resources.ComaX0ThroughX1),
+               (s => CronExpressionDescriptor.Resources.ComaYearX0ThroughYearX1 ?? CronExpressionDescriptor.Resources.ComaX0ThroughX1),
                (s => CronExpressionDescriptor.Resources.ComaOnlyInX0));
 
             return description;
@@ -482,6 +482,14 @@ namespace CronExpressionDescriptor
                     }
 
                     description += betweenSegmentDescription;
+                } 
+                else if (segments[0].IndexOfAny(new char[] {'*', ','}) == -1) 
+                {
+                    string rangeItemDescription = string.Format(getDescriptionFormat(segments[0]), getSingleItemDescription(segments[0]));
+                    //remove any leading comma
+                    rangeItemDescription = rangeItemDescription.Replace(", ", "");
+
+                    description += string.Format(CronExpressionDescriptor.Resources.CommaStartingX0, rangeItemDescription);
                 }
             }
             else if (expression.Contains(","))
@@ -511,7 +519,7 @@ namespace CronExpressionDescriptor
                         string betweenSegmentDescription = GenerateBetweenSegmentDescription(segments[i], 
                         (s => CronExpressionDescriptor.Resources.ComaX0ThroughX1), getSingleItemDescription);
                         
-                        //remove leading comma
+                        //remove any leading comma
                         betweenSegmentDescription = betweenSegmentDescription.Replace(", ", "");
 
                         descriptionContent += betweenSegmentDescription;

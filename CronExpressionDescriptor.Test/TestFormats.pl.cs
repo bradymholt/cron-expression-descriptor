@@ -56,14 +56,14 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestEvery5Minutes()
         {
-            Assert.AreEqual("Co 05 minut", ExpressionDescriptor.GetDescription("*/5 * * * *"));
+            Assert.AreEqual("Co 5 minut", ExpressionDescriptor.GetDescription("*/5 * * * *"));
             Assert.AreEqual("Co 10 minut", ExpressionDescriptor.GetDescription("0 0/10 * * * ?"));
         }
 
         [Test]
         public void TestEvery5MinutesOnTheSecond()
         {
-            Assert.AreEqual("Co 05 minut", ExpressionDescriptor.GetDescription("0 */5 * * * *"));
+            Assert.AreEqual("Co 5 minut", ExpressionDescriptor.GetDescription("0 */5 * * * *"));
         }
 
         [Test]
@@ -153,7 +153,7 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestDayOfWeekRange()
         {
-            Assert.AreEqual("Co 05 minut, o 15:00, od poniedziałek do piątek", ExpressionDescriptor.GetDescription("*/5 15 * * MON-FRI"));
+            Assert.AreEqual("Co 5 minut, o 15:00, od poniedziałek do piątek", ExpressionDescriptor.GetDescription("*/5 15 * * MON-FRI"));
         }
 
         [Test]
@@ -171,7 +171,7 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestLastDayOfTheMonth()
         {
-            Assert.AreEqual("Co 05 minut, ostatni dzień miesiąca, tylko styczeń", ExpressionDescriptor.GetDescription("*/5 * L JAN *"));
+            Assert.AreEqual("Co 5 minut, ostatni dzień miesiąca, tylko styczeń", ExpressionDescriptor.GetDescription("*/5 * L JAN *"));
         }
 
         [Test]
@@ -225,19 +225,19 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestSecondInternvals()
         {
-            Assert.AreEqual("Sekundy od 05 do 10", ExpressionDescriptor.GetDescription("5-10 * * * * *"));
+            Assert.AreEqual("Sekundy od 5 do 10", ExpressionDescriptor.GetDescription("5-10 * * * * *"));
         }
 
         [Test]
         public void TestSecondMinutesHoursIntervals()
         {
-            Assert.AreEqual("Sekundy od 05 do 10, minuty od 30 do 35, od 10:00 do 12:59", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
+            Assert.AreEqual("Sekundy od 5 do 10, minuty od 30 do 35, od 10:00 do 12:59", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
         }
 
         [Test]
         public void TestEvery5MinutesAt30Seconds()
         {
-            Assert.AreEqual("W 30 sekundzie, co 05 minut", ExpressionDescriptor.GetDescription("30 */5 * * * *"));
+            Assert.AreEqual("W 30 sekundzie, co 5 minut", ExpressionDescriptor.GetDescription("30 */5 * * * *"));
         }
 
         [Test]
@@ -249,13 +249,13 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestSecondsPastTheMinuteInterval()
         {
-            Assert.AreEqual("W 10 sekundzie, co 05 minut", ExpressionDescriptor.GetDescription("10 0/5 * * * ?"));
+            Assert.AreEqual("W 10 sekundzie, co 5 minut", ExpressionDescriptor.GetDescription("10 0/5 * * * ?"));
         }
 
         [Test]
         public void TestBetweenWithInterval()
         {
-            Assert.AreEqual("Co 03 minut, minuty od 02 do 59, o 01:00, 09:00, i 22:00, od 11-ego do 26-ego dnia miesiąca, od styczeń do czerwiec",
+            Assert.AreEqual("Co 3 minut, minuty od 2 do 59, o 01:00, 09:00, i 22:00, od 11-ego do 26-ego dnia miesiąca, od styczeń do czerwiec",
                 ExpressionDescriptor.GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
         }
 
@@ -268,7 +268,7 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestMinutesPastTheHour()
         {
-            Assert.AreEqual("W 05 minucie", ExpressionDescriptor.GetDescription("0 5 0/1 * * ?"));
+            Assert.AreEqual("W 5 minucie", ExpressionDescriptor.GetDescription("0 5 0/1 * * ?"));
         }
 
         [Test]
@@ -379,7 +379,7 @@ namespace CronExpressionDescriptor.Test
         [Test]
         public void TestMutiPartRangeSeconds()
         {
-            Assert.AreEqual("W 2 i od 04 do 05 minucie, o 01:00", ExpressionDescriptor.GetDescription("2,4-5 1 * * *"));
+            Assert.AreEqual("W 2 i od 4 do 5 minucie, o 01:00", ExpressionDescriptor.GetDescription("2,4-5 1 * * *"));
         }
 
         [Test]
@@ -401,5 +401,48 @@ namespace CronExpressionDescriptor.Test
             // GitHub Issue #44: https://github.com/bradyholt/cron-expression-descriptor/issues/44
             Assert.AreEqual("O 10:00, tylko od poniedziałek do czwartek i niedziela", ExpressionDescriptor.GetDescription("0 00 10 ? * MON-THU,SUN *"));
         }
-}
+
+        [Test]
+        public void TestSecondsInternalWithStepValue()
+        {
+            // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
+            Assert.AreEqual("Co 30 sekund, startowy w 5 sekundzie", ExpressionDescriptor.GetDescription("5/30 * * * * ?"));
+        }
+
+        [Test]
+        public void TestMinutesInternalWithStepValue()
+        {
+            Assert.AreEqual("Co 30 minut, startowy w 5 minucie", ExpressionDescriptor.GetDescription("0 5/30 * * * ?"));
+        }
+        
+        [Test]
+        public void TestHoursInternalWithStepValue()
+        {
+            Assert.AreEqual("Co sekundę, co 8 godzin, startowy o 05:00", ExpressionDescriptor.GetDescription("* * 5/8 * * ?"));
+        }
+        
+        [Test]
+        public void TestDayOfMonthInternalWithStepValue()
+        {
+            Assert.AreEqual("O 07:05, co 3 dni, startowy 2-ego dnia miesiąca", ExpressionDescriptor.GetDescription("0 5 7 2/3 * ? *"));
+        }
+        
+        [Test]
+        public void TestMonthInternalWithStepValue()
+        {
+            Assert.AreEqual("O 07:05, co 2 miesięcy, od marzec do grudzień", ExpressionDescriptor.GetDescription("0 5 7 ? 3/2 ? *"));
+        }
+        
+        [Test]
+        public void TestDayOfWeekInternalWithStepValue()
+        {
+            Assert.AreEqual("O 07:05, co 3 dni tygodnia, od wtorek do sobota", ExpressionDescriptor.GetDescription("0 5 7 ? * 2/3 *"));
+        }
+                
+        [Test]
+        public void TestYearInternalWithStepValue()
+        {
+            Assert.AreEqual("O 07:05, co 4 lat, od 2016 do 9999", ExpressionDescriptor.GetDescription("0 5 7 ? * ? 2016/4"));
+        }
+    }
 }

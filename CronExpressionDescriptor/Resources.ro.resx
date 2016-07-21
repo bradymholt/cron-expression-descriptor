@@ -308,4 +308,8 @@
     <value>la și {0} de secunde</value>
     <comment>&gt;20 sec past the minute</comment>
   </data>
+  <data name="CommaStartingX0" xml:space="preserve">
+    <value>, pornire {0}</value>
+    <comment>CommaStartingX0 description</comment>
+  </data>
 </root>

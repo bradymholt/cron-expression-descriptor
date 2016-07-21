@@ -333,5 +333,48 @@ namespace CronExpressionDescriptor.Test
         {
             Assert.AreEqual("在每小时的 25 分, 每 13 小时, 在 07:00 AM 和 08:59 PM 之间", ExpressionDescriptor.GetDescription("0 25 7-20/13 ? * *"));
         }
+
+        [Test]
+        public void TestSecondsInternalWithStepValue()
+        {
+            // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
+            Assert.AreEqual("每 30 秒, 开始 在每分钟的 5 秒", ExpressionDescriptor.GetDescription("5/30 * * * * ?"));
+        }
+
+        [Test]
+        public void TestMinutesInternalWithStepValue()
+        {
+            Assert.AreEqual("每 30 分钟, 开始 在每小时的 5 分", ExpressionDescriptor.GetDescription("0 5/30 * * * ?"));
+        }
+        
+        [Test]
+        public void TestHoursInternalWithStepValue()
+        {
+            Assert.AreEqual("每秒, 每 8 小时, 开始 在 05:00 AM", ExpressionDescriptor.GetDescription(" * * 5/8 * * ?"));
+        }
+        
+        [Test]
+        public void TestDayOfMonthInternalWithStepValue()
+        {
+            Assert.AreEqual("在 07:05 AM, 每 3 天, 开始 每月的 2 号", ExpressionDescriptor.GetDescription("0 5 7 2/3 * ? *"));
+        }
+        
+        [Test]
+        public void TestMonthInternalWithStepValue()
+        {
+            Assert.AreEqual("在 07:05 AM, 每 2 月, 三月 到 十二月", ExpressionDescriptor.GetDescription("0 5 7 ? 3/2 ? *"));
+        }
+        
+        [Test]
+        public void TestDayOfWeekInternalWithStepValue()
+        {
+            Assert.AreEqual("在 07:05 AM, 每周的每 3 天, 星期二 到 星期六", ExpressionDescriptor.GetDescription("0 5 7 ? * 2/3 *"));
+        }
+                
+        [Test]
+        public void TestYearInternalWithStepValue()
+        {
+            Assert.AreEqual("在 07:05 AM, 每 4 年, 2016 到 9999", ExpressionDescriptor.GetDescription("0 5 7 ? * ? 2016/4"));
+        }
     }
 }

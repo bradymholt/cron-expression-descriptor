@@ -288,4 +288,8 @@
     <value>, {0} yılda bir</value>
     <comment>ComaEveryX0Years description</comment>
   </data>
+  <data name="CommaStartingX0" xml:space="preserve">
+    <value>, başlangıç {0}</value>
+    <comment>CommaStartingX0 description</comment>
+  </data>
 </root>

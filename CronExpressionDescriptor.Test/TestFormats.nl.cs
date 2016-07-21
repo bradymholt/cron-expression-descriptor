@@ -379,5 +379,48 @@ namespace CronExpressionDescriptor.Test
         {
             Assert.AreEqual("Op 25 minuten na het uur, elke 13 uur, tussen 07:00 AM en 08:59 PM", ExpressionDescriptor.GetDescription("0 25 7-20/13 ? * *"));
         }
+
+        [Test]
+        public void TestSecondsInternalWithStepValue()
+        {
+            // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
+            Assert.AreEqual("Elke 30 seconden, beginnend op 5 seconden na de minuut", ExpressionDescriptor.GetDescription("5/30 * * * * ?"));
+        }
+
+        [Test]
+        public void TestMinutesInternalWithStepValue()
+        {
+            Assert.AreEqual("Elke 30 minuten, beginnend op 5 minuten na het uur", ExpressionDescriptor.GetDescription("0 5/30 * * * ?"));
+        }
+        
+        [Test]
+        public void TestHoursInternalWithStepValue()
+        {
+            Assert.AreEqual("Elke seconde, elke 8 uur, beginnend op 05:00 AM", ExpressionDescriptor.GetDescription("* * 5/8 * * ?"));
+        }
+        
+        [Test]
+        public void TestDayOfMonthInternalWithStepValue()
+        {
+            Assert.AreEqual("Op 07:05 AM, elke 3 dagen, beginnend op dag 2 van de maand", ExpressionDescriptor.GetDescription("0 5 7 2/3 * ? *"));
+        }
+        
+        [Test]
+        public void TestMonthInternalWithStepValue()
+        {
+            Assert.AreEqual("Op 07:05 AM, elke 2 maanden, maart t/m december", ExpressionDescriptor.GetDescription("0 5 7 ? 3/2 ? *"));
+        }
+        
+        [Test]
+        public void TestDayOfWeekInternalWithStepValue()
+        {
+            Assert.AreEqual("Op 07:05 AM, elke 3 dagen van de week, dinsdag t/m zaterdag", ExpressionDescriptor.GetDescription("0 5 7 ? * 2/3 *"));
+        }
+                
+        [Test]
+        public void TestYearInternalWithStepValue()
+        {
+            Assert.AreEqual("Op 07:05 AM, elke 4 jaren, 2016 t/m 9999", ExpressionDescriptor.GetDescription("0 5 7 ? * ? 2016/4"));
+        }
     }
 }

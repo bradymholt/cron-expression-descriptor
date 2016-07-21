@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EveryMinute" xml:space="preserve">
     <value>every minute</value>
@@ -287,5 +287,9 @@
   <data name="ComaEveryX0Years" xml:space="preserve">
     <value>, every {0} years</value>
     <comment>ComaEveryX0Years description</comment>
+  </data>
+  <data name="CommaStartingX0" xml:space="preserve">
+    <value>, starting {0}</value>
+    <comment>CommaStartingX0 description</comment>
   </data>
 </root>

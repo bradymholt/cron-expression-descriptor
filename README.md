@@ -51,6 +51,7 @@ Ports
  - Java - [https://github.com/RedHogs/cron-parser](https://github.com/RedHogs/cron-parser)
  - Ruby - [https://github.com/alpinweis/cronex](https://github.com/alpinweis/cronex)
  - Python - [https://github.com/Salamek/cron-descriptor](https://github.com/Salamek/cron-descriptor)
+ - JavaScript - [https://github.com/bradyholt/cronstrue](https://github.com/bradyholt/cronstrue)
 
 Usage Examples (as Unit Tests)
 --------

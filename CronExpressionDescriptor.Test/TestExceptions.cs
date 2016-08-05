@@ -32,7 +32,7 @@ namespace CronExpressionDescriptor.Test
         {
             Options options = new Options() { ThrowExceptionOnParseError = false };
             ExpressionDescriptor ceh = new ExpressionDescriptor(null, options);
-            Assert.AreEqual("Field 'ExpressionDescriptor.expression' not found.", ceh.GetDescription(DescriptionTypeEnum.FULL));
+            Assert.AreEqual("Field 'expression' not found.", ceh.GetDescription(DescriptionTypeEnum.FULL));
         }
 
         [Test]

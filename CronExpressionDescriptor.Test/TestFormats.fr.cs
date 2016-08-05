@@ -10,9 +10,7 @@ namespace CronExpressionDescriptor.Test
         [TestFixtureSetUp]
         public void SetUp()
         {
-            CultureInfo myCultureInfo = new CultureInfo("fr-FR");
-            Thread.CurrentThread.CurrentCulture = myCultureInfo;
-            Thread.CurrentThread.CurrentUICulture = myCultureInfo;
+            ExpressionDescriptor.SetDefaultLocale("fr-FR");
         }
 
         [Test]

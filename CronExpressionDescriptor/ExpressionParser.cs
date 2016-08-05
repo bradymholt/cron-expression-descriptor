@@ -39,7 +39,7 @@ namespace CronExpressionDescriptor
 
             if (string.IsNullOrEmpty(m_expression))
             {
-                throw new MissingFieldException("expression");
+                throw new MissingFieldException("Field 'expression' not found.");
             }
             else
             {

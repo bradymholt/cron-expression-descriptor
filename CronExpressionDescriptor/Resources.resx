@@ -292,4 +292,12 @@
     <value>, starting {0}</value>
     <comment>CommaStartingX0 description</comment>
   </data>
+  <data name="AMPeriod" xml:space="preserve">
+    <value>AM</value>
+    <comment>AM / In the morning</comment>
+  </data>
+  <data name="PMPeriod" xml:space="preserve">
+    <value>PM</value>
+    <comment>PM / In the afternoon</comment>
+  </data>
 </root>

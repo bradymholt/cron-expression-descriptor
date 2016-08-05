@@ -15,9 +15,7 @@ namespace CronExpressionDescriptor.Test
         [TestFixtureSetUp]
         public void SetUp()
         {
-            CultureInfo myCultureInfo = new CultureInfo("tr-TR");
-            Thread.CurrentThread.CurrentCulture = myCultureInfo;
-            Thread.CurrentThread.CurrentUICulture = myCultureInfo;
+            ExpressionDescriptor.SetDefaultLocale("tr-TR");
         }
 
         [Test]

@@ -18,10 +18,9 @@ namespace CronExpressionDescriptor.Test
         [TestFixtureSetUp]
         public void SetUp()
         {
-            CultureInfo myCultureInfo = new CultureInfo("zh-CN");
-            Thread.CurrentThread.CurrentCulture = myCultureInfo;
-            Thread.CurrentThread.CurrentUICulture = myCultureInfo;
+            ExpressionDescriptor.SetDefaultLocale("zh-CN");
         }
+
         [Test]
         public void TestEveryMinute()
         {

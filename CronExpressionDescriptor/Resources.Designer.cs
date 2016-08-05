@@ -61,6 +61,15 @@ namespace CronExpressionDescriptor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AM.
+        /// </summary>
+        internal static string AMPeriod {
+            get {
+                return ResourceManager.GetString("AMPeriod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occured when generating the expression description.  Check the cron expression syntax..
         /// </summary>
         internal static string AnErrorOccuredWhenGeneratingTheExpressionD {
@@ -99,12 +108,11 @@ namespace CronExpressionDescriptor {
         /// <summary>
         ///   Looks up a localized string similar to at {0} minutes past the hour.
         /// </summary>
-        internal static string AtX0MinutesPastTheHour { 
+        internal static string AtX0MinutesPastTheHour {
             get {
                 return ResourceManager.GetString("AtX0MinutesPastTheHour", resourceCulture);
             }
         }
-        internal static string AtX0MinutesPastTheHourGt20 { get { return ResourceManager.GetString("AtX0MinutesPastTheHourGt20", resourceCulture); } }
         
         /// <summary>
         ///   Looks up a localized string similar to at {0} seconds past the minute.
@@ -114,8 +122,7 @@ namespace CronExpressionDescriptor {
                 return ResourceManager.GetString("AtX0SecondsPastTheMinute", resourceCulture);
             }
         }
-        internal static string AtX0SecondsPastTheMinuteGt20 { get { return ResourceManager.GetString("AtX0SecondsPastTheMinuteGt20", resourceCulture); } }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to between {0} and {1}.
         /// </summary>
@@ -277,19 +284,9 @@ namespace CronExpressionDescriptor {
                 return ResourceManager.GetString("ComaX0ThroughX1", resourceCulture);
             }
         }
-
-        /// <summary> Looks up a localized string similar to: from minute {0} through minute {1}. </summary>
-        internal static string ComaMinX0ThroughMinX1 { get { return ResourceManager.GetString("ComaMinX0ThroughMinX1", resourceCulture); } }
-
-        /// <summary> Looks up a localized string similar to: from minute {0} through minute {1}. </summary>
-        internal static string ComaMonthX0ThroughMonthX1 { get { return ResourceManager.GetString("ComaMonthX0ThroughMonthX1", resourceCulture); } }
-
-        /// <summary> Looks up a localized string similar to: from minute {0} through minute {1}. </summary>
-        internal static string ComaYearX0ThroughYearX1 { get { return ResourceManager.GetString("ComaYearX0ThroughYearX1", resourceCulture); } }
-
         
         /// <summary>
-        ///   Looks up a localized string similar to , starting at {0}.
+        ///   Looks up a localized string similar to , starting {0}.
         /// </summary>
         internal static string CommaStartingX0 {
             get {
@@ -402,6 +399,15 @@ namespace CronExpressionDescriptor {
         internal static string MinutesX0ThroughX1PastTheHour {
             get {
                 return ResourceManager.GetString("MinutesX0ThroughX1PastTheHour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PM.
+        /// </summary>
+        internal static string PMPeriod {
+            get {
+                return ResourceManager.GetString("PMPeriod", resourceCulture);
             }
         }
         

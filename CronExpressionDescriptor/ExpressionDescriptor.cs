@@ -14,8 +14,15 @@ namespace CronExpressionDescriptor
     /// </summary>
     public class ExpressionDescriptor
     {
+        private static string s_defaultLocale;
+        public static void SetDefaultLocale(string locale)
+        {
+            s_defaultLocale = locale;
+        }
+
         private readonly char[] m_specialCharacters = new char[] { '/', '-', ',', '*' };
-        private readonly string[] m_24hourTimeFormatLocales = new string[] { "ru-RU", "uk-UA", "de-DE", "it-IT", "tr-TR", "pl-PL", "ro-RO" };
+        private readonly string[] m_24hourTimeFormatLocales = new string[] { "ru-RU", "uk-UA", "de-DE", "it-IT", "tr-TR", "pl-PL" };
+
         private string m_expression;
         private Options m_options;
         private string[] m_expressionParts;
@@ -41,15 +48,17 @@ namespace CronExpressionDescriptor
             m_expressionParts = new string[7];
             m_parsed = false;
 
-            var locale = options.Locale ?? "en";
+            var locale = options.Locale ?? s_defaultLocale ?? "en";
             m_culture = new CultureInfo(locale);
 
             if (m_options.Use24HourTimeFormat != null)
             {
+                // 24HourTimeFormat specified in options so use it
                 m_use24HourTimeFormat = m_options.Use24HourTimeFormat.Value;
             }
             else
             {
+                // 24HourTimeFormat not specified, default based on m_24hourTimeFormatLocales
                 m_use24HourTimeFormat = m_24hourTimeFormatLocales.Contains(locale);
             }
         }
@@ -62,7 +71,6 @@ namespace CronExpressionDescriptor
         public string GetDescription(DescriptionTypeEnum type)
         {
             string description = string.Empty;
-
 
             try
             {
@@ -118,6 +126,9 @@ namespace CronExpressionDescriptor
                     throw;
                 }
             }
+
+            // Uppercase the first letter
+            description = string.Concat(m_culture.TextInfo.ToUpper(description[0]), description.Substring(1));
 
             return description;
         }
@@ -380,7 +391,7 @@ namespace CronExpressionDescriptor
         {
             string description = GetSegmentDescription(m_expressionParts[4],
                 string.Empty,
-               (s => new DateTime(DateTime.Now.Year, Convert.ToInt32(s), 1).ToString("MMMM")),
+               (s => new DateTime(DateTime.Now.Year, Convert.ToInt32(s), 1).ToString("MMMM", m_culture)),
                (s => string.Format(Resources.ResourceManager.GetString("ComaEveryX0Months", m_culture), s)),
                (s => Resources.ResourceManager.GetString("ComaMonthX0ThroughMonthX1", m_culture) ?? Resources.ResourceManager.GetString("ComaX0ThroughX1", m_culture)),
                (s => Resources.ResourceManager.GetString("ComaOnlyInX0", m_culture)));
@@ -603,7 +614,13 @@ namespace CronExpressionDescriptor
             string period = string.Empty;
             if (!m_use24HourTimeFormat)
             {
-                period = (hour >= 12) ? " PM" : " AM";
+                period = Resources.ResourceManager.GetString((hour >= 12) ? "PMPeriod" : "AMPeriod", m_culture);
+                if (period.Length > 0)
+                {
+                    // add preceeding space
+                    period = string.Concat(" ", period);
+                }
+
                 if (hour > 12)
                 {
                     hour -= 12;

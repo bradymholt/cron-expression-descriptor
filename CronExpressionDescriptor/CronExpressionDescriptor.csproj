@@ -75,7 +75,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CasingTypeEnum.cs" />
     <Compile Include="DescriptionTypeEnum.cs" />
     <Compile Include="ExpressionDescriptor.cs" />
     <Compile Include="ExpressionParser.cs" />
@@ -89,7 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.it.resx" />
-    <EmbeddedResource Include="Resources.ro.resx" />      
+    <EmbeddedResource Include="Resources.ro.resx" />
     <EmbeddedResource Include="Resources.uk.resx" />
     <EmbeddedResource Include="Resources.de.resx">
       <SubType>Designer</SubType>

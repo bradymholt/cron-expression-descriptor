@@ -11,7 +11,6 @@ namespace CronExpressionDescriptor
         public Options()
         {
             this.ThrowExceptionOnParseError = true;
-            this.CasingType = CasingTypeEnum.Sentence;
             this.Verbose = false;
             this.DayOfWeekStartIndexZero = true;
             this.Use24HourTimeFormat = false;
@@ -32,9 +31,9 @@ namespace CronExpressionDescriptor
         }
 
         public bool ThrowExceptionOnParseError { get; set; }
-        public CasingTypeEnum CasingType { get; set; }
         public bool Verbose { get; set; }
         public bool DayOfWeekStartIndexZero { get; set; }
         public bool Use24HourTimeFormat { get; set; }
+        public string Locale { get; set; }
     }
 }

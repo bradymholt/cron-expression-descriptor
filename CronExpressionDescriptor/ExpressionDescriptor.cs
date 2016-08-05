@@ -15,10 +15,12 @@ namespace CronExpressionDescriptor
     public class ExpressionDescriptor
     {
         private readonly char[] m_specialCharacters = new char[] { '/', '-', ',', '*' };
+        private readonly string[] m_24hourTimeFormatLocales = new string[] { "ru-RU", "uk-UA", "de-DE", "it-IT", "tr-TR", "pl-PL", "ro-RO" };
         private string m_expression;
         private Options m_options;
         private string[] m_expressionParts;
         private bool m_parsed;
+        private bool m_use24HourTimeFormat;
         private CultureInfo m_culture;
 
         /// <summary>
@@ -38,7 +40,18 @@ namespace CronExpressionDescriptor
             m_options = options;
             m_expressionParts = new string[7];
             m_parsed = false;
-            m_culture = new CultureInfo(options.Locale ?? "en");
+
+            var locale = options.Locale ?? "en";
+            m_culture = new CultureInfo(locale);
+
+            if (m_options.Use24HourTimeFormat != null)
+            {
+                m_use24HourTimeFormat = m_options.Use24HourTimeFormat.Value;
+            }
+            else
+            {
+                m_use24HourTimeFormat = m_24hourTimeFormatLocales.Contains(locale);
+            }
         }
 
         /// <summary>
@@ -49,6 +62,7 @@ namespace CronExpressionDescriptor
         public string GetDescription(DescriptionTypeEnum type)
         {
             string description = string.Empty;
+
 
             try
             {
@@ -172,7 +186,7 @@ namespace CronExpressionDescriptor
             {
                 //minute range in single hour (i.e. 0-10 11)
                 string[] minuteParts = minuteExpression.Split('-');
-                description.Append(string.Format(Resources.ResourceManager.GetString("EveryMinuteBetweenX0AndX1", m_culture), 
+                description.Append(string.Format(Resources.ResourceManager.GetString("EveryMinuteBetweenX0AndX1", m_culture),
                     FormatTime(hourExpression, minuteParts[0]),
                     FormatTime(hourExpression, minuteParts[1])));
             }
@@ -235,8 +249,8 @@ namespace CronExpressionDescriptor
                (s => s),
                (s => string.Format(Resources.ResourceManager.GetString("EveryX0Seconds", m_culture), s)),
                (s => Resources.ResourceManager.GetString("SecondsX0ThroughX1PastTheMinute", m_culture)),
-               (s => s == "0" 
-                    ? string.Empty 
+               (s => s == "0"
+                    ? string.Empty
                     : (int.Parse(s) < 20)
                         ? Resources.ResourceManager.GetString("AtX0SecondsPastTheMinute", m_culture)
                         : Resources.ResourceManager.GetString("AtX0SecondsPastTheMinuteGt20", m_culture) ?? Resources.ResourceManager.GetString("AtX0SecondsPastTheMinute", m_culture)
@@ -256,14 +270,18 @@ namespace CronExpressionDescriptor
                 (s => s),
                 (s => string.Format(Resources.ResourceManager.GetString("EveryX0Minutes", m_culture), s)),
                 (s => Resources.ResourceManager.GetString("MinutesX0ThroughX1PastTheHour", m_culture)),
-                (s => { try {
-                          return s == "0" 
-                            ? string.Empty 
-                            : (int.Parse(s) < 20)
-                                ? Resources.ResourceManager.GetString("AtX0MinutesPastTheHour", m_culture)
-                                : Resources.ResourceManager.GetString("AtX0MinutesPastTheHourGt20", m_culture) ?? Resources.ResourceManager.GetString("AtX0MinutesPastTheHour", m_culture);
+                (s =>
+                {
+                    try
+                    {
+                        return s == "0"
+                          ? string.Empty
+                          : (int.Parse(s) < 20)
+                              ? Resources.ResourceManager.GetString("AtX0MinutesPastTheHour", m_culture)
+                              : Resources.ResourceManager.GetString("AtX0MinutesPastTheHourGt20", m_culture) ?? Resources.ResourceManager.GetString("AtX0MinutesPastTheHour", m_culture);
                     }
-                        catch { return Resources.ResourceManager.GetString("AtX0MinutesPastTheHour", m_culture); }} ));
+                    catch { return Resources.ResourceManager.GetString("AtX0MinutesPastTheHour", m_culture); }
+                }));
 
             return description;
         }
@@ -474,7 +492,7 @@ namespace CronExpressionDescriptor
                 //interval contains 'between' piece (i.e. 2-59/3 )
                 if (segments[0].Contains("-"))
                 {
-                    string betweenSegmentDescription = GenerateBetweenSegmentDescription(segments[0], getBetweenDescriptionFormat, getSingleItemDescription); 
+                    string betweenSegmentDescription = GenerateBetweenSegmentDescription(segments[0], getBetweenDescriptionFormat, getSingleItemDescription);
 
                     if (!betweenSegmentDescription.StartsWith(", "))
                     {
@@ -482,8 +500,8 @@ namespace CronExpressionDescriptor
                     }
 
                     description += betweenSegmentDescription;
-                } 
-                else if (segments[0].IndexOfAny(new char[] {'*', ','}) == -1) 
+                }
+                else if (segments[0].IndexOfAny(new char[] { '*', ',' }) == -1)
                 {
                     string rangeItemDescription = string.Format(getDescriptionFormat(segments[0]), getSingleItemDescription(segments[0]));
                     //remove any leading comma
@@ -516,9 +534,9 @@ namespace CronExpressionDescriptor
 
                     if (segments[i].Contains("-"))
                     {
-                        string betweenSegmentDescription = GenerateBetweenSegmentDescription(segments[i], 
+                        string betweenSegmentDescription = GenerateBetweenSegmentDescription(segments[i],
                         (s => Resources.ResourceManager.GetString("ComaX0ThroughX1", m_culture)), getSingleItemDescription);
-                        
+
                         //remove any leading comma
                         betweenSegmentDescription = betweenSegmentDescription.Replace(", ", "");
 
@@ -583,7 +601,7 @@ namespace CronExpressionDescriptor
             int hour = Convert.ToInt32(hourExpression);
 
             string period = string.Empty;
-            if (!m_options.Use24HourTimeFormat)
+            if (!m_use24HourTimeFormat)
             {
                 period = (hour >= 12) ? " PM" : " AM";
                 if (hour > 12)

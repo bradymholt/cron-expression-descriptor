@@ -206,7 +206,7 @@ namespace CronExpressionDescriptor.Test
         public void TestLastDayOfTheMonth()
         {
             Assert.AreEqual(
-                "Upprepas efter 5 minuter,på den sista dagen i månaden, bara i januari",
+                "Upprepas efter 5 minuter, på den sista dagen i månaden, bara i januari",
                 ExpressionDescriptor.GetDescription("*/5 * L JAN *"));
         }
 

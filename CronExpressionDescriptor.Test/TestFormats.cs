@@ -229,6 +229,12 @@ namespace CronExpressionDescriptor.Test
         }
 
         [Test]
+        public void TestMultiPartSecond()
+        {
+            Assert.AreEqual("At 15 and 45 seconds past the minute", ExpressionDescriptor.GetDescription("15,45 * * * * *"));
+        }
+
+        [Test]
         public void TestSecondMinutesHoursIntervals()
         {
             Assert.AreEqual("Seconds 5 through 10 past the minute, minutes 30 through 35 past the hour, between 10:00 AM and 12:59 PM", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
@@ -376,13 +382,13 @@ namespace CronExpressionDescriptor.Test
         }
 
         [Test]
-        public void TestMutiPartRangeSeconds()
+        public void TestMutiPartRangeMinutes()
         {
             Assert.AreEqual("At 2 and 4 through 5 minutes past the hour, at 01:00 AM", ExpressionDescriptor.GetDescription("2,4-5 1 * * *"));
         }
 
         [Test]
-        public void TestMutiPartRangeSeconds2()
+        public void TestMutiPartRangeMinutes2()
         {
             Assert.AreEqual("At 2 and 26 through 28 minutes past the hour, at 06:00 PM", ExpressionDescriptor.GetDescription("2,26-28 18 * * *"));
         }

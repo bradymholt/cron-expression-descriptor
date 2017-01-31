@@ -116,16 +116,16 @@
         [Test]
         public void TestOneMonthOnly()
         {
-            Harness (cron:"* * * 3 *", expected:"În fiecare minut, doar în Martie", 
-                expectedVerbose:"În fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi, doar în Martie");
+            Harness (cron:"* * * 3 *", expected:"În fiecare minut, doar în martie", 
+                expectedVerbose:"În fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi, doar în martie");
         }
 
         [Test]
         public void TestTwoMonthsOnly()
         {
-            Harness ( cron:"* * * 3,6 *",
-                expected: "În fiecare minut, doar în Martie și Iunie",
-                expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi, doar în Martie și Iunie");
+            Harness( cron:"* * * 3,6 *",
+                expected: "În fiecare minut, doar în martie și iunie",
+                expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi, doar în martie și iunie");
         }
 
         [Test]
@@ -160,29 +160,29 @@
         [Test]
         public void TestMonthName()
         {
-            Harness(cron: "23 12 * JAN *", expected: "La 12:23, doar în Ianuarie",
-                expectedVerbose: "La 12:23 PM, în fiecare zi, în fiecare zi, doar în Ianuarie");
+            Harness(cron: "23 12 * JAN *", expected: "La 12:23, doar în ianuarie",
+                expectedVerbose: "La 12:23 PM, în fiecare zi, în fiecare zi, doar în ianuarie");
         }
 
         [Test]
         public void TestDayOfMonthWithQuestionMark()
         {
-            Harness(cron: "23 12 ? JAN *", expected: "La 12:23, doar în Ianuarie", expectedVerbose: "La 12:23 PM, în fiecare zi, în fiecare zi, doar în Ianuarie");
+            Harness(cron: "23 12 ? JAN *", expected: "La 12:23, doar în ianuarie", expectedVerbose: "La 12:23 PM, în fiecare zi, în fiecare zi, doar în ianuarie");
         }
 
         [Test]
         public void TestMonthNameRange2()
         {
             Harness(cron:"23 12 * JAN-FEB *",
-                expected: "La 12:23, din Ianuarie până în Februarie",
-                expectedVerbose: "La 12:23 PM, în fiecare zi, în fiecare zi, din Ianuarie până în Februarie");
+                expected: "La 12:23, din ianuarie până în februarie",
+                expectedVerbose: "La 12:23 PM, în fiecare zi, în fiecare zi, din ianuarie până în februarie");
         }
 
         [Test]
         public void TestMonthNameRange3()
         {
-            Harness(cron: "23 12 * JAN-MAR *", expected: "La 12:23, din Ianuarie până în Martie",
-                expectedVerbose: "La 12:23 PM, în fiecare zi, în fiecare zi, din Ianuarie până în Martie");
+            Harness(cron: "23 12 * JAN-MAR *", expected: "La 12:23, din ianuarie până în martie",
+                expectedVerbose: "La 12:23 PM, în fiecare zi, în fiecare zi, din ianuarie până în martie");
         }
 
         [Test]
@@ -218,8 +218,8 @@
         [Test]
         public void TestLastDayOfTheMonth()
         {
-            Harness(cron: "*/5 * L JAN *", expected: "La fiecare 5 minute, în ultima zi a lunii, doar în Ianuarie",
-                expectedVerbose: "La fiecare 5 minute, în fiecare oră, în ultima zi a lunii, în fiecare zi, doar în Ianuarie");
+            Harness(cron: "*/5 * L JAN *", expected: "La fiecare 5 minute, în ultima zi a lunii, doar în ianuarie",
+                expectedVerbose: "La fiecare 5 minute, în fiecare oră, în ultima zi a lunii, în fiecare zi, doar în ianuarie");
         }
 
         [Test]
@@ -329,8 +329,8 @@
         {
             //"Every 03 minutes, minutes 2 through 59 past the hour, at 01:00 AM, 09:00 AM, and 10:00 PM, between day 11 and 26 of the month, January through June"
             Harness( cron: "2-59/3 1,9,22 11-26 1-6 ?",
-                expected: "La fiecare 3 minute, între minutele 2 și 59, la 01:00, 09:00, și 22:00, între zilele 11 și 26 ale lunii, din Ianuarie până în Iunie", 
-                expectedVerbose: "La fiecare 3 minute, între minutele 2 și 59, la 01:00 AM, 09:00 AM, și 10:00 PM, între zilele 11 și 26 ale lunii, în fiecare zi, din Ianuarie până în Iunie");
+                expected: "La fiecare 3 minute, între minutele 2 și 59, la 01:00, 09:00, și 22:00, între zilele 11 și 26 ale lunii, din ianuarie până în iunie", 
+                expectedVerbose: "La fiecare 3 minute, între minutele 2 și 59, la 01:00 AM, 09:00 AM, și 10:00 PM, între zilele 11 și 26 ale lunii, în fiecare zi, din ianuarie până în iunie");
         }
 
         [Test]
@@ -372,17 +372,17 @@
         [Test]
         public void TestYearRange2()
         {
-            Harness (cron:"23 12 * JAN-FEB * 2013-2014",
-                expected:"La 12:23, din Ianuarie până în Februarie, din 2013 până în 2014",
-                expectedVerbose:"La 12:23 PM, în fiecare zi, în fiecare zi, din Ianuarie până în Februarie, din 2013 până în 2014");
+            Harness(cron:"23 12 * JAN-FEB * 2013-2014",
+                expected:"La 12:23, din ianuarie până în februarie, din 2013 până în 2014",
+                expectedVerbose: "La 12:23 PM, în fiecare zi, în fiecare zi, din ianuarie până în februarie, din 2013 până în 2014");
         }
 
         [Test]
         public void TestYearRange3()
         {
-            Harness (cron:"23 12 * JAN-MAR * 2013-2015",
-                expected: "La 12:23, din Ianuarie până în Martie, din 2013 până în 2015",
-                expectedVerbose: "La 12:23 PM, în fiecare zi, în fiecare zi, din Ianuarie până în Martie, din 2013 până în 2015");
+            Harness(cron:"23 12 * JAN-MAR * 2013-2015",
+                expected: "La 12:23, din ianuarie până în martie, din 2013 până în 2015",
+                expectedVerbose: "La 12:23 PM, în fiecare zi, în fiecare zi, din ianuarie până în martie, din 2013 până în 2015");
         }
 
         [Test]
@@ -453,8 +453,8 @@
         public void TestEvery2Years()
         {
             Harness(cron: "0 15 6 1 1 ? 1/2",
-                expected: "La 06:15, în ziua 1 a lunii, doar în Ianuarie, o dată la 2 ani",
-                expectedVerbose: "La 06:15 AM, în ziua 1 a lunii, în fiecare zi, doar în Ianuarie, o dată la 2 ani");
+                expected: "La 06:15, în ziua 1 a lunii, doar în ianuarie, o dată la 2 ani",
+                expectedVerbose: "La 06:15 AM, în ziua 1 a lunii, în fiecare zi, doar în ianuarie, o dată la 2 ani");
         }
 
         [Test]
@@ -517,7 +517,7 @@
         [Test]
         public void TestMonthInternalWithStepValue()
         {
-            Assert.AreEqual("La 07:05, la fiecare 2 luni, din Martie până în Decembrie", ExpressionDescriptor.GetDescription("0 5 7 ? 3/2 ? *"));
+            Assert.AreEqual("La 07:05, la fiecare 2 luni, din martie până în decembrie", ExpressionDescriptor.GetDescription("0 5 7 ? 3/2 ? *"));
         }
 
         [Test]

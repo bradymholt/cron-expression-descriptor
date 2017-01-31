@@ -236,12 +236,14 @@ namespace CronExpressionDescriptor
                (s => s),
                (s => string.Format(CronExpressionDescriptor.Resources.EveryX0Seconds, s)),
                (s => CronExpressionDescriptor.Resources.SecondsX0ThroughX1PastTheMinute),
-               (s => s == "0" 
-                    ? string.Empty 
-                    : (int.Parse(s) < 20)
-                        ? CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute
-                        : CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinuteGt20 ?? CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute
-               ));
+               (s => { try {
+                        return s == "0"
+                            ? string.Empty
+                            : (int.Parse(s) < 20)
+                                ? CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute
+                                : CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinuteGt20 ?? CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute;
+                   }
+                   catch { return CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute; }} ));
 
             return description;
         }

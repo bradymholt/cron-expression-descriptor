@@ -177,7 +177,9 @@ namespace CronExpressionDescriptor
                     FormatTime(hourExpression, minuteParts[0]),
                     FormatTime(hourExpression, minuteParts[1])));
             }
-            else if (hourExpression.Contains(",") && minuteExpression.IndexOfAny(m_specialCharacters) == -1)
+            else if (hourExpression.Contains(",") 
+                && hourExpression.IndexOf('-') == -1
+                && minuteExpression.IndexOfAny(m_specialCharacters) == -1)
             {
                 //hours list with single minute (o.e. 30 6,14,16)
                 string[] hourParts = hourExpression.Split(',');
@@ -293,7 +295,16 @@ namespace CronExpressionDescriptor
         /// <returns>The DAYOFWEEK description</returns>
         protected string GetDayOfWeekDescription()
         {
-            string description = GetSegmentDescription(m_expressionParts[5],
+            string description = null;
+
+            if (m_expressionParts[5] == "*" && m_expressionParts[3] != "*")
+            {
+                // DOM is specified and DOW is * so to prevent contradiction like "on day 1 of the month, every day"
+                // we will not specified a DOW description.
+                description = string.Empty;
+
+            } else {
+                description = GetSegmentDescription(m_expressionParts[5],
                 CronExpressionDescriptor.Resources.ComaEveryDay,
               (s =>
               {
@@ -352,6 +363,7 @@ namespace CronExpressionDescriptor
 
                   return format;
               }));
+            }
 
             return description;
         }

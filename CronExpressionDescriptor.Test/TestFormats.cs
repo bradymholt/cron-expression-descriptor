@@ -455,6 +455,13 @@ namespace CronExpressionDescriptor.Test
         public void TestYearInternalWithStepValue()
         {
             Assert.AreEqual("At 07:05 AM, every 4 years, 2016 through 9999", ExpressionDescriptor.GetDescription("0 5 7 ? * ? 2016/4"));
-        } 
+        }
+
+        [Test]
+        public void TestMinitesCombinedWithMultipleHourRanges()
+        {
+            Assert.AreEqual("At 1 minutes past the hour, at 01:00 AM and 03:00 AM through 04:59 AM", ExpressionDescriptor.GetDescription("1 1,3-4 * * *"));
+            
+        }
     }
 }

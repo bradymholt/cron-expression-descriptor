@@ -23,7 +23,7 @@
             Thread.CurrentThread.CurrentUICulture = myCultureInfo;
         }
 
-        void Harness (string cron, string expected, string expectedVerbose)
+        void Harness(string cron, string expected, string expectedVerbose)
         {
             Assert.AreEqual(expected, ExpressionDescriptor.GetDescription(cron));
             Assert.AreEqual(expectedVerbose, ExpressionDescriptor.GetDescription(cron, _verbose));
@@ -32,16 +32,16 @@
         [Test]
         public void TestEveryMinute()
         {
-            Harness (cron: "* * * * *", 
-                expected: "În fiecare minut", 
+            Harness(cron: "* * * * *",
+                expected: "În fiecare minut",
                 expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi");
         }
 
         [Test]
         public void TestEvery1Minute()
         {
-            Harness(cron: "*/1 * * * *"  , expected: "În fiecare minut", expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi");
-            Harness(cron: "0 0/1 * * * ?", expected: "În fiecare minut", expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi");            
+            Harness(cron: "*/1 * * * *", expected: "În fiecare minut", expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi");
+            Harness(cron: "0 0/1 * * * ?", expected: "În fiecare minut", expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi");
         }
 
         [Test]
@@ -54,8 +54,8 @@
         [Test]
         public void TestTimeOfDayCertainDaysOfWeek()
         {
-           Harness(cron: "0 23 ? * MON-FRI", expected: "La 23:00, de luni până vineri"
-               , expectedVerbose: "La 11:00 PM, în fiecare zi, de luni până vineri");            
+            Harness(cron: "0 23 ? * MON-FRI", expected: "La 23:00, de luni până vineri"
+                , expectedVerbose: "La 11:00 PM, în fiecare zi, de luni până vineri");
         }
 
         [Test]
@@ -69,8 +69,8 @@
         public void TestEvery45Seconds()
         {
             Harness(cron: "*/45 * * * * *",
-                expected: "La fiecare 45 secunde", 
-                expectedVerbose: "La fiecare 45 secunde, în fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi"); 
+                expected: "La fiecare 45 secunde",
+                expectedVerbose: "La fiecare 45 secunde, în fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi");
         }
 
         [Test]
@@ -88,16 +88,16 @@
         [Test]
         public void TestEvery5MinutesOnTheSecond()
         {
-            Harness(cron: "0 */5 * * * *", expected: "La fiecare 5 minute", 
+            Harness(cron: "0 */5 * * * *", expected: "La fiecare 5 minute",
                 expectedVerbose: "La fiecare 5 minute, în fiecare oră, în fiecare zi, în fiecare zi");
         }
 
         [Test]
         public void TestWeekdaysAtTime()
         {
-            Harness (cron:"30 11 * * 1-5", 
-                expected:  "La 11:30, de luni până vineri",
-                expectedVerbose:  "La 11:30 AM, în fiecare zi, de luni până vineri");
+            Harness(cron: "30 11 * * 1-5",
+                expected: "La 11:30, de luni până vineri",
+                expectedVerbose: "La 11:30 AM, în fiecare zi, de luni până vineri");
         }
 
         [Test]
@@ -116,14 +116,14 @@
         [Test]
         public void TestOneMonthOnly()
         {
-            Harness (cron:"* * * 3 *", expected:"În fiecare minut, doar în martie", 
-                expectedVerbose:"În fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi, doar în martie");
+            Harness(cron: "* * * 3 *", expected: "În fiecare minut, doar în martie",
+                expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi, doar în martie");
         }
 
         [Test]
         public void TestTwoMonthsOnly()
         {
-            Harness( cron:"* * * 3,6 *",
+            Harness(cron: "* * * 3,6 *",
                 expected: "În fiecare minut, doar în martie și iunie",
                 expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi, doar în martie și iunie");
         }
@@ -132,14 +132,14 @@
         public void TestTwoTimesEachAfternoon()
         {
             Harness(cron: "30 14,16 * * *", expected: "La 14:30 și 16:30",
-                expectedVerbose: "La 02:30 PM și 04:30 PM, în fiecare zi, în fiecare zi");  
+                expectedVerbose: "La 02:30 PM și 04:30 PM, în fiecare zi, în fiecare zi");
         }
 
         [Test]
         public void TestThreeTimesDaily()
         {
-            Harness(cron:"30 6,14,16 * * *",
-                expected:"La 06:30, 14:30 și 16:30",
+            Harness(cron: "30 6,14,16 * * *",
+                expected: "La 06:30, 14:30 și 16:30",
                 expectedVerbose: "La 06:30 AM, 02:30 PM și 04:30 PM, în fiecare zi, în fiecare zi");
         }
 
@@ -152,9 +152,9 @@
         [Test]
         public void TestDayOfMonth()
         {
-            Harness(cron: "23 12 15 * *", 
-                expected: "La 12:23, în ziua 15 a lunii", 
-                expectedVerbose: "La 12:23 PM, în ziua 15 a lunii, în fiecare zi");
+            Harness(cron: "23 12 15 * *",
+                expected: "La 12:23, în ziua 15 a lunii",
+                expectedVerbose: "La 12:23 PM, în ziua 15 a lunii");
         }
 
         [Test]
@@ -173,7 +173,7 @@
         [Test]
         public void TestMonthNameRange2()
         {
-            Harness(cron:"23 12 * JAN-FEB *",
+            Harness(cron: "23 12 * JAN-FEB *",
                 expected: "La 12:23, din ianuarie până în februarie",
                 expectedVerbose: "La 12:23 PM, în fiecare zi, în fiecare zi, din ianuarie până în februarie");
         }
@@ -194,7 +194,7 @@
         [Test]
         public void TestDayOfWeekRange()
         {
-            Harness(cron: "*/5 15 * * MON-FRI", 
+            Harness(cron: "*/5 15 * * MON-FRI",
                 expected: "La fiecare 5 minute, la 15:00, de luni până vineri",
                 expectedVerbose: "La fiecare 5 minute, la 03:00 PM, în fiecare zi, de luni până vineri");
         }
@@ -202,15 +202,15 @@
         [Test]
         public void TestDayOfWeekOnceInMonth()
         {
-            Harness(cron: "* * * * MON#3", 
-                expected: "În fiecare minut, în a treia luni a lunii", 
+            Harness(cron: "* * * * MON#3",
+                expected: "În fiecare minut, în a treia luni a lunii",
                 expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, în a treia luni a lunii");
         }
 
         [Test]
         public void TestLastDayOfTheWeekOfTheMonth()
         {
-            Harness(cron: "* * * * 4L", 
+            Harness(cron: "* * * * 4L",
                 expected: "În fiecare minut, în ultima joi a lunii",
                 expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, în ultima joi a lunii");
         }
@@ -219,15 +219,15 @@
         public void TestLastDayOfTheMonth()
         {
             Harness(cron: "*/5 * L JAN *", expected: "La fiecare 5 minute, în ultima zi a lunii, doar în ianuarie",
-                expectedVerbose: "La fiecare 5 minute, în fiecare oră, în ultima zi a lunii, în fiecare zi, doar în ianuarie");
+                expectedVerbose: "La fiecare 5 minute, în fiecare oră, în ultima zi a lunii, doar în ianuarie");
         }
 
         [Test]
         public void TestLastWeekdayOfTheMonth()
         {
-            Harness(cron: "* * LW * *", 
+            Harness(cron: "* * LW * *",
                 expected: "În fiecare minut, în ultima zi lucrătoare a lunii",
-                expectedVerbose: "În fiecare minut, în fiecare oră, în ultima zi lucrătoare a lunii, în fiecare zi");
+                expectedVerbose: "În fiecare minut, în fiecare oră, în ultima zi lucrătoare a lunii");
         }
 
         [Test]
@@ -235,29 +235,29 @@
         {
             Harness(cron: "* * WL * *",
                 expected: "În fiecare minut, în ultima zi lucrătoare a lunii",
-                expectedVerbose: "În fiecare minut, în fiecare oră, în ultima zi lucrătoare a lunii, în fiecare zi");
+                expectedVerbose: "În fiecare minut, în fiecare oră, în ultima zi lucrătoare a lunii");
         }
 
         [Test]
         public void TestFirstWeekdayOfTheMonth()
         {
             Harness(cron: "* * 1W * *", expected: "În fiecare minut, în prima zi a săptămânii a lunii"
-                , expectedVerbose: "În fiecare minut, în fiecare oră, în prima zi a săptămânii a lunii, în fiecare zi");
-           }
+                , expectedVerbose: "În fiecare minut, în fiecare oră, în prima zi a săptămânii a lunii");
+        }
 
         [Test]
         public void TestThirteenthWeekdayOfTheMonth()
         {
             Harness(cron: "* * 13W * *", 
                 expected: "În fiecare minut, în cea mai apropiată zi a săptămânii de ziua 13 a lunii",
-                expectedVerbose: "În fiecare minut, în fiecare oră, în cea mai apropiată zi a săptămânii de ziua 13 a lunii, în fiecare zi");
+                expectedVerbose: "În fiecare minut, în fiecare oră, în cea mai apropiată zi a săptămânii de ziua 13 a lunii");
         }
 
         [Test]
         public void TestFirstWeekdayOfTheMonth2()
         {
             Harness(cron: "* * W1 * *", expected: "În fiecare minut, în prima zi a săptămânii a lunii"
-               , expectedVerbose: "În fiecare minut, în fiecare oră, în prima zi a săptămânii a lunii, în fiecare zi");
+               , expectedVerbose: "În fiecare minut, în fiecare oră, în prima zi a săptămânii a lunii");
         }
 
         [Test]
@@ -265,7 +265,7 @@
         {
             Harness(cron: "* * 5W * *",
                 expected: "În fiecare minut, în cea mai apropiată zi a săptămânii de ziua 5 a lunii", 
-                expectedVerbose: "În fiecare minut, în fiecare oră, în cea mai apropiată zi a săptămânii de ziua 5 a lunii, în fiecare zi");
+                expectedVerbose: "În fiecare minut, în fiecare oră, în cea mai apropiată zi a săptămânii de ziua 5 a lunii");
         }
 
         [Test]
@@ -273,7 +273,7 @@
         {
             Harness(cron: "* * W5 * *",
                 expected: "În fiecare minut, în cea mai apropiată zi a săptămânii de ziua 5 a lunii",
-                expectedVerbose: "În fiecare minut, în fiecare oră, în cea mai apropiată zi a săptămânii de ziua 5 a lunii, în fiecare zi");
+                expectedVerbose: "În fiecare minut, în fiecare oră, în cea mai apropiată zi a săptămânii de ziua 5 a lunii");
         }
 
         [Test]
@@ -330,7 +330,7 @@
             //"Every 03 minutes, minutes 2 through 59 past the hour, at 01:00 AM, 09:00 AM, and 10:00 PM, between day 11 and 26 of the month, January through June"
             Harness( cron: "2-59/3 1,9,22 11-26 1-6 ?",
                 expected: "La fiecare 3 minute, între minutele 2 și 59, la 01:00, 09:00, și 22:00, între zilele 11 și 26 ale lunii, din ianuarie până în iunie", 
-                expectedVerbose: "La fiecare 3 minute, între minutele 2 și 59, la 01:00 AM, 09:00 AM, și 10:00 PM, între zilele 11 și 26 ale lunii, în fiecare zi, din ianuarie până în iunie");
+                expectedVerbose: "La fiecare 3 minute, între minutele 2 și 59, la 01:00 AM, 09:00 AM, și 10:00 PM, între zilele.11 și 26 ale lunii, din ianuarie până în iunie");
         }
 
         [Test]
@@ -390,7 +390,7 @@
         {
             Harness(cron: "0 0/30 8-9 5,20 * ?",
                 expected: "La fiecare 30 minute, între 08:00 și 09:59, în ziua 5 și 20 a lunii",
-                expectedVerbose: "La fiecare 30 minute, între 08:00 AM și 09:59 AM, în ziua 5 și 20 a lunii, în fiecare zi");
+                expectedVerbose: "La fiecare 30 minute, între 08:00 AM și 09:59 AM, în ziua 5 și 20 a lunii");
         }
 
         [Test]
@@ -430,7 +430,7 @@
         {
             Harness(cron: "0 0 8 1/3 * ? *", 
                 expected: "La 08:00, la fiecare 3 zile",
-                expectedVerbose: "La 08:00 AM, la fiecare 3 zile, în fiecare zi");
+                expectedVerbose: "La 08:00 AM, la fiecare 3 zile");
         }
 
         [Test]
@@ -446,7 +446,7 @@
         {
             Harness(cron: "0 5 7 2 1/3 ? *", 
                 expected: "La 07:05, în ziua 2 a lunii, la fiecare 3 luni",
-                expectedVerbose: "La 07:05 AM, în ziua 2 a lunii, în fiecare zi, la fiecare 3 luni");
+                expectedVerbose: "La 07:05 AM, în ziua 2 a lunii, la fiecare 3 luni");
         }
 
         [Test]
@@ -454,7 +454,7 @@
         {
             Harness(cron: "0 15 6 1 1 ? 1/2",
                 expected: "La 06:15, în ziua 1 a lunii, doar în ianuarie, o dată la 2 ani",
-                expectedVerbose: "La 06:15 AM, în ziua 1 a lunii, în fiecare zi, doar în ianuarie, o dată la 2 ani");
+                expectedVerbose: "La 06:15 AM, în ziua 1 a lunii, doar în ianuarie, o dată la 2 ani");
         }
 
         [Test]

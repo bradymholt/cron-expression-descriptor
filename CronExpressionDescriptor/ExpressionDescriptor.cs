@@ -177,7 +177,9 @@ namespace CronExpressionDescriptor
                     FormatTime(hourExpression, minuteParts[0]),
                     FormatTime(hourExpression, minuteParts[1])));
             }
-            else if (hourExpression.Contains(",") && minuteExpression.IndexOfAny(m_specialCharacters) == -1)
+            else if (hourExpression.Contains(",") 
+                && hourExpression.IndexOf('-') == -1
+                && minuteExpression.IndexOfAny(m_specialCharacters) == -1)
             {
                 //hours list with single minute (o.e. 30 6,14,16)
                 string[] hourParts = hourExpression.Split(',');

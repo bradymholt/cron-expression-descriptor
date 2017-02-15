@@ -295,7 +295,16 @@ namespace CronExpressionDescriptor
         /// <returns>The DAYOFWEEK description</returns>
         protected string GetDayOfWeekDescription()
         {
-            string description = GetSegmentDescription(m_expressionParts[5],
+            string description = null;
+
+            if (m_expressionParts[5] == "*" && m_expressionParts[3] != "*")
+            {
+                // DOM is specified and DOW is * so to prevent contradiction like "on day 1 of the month, every day"
+                // we will not specified a DOW description.
+                description = string.Empty;
+
+            } else {
+                description = GetSegmentDescription(m_expressionParts[5],
                 CronExpressionDescriptor.Resources.ComaEveryDay,
               (s =>
               {
@@ -354,6 +363,7 @@ namespace CronExpressionDescriptor
 
                   return format;
               }));
+            }
 
             return description;
         }

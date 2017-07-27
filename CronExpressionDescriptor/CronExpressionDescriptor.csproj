@@ -88,6 +88,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources.en-AU.resx" />
     <EmbeddedResource Include="Resources.it.resx" />
     <EmbeddedResource Include="Resources.sv.resx" />
     <EmbeddedResource Include="Resources.ro.resx">

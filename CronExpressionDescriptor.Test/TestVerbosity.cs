@@ -15,6 +15,7 @@ namespace CronExpressionDescriptor.Test
         [OneTimeSetUp]
         public void SetUp()
         {
+            ExpressionDescriptor.SetDefaultLocale("en-US");
         }
 
         [Test]

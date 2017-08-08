@@ -14,7 +14,7 @@ namespace CronExpressionDescriptor.Test
         {
             Options options = new Options() { ThrowExceptionOnParseError = true };
             ExpressionDescriptor ceh = new ExpressionDescriptor(null, options);
-            Assert.Throws<MissingFieldException>(() =>
+            Assert.Throws<Exception>(() =>
             {
                 ceh.GetDescription(DescriptionTypeEnum.FULL);
             });
@@ -25,7 +25,7 @@ namespace CronExpressionDescriptor.Test
         {
             Options options = new Options() { ThrowExceptionOnParseError = true };
             ExpressionDescriptor ceh = new ExpressionDescriptor(null, options);
-            Assert.Throws<MissingFieldException>(() =>
+            Assert.Throws<Exception>(() =>
             {
                 ceh.GetDescription(DescriptionTypeEnum.FULL);
             });  

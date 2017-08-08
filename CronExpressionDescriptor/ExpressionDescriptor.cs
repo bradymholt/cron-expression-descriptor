@@ -21,7 +21,7 @@ namespace CronExpressionDescriptor
         }
 
         private readonly char[] m_specialCharacters = new char[] { '/', '-', ',', '*' };
-        private readonly string[] m_24hourTimeFormatLocales = new string[] { "ru-RU", "uk-UA", "de-DE", "it-IT", "tr-TR", "pl-PL" };
+        private readonly string[] m_24hourTimeFormatLocales = new string[] { "ru-RU", "uk-UA", "de-DE", "it-IT", "tr-TR", "pl-PL", "ro-RO" };
 
         private string m_expression;
         private Options m_options;

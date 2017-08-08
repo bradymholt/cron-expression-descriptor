@@ -13,20 +13,17 @@
 #endif
     public class TestFormatsRO
     {
-        static readonly Options _verbose = new Options() { Verbose = true };
 
         [OneTimeSetUp]
         public void SetUp()
         {
-            CultureInfo myCultureInfo = new CultureInfo("ro-RO");
-            Thread.CurrentThread.CurrentCulture = myCultureInfo;
-            Thread.CurrentThread.CurrentUICulture = myCultureInfo;
+            ExpressionDescriptor.SetDefaultLocale("ro-RO");
         }
 
         void Harness(string cron, string expected, string expectedVerbose)
         {
             Assert.AreEqual(expected, ExpressionDescriptor.GetDescription(cron));
-            Assert.AreEqual(expectedVerbose, ExpressionDescriptor.GetDescription(cron, _verbose));
+            Assert.AreEqual(expectedVerbose, ExpressionDescriptor.GetDescription(cron, new Options() { Verbose = true }));
         }
 
         [Test]

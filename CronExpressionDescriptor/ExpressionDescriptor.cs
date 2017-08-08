@@ -263,11 +263,11 @@ namespace CronExpressionDescriptor
                (s => string.Format(Resources.ResourceManager.GetString("EveryX0Seconds", m_culture), s)),
                (s => Resources.ResourceManager.GetString("SecondsX0ThroughX1PastTheMinute", m_culture)),
                (s => { try {
-                        return s == "0"
-                    ? string.Empty
-                            : (int.Parse(s) < 20)
-                        ? Resources.ResourceManager.GetString("AtX0SecondsPastTheMinute", m_culture)
-                        : Resources.ResourceManager.GetString("AtX0SecondsPastTheMinuteGt20", m_culture) ?? Resources.ResourceManager.GetString("AtX0SecondsPastTheMinute", m_culture)
+                       return s == "0"
+                   ? string.Empty
+                           : (int.Parse(s) < 20)
+                       ? Resources.ResourceManager.GetString("AtX0SecondsPastTheMinute", m_culture)
+                       : Resources.ResourceManager.GetString("AtX0SecondsPastTheMinuteGt20", m_culture) ?? Resources.ResourceManager.GetString("AtX0SecondsPastTheMinute", m_culture);
 
                    }
                    catch { return CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute; }} ));

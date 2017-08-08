@@ -12,7 +12,7 @@ namespace CronExpressionDescriptor.Test
     [TestFixture]
     public class TestFormatsTR
     {
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             ExpressionDescriptor.SetDefaultLocale("tr-TR");

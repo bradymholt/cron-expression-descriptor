@@ -10,21 +10,25 @@ namespace CronExpressionDescriptor.Test
     public class TestExceptions
     {
         [Test]
-        [ExpectedException(typeof(MissingFieldException))]
         public void TestNullCronExpressionException()
         {
             Options options = new Options() { ThrowExceptionOnParseError = true };
             ExpressionDescriptor ceh = new ExpressionDescriptor(null, options);
-            ceh.GetDescription(DescriptionTypeEnum.FULL);
+            Assert.Throws<MissingFieldException>(() =>
+            {
+                ceh.GetDescription(DescriptionTypeEnum.FULL);
+            });
         }
 
         [Test]
-        [ExpectedException(typeof(MissingFieldException))]
         public void TestEmptyCronExpressionException()
         {
             Options options = new Options() { ThrowExceptionOnParseError = true };
             ExpressionDescriptor ceh = new ExpressionDescriptor(null, options);
-            ceh.GetDescription(DescriptionTypeEnum.FULL);
+            Assert.Throws<MissingFieldException>(() =>
+            {
+                ceh.GetDescription(DescriptionTypeEnum.FULL);
+            });  
         }
 
         [Test]
@@ -36,12 +40,14 @@ namespace CronExpressionDescriptor.Test
         }
 
         [Test]
-        [ExpectedException(typeof(FormatException))]
         public void TestInvalidCronExpressionException()
         {
             Options options = new Options() { ThrowExceptionOnParseError = true };
             ExpressionDescriptor ceh = new ExpressionDescriptor("INVALID", options);
-            ceh.GetDescription(DescriptionTypeEnum.FULL);
+            Assert.Throws<FormatException>(() =>
+            {
+                ceh.GetDescription(DescriptionTypeEnum.FULL);
+            }); 
         }
 
         [Test]
@@ -53,12 +59,15 @@ namespace CronExpressionDescriptor.Test
         }
 
         [Test]
-        [ExpectedException(typeof(FormatException))]
         public void TestInvalidSyntaxException()
         {
             Options options = new Options() { ThrowExceptionOnParseError = true };
             ExpressionDescriptor ceh = new ExpressionDescriptor("* $ * * *", options);
-            ceh.GetDescription(DescriptionTypeEnum.FULL);
+            Assert.Throws<FormatException>(() =>
+            {
+                ceh.GetDescription(DescriptionTypeEnum.FULL);
+            });
+            
         }
     }
 }

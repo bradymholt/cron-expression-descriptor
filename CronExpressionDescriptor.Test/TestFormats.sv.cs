@@ -7,7 +7,7 @@ namespace CronExpressionDescriptor.Test
     [TestFixture]
     public class TestFormatsSV
     {
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             CultureInfo myCultureInfo = new CultureInfo("sv-SE");

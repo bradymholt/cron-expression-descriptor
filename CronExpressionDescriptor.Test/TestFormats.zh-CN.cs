@@ -15,7 +15,7 @@ namespace CronExpressionDescriptor.Test
 #endif
     public class TestFormatsCN
     {
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             ExpressionDescriptor.SetDefaultLocale("zh-CN");

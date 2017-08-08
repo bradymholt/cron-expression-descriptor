@@ -15,7 +15,7 @@
     {
         static readonly Options _verbose = new Options() { Verbose = true };
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             CultureInfo myCultureInfo = new CultureInfo("ro-RO");

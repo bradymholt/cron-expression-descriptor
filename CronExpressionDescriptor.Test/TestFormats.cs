@@ -7,7 +7,7 @@ namespace CronExpressionDescriptor.Test
     [TestFixture]
     public class TestFormats
     {
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             ExpressionDescriptor.SetDefaultLocale("en-US");

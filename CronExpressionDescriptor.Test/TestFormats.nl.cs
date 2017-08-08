@@ -9,7 +9,7 @@ namespace CronExpressionDescriptor.Test
     [TestFixture]
     public class TestFormatsNL
     {
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             ExpressionDescriptor.SetDefaultLocale("nl-NL");

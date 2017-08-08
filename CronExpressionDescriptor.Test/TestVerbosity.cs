@@ -12,7 +12,7 @@ namespace CronExpressionDescriptor.Test
     [TestFixture]
     public class TestVerbosity
     {
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             CultureInfo myCultureInfo = new CultureInfo("en-US");

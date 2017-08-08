@@ -12,7 +12,7 @@ namespace CronExpressionDescriptor.Test
     [TestFixture]
     public class TestFormatsPTBR
     {
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             ExpressionDescriptor.SetDefaultLocale("pt-BR");

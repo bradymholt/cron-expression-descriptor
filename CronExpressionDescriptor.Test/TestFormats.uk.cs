@@ -11,7 +11,7 @@ namespace CronExpressionDescriptor.Test
     [TestFixture]
     public class TestFormatsUk
     {
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             ExpressionDescriptor.SetDefaultLocale("uk-UA");

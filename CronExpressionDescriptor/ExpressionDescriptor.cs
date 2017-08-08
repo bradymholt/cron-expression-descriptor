@@ -201,7 +201,9 @@ namespace CronExpressionDescriptor
                     FormatTime(hourExpression, minuteParts[0]),
                     FormatTime(hourExpression, minuteParts[1])));
             }
-            else if (hourExpression.Contains(",") && minuteExpression.IndexOfAny(m_specialCharacters) == -1)
+            else if (hourExpression.Contains(",")
+                && hourExpression.IndexOf('-') == -1
+                && minuteExpression.IndexOfAny(m_specialCharacters) == -1)
             {
                 //hours list with single minute (o.e. 30 6,14,16)
                 string[] hourParts = hourExpression.Split(',');
@@ -260,12 +262,15 @@ namespace CronExpressionDescriptor
                (s => s),
                (s => string.Format(Resources.ResourceManager.GetString("EveryX0Seconds", m_culture), s)),
                (s => Resources.ResourceManager.GetString("SecondsX0ThroughX1PastTheMinute", m_culture)),
-               (s => s == "0"
+               (s => { try {
+                        return s == "0"
                     ? string.Empty
-                    : (int.Parse(s) < 20)
+                            : (int.Parse(s) < 20)
                         ? Resources.ResourceManager.GetString("AtX0SecondsPastTheMinute", m_culture)
                         : Resources.ResourceManager.GetString("AtX0SecondsPastTheMinuteGt20", m_culture) ?? Resources.ResourceManager.GetString("AtX0SecondsPastTheMinute", m_culture)
-               ));
+
+                   }
+                   catch { return CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute; }} ));
 
             return description;
         }
@@ -298,7 +303,7 @@ namespace CronExpressionDescriptor
         }
 
         /// <summary>
-        /// Generates a description for only the HOUR portion of the expression 
+        /// Generates a description for only the HOUR portion of the expression
         /// </summary>
         /// <returns>The HOUR description</returns>
         protected string GetHoursDescription()
@@ -315,12 +320,21 @@ namespace CronExpressionDescriptor
         }
 
         /// <summary>
-        /// Generates a description for only the DAYOFWEEK portion of the expression 
+        /// Generates a description for only the DAYOFWEEK portion of the expression
         /// </summary>
         /// <returns>The DAYOFWEEK description</returns>
         protected string GetDayOfWeekDescription()
         {
-            string description = GetSegmentDescription(m_expressionParts[5],
+            string description = null;
+
+            if (m_expressionParts[5] == "*" && m_expressionParts[3] != "*")
+            {
+                // DOM is specified and DOW is * so to prevent contradiction like "on day 1 of the month, every day"
+                // we will not specified a DOW description.
+                description = string.Empty;
+
+            } else {
+                description = GetSegmentDescription(m_expressionParts[5],
                 Resources.ResourceManager.GetString("ComaEveryDay", m_culture),
               (s =>
               {
@@ -379,12 +393,13 @@ namespace CronExpressionDescriptor
 
                   return format;
               }));
+            }
 
             return description;
         }
 
         /// <summary>
-        /// Generates a description for only the MONTH portion of the expression 
+        /// Generates a description for only the MONTH portion of the expression
         /// </summary>
         /// <returns>The MONTH description</returns>
         protected string GetMonthDescription()
@@ -400,7 +415,7 @@ namespace CronExpressionDescriptor
         }
 
         /// <summary>
-        /// Generates a description for only the DAYOFMONTH portion of the expression 
+        /// Generates a description for only the DAYOFMONTH portion of the expression
         /// </summary>
         /// <returns>The DAYOFMONTH description</returns>
         protected string GetDayOfMonthDescription()
@@ -447,7 +462,7 @@ namespace CronExpressionDescriptor
         }
 
         /// <summary>
-        /// Generates a description for only the YEAR portion of the expression 
+        /// Generates a description for only the YEAR portion of the expression
         /// </summary>
         /// <returns>The YEAR description</returns>
         private string GetYearDescription()
@@ -570,7 +585,7 @@ namespace CronExpressionDescriptor
         }
 
         /// <summary>
-        /// Generates the between segment description 
+        /// Generates the between segment description
         /// </summary>
         /// <param name="betweenExpression"></param>
         /// <param name="getBetweenDescriptionFormat"></param>
@@ -590,7 +605,7 @@ namespace CronExpressionDescriptor
         }
 
         /// <summary>
-        /// Given time parts, will contruct a formatted time description 
+        /// Given time parts, will contruct a formatted time description
         /// </summary>
         /// <param name="hourExpression">Hours part</param>
         /// <param name="minuteExpression">Minutes part</param>
@@ -658,7 +673,7 @@ namespace CronExpressionDescriptor
 
         #region Static
         /// <summary>
-        /// Generates a human readable string for the Cron Expression 
+        /// Generates a human readable string for the Cron Expression
         /// </summary>
         /// <param name="expression">The cron expression string</param>
         /// <returns>The cron expression description</returns>
@@ -668,7 +683,7 @@ namespace CronExpressionDescriptor
         }
 
         /// <summary>
-        /// Generates a human readable string for the Cron Expression  
+        /// Generates a human readable string for the Cron Expression
         /// </summary>
         /// <param name="expression">The cron expression string</param>
         /// <param name="options">Options to control the output description</param>

@@ -1,3 +1,5 @@
+1.21.1:Fix exception thrown for multi-part seconds
+1.21.0:Add Swedish translation
 1.20.0:Step interval range description improvements and misc bug fixes
 1.19.0:Support for step value ranges, handle expression description when both DOW and DOM are specified, and other misc bug fixes
 1.18.0:New Polish and Romanian translations; misc bug fixes

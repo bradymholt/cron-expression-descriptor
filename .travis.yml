@@ -1,7 +1,7 @@
 language: csharp
 solution: CronExpressionDescriptor.sln
 install:
-  - nuget restore CronExpressionDescriptor.Test/packages.config -PackagesDirectory ../packages
+  - nuget restore
 script:
-  - xbuild /p:Configuration=Release CronExpressionDescriptor.Test/CronExpressionDescriptor.Test.csproj
+  - msbuild /p:Configuration=Release CronExpressionDescriptor.Test/CronExpressionDescriptor.Test.csproj
   - mono ./packages/NUnit.ConsoleRunner.3.7.0/tools/nunit3-console.exe ./CronExpressionDescriptor.Test/bin/Release/CronExpressionDescriptor.Test.dll

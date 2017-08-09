@@ -4,197 +4,173 @@ using System.Threading;
 
 namespace CronExpressionDescriptor.Test
 {
-    public class TestFormatsSV : BaseTestFormats
+    public class TestFormatsNb : BaseTestFormats
     {
         protected override string GetLocale()
         {
-            return "sv-SE";
+            return "nb-NO";
         }
 
         [Fact]
-
         public void TestEveryMinute()
         {
-            Assert.Equal("Varje minut", GetDescription("* * * * *"));
+            Assert.Equal("Hvert minutt", GetDescription("* * * * *"));
         }
 
         [Fact]
-
         public void TestEvery1Minute()
         {
-            Assert.Equal("Varje minut", GetDescription("*/1 * * * *"));
-            Assert.Equal("Varje minut", GetDescription("0 0/1 * * * ?"));
+            Assert.Equal("Hvert minutt", GetDescription("*/1 * * * *"));
+            Assert.Equal("Hvert minutt", GetDescription("0 0/1 * * * ?"));
         }
 
         [Fact]
-
         public void TestEveryHour()
         {
-            Assert.Equal("Varje timma", GetDescription("0 0 * * * ?"));
-            Assert.Equal("Varje timma", GetDescription("0 0 0/1 * * ?"));
+            Assert.Equal("Hver time", GetDescription("0 0 * * * ?"));
+            Assert.Equal("Hver time", GetDescription("0 0 0/1 * * ?"));
         }
 
         [Fact]
-
-        public void TesttimmaOfDayCertainDaysOfWeek()
+        public void TestTimeOfDayCertainDaysOfWeek()
         {
             Assert.Equal(
-                "På 11:00 PM, måndag till och med fredag", GetDescription("0 23 ? * MON-FRI"));
+                "På 11:00 PM, mandag til og med fredag", GetDescription("0 23 ? * MON-FRI"));
         }
 
         [Fact]
-
         public void TestEverySecond()
         {
-            Assert.Equal("Varje sekund", GetDescription("* * * * * *"));
+            Assert.Equal("Hvert sekund", GetDescription("* * * * * *"));
         }
 
         [Fact]
-
         public void TestEvery45Seconds()
         {
-            Assert.Equal("Upprepas efter 45 sekunder", GetDescription("*/45 * * * * *"));
+            Assert.Equal("Hvert 45 sekund", GetDescription("*/45 * * * * *"));
         }
 
         [Fact]
-
         public void TestEvery5Minutes()
         {
-            Assert.Equal("Upprepas efter 10 minuter", GetDescription("0 0/10 * * * ?"));
+            Assert.Equal("Hvert 5 minutt", GetDescription("*/5 * * * *"));
+            Assert.Equal("Hvert 10 minutt", GetDescription("0 0/10 * * * ?"));
         }
 
         [Fact]
-
         public void TestEvery5MinutesOnTheSecond()
         {
-            Assert.Equal("Upprepas efter 5 minuter", GetDescription("0 */5 * * * *"));
+            Assert.Equal("Hvert 5 minutt", GetDescription("0 */5 * * * *"));
         }
 
         [Fact]
-
-        public void TestWeekdaysAttimma()
+        public void TestWeekdaysAtTime()
         {
-            Assert.Equal("På 11:30 AM, måndag till och med fredag", GetDescription("30 11 * * 1-5"));
+            Assert.Equal("På 11:30 AM, mandag til og med fredag", GetDescription("30 11 * * 1-5"));
         }
 
         [Fact]
-
-        public void TestDailyAttimma()
+        public void TestDailyAtTime()
         {
             Assert.Equal("På 11:30 AM", GetDescription("30 11 * * *"));
         }
 
         [Fact]
-
         public void TestMinuteSpan()
         {
             Assert.Equal(
-                "Varje minut mellan 11:00 AM och 11:10 AM", GetDescription("0-10 11 * * *"));
+                "Hvert minutt mellom 11:00 AM og 11:10 AM", GetDescription("0-10 11 * * *"));
         }
 
         [Fact]
-
         public void TestOneMonthOnly()
         {
-            Assert.Equal("Varje minut, bara i mars", GetDescription("* * * 3 *"));
+            Assert.Equal("Hvert minutt, bare i mars", GetDescription("* * * 3 *"));
         }
 
         [Fact]
-
         public void TestTwoMonthsOnly()
         {
-            Assert.Equal("Varje minut, bara i mars och juni", GetDescription("* * * 3,6 *"));
+            Assert.Equal("Hvert minutt, bare i mars og juni", GetDescription("* * * 3,6 *"));
         }
 
         [Fact]
-
-        public void TestTwotimmasEachAfternoon()
+        public void TestTwoTimesEachAfternoon()
         {
-            Assert.Equal("På 02:30 PM och 04:30 PM", GetDescription("30 14,16 * * *"));
+            Assert.Equal("På 02:30 PM og 04:30 PM", GetDescription("30 14,16 * * *"));
         }
 
         [Fact]
-
-        public void TestThreetimmasDaily()
+        public void TestThreeTimesDaily()
         {
             Assert.Equal(
-                "På 06:30 AM, 02:30 PM och 04:30 PM", GetDescription("30 6,14,16 * * *"));
+                "På 06:30 AM, 02:30 PM og 04:30 PM", GetDescription("30 6,14,16 * * *"));
         }
 
         [Fact]
-
         public void TestOnceAWeek()
         {
-            Assert.Equal("På 09:46 AM, bara på måndag", GetDescription("46 9 * * 1"));
+            Assert.Equal("På 09:46 AM, bare på mandag", GetDescription("46 9 * * 1"));
         }
 
         [Fact]
-
         public void TestDayOfMonth()
         {
-            Assert.Equal("På 12:23 PM, på dag 15 av månaden", GetDescription("23 12 15 * *"));
+            Assert.Equal("På 12:23 PM, på dag 15 av måneden", GetDescription("23 12 15 * *"));
         }
 
         [Fact]
-
         public void TestMonthName()
         {
-            Assert.Equal("På 12:23 PM, bara i januari", GetDescription("23 12 * JAN *"));
+            Assert.Equal("På 12:23 PM, bare i januar", GetDescription("23 12 * JAN *"));
         }
 
         [Fact]
-
         public void TestDayOfMonthWithQuestionMark()
         {
-            Assert.Equal("På 12:23 PM, bara i januari", GetDescription("23 12 ? JAN *"));
+            Assert.Equal("På 12:23 PM, bare i januar", GetDescription("23 12 ? JAN *"));
         }
 
         [Fact]
-
         public void TestMonthNameRange2()
         {
             Assert.Equal(
-                "På 12:23 PM, januari till och med februari", GetDescription("23 12 * JAN-FEB *"));
+                "På 12:23 PM, januar til og med februar", GetDescription("23 12 * JAN-FEB *"));
         }
 
         [Fact]
-
         public void TestMonthNameRange3()
         {
             Assert.Equal(
-                "På 12:23 PM, januari till och med mars", GetDescription("23 12 * JAN-MAR *"));
+                "På 12:23 PM, januar til og med mars", GetDescription("23 12 * JAN-MAR *"));
         }
 
         [Fact]
-
         public void TestDayOfWeekName()
         {
-            Assert.Equal("På 12:23 PM, bara på söndag", GetDescription("23 12 * * SUN"));
+            Assert.Equal("På 12:23 PM, bare på søndag", GetDescription("23 12 * * SUN"));
         }
 
         [Fact]
-
         public void TestDayOfWeekRange()
         {
             Assert.Equal(
-                "Upprepas efter 5 minuter, på 03:00 PM, måndag till och med fredag",
+                "Hvert 5 minutt, på 03:00 PM, mandag til og med fredag",
                 GetDescription("*/5 15 * * MON-FRI"));
         }
 
         [Fact]
-
         public void TestDayOfWeekOnceInMonth()
         {
             Assert.Equal(
-                "Varje minut, den tredje måndag av månaden", GetDescription("* * * * MON#3"));
+                "Hvert minutt, på den tredje mandag av måneden", GetDescription("* * * * MON#3"));
         }
 
         [Fact]
-
         public void TestLastDayOfTheWeekOfTheMonth()
         {
             Assert.Equal(
-                "Varje minut, på den sista torsdag av månaden", GetDescription("* * * * 4L"));
+                "Hvert minutt, på den siste torsdag av måneden", GetDescription("* * * * 4L"));
         }
 
         [Fact]
@@ -202,7 +178,7 @@ namespace CronExpressionDescriptor.Test
         public void TestLastDayOfTheMonth()
         {
             Assert.Equal(
-                "Upprepas efter 5 minuter, på den sista dagen i månaden, bara i januari",
+                "Hvert 5 minutt, på den siste dagen i måneden, bare i januar",
                 GetDescription("*/5 * L JAN *"));
         }
 
@@ -211,7 +187,7 @@ namespace CronExpressionDescriptor.Test
         public void TestLastWeekdayOfTheMonth()
         {
             Assert.Equal(
-                "Varje minut, på den siste veckodagen i månaden", GetDescription("* * LW * *"));
+                "Hvert minutt, på den siste ukedagen i måneden", GetDescription("* * LW * *"));
         }
 
         [Fact]
@@ -219,7 +195,7 @@ namespace CronExpressionDescriptor.Test
         public void TestLastWeekdayOfTheMonth2()
         {
             Assert.Equal(
-                "Varje minut, på den siste veckodagen i månaden", GetDescription("* * WL * *"));
+                "Hvert minutt, på den siste ukedagen i måneden", GetDescription("* * WL * *"));
         }
 
         [Fact]
@@ -227,7 +203,7 @@ namespace CronExpressionDescriptor.Test
         public void TestFirstWeekdayOfTheMonth()
         {
             Assert.Equal(
-                "Varje minut, på den första dagen i veckan av månaden", GetDescription("* * 1W * *"));
+                "Hvert minutt, på den første ukedag av måneden", GetDescription("* * 1W * *"));
         }
 
         [Fact]
@@ -235,7 +211,7 @@ namespace CronExpressionDescriptor.Test
         public void TestFirstWeekdayOfTheMonth2()
         {
             Assert.Equal(
-                "Varje minut, på den första dagen i veckan av månaden", GetDescription("* * W1 * *"));
+                "Hvert minutt, på den første ukedag av måneden", GetDescription("* * W1 * *"));
         }
 
         [Fact]
@@ -243,7 +219,7 @@ namespace CronExpressionDescriptor.Test
         public void TestParticularWeekdayOfTheMonth()
         {
             Assert.Equal(
-                "Varje minut, på den veckodag närmast dag 5 av månaden",
+                "Hvert minutt, på den ukedag nærmest dag 5 av måneden",
                 GetDescription("* * 5W * *"));
         }
 
@@ -252,13 +228,13 @@ namespace CronExpressionDescriptor.Test
         public void TestParticularWeekdayOfTheMonth2()
         {
             Assert.Equal(
-                "Varje minut, på den veckodag närmast dag 5 av månaden",
+                "Hvert minutt, på den ukedag nærmest dag 5 av måneden",
                 GetDescription("* * W5 * *"));
         }
 
         [Fact]
 
-        public void TesttimmaOfDayWithSeconds()
+        public void TestTimeOfDayWithSeconds()
         {
             Assert.Equal("På 02:02:30 PM", GetDescription("30 02 14 * * *"));
         }
@@ -268,7 +244,7 @@ namespace CronExpressionDescriptor.Test
         public void TestSecondInternvals()
         {
             Assert.Equal(
-                "Mellan sekund 5 och 10 varje minut", GetDescription("5-10 * * * * *"));
+                "Sekundene fra 5 til og med 10 etter minuttet", GetDescription("5-10 * * * * *"));
         }
 
         [Fact]
@@ -276,7 +252,7 @@ namespace CronExpressionDescriptor.Test
         public void TestSecondMinutesHoursIntervals()
         {
             Assert.Equal(
-                "Mellan sekund 5 och 10 varje minut, mellan minut 30 och 35 varje timma, mellan 10:00 AM och 12:59 PM",
+                "Sekundene fra 5 til og med 10 etter minuttet, minuttene fra 30 til og med 35 etter timen, mellom 10:00 AM og 12:59 PM",
                 GetDescription("5-10 30-35 10-12 * * *"));
         }
 
@@ -285,7 +261,7 @@ namespace CronExpressionDescriptor.Test
         public void TestEvery5MinutesAt30Seconds()
         {
             Assert.Equal(
-                "Efter 30 sekunder, upprepas efter 5 minuter", GetDescription("30 */5 * * * *"));
+                "På 30 sekunder etter minuttet, hvert 5 minutt", GetDescription("30 */5 * * * *"));
         }
 
         [Fact]
@@ -293,7 +269,7 @@ namespace CronExpressionDescriptor.Test
         public void TestMinutesPastTheHourRange()
         {
             Assert.Equal(
-                "Vid 30 minuter över, mellan 10:00 AM och 01:59 PM, bara på onsdag och fredag",
+                "På 30 minutter etter timen, mellom 10:00 AM og 01:59 PM, bare på onsdag og fredag",
                 GetDescription("0 30 10-13 ? * WED,FRI"));
         }
 
@@ -302,7 +278,7 @@ namespace CronExpressionDescriptor.Test
         public void TestSecondsPastTheMinuteInterval()
         {
             Assert.Equal(
-                "Efter 10 sekunder, upprepas efter 5 minuter", GetDescription("10 0/5 * * * ?"));
+                "På 10 sekunder etter minuttet, hvert 5 minutt", GetDescription("10 0/5 * * * ?"));
         }
 
         [Fact]
@@ -310,7 +286,7 @@ namespace CronExpressionDescriptor.Test
         public void TestBetweenWithInterval()
         {
             Assert.Equal(
-                "Upprepas efter 3 minuter, mellan minut 2 och 59 varje timma, på 01:00 AM, 09:00 AM, och 10:00 PM, mellan dag 11 och 26 i månaden, januari till och med juni",
+                "Hvert 3 minutt, minuttene fra 2 til og med 59 etter timen, på 01:00 AM, 09:00 AM, og 10:00 PM, mellom dag 11 og 26 av måneden, januar til og med juni",
                 GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
         }
 
@@ -325,46 +301,41 @@ namespace CronExpressionDescriptor.Test
 
         public void TestMinutesPastTheHour()
         {
-            Assert.Equal("Vid 5 minuter över", GetDescription("0 5 0/1 * * ?"));
+            Assert.Equal("På 5 minutter etter timen", GetDescription("0 5 0/1 * * ?"));
         }
 
         [Fact]
-
         public void TestOneYearOnlyWithSeconds()
         {
-            Assert.Equal("Varje sekund, bara i 2013", GetDescription("* * * * * * 2013"));
+            Assert.Equal("Hvert sekund, bare i 2013", GetDescription("* * * * * * 2013"));
         }
 
         [Fact]
-
         public void TestOneYearOnlyWithoutSeconds()
         {
-            Assert.Equal("Varje minut, bara i 2013", GetDescription("* * * * * 2013"));
+            Assert.Equal("Hvert minutt, bare i 2013", GetDescription("* * * * * 2013"));
         }
 
         [Fact]
-
         public void TestTwoYearsOnly()
         {
             Assert.Equal(
-                "Varje minut, bara i 2013 och 2014", GetDescription("* * * * * 2013,2014"));
+                "Hvert minutt, bare i 2013 og 2014", GetDescription("* * * * * 2013,2014"));
         }
 
         [Fact]
-
         public void TestYearRange2()
         {
             Assert.Equal(
-                "På 12:23 PM, januari till och med februari, 2013 till och med 2014",
+                "På 12:23 PM, januar til og med februar, 2013 til og med 2014",
                 GetDescription("23 12 * JAN-FEB * 2013-2014"));
         }
 
         [Fact]
-
         public void TestYearRange3()
         {
             Assert.Equal(
-                "På 12:23 PM, januari till och med mars, 2013 till och med 2015",
+                "På 12:23 PM, januar til og med mars, 2013 til og med 2015",
                 GetDescription("23 12 * JAN-MAR * 2013-2015"));
         }
 
@@ -372,43 +343,43 @@ namespace CronExpressionDescriptor.Test
         public void TestSecondsInternalWithStepValue()
         {
             // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
-            Assert.Equal("Upprepas efter 30 sekunder, börjar efter 5 sekunder", GetDescription("5/30 * * * * ?"));
+            Assert.Equal("Hvert 30 sekund, starter på 5 sekunder etter minuttet", GetDescription("5/30 * * * * ?"));
         }
 
         [Fact]
         public void TestMinutesInternalWithStepValue()
         {
-            Assert.Equal("Upprepas efter 30 minuter, börjar vid 5 minuter över", GetDescription("0 5/30 * * * ?"));
+            Assert.Equal("Hvert 30 minutt, starter på 5 minutter etter timen", GetDescription("0 5/30 * * * ?"));
         }
 
         [Fact]
         public void TestHoursInternalWithStepValue()
         {
-            Assert.Equal("Varje sekund, upprepas efter 8 timmar, börjar på 05:00 AM", GetDescription("* * 5/8 * * ?"));
+            Assert.Equal("Hvert sekund, hver 8 time, starter på 05:00 AM", GetDescription("* * 5/8 * * ?"));
         }
 
         [Fact]
         public void TestDayOfMonthInternalWithStepValue()
         {
-            Assert.Equal("På 07:05 AM, var 3(:e/:a) dag, börjar på dag 2 av månaden", GetDescription("0 5 7 2/3 * ? *"));
+            Assert.Equal("På 07:05 AM, hver 3 dag, starter på dag 2 av måneden", GetDescription("0 5 7 2/3 * ? *"));
         }
 
         [Fact]
         public void TestMonthInternalWithStepValue()
         {
-            Assert.Equal("På 07:05 AM, var 2(:e/:a) månad, mars till och med december", GetDescription("0 5 7 ? 3/2 ? *"));
+            Assert.Equal("På 07:05 AM, hver 2 måned], mars til og med desember", GetDescription("0 5 7 ? 3/2 ? *"));
         }
 
         [Fact]
         public void TestDayOfWeekInternalWithStepValue()
         {
-            Assert.Equal("På 07:05 AM, var 3(:e/:a) veckodag, tisdag till och med lördag", GetDescription("0 5 7 ? * 2/3 *"));
+            Assert.Equal("På 07:05 AM, hver 3 ukedag, tirsdag til og med lørdag", GetDescription("0 5 7 ? * 2/3 *"));
         }
 
         [Fact]
         public void TestYearInternalWithStepValue()
         {
-            Assert.Equal("På 07:05 AM, var 4 år, 2016 till och med 9999", GetDescription("0 5 7 ? * ? 2016/4"));
+            Assert.Equal("På 07:05 AM, hvert 4 år, 2016 til og med 9999", GetDescription("0 5 7 ? * ? 2016/4"));
         }
     }
 }

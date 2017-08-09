@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 using System;
 using System.Globalization;
 using System.Threading;
@@ -8,416 +8,393 @@ namespace CronExpressionDescriptor.Test
     /// <summary>
     /// Tests for Ukrainian translations
     /// </summary>
-    [TestFixture]
-    public class TestFormatsUk
+    public class TestFormatsUk : BaseTestFormats
     {
-        [OneTimeSetUp]
-        public void SetUp()
+        protected override string GetLocale()
         {
-            ExpressionDescriptor.SetDefaultLocale("uk-UA");
+            return "uk-UA";
         }
-     
-        [Test]
+
+        [Fact]
         public void TestEveryMinute()
         {
-           Assert.AreEqual("Щохвилини", ExpressionDescriptor.GetDescription("* * * * *"));
+            Assert.Equal("Щохвилини", GetDescription("* * * * *"));
         }
 
-        [Test]
+        [Fact]
         public void TestEvery1Minute()
         {
-            Assert.AreEqual("Щохвилини", ExpressionDescriptor.GetDescription("*/1 * * * *"));
-            Assert.AreEqual("Щохвилини", ExpressionDescriptor.GetDescription("0 0/1 * * * ?"));
+            Assert.Equal("Щохвилини", GetDescription("*/1 * * * *"));
+            Assert.Equal("Щохвилини", GetDescription("0 0/1 * * * ?"));
         }
 
-        [Test]
+        [Fact]
         public void TestEveryHour()
         {
-            Assert.AreEqual("Щогодини", ExpressionDescriptor.GetDescription("0 0 * * * ?"));
-            Assert.AreEqual("Щогодини", ExpressionDescriptor.GetDescription("0 0 0/1 * * ?"));
+            Assert.Equal("Щогодини", GetDescription("0 0 * * * ?"));
+            Assert.Equal("Щогодини", GetDescription("0 0 0/1 * * ?"));
         }
 
-        [Test]
-#if __MonoCS__
-        [Ignore("Mono is returning wrong apostrophe character for UK culture..")]
-#endif
+        [Fact]
         public void TestTimeOfDayCertainDaysOfWeek()
         {
-            Assert.AreEqual("О 23:00, понеділок по п'ятниця", ExpressionDescriptor.GetDescription("0 23 ? * MON-FRI"));
+            Assert.Equal("О 23:00, понеділок по пʼятниця", GetDescription("0 23 ? * MON-FRI"));
         }
 
-        [Test]
+        [Fact]
         public void TestEverySecond()
         {
-            Assert.AreEqual("Щосекунди", ExpressionDescriptor.GetDescription("* * * * * *"));
+            Assert.Equal("Щосекунди", GetDescription("* * * * * *"));
         }
 
-        [Test]
+        [Fact]
         public void TestEvery45Seconds()
         {
-            Assert.AreEqual("Кожні 45 секунд", ExpressionDescriptor.GetDescription("*/45 * * * * *"));
+            Assert.Equal("Кожні 45 секунд", GetDescription("*/45 * * * * *"));
         }
 
-        [Test]
+        [Fact]
         public void TestEvery5Minutes()
         {
-            Assert.AreEqual("Кожні 5 хвилин", ExpressionDescriptor.GetDescription("*/5 * * * *"));
-            Assert.AreEqual("Кожні 10 хвилин", ExpressionDescriptor.GetDescription("0 0/10 * * * ?"));
+            Assert.Equal("Кожні 5 хвилин", GetDescription("*/5 * * * *"));
+            Assert.Equal("Кожні 10 хвилин", GetDescription("0 0/10 * * * ?"));
         }
 
-        [Test]
+        [Fact]
         public void TestEvery5MinutesOnTheSecond()
         {
-            Assert.AreEqual("Кожні 5 хвилин", ExpressionDescriptor.GetDescription("0 */5 * * * *"));
+            Assert.Equal("Кожні 5 хвилин", GetDescription("0 */5 * * * *"));
         }
 
-        [Test]
-#if __MonoCS__
-        [Ignore("Mono is returning wrong apostrophe character for UK culture..")]
-#endif
+        [Fact]
         public void TestWeekdaysAtTime()
         {
-            Assert.AreEqual("О 11:30, понеділок по п'ятниця", ExpressionDescriptor.GetDescription("30 11 * * 1-5"));
+            Assert.Equal("О 11:30, понеділок по пʼятниця", GetDescription("30 11 * * 1-5"));
         }
 
-        [Test]
+        [Fact]
         public void TestDailyAtTime()
         {
-            Assert.AreEqual("О 11:30", ExpressionDescriptor.GetDescription("30 11 * * *"));
+            Assert.Equal("О 11:30", GetDescription("30 11 * * *"));
         }
 
-        [Test]
+        [Fact]
         public void TestMinuteSpan()
         {
-            Assert.AreEqual("Щохвилини між 11:00 та 11:10", ExpressionDescriptor.GetDescription("0-10 11 * * *"));
+            Assert.Equal("Щохвилини між 11:00 та 11:10", GetDescription("0-10 11 * * *"));
         }
 
-        [Test]
+        [Fact]
         public void TestOneMonthOnly()
         {
-            Assert.IsTrue(string.Equals("Щохвилини, тільки в березень", ExpressionDescriptor.GetDescription("* * * 3 *"),
-                Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
+            Assert.Equal("Щохвилини, тільки в березень", GetDescription("* * * 3 *"));
         }
 
-        [Test]
+        [Fact]
         public void TestTwoMonthsOnly()
         {
-            Assert.IsTrue(string.Equals("Щохвилини, тільки в березень та червень", ExpressionDescriptor.GetDescription("* * * 3,6 *"),
-               Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
+            Assert.Equal("Щохвилини, тільки в березень та червень", GetDescription("* * * 3,6 *"));
         }
 
-        [Test]
+        [Fact]
         public void TestTwoTimesEachAfternoon()
         {
-            Assert.AreEqual("О 14:30 та 16:30", ExpressionDescriptor.GetDescription("30 14,16 * * *"));
+            Assert.Equal("О 14:30 та 16:30", GetDescription("30 14,16 * * *"));
         }
 
-        [Test]
+        [Fact]
         public void TestThreeTimesDaily()
         {
-            Assert.AreEqual("О 06:30, 14:30 та 16:30", ExpressionDescriptor.GetDescription("30 6,14,16 * * *"));
+            Assert.Equal("О 06:30, 14:30 та 16:30", GetDescription("30 6,14,16 * * *"));
         }
 
-        [Test]
+        [Fact]
         public void TestOnceAWeek()
         {
-            Assert.AreEqual("О 09:46, тільки в понеділок", ExpressionDescriptor.GetDescription("46 9 * * 1"));
+            Assert.Equal("О 09:46, тільки в понеділок", GetDescription("46 9 * * 1"));
         }
 
-        [Test]
+        [Fact]
         public void TestDayOfMonth()
         {
-            Assert.AreEqual("О 12:23, на 15 день місяця", ExpressionDescriptor.GetDescription("23 12 15 * *"));
+            Assert.Equal("О 12:23, на 15 день місяця", GetDescription("23 12 15 * *"));
         }
 
-        [Test]
+        [Fact]
         public void TestMonthName()
         {
-            Assert.IsTrue(string.Equals("О 12:23, тільки в січень", ExpressionDescriptor.GetDescription("23 12 * JAN * "),
-             Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
+            Assert.Equal("О 12:23, тільки в січень", GetDescription("23 12 * JAN * "));
         }
 
-        [Test]
+        [Fact]
         public void TestDayOfMonthWithQuestionMark()
         {
-            Assert.IsTrue(string.Equals("О 12:23, тільки в січень", ExpressionDescriptor.GetDescription("23 12 ? JAN *"),
-               Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
+            Assert.Equal("О 12:23, тільки в січень", GetDescription("23 12 ? JAN *"));
         }
 
-        [Test]
+        [Fact]
         public void TestMonthNameRange2()
         {
-            Assert.IsTrue(string.Equals("О 12:23, січень по лютий", ExpressionDescriptor.GetDescription("23 12 * JAN-FEB *"),
-             Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
+            Assert.Equal("О 12:23, січень по лютий", GetDescription("23 12 * JAN-FEB *"));
         }
 
-        [Test]
+        [Fact]
         public void TestMonthNameRange3()
         {
-            Assert.IsTrue(string.Equals("О 12:23, січень по березень", ExpressionDescriptor.GetDescription("23 12 * JAN-MAR *"),
-             Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
+            Assert.Equal("О 12:23, січень по березень", GetDescription("23 12 * JAN-MAR *"));
         }
 
-        [Test]
+        [Fact]
         public void TestDayOfWeekName()
         {
-            Assert.AreEqual("О 12:23, тільки в неділя", ExpressionDescriptor.GetDescription("23 12 * * SUN"));
+            Assert.Equal("О 12:23, тільки в неділя", GetDescription("23 12 * * SUN"));
         }
 
-        [Test]
+        [Fact]
 #if __MonoCS__
         [Ignore("Mono is returning wrong apostrophe character for UK culture..")]
 #endif
         public void TestDayOfWeekRange()
         {
-            Assert.AreEqual("Кожні 5 хвилин, о 15:00, понеділок по п'ятниця", ExpressionDescriptor.GetDescription("*/5 15 * * MON-FRI"));
+            Assert.Equal("Кожні 5 хвилин, о 15:00, понеділок по пʼятниця", GetDescription("*/5 15 * * MON-FRI"));
         }
 
-        [Test]
+        [Fact]
         public void TestDayOfWeekOnceInMonth()
         {
-            Assert.AreEqual("Щохвилини, в третій понеділок місяця", ExpressionDescriptor.GetDescription("* * * * MON#3"));
+            Assert.Equal("Щохвилини, в третій понеділок місяця", GetDescription("* * * * MON#3"));
         }
 
-        [Test]
+        [Fact]
         public void TestLastDayOfTheWeekOfTheMonth()
         {
-            Assert.AreEqual("Щохвилини, в останній четвер місяця", ExpressionDescriptor.GetDescription("* * * * 4L"));
+            Assert.Equal("Щохвилини, в останній четвер місяця", GetDescription("* * * * 4L"));
         }
 
-        [Test]
+        [Fact]
         public void TestLastDayOfTheMonth()
         {
-            Assert.IsTrue(string.Equals("Кожні 5 хвилин, в останній день місяця, тільки в січень", ExpressionDescriptor.GetDescription("*/5 * L JAN *"),
-              Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
+            Assert.Equal("Кожні 5 хвилин, в останній день місяця, тільки в січень", GetDescription("*/5 * L JAN *"));
         }
 
-        [Test]
+        [Fact]
         public void TestLastWeekdayOfTheMonth()
         {
-            Assert.AreEqual("Щохвилини, в останній будень місяця", ExpressionDescriptor.GetDescription("* * LW * *"));
+            Assert.Equal("Щохвилини, в останній будень місяця", GetDescription("* * LW * *"));
         }
 
-        [Test]
+        [Fact]
         public void TestLastWeekdayOfTheMonth2()
         {
-            Assert.AreEqual("Щохвилини, в останній будень місяця", ExpressionDescriptor.GetDescription("* * WL * *"));
+            Assert.Equal("Щохвилини, в останній будень місяця", GetDescription("* * WL * *"));
         }
 
-        [Test]
+        [Fact]
         public void TestFirstWeekdayOfTheMonth()
         {
-            Assert.AreEqual("Щохвилини, в перший будень місяця", ExpressionDescriptor.GetDescription("* * 1W * *"));
+            Assert.Equal("Щохвилини, в перший будень місяця", GetDescription("* * 1W * *"));
         }
 
-        [Test]
+        [Fact]
         public void TestFirstWeekdayOfTheMonth2()
         {
-            Assert.AreEqual("Щохвилини, в перший будень місяця", ExpressionDescriptor.GetDescription("* * W1 * *"));
+            Assert.Equal("Щохвилини, в перший будень місяця", GetDescription("* * W1 * *"));
         }
 
-        [Test]
+        [Fact]
         public void TestParticularWeekdayOfTheMonth()
         {
-            Assert.AreEqual("Щохвилини, в будень найближчий до 5 дня місяця", ExpressionDescriptor.GetDescription("* * 5W * *"));
+            Assert.Equal("Щохвилини, в будень найближчий до 5 дня місяця", GetDescription("* * 5W * *"));
         }
 
-        [Test]
+        [Fact]
         public void TestParticularWeekdayOfTheMonth2()
         {
-            Assert.AreEqual("Щохвилини, в будень найближчий до 5 дня місяця", ExpressionDescriptor.GetDescription("* * W5 * *"));
+            Assert.Equal("Щохвилини, в будень найближчий до 5 дня місяця", GetDescription("* * W5 * *"));
         }
 
-        [Test]
+        [Fact]
         public void TestTimeOfDayWithSeconds()
         {
-            Assert.AreEqual("О 14:02:30", ExpressionDescriptor.GetDescription("30 02 14 * * *"));
+            Assert.Equal("О 14:02:30", GetDescription("30 02 14 * * *"));
         }
 
-        [Test]
+        [Fact]
         public void TestSecondInternvals()
         {
-            Assert.AreEqual("З 5 по 10 секунду", ExpressionDescriptor.GetDescription("5-10 * * * * *"));
+            Assert.Equal("З 5 по 10 секунду", GetDescription("5-10 * * * * *"));
         }
 
-        [Test]
+        [Fact]
         public void TestSecondMinutesHoursIntervals()
         {
-            Assert.AreEqual("З 5 по 10 секунду, з 30 по 35 хвилину, між 10:00 та 12:59", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
+            Assert.Equal("З 5 по 10 секунду, з 30 по 35 хвилину, між 10:00 та 12:59", GetDescription("5-10 30-35 10-12 * * *"));
         }
 
-        [Test]
+        [Fact]
         public void TestEvery5MinutesAt30Seconds()
         {
-            Assert.AreEqual("О 30 секунді, кожні 5 хвилин", ExpressionDescriptor.GetDescription("30 */5 * * * *"));
+            Assert.Equal("О 30 секунді, кожні 5 хвилин", GetDescription("30 */5 * * * *"));
         }
 
-        [Test]
-#if __MonoCS__
-        [Ignore("Mono is returning wrong apostrophe character for UK culture..")]
-#endif
+        [Fact]
         public void TestMinutesPastTheHourRange()
         {
-            Assert.AreEqual("О 30 хвилині, між 10:00 та 13:59, тільки в середа та п'ятниця", ExpressionDescriptor.GetDescription("0 30 10-13 ? * WED,FRI"));
+            Assert.Equal("О 30 хвилині, між 10:00 та 13:59, тільки в середа та пʼятниця", GetDescription("0 30 10-13 ? * WED,FRI"));
         }
 
-        [Test]
+        [Fact]
         public void TestSecondsPastTheMinuteInterval()
         {
-            Assert.AreEqual("О 10 секунді, кожні 5 хвилин", ExpressionDescriptor.GetDescription("10 0/5 * * * ?"));
+            Assert.Equal("О 10 секунді, кожні 5 хвилин", GetDescription("10 0/5 * * * ?"));
         }
 
-        [Test]
+        [Fact]
         public void TestBetweenWithInterval()
         {
-            Assert.IsTrue(string.Equals("Кожні 3 хвилин, з 2 по 59 хвилину, о 01:00, 09:00, та 22:00, між 11 та 26 днями місяця, січень по червень", ExpressionDescriptor.GetDescription("2-59/3 1,9,22 11-26 1-6 ?"),
-              Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
+            Assert.Equal("Кожні 3 хвилин, з 2 по 59 хвилину, о 01:00, 09:00, та 22:00, між 11 та 26 днями місяця, січень по червень", GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
         }
 
-        [Test]
+        [Fact]
         public void TestRecurringFirstOfMonth()
         {
-            Assert.AreEqual("О 06:00", ExpressionDescriptor.GetDescription("0 0 6 1/1 * ?"));
+            Assert.Equal("О 06:00", GetDescription("0 0 6 1/1 * ?"));
         }
 
-        [Test]
+        [Fact]
         public void TestMinutesPastTheHour()
         {
-            Assert.AreEqual("О 5 хвилині", ExpressionDescriptor.GetDescription("0 5 0/1 * * ?"));
+            Assert.Equal("О 5 хвилині", GetDescription("0 5 0/1 * * ?"));
         }
 
-        [Test]
+        [Fact]
         public void TestOneYearOnlyWithSeconds()
         {
-            Assert.AreEqual("Щосекунди, тільки в 2013", ExpressionDescriptor.GetDescription("* * * * * * 2013"));
+            Assert.Equal("Щосекунди, тільки в 2013", GetDescription("* * * * * * 2013"));
         }
-        
-        [Test]
+
+        [Fact]
         public void TestOneYearOnlyWithoutSeconds()
         {
-            Assert.AreEqual("Щохвилини, тільки в 2013", ExpressionDescriptor.GetDescription("* * * * * 2013"));
+            Assert.Equal("Щохвилини, тільки в 2013", GetDescription("* * * * * 2013"));
         }
 
-        [Test]
+        [Fact]
         public void TestTwoYearsOnly()
         {
-            Assert.AreEqual("Щохвилини, тільки в 2013 та 2014", ExpressionDescriptor.GetDescription("* * * * * 2013,2014"));
+            Assert.Equal("Щохвилини, тільки в 2013 та 2014", GetDescription("* * * * * 2013,2014"));
         }
 
-        [Test]
+        [Fact]
         public void TestYearRange2()
         {
-            Assert.IsTrue(string.Equals("О 12:23, січень по лютий, 2013 по 2014", ExpressionDescriptor.GetDescription("23 12 * JAN-FEB * 2013-2014"),
-                Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
+            Assert.Equal("О 12:23, січень по лютий, 2013 по 2014", GetDescription("23 12 * JAN-FEB * 2013-2014"));
         }
 
-        [Test]
+        [Fact]
         public void TestYearRange3()
         {
-            Assert.IsTrue(string.Equals("О 12:23, січень по березень, 2013 по 2015", ExpressionDescriptor.GetDescription("23 12 * JAN-MAR * 2013-2015"),
-               Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
+            Assert.Equal("О 12:23, січень по березень, 2013 по 2015", GetDescription("23 12 * JAN-MAR * 2013-2015"));
         }
 
-        [Test]
+        [Fact]
         public void TestHourRange()
         {
-            Assert.AreEqual("Кожні 30 хвилин, між 08:00 та 09:59, на 5 та 20 день місяця", ExpressionDescriptor.GetDescription("0 0/30 8-9 5,20 * ?"));
+            Assert.Equal("Кожні 30 хвилин, між 08:00 та 09:59, на 5 та 20 день місяця", GetDescription("0 0/30 8-9 5,20 * ?"));
         }
 
-        [Test]
+        [Fact]
         public void TestDayOfWeekModifier()
         {
-            Assert.AreEqual("О 12:23, в другий неділя місяця", ExpressionDescriptor.GetDescription("23 12 * * SUN#2"));
+            Assert.Equal("О 12:23, в другий неділя місяця", GetDescription("23 12 * * SUN#2"));
         }
 
-        [Test]
+        [Fact]
         public void TestDayOfWeekModifierWithSundayStartOne()
         {
             Options options = new Options();
             options.DayOfWeekStartIndexZero = false;
 
-            Assert.AreEqual("О 12:23, в другий неділя місяця", ExpressionDescriptor.GetDescription("23 12 * * 1#2", options));
+            Assert.Equal("О 12:23, в другий неділя місяця", GetDescription("23 12 * * 1#2", options));
         }
 
-        [Test]
+        [Fact]
         public void TestHourRangeWithEveryPortion()
         {
-            Assert.AreEqual("О 25 хвилині, кожні 13 годин, між 07:00 та 19:59", ExpressionDescriptor.GetDescription("0 25 7-19/13 ? * *"));
+            Assert.Equal("О 25 хвилині, кожні 13 годин, між 07:00 та 19:59", GetDescription("0 25 7-19/13 ? * *"));
         }
 
-        [Test]
+        [Fact]
         public void TestHourRangeWithTrailingZeroWithEveryPortion()
         {
-            Assert.AreEqual("О 25 хвилині, кожні 13 годин, між 07:00 та 20:59", ExpressionDescriptor.GetDescription("0 25 7-20/13 ? * *"));
+            Assert.Equal("О 25 хвилині, кожні 13 годин, між 07:00 та 20:59", GetDescription("0 25 7-20/13 ? * *"));
         }
 
-        [Test]
+        [Fact]
         public void TestEvery3Day()
         {
-            Assert.AreEqual("О 08:00, кожен 3 день", ExpressionDescriptor.GetDescription("0 0 8 1/3 * ? *"));
+            Assert.Equal("О 08:00, кожен 3 день", GetDescription("0 0 8 1/3 * ? *"));
         }
 
-        [Test]
+        [Fact]
         public void TestsEvery3DayOfTheWeek()
         {
-            Assert.AreEqual("О 10:15, кожен 3 день тижня", ExpressionDescriptor.GetDescription("0 15 10 ? * */3"));
+            Assert.Equal("О 10:15, кожен 3 день тижня", GetDescription("0 15 10 ? * */3"));
         }
 
-        [Test]
+        [Fact]
         public void TestEvery3Month()
         {
-            Assert.AreEqual("О 07:05, на 2 день місяця, кожен 3 місяць", ExpressionDescriptor.GetDescription("0 5 7 2 1/3 ? *"));
+            Assert.Equal("О 07:05, на 2 день місяця, кожен 3 місяць", GetDescription("0 5 7 2 1/3 ? *"));
         }
 
-        [Test]
+        [Fact]
         public void TestEvery2Years()
         {
-            Assert.IsTrue(string.Equals("О 06:15, на 1 день місяця, тільки в січень, кожні 2 роки", ExpressionDescriptor.GetDescription("0 15 6 1 1 ? 1/2"),
-                Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
+            Assert.Equal("О 06:15, на 1 день місяця, тільки в січень, кожні 2 роки", GetDescription("0 15 6 1 1 ? 1/2"));
         }
-        
-        [Test]
+
+        [Fact]
         public void TestSecondsInternalWithStepValue()
         {
             // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
-            Assert.AreEqual("Кожні 30 секунд, початок о 5 секунді", ExpressionDescriptor.GetDescription("5/30 * * * * ?"));
+            Assert.Equal("Кожні 30 секунд, початок о 5 секунді", GetDescription("5/30 * * * * ?"));
         }
 
-        [Test]
+        [Fact]
         public void TestMinutesInternalWithStepValue()
         {
-            Assert.AreEqual("Кожні 30 хвилин, початок о 5 хвилині", ExpressionDescriptor.GetDescription("0 5/30 * * * ?"));
+            Assert.Equal("Кожні 30 хвилин, початок о 5 хвилині", GetDescription("0 5/30 * * * ?"));
         }
-        
-        [Test]
+
+        [Fact]
         public void TestHoursInternalWithStepValue()
         {
-            Assert.AreEqual("Щосекунди, кожні 8 годин, початок о 05:00", ExpressionDescriptor.GetDescription("* * 5/8 * * ?"));
+            Assert.Equal("Щосекунди, кожні 8 годин, початок о 05:00", GetDescription("* * 5/8 * * ?"));
         }
-        
-        [Test]
+
+        [Fact]
         public void TestDayOfMonthInternalWithStepValue()
         {
-            Assert.AreEqual("О 07:05, кожен 3 день, початок на 2 день місяця", ExpressionDescriptor.GetDescription("0 5 7 2/3 * ? *"));
+            Assert.Equal("О 07:05, кожен 3 день, початок на 2 день місяця", GetDescription("0 5 7 2/3 * ? *"));
         }
-        
-        [Test]
+
+        [Fact]
         public void TestMonthInternalWithStepValue()
         {
-            Assert.IsTrue(string.Equals("О 07:05, кожен 2 місяць, березень по грудень", ExpressionDescriptor.GetDescription("0 5 7 ? 3/2 ? *"),
-                Utilities.IsRunningOnMono() ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture));
+            Assert.Equal("О 07:05, кожен 2 місяць, березень по грудень", GetDescription("0 5 7 ? 3/2 ? *"));
         }
-        
-        [Test]
+
+        [Fact]
         public void TestDayOfWeekInternalWithStepValue()
         {
-            Assert.AreEqual("О 07:05, кожен 3 день тижня, вівторок по субота", ExpressionDescriptor.GetDescription("0 5 7 ? * 2/3 *"));
+            Assert.Equal("О 07:05, кожен 3 день тижня, вівторок по субота", GetDescription("0 5 7 ? * 2/3 *"));
         }
-                
-        [Test]
+
+        [Fact]
         public void TestYearInternalWithStepValue()
         {
-            Assert.AreEqual("О 07:05, кожні 4 роки, 2016 по 9999", ExpressionDescriptor.GetDescription("0 5 7 ? * ? 2016/4"));
+            Assert.Equal("О 07:05, кожні 4 роки, 2016 по 9999", GetDescription("0 5 7 ? * ? 2016/4"));
         }
     }
 }

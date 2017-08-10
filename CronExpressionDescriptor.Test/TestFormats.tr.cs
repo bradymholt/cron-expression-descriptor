@@ -1,393 +1,385 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using NUnit.Framework;
-using System.Threading;
-using System.Globalization;
-using System.IO;
+﻿using Xunit;
 
 namespace CronExpressionDescriptor.Test
 {
-    [TestFixture]
-    public class TestFormatsTR
+    /// <summary>
+    /// Tests for Turkish translation
+    /// </summary>
+    public class TestFormatsTR : Support.BaseTestFormats
     {
-        [TestFixtureSetUp]
-        public void SetUp()
+        protected override string GetLocale()
         {
-            CultureInfo myCultureInfo = new CultureInfo("tr-TR");
-            Thread.CurrentThread.CurrentCulture = myCultureInfo;
-            Thread.CurrentThread.CurrentUICulture = myCultureInfo;
+            return "tr-TR";
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestEveryMinute()
         {
-            Assert.AreEqual("Her dakika", ExpressionDescriptor.GetDescription("* * * * *"));
+            Assert.Equal("Her dakika", GetDescription("* * * * *"));
         }
-        [Test]
-        
+        [Fact]
+
         public void TestEvery1Minute()
         {
-            Assert.AreEqual("Her dakika", ExpressionDescriptor.GetDescription("*/1 * * * *"));
-            Assert.AreEqual("Her dakika", ExpressionDescriptor.GetDescription("0 0/1 * * * ?"));
+            Assert.Equal("Her dakika", GetDescription("*/1 * * * *"));
+            Assert.Equal("Her dakika", GetDescription("0 0/1 * * * ?"));
         }
-        [Test]
-        
+        [Fact]
+
         public void TestEveryHour()
         {
-            Assert.AreEqual("Her saat", ExpressionDescriptor.GetDescription("0 0 * * * ?"));
-            Assert.AreEqual("Her saat", ExpressionDescriptor.GetDescription("0 0 0/1 * * ?"));
+            Assert.Equal("Her saat", GetDescription("0 0 * * * ?"));
+            Assert.Equal("Her saat", GetDescription("0 0 0/1 * * ?"));
         }
-        [Test]
-        
+        [Fact]
+
         public void TestTimeOfDayCertainDaysOfWeek()
         {
-            Assert.AreEqual("Saat 23:00, Pazartesi ile Cuma arasında", ExpressionDescriptor.GetDescription("0 23 ? * MON-FRI"));
+            Assert.Equal("Saat 23:00, Pazartesi ile Cuma arasında", GetDescription("0 23 ? * MON-FRI"));
         }
-        [Test]
-        
+        [Fact]
+
         public void TestEverySecond()
         {
-            Assert.AreEqual("Her saniye", ExpressionDescriptor.GetDescription("* * * * * *"));
+            Assert.Equal("Her saniye", GetDescription("* * * * * *"));
         }
-        [Test]
-        
+        [Fact]
+
         public void TestEvery45Seconds()
         {
-            Assert.AreEqual("Her 45 saniyede bir", ExpressionDescriptor.GetDescription("*/45 * * * * *"));
+            Assert.Equal("Her 45 saniyede bir", GetDescription("*/45 * * * * *"));
         }
-        [Test]
-        
+        [Fact]
+
         public void TestEvery5Minutes()
         {
-            Assert.AreEqual("Her 5 dakikada bir", ExpressionDescriptor.GetDescription("*/5 * * * *"));
-            Assert.AreEqual("Her 10 dakikada bir", ExpressionDescriptor.GetDescription("0 0/10 * * * ?"));
+            Assert.Equal("Her 5 dakikada bir", GetDescription("*/5 * * * *"));
+            Assert.Equal("Her 10 dakikada bir", GetDescription("0 0/10 * * * ?"));
         }
-        [Test]
-        
+        [Fact]
+
         public void TestEvery5MinutesOnTheSecond()
         {
-            Assert.AreEqual("Her 5 dakikada bir", ExpressionDescriptor.GetDescription("0 */5 * * * *"));
+            Assert.Equal("Her 5 dakikada bir", GetDescription("0 */5 * * * *"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestWeekdaysAtTime()
         {
-            Assert.AreEqual("Saat 11:30, Pazartesi ile Cuma arasında", ExpressionDescriptor.GetDescription("30 11 * * 1-5"));
+            Assert.Equal("Saat 11:30, Pazartesi ile Cuma arasında", GetDescription("30 11 * * 1-5"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestDailyAtTime()
         {
-            Assert.AreEqual("Saat 11:30", ExpressionDescriptor.GetDescription("30 11 * * *"));
+            Assert.Equal("Saat 11:30", GetDescription("30 11 * * *"));
         }
-        [Test]
-        
+        [Fact]
+
         public void TestMinuteSpan()
         {
-            Assert.AreEqual("Saat 11:00 ve 11:10 arasındaki her dakika", ExpressionDescriptor.GetDescription("0-10 11 * * *"));
+            Assert.Equal("Saat 11:00 ve 11:10 arasındaki her dakika", GetDescription("0-10 11 * * *"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestOneMonthOnly()
         {
-            Assert.AreEqual("Her dakika, sadece Mart için", ExpressionDescriptor.GetDescription("* * * 3 *"));
+            Assert.Equal("Her dakika, sadece Mart için", GetDescription("* * * 3 *"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestTwoMonthsOnly()
         {
-            Assert.AreEqual("Her dakika, sadece Mart ve Haziran için", ExpressionDescriptor.GetDescription("* * * 3,6 *"));
+            Assert.Equal("Her dakika, sadece Mart ve Haziran için", GetDescription("* * * 3,6 *"));
         }
-        [Test]
+        [Fact]
         public void TestTwoTimesEachAfternoon()
         {
-            Assert.AreEqual("Saat 14:30 ve 16:30", ExpressionDescriptor.GetDescription("30 14,16 * * *"));
+            Assert.Equal("Saat 14:30 ve 16:30", GetDescription("30 14,16 * * *"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestThreeTimesDaily()
         {
-            Assert.AreEqual("Saat 06:30, 14:30 ve 16:30", ExpressionDescriptor.GetDescription("30 6,14,16 * * *"));
+            Assert.Equal("Saat 06:30, 14:30 ve 16:30", GetDescription("30 6,14,16 * * *"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestOnceAWeek()
         {
-            Assert.AreEqual("Saat 09:46, sadece Pazartesi günü", ExpressionDescriptor.GetDescription("46 9 * * 1"));
+            Assert.Equal("Saat 09:46, sadece Pazartesi günü", GetDescription("46 9 * * 1"));
         }
-        [Test]
-        
+        [Fact]
+
         public void TestDayOfMonth()
         {
-            Assert.AreEqual("Saat 12:23, ayın 15. günü", ExpressionDescriptor.GetDescription("23 12 15 * *"));
+            Assert.Equal("Saat 12:23, ayın 15. günü", GetDescription("23 12 15 * *"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestMonthName()
         {
-            Assert.AreEqual("Saat 12:23, sadece Ocak için", ExpressionDescriptor.GetDescription("23 12 * JAN *"));
+            Assert.Equal("Saat 12:23, sadece Ocak için", GetDescription("23 12 * JAN *"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestDayOfMonthWithQuestionMark()
         {
-            Assert.AreEqual("Saat 12:23, sadece Ocak için", ExpressionDescriptor.GetDescription("23 12 ? JAN *"));
+            Assert.Equal("Saat 12:23, sadece Ocak için", GetDescription("23 12 ? JAN *"));
         }
-        [Test]
-        
+        [Fact]
+
         public void TestMonthNameRange2()
         {
-            Assert.AreEqual("Saat 12:23, Ocak ile Şubat arasında", ExpressionDescriptor.GetDescription("23 12 * JAN-FEB *"));
+            Assert.Equal("Saat 12:23, Ocak ile Şubat arasında", GetDescription("23 12 * JAN-FEB *"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestMonthNameRange3()
         {
-            Assert.AreEqual("Saat 12:23, Ocak ile Mart arasında", ExpressionDescriptor.GetDescription("23 12 * JAN-MAR *"));
+            Assert.Equal("Saat 12:23, Ocak ile Mart arasında", GetDescription("23 12 * JAN-MAR *"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestDayOfWeekName()
         {
-            Assert.AreEqual("Saat 12:23, sadece Pazar günü", ExpressionDescriptor.GetDescription("23 12 * * SUN"));
+            Assert.Equal("Saat 12:23, sadece Pazar günü", GetDescription("23 12 * * SUN"));
         }
-        [Test]
-        
+        [Fact]
+
         public void TestDayOfWeekRange()
         {
-            Assert.AreEqual("Her 5 dakikada bir, saat 15:00, Pazartesi ile Cuma arasında", ExpressionDescriptor.GetDescription("*/5 15 * * MON-FRI"));
+            Assert.Equal("Her 5 dakikada bir, saat 15:00, Pazartesi ile Cuma arasında", GetDescription("*/5 15 * * MON-FRI"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestDayOfWeekOnceInMonth()
         {
-            Assert.AreEqual("Her dakika, ayın üçüncü Pazartesi günü", ExpressionDescriptor.GetDescription("* * * * MON#3"));
+            Assert.Equal("Her dakika, ayın üçüncü Pazartesi günü", GetDescription("* * * * MON#3"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestLastDayOfTheWeekOfTheMonth()
         {
-            Assert.AreEqual("Her dakika, ayın son Perşembe günü", ExpressionDescriptor.GetDescription("* * * * 4L"));
+            Assert.Equal("Her dakika, ayın son Perşembe günü", GetDescription("* * * * 4L"));
         }
-        [Test]
-        
+        [Fact]
+
         public void TestLastDayOfTheMonth()
         {
-            Assert.AreEqual("Her 5 dakikada bir, ayın son günü, sadece Ocak için", ExpressionDescriptor.GetDescription("*/5 * L JAN *"));
+            Assert.Equal("Her 5 dakikada bir, ayın son günü, sadece Ocak için", GetDescription("*/5 * L JAN *"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestLastWeekdayOfTheMonth()
         {
-            Assert.AreEqual("Her dakika, ayın son iş günü", ExpressionDescriptor.GetDescription("* * LW * *"));
+            Assert.Equal("Her dakika, ayın son iş günü", GetDescription("* * LW * *"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestLastWeekdayOfTheMonth2()
         {
-            Assert.AreEqual("Her dakika, ayın son iş günü", ExpressionDescriptor.GetDescription("* * WL * *"));
+            Assert.Equal("Her dakika, ayın son iş günü", GetDescription("* * WL * *"));
         }
-        [Test]
-        
+        [Fact]
+
         public void TestFirstWeekdayOfTheMonth()
         {
-            Assert.AreEqual("Her dakika, ayın ilk iş günü", ExpressionDescriptor.GetDescription("* * 1W * *"));
+            Assert.Equal("Her dakika, ayın ilk iş günü", GetDescription("* * 1W * *"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestFirstWeekdayOfTheMonth2()
         {
-            Assert.AreEqual("Her dakika, ayın ilk iş günü", ExpressionDescriptor.GetDescription("* * W1 * *"));
+            Assert.Equal("Her dakika, ayın ilk iş günü", GetDescription("* * W1 * *"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestParticularWeekdayOfTheMonth()
         {
-            Assert.AreEqual("Her dakika, ayın 5. günü sonrasındaki ilk iş günü", ExpressionDescriptor.GetDescription("* * 5W * *"));
+            Assert.Equal("Her dakika, ayın 5. günü sonrasındaki ilk iş günü", GetDescription("* * 5W * *"));
         }
-        [Test]
-        
+        [Fact]
+
         public void TestParticularWeekdayOfTheMonth2()
         {
-            Assert.AreEqual("Her dakika, ayın 5. günü sonrasındaki ilk iş günü", ExpressionDescriptor.GetDescription("* * W5 * *"));
+            Assert.Equal("Her dakika, ayın 5. günü sonrasındaki ilk iş günü", GetDescription("* * W5 * *"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestTimeOfDayWithSeconds()
         {
-            Assert.AreEqual("Saat 14:02:30", ExpressionDescriptor.GetDescription("30 02 14 * * *"));
+            Assert.Equal("Saat 14:02:30", GetDescription("30 02 14 * * *"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestSecondInternvals()
         {
-            Assert.AreEqual("Dakikaların 5. ve 10. saniyeleri arası", ExpressionDescriptor.GetDescription("5-10 * * * * *"));
+            Assert.Equal("Dakikaların 5. ve 10. saniyeleri arası", GetDescription("5-10 * * * * *"));
         }
-        [Test]
-        
+        [Fact]
+
         public void TestSecondMinutesHoursIntervals()
         {
-            Assert.AreEqual("Dakikaların 5. ve 10. saniyeleri arası, saatlerin 30. ve 35. dakikaları arası, 10:00 ile 12:59 arasında", ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *"));
+            Assert.Equal("Dakikaların 5. ve 10. saniyeleri arası, saatlerin 30. ve 35. dakikaları arası, 10:00 ile 12:59 arasında", GetDescription("5-10 30-35 10-12 * * *"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestEvery5MinutesAt30Seconds()
         {
-            Assert.AreEqual("Dakikaların 30. saniyesinde, her 5 dakikada bir", ExpressionDescriptor.GetDescription("30 */5 * * * *"));
+            Assert.Equal("Dakikaların 30. saniyesinde, her 5 dakikada bir", GetDescription("30 */5 * * * *"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestMinutesPastTheHourRange()
         {
-            Assert.AreEqual("Saatlerin 30. dakikasında, 10:00 ile 13:59 arasında, sadece Çarşamba ve Cuma günü", ExpressionDescriptor.GetDescription("0 30 10-13 ? * WED,FRI"));
+            Assert.Equal("Saatlerin 30. dakikasında, 10:00 ile 13:59 arasında, sadece Çarşamba ve Cuma günü", GetDescription("0 30 10-13 ? * WED,FRI"));
         }
-        [Test]
-        
+        [Fact]
+
         public void TestSecondsPastTheMinuteInterval()
         {
-            Assert.AreEqual("Dakikaların 10. saniyesinde, her 5 dakikada bir", ExpressionDescriptor.GetDescription("10 0/5 * * * ?"));
+            Assert.Equal("Dakikaların 10. saniyesinde, her 5 dakikada bir", GetDescription("10 0/5 * * * ?"));
         }
-        [Test]
-        
+        [Fact]
+
         public void TestBetweenWithInterval()
         {
-            Assert.AreEqual("Her 3 dakikada bir, saatlerin 2. ve 59. dakikaları arası, saat 01:00, 09:00, ve 22:00, ayın 11. ve 26. günleri arası, Ocak ile Haziran arasında", ExpressionDescriptor.GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
+            Assert.Equal("Her 3 dakikada bir, saatlerin 2. ve 59. dakikaları arası, saat 01:00, 09:00, ve 22:00, ayın 11. ve 26. günleri arası, Ocak ile Haziran arasında", GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
         }
-        [Test]
-        
+        [Fact]
+
         public void TestRecurringFirstOfMonth()
         {
-            Assert.AreEqual("Saat 06:00", ExpressionDescriptor.GetDescription("0 0 6 1/1 * ?"));
+            Assert.Equal("Saat 06:00", GetDescription("0 0 6 1/1 * ?"));
         }
-        [Test]
-        
+        [Fact]
+
         public void TestMinutesPastTheHour()
         {
-            Assert.AreEqual("Saatlerin 5. dakikasında", ExpressionDescriptor.GetDescription("0 5 0/1 * * ?"));
+            Assert.Equal("Saatlerin 5. dakikasında", GetDescription("0 5 0/1 * * ?"));
         }
-        [Test]
-        
+        [Fact]
+
         public void TestOneYearOnlyWithSeconds()
         {
-            Assert.AreEqual("Her saniye, sadece 2013 için", ExpressionDescriptor.GetDescription("* * * * * * 2013"));
+            Assert.Equal("Her saniye, sadece 2013 için", GetDescription("* * * * * * 2013"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestOneYearOnlyWithoutSeconds()
         {
-            Assert.AreEqual("Her dakika, sadece 2013 için", ExpressionDescriptor.GetDescription("* * * * * 2013"));
+            Assert.Equal("Her dakika, sadece 2013 için", GetDescription("* * * * * 2013"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestTwoYearsOnly()
         {
-            Assert.AreEqual("Her dakika, sadece 2013 ve 2014 için", ExpressionDescriptor.GetDescription("* * * * * 2013,2014"));
+            Assert.Equal("Her dakika, sadece 2013 ve 2014 için", GetDescription("* * * * * 2013,2014"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestYearRange2()
         {
-            Assert.AreEqual("Saat 12:23, Ocak ile Şubat arasında, 2013 ile 2014 arasında", ExpressionDescriptor.GetDescription("23 12 * JAN-FEB * 2013-2014"));
+            Assert.Equal("Saat 12:23, Ocak ile Şubat arasında, 2013 ile 2014 arasında", GetDescription("23 12 * JAN-FEB * 2013-2014"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestYearRange3()
         {
-            Assert.AreEqual("Saat 12:23, Ocak ile Mart arasında, 2013 ile 2015 arasında", ExpressionDescriptor.GetDescription("23 12 * JAN-MAR * 2013-2015"));
+            Assert.Equal("Saat 12:23, Ocak ile Mart arasında, 2013 ile 2015 arasında", GetDescription("23 12 * JAN-MAR * 2013-2015"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestHourRange()
         {
-            Assert.AreEqual("Her 30 dakikada bir, 08:00 ile 09:59 arasında, ayın 5 ve 20. günü", ExpressionDescriptor.GetDescription("0 0/30 8-9 5,20 * ?"));
+            Assert.Equal("Her 30 dakikada bir, 08:00 ile 09:59 arasında, ayın 5 ve 20. günü", GetDescription("0 0/30 8-9 5,20 * ?"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestDayOfWeekModifier()
         {
-            Assert.AreEqual("Saat 12:23, ayın ikinci Pazar günü", ExpressionDescriptor.GetDescription("23 12 * * SUN#2"));
+            Assert.Equal("Saat 12:23, ayın ikinci Pazar günü", GetDescription("23 12 * * SUN#2"));
         }
 
-        [Test]
-        
+        [Fact]
+
         public void TestDayOfWeekModifierWithSundayStartOne()
         {
             Options options = new Options();
             options.DayOfWeekStartIndexZero = false;
 
-            Assert.AreEqual("Saat 12:23, ayın ikinci Pazar günü", ExpressionDescriptor.GetDescription("23 12 * * 1#2", options));
+            Assert.Equal("Saat 12:23, ayın ikinci Pazar günü", GetDescription("23 12 * * 1#2", options));
         }
 
-        [Test]
+        [Fact]
         public void TestSecondsInternalWithStepValue()
         {
             // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
-            Assert.AreEqual("Her 30 saniyede bir, başlangıç dakikaların 5. saniyesinde", ExpressionDescriptor.GetDescription("5/30 * * * * ?"));
+            Assert.Equal("Her 30 saniyede bir, başlangıç dakikaların 5. saniyesinde", GetDescription("5/30 * * * * ?"));
         }
 
-        [Test]
+        [Fact]
         public void TestMinutesInternalWithStepValue()
         {
-            Assert.AreEqual("Her 30 dakikada bir, başlangıç saatlerin 5. dakikasında", ExpressionDescriptor.GetDescription("0 5/30 * * * ?"));
+            Assert.Equal("Her 30 dakikada bir, başlangıç saatlerin 5. dakikasında", GetDescription("0 5/30 * * * ?"));
         }
-        
-        [Test]
+
+        [Fact]
         public void TestHoursInternalWithStepValue()
         {
-            Assert.AreEqual("Her saniye, her 8 saatte, başlangıç saat 05:00", ExpressionDescriptor.GetDescription("* * 5/8 * * ?"));
+            Assert.Equal("Her saniye, her 8 saatte, başlangıç saat 05:00", GetDescription("* * 5/8 * * ?"));
         }
-        
-        [Test]
+
+        [Fact]
         public void TestDayOfMonthInternalWithStepValue()
         {
-            Assert.AreEqual("Saat 07:05, 3 günde bir, başlangıç ayın 2. günü", ExpressionDescriptor.GetDescription("0 5 7 2/3 * ? *"));
+            Assert.Equal("Saat 07:05, 3 günde bir, başlangıç ayın 2. günü", GetDescription("0 5 7 2/3 * ? *"));
         }
-        
-        [Test]
+
+        [Fact]
         public void TestMonthInternalWithStepValue()
         {
-            Assert.AreEqual("Saat 07:05, 2 ayda bir, Mart ile Aralık arasında", ExpressionDescriptor.GetDescription("0 5 7 ? 3/2 ? *"));
+            Assert.Equal("Saat 07:05, 2 ayda bir, Mart ile Aralık arasında", GetDescription("0 5 7 ? 3/2 ? *"));
         }
-        
-        [Test]
+
+        [Fact]
         public void TestDayOfWeekInternalWithStepValue()
         {
-            Assert.AreEqual("Saat 07:05, ayın her 3 günü, Salı ile Cumartesi arasında", ExpressionDescriptor.GetDescription("0 5 7 ? * 2/3 *"));
+            Assert.Equal("Saat 07:05, ayın her 3 günü, Salı ile Cumartesi arasında", GetDescription("0 5 7 ? * 2/3 *"));
         }
-                
-        [Test]
+
+        [Fact]
         public void TestYearInternalWithStepValue()
         {
-            Assert.AreEqual("Saat 07:05, 4 yılda bir, 2016 ile 9999 arasında", ExpressionDescriptor.GetDescription("0 5 7 ? * ? 2016/4"));
+            Assert.Equal("Saat 07:05, 4 yılda bir, 2016 ile 9999 arasında", GetDescription("0 5 7 ? * ? 2016/4"));
         }
     }
 }

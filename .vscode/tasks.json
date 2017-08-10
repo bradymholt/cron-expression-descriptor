@@ -1,23 +1,66 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
-    "version": "0.1.0",
-    "command": "${workspaceRoot}/.vscode/tasks.sh",
-    "showOutput": "silent",
-    "tasks": [
-        {
-            "isBuildCommand": true,
-            "taskName": "build",
-            // Show the output window only if unrecognized errors occur.
-            "showOutput": "always",
-            // Use the standard MS compiler pattern to detect errors, warnings and infos
-            "problemMatcher": "$msCompile"
-        },
-         {
-            "isTestCommand": true,
-            "taskName": "test",
-            // Show the output window only if unrecognized errors occur.
-            "showOutput": "always"
-        }
-    ]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "taskName": "build",
+      "command": "dotnet",
+      "args": ["build"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "taskName": "test",
+      "command": "dotnet",
+      "args": [
+        "test",
+        "CronExpressionDescriptor.Test/CronExpressionDescriptor.Test.csproj"
+      ],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "taskName": "run-demo",
+      "command": "dotnet",
+      "args": ["run"],
+      "options": {
+        "cwd": "${workspaceRoot}/CronExpressionDescriptor.Demo"
+      },
+      "problemMatcher": ["$msCompile"]
+    },
+    {
+      "taskName": "pack",
+      "command": "dotnet",
+      "args": [
+        "pack",
+        "CronExpressionDescriptor/CronExpressionDescriptor.csproj",
+        "--configuration",
+        "release"
+      ],
+      "problemMatcher": ["$msCompile"]
+    },
+    {
+      "taskName": "nupkg-clean",
+      "command": "rm ${workspaceRoot}/CronExpressionDescriptor/bin/release/*.nupkg",
+      "type": "shell"
+    },
+    {
+      "taskName": "release",
+      "command": "dotnet",
+      "dependsOn": ["nupkg-clean", "pack"],
+      "args": [
+        "nuget",
+        "push",
+        "CronExpressionDescriptor/bin/release/*.nupkg",
+        "-k",
+        "${env:NUGET_API_KEY}"
+      ],
+      "problemMatcher": ["$msCompile"]
+    }
+  ]
 }

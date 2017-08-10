@@ -1,7 +1,5 @@
-﻿using System;
-using System.Globalization;
-using System.Threading;
-using Xunit;
+﻿using Xunit;
+using Assert = CronExpressionDescriptor.Test.Support.AssertExtensions;
 
 namespace CronExpressionDescriptor.Test
 {
@@ -15,295 +13,295 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestEveryMinute()
         {
-            Assert.Equal("Ogni minuto", GetDescription("* * * * *"));
+            Assert.EqualsCaseInsensitive("Ogni minuto", GetDescription("* * * * *"));
         }
 
         [Fact]
         public void TestEvery1Minute()
         {
-            Assert.Equal("Ogni minuto", GetDescription("*/1 * * * *"));
-            Assert.Equal("Ogni minuto", GetDescription("0 0/1 * * * ?"));
+            Assert.EqualsCaseInsensitive("Ogni minuto", GetDescription("*/1 * * * *"));
+            Assert.EqualsCaseInsensitive("Ogni minuto", GetDescription("0 0/1 * * * ?"));
         }
 
         [Fact]
         public void TestEveryHour()
         {
-            Assert.Equal("Ogni ora", GetDescription("0 0 * * * ?"));
-            Assert.Equal("Ogni ora", GetDescription("0 0 0/1 * * ?"));
+            Assert.EqualsCaseInsensitive("Ogni ora", GetDescription("0 0 * * * ?"));
+            Assert.EqualsCaseInsensitive("Ogni ora", GetDescription("0 0 0/1 * * ?"));
         }
 
         [Fact]
         public void TestTimeOfDayCertainDaysOfWeek()
         {
-            Assert.Equal("Alle 23:00, Lunedì al Venerdì", GetDescription("0 23 ? * MON-FRI"));
+            Assert.EqualsCaseInsensitive("Alle 23:00, Lunedì al Venerdì", GetDescription("0 23 ? * MON-FRI"));
         }
 
         [Fact]
         public void TestEverySecond()
         {
-            Assert.Equal("Ogni secondo", GetDescription("* * * * * *"));
+            Assert.EqualsCaseInsensitive("Ogni secondo", GetDescription("* * * * * *"));
         }
 
         [Fact]
         public void TestEvery45Seconds()
         {
-            Assert.Equal("Ogni 45 secondi", GetDescription("*/45 * * * * *"));
+            Assert.EqualsCaseInsensitive("Ogni 45 secondi", GetDescription("*/45 * * * * *"));
         }
 
         [Fact]
         public void TestEvery5Minutes()
         {
-            Assert.Equal("Ogni 5 minuti", GetDescription("*/5 * * * *"));
-            Assert.Equal("Ogni 10 minuti", GetDescription("0 0/10 * * * ?"));
+            Assert.EqualsCaseInsensitive("Ogni 5 minuti", GetDescription("*/5 * * * *"));
+            Assert.EqualsCaseInsensitive("Ogni 10 minuti", GetDescription("0 0/10 * * * ?"));
         }
 
         [Fact]
         public void TestEvery5MinutesOnTheSecond()
         {
-            Assert.Equal("Ogni 5 minuti", GetDescription("0 */5 * * * *"));
+            Assert.EqualsCaseInsensitive("Ogni 5 minuti", GetDescription("0 */5 * * * *"));
         }
 
         [Fact]
         public void TestWeekdaysAtTime()
         {
-            Assert.Equal("Alle 11:30, Lunedì al Venerdì", GetDescription("30 11 * * 1-5"));
+            Assert.EqualsCaseInsensitive("Alle 11:30, Lunedì al Venerdì", GetDescription("30 11 * * 1-5"));
         }
 
         [Fact]
         public void TestDailyAtTime()
         {
-            Assert.Equal("Alle 11:30", GetDescription("30 11 * * *"));
+            Assert.EqualsCaseInsensitive("Alle 11:30", GetDescription("30 11 * * *"));
         }
 
         [Fact]
         public void TestMinuteSpan()
         {
-            Assert.Equal("Ogni minuto tra le 11:00 e le 11:10", GetDescription("0-10 11 * * *"));
+            Assert.EqualsCaseInsensitive("Ogni minuto tra le 11:00 e le 11:10", GetDescription("0-10 11 * * *"));
         }
 
         [Fact]
         public void TestOneMonthOnly()
         {
-            Assert.Equal("Ogni minuto, solo in Marzo", GetDescription("* * * 3 *"));
+            Assert.EqualsCaseInsensitive("Ogni minuto, solo in Marzo", GetDescription("* * * 3 *"));
         }
 
         [Fact]
         public void TestTwoMonthsOnly()
         {
-            Assert.Equal("Ogni minuto, solo in Marzo e Giugno", GetDescription("* * * 3,6 *"));
+            Assert.EqualsCaseInsensitive("Ogni minuto, solo in Marzo e Giugno", GetDescription("* * * 3,6 *"));
         }
 
         [Fact]
         public void TestTwoTimesEachAfternoon()
         {
-            Assert.Equal("Alle 14:30 e 16:30", GetDescription("30 14,16 * * *"));
+            Assert.EqualsCaseInsensitive("Alle 14:30 e 16:30", GetDescription("30 14,16 * * *"));
         }
 
         [Fact]
         public void TestThreeTimesDaily()
         {
-            Assert.Equal("Alle 06:30, 14:30 e 16:30", GetDescription("30 6,14,16 * * *"));
+            Assert.EqualsCaseInsensitive("Alle 06:30, 14:30 e 16:30", GetDescription("30 6,14,16 * * *"));
         }
 
         [Fact]
         public void TestOnceAWeek()
         {
-            Assert.Equal("Alle 09:46, solo il Lunedì", GetDescription("46 9 * * 1"));
+            Assert.EqualsCaseInsensitive("Alle 09:46, solo il Lunedì", GetDescription("46 9 * * 1"));
         }
 
         [Fact]
         public void TestDayOfMonth()
         {
-            Assert.Equal("Alle 12:23, il giorno 15 del mese", GetDescription("23 12 15 * *"));
+            Assert.EqualsCaseInsensitive("Alle 12:23, il giorno 15 del mese", GetDescription("23 12 15 * *"));
         }
 
         [Fact]
         public void TestMonthName()
         {
-            Assert.Equal("Alle 12:23, solo in Gennaio",
+            Assert.EqualsCaseInsensitive("Alle 12:23, solo in Gennaio",
                 GetDescription("23 12 * JAN *"));
         }
 
         [Fact]
         public void TestDayOfMonthWithQuestionMark()
         {
-            Assert.Equal("Alle 12:23, solo in Gennaio", GetDescription("23 12 ? JAN *"));
+            Assert.EqualsCaseInsensitive("Alle 12:23, solo in Gennaio", GetDescription("23 12 ? JAN *"));
         }
 
         [Fact]
         public void TestMonthNameRange2()
         {
-            Assert.Equal("Alle 12:23, Gennaio al Febbraio", GetDescription("23 12 * JAN-FEB *"));
+            Assert.EqualsCaseInsensitive("Alle 12:23, Gennaio al Febbraio", GetDescription("23 12 * JAN-FEB *"));
         }
 
         [Fact]
         public void TestMonthNameRange3()
         {
-            Assert.Equal("Alle 12:23, Gennaio al Marzo", GetDescription("23 12 * JAN-MAR *"));
+            Assert.EqualsCaseInsensitive("Alle 12:23, Gennaio al Marzo", GetDescription("23 12 * JAN-MAR *"));
         }
 
         [Fact]
         public void TestDayOfWeekName()
         {
-            Assert.Equal("Alle 12:23, solo il Domenica", GetDescription("23 12 * * SUN"));
+            Assert.EqualsCaseInsensitive("Alle 12:23, solo il Domenica", GetDescription("23 12 * * SUN"));
         }
 
         [Fact]
         public void TestDayOfWeekRange()
         {
-            Assert.Equal("Ogni 5 minuti, alle 15:00, Lunedì al Venerdì", GetDescription("*/5 15 * * MON-FRI"));
+            Assert.EqualsCaseInsensitive("Ogni 5 minuti, alle 15:00, Lunedì al Venerdì", GetDescription("*/5 15 * * MON-FRI"));
         }
 
         [Fact]
         public void TestDayOfWeekOnceInMonth()
         {
-            Assert.Equal("Ogni minuto, il terzo Lunedì del mese", GetDescription("* * * * MON#3"));
+            Assert.EqualsCaseInsensitive("Ogni minuto, il terzo Lunedì del mese", GetDescription("* * * * MON#3"));
         }
 
         [Fact]
         public void TestLastDayOfTheWeekOfTheMonth()
         {
-            Assert.Equal("Ogni minuto, l'ultimo Giovedì del mese", GetDescription("* * * * 4L"));
+            Assert.EqualsCaseInsensitive("Ogni minuto, l'ultimo Giovedì del mese", GetDescription("* * * * 4L"));
         }
 
         [Fact]
         public void TestLastDayOfTheMonth()
         {
-            Assert.Equal("Ogni 5 minuti, l'ultimo giorno del mese, solo in Gennaio", GetDescription("*/5 * L JAN *"));
+            Assert.EqualsCaseInsensitive("Ogni 5 minuti, l'ultimo giorno del mese, solo in Gennaio", GetDescription("*/5 * L JAN *"));
         }
 
         [Fact]
         public void TestLastWeekdayOfTheMonth()
         {
-            Assert.Equal("Ogni minuto, nell'ultima settimana del mese", GetDescription("* * LW * *"));
+            Assert.EqualsCaseInsensitive("Ogni minuto, nell'ultima settimana del mese", GetDescription("* * LW * *"));
         }
 
         [Fact]
         public void TestLastWeekdayOfTheMonth2()
         {
-            Assert.Equal("Ogni minuto, nell'ultima settimana del mese", GetDescription("* * WL * *"));
+            Assert.EqualsCaseInsensitive("Ogni minuto, nell'ultima settimana del mese", GetDescription("* * WL * *"));
         }
 
         [Fact]
         public void TestFirstWeekdayOfTheMonth()
         {
-            Assert.Equal("Ogni minuto, il primo giorno della settimana del mese", GetDescription("* * 1W * *"));
+            Assert.EqualsCaseInsensitive("Ogni minuto, il primo giorno della settimana del mese", GetDescription("* * 1W * *"));
         }
 
         [Fact]
         public void TestFirstWeekdayOfTheMonth2()
         {
-            Assert.Equal("Ogni minuto, il primo giorno della settimana del mese", GetDescription("* * W1 * *"));
+            Assert.EqualsCaseInsensitive("Ogni minuto, il primo giorno della settimana del mese", GetDescription("* * W1 * *"));
         }
 
         [Fact]
         public void TestParticularWeekdayOfTheMonth()
         {
-            Assert.Equal("Ogni minuto, il giorno della settimana più vicino al 5 del mese", GetDescription("* * 5W * *"));
+            Assert.EqualsCaseInsensitive("Ogni minuto, il giorno della settimana più vicino al 5 del mese", GetDescription("* * 5W * *"));
         }
 
         [Fact]
         public void TestParticularWeekdayOfTheMonth2()
         {
-            Assert.Equal("Ogni minuto, il giorno della settimana più vicino al 5 del mese", GetDescription("* * W5 * *"));
+            Assert.EqualsCaseInsensitive("Ogni minuto, il giorno della settimana più vicino al 5 del mese", GetDescription("* * W5 * *"));
         }
 
         [Fact]
         public void TestTimeOfDayWithSeconds()
         {
-            Assert.Equal("Alle 14:02:30", GetDescription("30 02 14 * * *"));
+            Assert.EqualsCaseInsensitive("Alle 14:02:30", GetDescription("30 02 14 * * *"));
         }
 
         [Fact]
         public void TestSecondInternvals()
         {
-            Assert.Equal("Secondi 5 al 10 oltre il minuto", GetDescription("5-10 * * * * *"));
+            Assert.EqualsCaseInsensitive("Secondi 5 al 10 oltre il minuto", GetDescription("5-10 * * * * *"));
         }
 
         [Fact]
         public void TestSecondMinutesHoursIntervals()
         {
-            Assert.Equal("Secondi 5 al 10 oltre il minuto, minuti 30 al 35 dopo l'ora, tra le 10:00 e le 12:59", GetDescription("5-10 30-35 10-12 * * *"));
+            Assert.EqualsCaseInsensitive("Secondi 5 al 10 oltre il minuto, minuti 30 al 35 dopo l'ora, tra le 10:00 e le 12:59", GetDescription("5-10 30-35 10-12 * * *"));
         }
 
         [Fact]
         public void TestEvery5MinutesAt30Seconds()
         {
-            Assert.Equal("Al 30 secondo passato il minuto, ogni 5 minuti", GetDescription("30 */5 * * * *"));
+            Assert.EqualsCaseInsensitive("Al 30 secondo passato il minuto, ogni 5 minuti", GetDescription("30 */5 * * * *"));
         }
 
         [Fact]
         public void TestMinutesPastTheHourRange()
         {
-            Assert.Equal("Al 30 minuto passata l'ora, tra le 10:00 e le 13:59, solo il Mercoledì e Venerdì", GetDescription("0 30 10-13 ? * WED,FRI"));
+            Assert.EqualsCaseInsensitive("Al 30 minuto passata l'ora, tra le 10:00 e le 13:59, solo il Mercoledì e Venerdì", GetDescription("0 30 10-13 ? * WED,FRI"));
         }
 
         [Fact]
         public void TestSecondsPastTheMinuteInterval()
         {
-            Assert.Equal("Al 10 secondo passato il minuto, ogni 5 minuti", GetDescription("10 0/5 * * * ?"));
+            Assert.EqualsCaseInsensitive("Al 10 secondo passato il minuto, ogni 5 minuti", GetDescription("10 0/5 * * * ?"));
         }
 
         [Fact]
         public void TestBetweenWithInterval()
         {
-            Assert.Equal("Ogni 3 minuti, minuti 2 al 59 dopo l'ora, alle 01:00, 09:00, e 22:00, tra il giorno 11 e 26 del mese, Gennaio al Giugno",
+            Assert.EqualsCaseInsensitive("Ogni 3 minuti, minuti 2 al 59 dopo l'ora, alle 01:00, 09:00, e 22:00, tra il giorno 11 e 26 del mese, Gennaio al Giugno",
              GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
         }
 
         [Fact]
         public void TestRecurringFirstOfMonth()
         {
-            Assert.Equal("Alle 06:00", GetDescription("0 0 6 1/1 * ?"));
+            Assert.EqualsCaseInsensitive("Alle 06:00", GetDescription("0 0 6 1/1 * ?"));
         }
 
 
         [Fact]
         public void TestMinutesPastTheHour()
         {
-            Assert.Equal("Al 5 minuto passata l'ora", GetDescription("0 5 0/1 * * ?"));
+            Assert.EqualsCaseInsensitive("Al 5 minuto passata l'ora", GetDescription("0 5 0/1 * * ?"));
         }
 
         [Fact]
         public void TestOneYearOnlyWithSeconds()
         {
-            Assert.Equal("Ogni secondo, solo in 2013", GetDescription("* * * * * * 2013"));
+            Assert.EqualsCaseInsensitive("Ogni secondo, solo in 2013", GetDescription("* * * * * * 2013"));
         }
 
         [Fact]
         public void TestOneYearOnlyWithoutSeconds()
         {
-            Assert.Equal("Ogni minuto, solo in 2013", GetDescription("* * * * * 2013"));
+            Assert.EqualsCaseInsensitive("Ogni minuto, solo in 2013", GetDescription("* * * * * 2013"));
         }
 
         [Fact]
         public void TestTwoYearsOnly()
         {
-            Assert.Equal("Ogni minuto, solo in 2013 e 2014", GetDescription("* * * * * 2013,2014"));
+            Assert.EqualsCaseInsensitive("Ogni minuto, solo in 2013 e 2014", GetDescription("* * * * * 2013,2014"));
         }
 
         [Fact]
         public void TestYearRange2()
         {
-            Assert.Equal("Alle 12:23, Gennaio al Febbraio, 2013 al 2014", GetDescription("23 12 * JAN-FEB * 2013-2014"));
+            Assert.EqualsCaseInsensitive("Alle 12:23, Gennaio al Febbraio, 2013 al 2014", GetDescription("23 12 * JAN-FEB * 2013-2014"));
         }
 
         [Fact]
         public void TestYearRange3()
         {
-            Assert.Equal("Alle 12:23, Gennaio al Marzo, 2013 al 2015", GetDescription("23 12 * JAN-MAR * 2013-2015"));
+            Assert.EqualsCaseInsensitive("Alle 12:23, Gennaio al Marzo, 2013 al 2015", GetDescription("23 12 * JAN-MAR * 2013-2015"));
         }
 
         [Fact]
         public void TestHourRange()
         {
-            Assert.Equal("Ogni 30 minuti, tra le 08:00 e le 09:59, il giorno 5 e 20 del mese", GetDescription("0 0/30 8-9 5,20 * ?"));
+            Assert.EqualsCaseInsensitive("Ogni 30 minuti, tra le 08:00 e le 09:59, il giorno 5 e 20 del mese", GetDescription("0 0/30 8-9 5,20 * ?"));
         }
 
         [Fact]
         public void TestDayOfWeekModifier()
         {
-            Assert.Equal("Alle 12:23, il secondo Domenica del mese", GetDescription("23 12 * * SUN#2"));
+            Assert.EqualsCaseInsensitive("Alle 12:23, il secondo Domenica del mese", GetDescription("23 12 * * SUN#2"));
         }
 
         [Fact]
@@ -312,86 +310,86 @@ namespace CronExpressionDescriptor.Test
             Options options = new Options();
             options.DayOfWeekStartIndexZero = false;
 
-            Assert.Equal("Alle 12:23, il secondo Domenica del mese", GetDescription("23 12 * * 1#2", options));
+            Assert.EqualsCaseInsensitive("Alle 12:23, il secondo Domenica del mese", GetDescription("23 12 * * 1#2", options));
         }
 
         [Fact]
         public void TestHourRangeWithEveryPortion()
         {
-            Assert.Equal("Al 25 minuto passata l'ora, ogni 13 ore, tra le 07:00 e le 19:59", GetDescription("0 25 7-19/13 ? * *"));
+            Assert.EqualsCaseInsensitive("Al 25 minuto passata l'ora, ogni 13 ore, tra le 07:00 e le 19:59", GetDescription("0 25 7-19/13 ? * *"));
         }
 
         [Fact]
         public void TestHourRangeWithTrailingZeroWithEveryPortion()
         {
-            Assert.Equal("Al 25 minuto passata l'ora, ogni 13 ore, tra le 07:00 e le 20:59", GetDescription("0 25 7-20/13 ? * *"));
+            Assert.EqualsCaseInsensitive("Al 25 minuto passata l'ora, ogni 13 ore, tra le 07:00 e le 20:59", GetDescription("0 25 7-20/13 ? * *"));
         }
 
         [Fact]
         public void TestEvery3Day()
         {
-            Assert.Equal("Alle 08:00, ogni 3 giorni", GetDescription("0 0 8 1/3 * ? *"));
+            Assert.EqualsCaseInsensitive("Alle 08:00, ogni 3 giorni", GetDescription("0 0 8 1/3 * ? *"));
         }
 
         [Fact]
         public void TestsEvery3DayOfTheWeek()
         {
-            Assert.Equal("Alle 10:15, ogni 3 giorni della settimana", GetDescription("0 15 10 ? * */3"));
+            Assert.EqualsCaseInsensitive("Alle 10:15, ogni 3 giorni della settimana", GetDescription("0 15 10 ? * */3"));
         }
 
         [Fact]
         public void TestEvery3Month()
         {
-            Assert.Equal("Alle 07:05, il giorno 2 del mese, ogni 3 mesi", GetDescription("0 5 7 2 1/3 ? *"));
+            Assert.EqualsCaseInsensitive("Alle 07:05, il giorno 2 del mese, ogni 3 mesi", GetDescription("0 5 7 2 1/3 ? *"));
         }
 
         [Fact]
         public void TestEvery2Years()
         {
-            Assert.Equal("Alle 06:15, il giorno 1 del mese, solo in Gennaio, ogni 2 anni", GetDescription("0 15 6 1 1 ? 1/2"));
+            Assert.EqualsCaseInsensitive("Alle 06:15, il giorno 1 del mese, solo in Gennaio, ogni 2 anni", GetDescription("0 15 6 1 1 ? 1/2"));
         }
 
         [Fact]
         public void TestSecondsInternalWithStepValue()
         {
             // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
-            Assert.Equal("Ogni 30 secondi, a partire al 5 secondo passato il minuto", GetDescription("5/30 * * * * ?"));
+            Assert.EqualsCaseInsensitive("Ogni 30 secondi, a partire al 5 secondo passato il minuto", GetDescription("5/30 * * * * ?"));
         }
 
         [Fact]
         public void TestMinutesInternalWithStepValue()
         {
-            Assert.Equal("Ogni 30 minuti, a partire al 5 minuto passata l'ora", GetDescription("0 5/30 * * * ?"));
+            Assert.EqualsCaseInsensitive("Ogni 30 minuti, a partire al 5 minuto passata l'ora", GetDescription("0 5/30 * * * ?"));
         }
 
         [Fact]
         public void TestHoursInternalWithStepValue()
         {
-            Assert.Equal("Ogni secondo, ogni 8 ore, a partire alle 05:00", GetDescription("* * 5/8 * * ?"));
+            Assert.EqualsCaseInsensitive("Ogni secondo, ogni 8 ore, a partire alle 05:00", GetDescription("* * 5/8 * * ?"));
         }
 
         [Fact]
         public void TestDayOfMonthInternalWithStepValue()
         {
-            Assert.Equal("Alle 07:05, ogni 3 giorni, a partire il giorno 2 del mese", GetDescription("0 5 7 2/3 * ? *"));
+            Assert.EqualsCaseInsensitive("Alle 07:05, ogni 3 giorni, a partire il giorno 2 del mese", GetDescription("0 5 7 2/3 * ? *"));
         }
 
         [Fact]
         public void TestMonthInternalWithStepValue()
         {
-            Assert.Equal("Alle 07:05, ogni 2 mesi, Marzo al Dicembre", GetDescription("0 5 7 ? 3/2 ? *"));
+            Assert.EqualsCaseInsensitive("Alle 07:05, ogni 2 mesi, Marzo al Dicembre", GetDescription("0 5 7 ? 3/2 ? *"));
         }
 
         [Fact]
         public void TestDayOfWeekInternalWithStepValue()
         {
-            Assert.Equal("Alle 07:05, ogni 3 giorni della settimana, Martedì al Sabato", GetDescription("0 5 7 ? * 2/3 *"));
+            Assert.EqualsCaseInsensitive("Alle 07:05, ogni 3 giorni della settimana, Martedì al Sabato", GetDescription("0 5 7 ? * 2/3 *"));
         }
 
         [Fact]
         public void TestYearInternalWithStepValue()
         {
-            Assert.Equal("Alle 07:05, ogni 4 anni, 2016 al 9999", GetDescription("0 5 7 ? * ? 2016/4"));
+            Assert.EqualsCaseInsensitive("Alle 07:05, ogni 4 anni, 2016 al 9999", GetDescription("0 5 7 ? * ? 2016/4"));
         }
     }
 }

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using Xunit;
-using CronExpressionDescriptor;
+﻿using Xunit;
 
 namespace CronExpressionDescriptor.Test
 {

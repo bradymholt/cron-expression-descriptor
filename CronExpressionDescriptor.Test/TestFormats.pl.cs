@@ -1,6 +1,4 @@
 ﻿using Xunit;
-using System.Globalization;
-using System.Threading;
 
 namespace CronExpressionDescriptor.Test
 {

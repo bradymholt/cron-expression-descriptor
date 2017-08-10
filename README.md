@@ -100,7 +100,7 @@ Begining with version 2.0.0, the NuGet package will only contain a library targe
 - Universal Windows Platform >= 10.0
 - ([More](https://github.com/dotnet/standard/blob/master/docs/versions.md))
 
-If your application is targeting an earlier version of .NET Framework, you can use version `1.21.2` as it has support back to .NET 3.5.  To install this version, run `Install-Package CronExpressionDescriptor -Version 1.21.2`.
+If your application is targeting an earlier version of .NET Framework, you can use version `1.21.2` as it has support back to .NET Framework 3.5.  To install this version, run `Install-Package CronExpressionDescriptor -Version 1.21.2`.
 
 ## Demo
 

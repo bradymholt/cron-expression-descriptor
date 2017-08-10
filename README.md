@@ -15,6 +15,22 @@ A .NET library that converts cron expressions into human readable descriptions.
  * Provides casing options (Sentence, Title, Lower, etc.)
  * Localization with support for 15 languages
 
+## Download
+
+Cron Expression Descriptor releases can be installed with **NuGet**.
+
+### Package Manager (Visual Studio)
+
+    Install-Package CronExpressionDescriptor
+
+### .NET CLI
+
+    dotnet add package CronExpressionDescriptor
+
+[Visit the NuGet Package page](https://www.nuget.org/packages/CronExpressionDescriptor/) for more info.
+
+View [Releases](https://github.com/bradyholt/cron-expression-descriptor/releases) for release version history.
+
 ## Quick Start
 
     CronExpressionDescriptor.ExpressionDescriptor.GetDescription("* * * * *");
@@ -105,22 +121,6 @@ If your application is targeting an earlier version of .NET Framework, you can u
 ## Demo
 
 [https://cronexpressiondescriptor.azurewebsites.net](http://cronexpressiondescriptor.azurewebsites.net)
-
-## Download
-
-Cron Expression Descriptor releases can be installed with **NuGet**.
-
-### Package Manager (Visual Studio)
-
-    Install-Package CronExpressionDescriptor
-
-### .NET CLI
-
-    dotnet add package CronExpressionDescriptor
-
-[Visit the NuGet Package page](https://www.nuget.org/packages/CronExpressionDescriptor/) for more info.
-
-View [Releases](https://github.com/bradyholt/cron-expression-descriptor/releases) for release version history.
 
 ## Ports
 

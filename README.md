@@ -30,6 +30,16 @@ An `CronExpressionDescriptor.Options` object can be passed to `GetDescription`. 
 - **?bool Use24HourTimeFormat** - If true, descriptions will use a [24-hour clock](https://en.wikipedia.org/wiki/24-hour_clock) (Default: false but some translations will default to true)
 - **string Locale** - The locale to use (Default: "en")
 
+Example usage:
+
+```
+ExpressionDescriptor.GetDescription("0-10 11 * * *", new Options(){
+    DayOfWeekStartIndexZero = false,
+    Use24HourTimeFormat = true,
+    Locale = "fr"
+});
+```
+
 ## i18n
 
 The following language translations are available.
@@ -79,16 +89,6 @@ ExpressionDescriptor.GetDescription("* * * * *");
 ```
 
 If you need CurrentUICulture support, use version 1.21.2 (`Install-Package CronExpressionDescriptor -Version 1.21.2`), the latest version with this support.
-
-Example usage:
-
-```
-ExpressionDescriptor.GetDescription("0-10 11 * * *", new Options(){
-    DayOfWeekStartIndexZero = false,
-    Use24HourTimeFormat = true,
-    Locale = "fr"
-});
-```
 
 ## Demo
 

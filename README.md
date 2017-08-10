@@ -38,7 +38,7 @@ The following language translations are available.
 To use one of these translations, pass in the `Locale` option to `GetDescription`.  For example, to get the description of `0-10 11 * * *` in German:
 
 ```
-ExpressionDescriptor.GetDescription("0-10 11 * * *"new Options(){ Locale = "de" });
+ExpressionDescriptor.GetDescription("0-10 11 * * *", new Options(){ Locale = "de" });
 > "Jede Minute zwischen 11:00 und 11:10"
 ```
 
@@ -74,6 +74,12 @@ An `CronExpressionDescriptor.Options` object can be passed to `GetDescription`. 
 - **bool DayOfWeekStartIndexZero** - Whether to interpret cron expression DOW `1` as Sunday or Monday. (Default: true)
 - **?bool Use24HourTimeFormat** - If true, descriptions will use a [24-hour clock](https://en.wikipedia.org/wiki/24-hour_clock) (Default: false but some translations will default to true)
 - **string Locale** - The locale to use (Default: "en")
+
+Example usage:
+
+```
+ExpressionDescriptor.GetDescription("0-10 11 * * *", new Options(){ DayOfWeekStartIndexZero = false, Use24HourTimeFormat = true Locale = "fr" });
+```
 
 ## Demo
 

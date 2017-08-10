@@ -7,7 +7,7 @@ A .NET library that converts cron expressions into human readable descriptions.
 
 **Author**: Brady Holt (http://www.geekytidbits.com)
 **Contributors**: Renato Lima, Ivan Santos, Fabien Brooke, Siarhei Khalipski, Mustafa SADEDİL, TotalMace, Star Peng, LbISS, Arnaud TAMAILLON, Michael Schuler, Taras(tbudurovych)
-**License**: [MIT](http://opensource.org/licenses/MIT)
+**License**: [MIT](https://github.com/bradyholt/cron-expression-descriptor/blob/dotnet-core/LICENSE)
 
 Features
 --------

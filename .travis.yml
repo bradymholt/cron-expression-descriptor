@@ -4,4 +4,4 @@ dotnet: 1.0.4
 dist: trusty
 script:
   - dotnet restore
-  - dotnet test CronExpressionDescriptor.Test/CronExpressionDescriptor.Test.csproj
+  - dotnet test test/Test.csproj

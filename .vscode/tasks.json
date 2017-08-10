@@ -14,7 +14,7 @@
     {
       "taskName": "test",
       "command": "dotnet",
-      "args": ["test", "test/test.csproj"],
+      "args": ["test", "test/Test.csproj"],
       "group": {
         "kind": "test",
         "isDefault": true

@@ -23,6 +23,17 @@
         "isDefault": true
       },
       "problemMatcher": "$msCompile"
+    },
+    {
+      "taskName": "pack",
+      "command": "dotnet",
+      "args": [
+        "pack",
+        "CronExpressionDescriptor/CronExpressionDescriptor.csproj",
+        "--configuration",
+        "release"
+      ],
+      "problemMatcher": ["$msCompile"]
     }
   ]
 }

@@ -2,6 +2,9 @@
 
 namespace CronExpressionDescriptor.Test
 {
+    /// <summary>
+    /// Tests for Turkish translation
+    /// </summary>
     public class TestFormatsTR : Support.BaseTestFormats
     {
         protected override string GetLocale()

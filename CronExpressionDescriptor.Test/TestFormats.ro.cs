@@ -3,7 +3,7 @@
 namespace CronExpressionDescriptor.Test
 {
     /// <summary>
-    /// Tests for Romanian language
+    /// Tests for Romanian translation
     /// </summary>
     public class TestFormatsRO : Support.BaseTestFormats
     {

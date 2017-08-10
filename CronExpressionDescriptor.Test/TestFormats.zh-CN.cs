@@ -2,6 +2,9 @@
 
 namespace CronExpressionDescriptor.Test
 {
+    /// <summary>
+    /// Tests for Chinese Simplified translation
+    /// </summary>
     public class TestFormatsCN : Support.BaseTestFormats
     {
         protected override string GetLocale()

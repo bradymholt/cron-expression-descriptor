@@ -2,6 +2,9 @@
 
 namespace CronExpressionDescriptor.Test
 {
+    /// <summary>
+    /// Tests for Norwegian translation
+    /// </summary>
     public class TestFormatsNb : Support.BaseTestFormats
     {
         protected override string GetLocale()

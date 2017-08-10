@@ -3,6 +3,9 @@ using Assert = CronExpressionDescriptor.Test.Support.AssertExtensions;
 
 namespace CronExpressionDescriptor.Test
 {
+    /// <summary>
+    /// Tests for Swedish translation
+    /// </summary>
     public class TestFormatsSV : Support.BaseTestFormats
     {
         protected override string GetLocale()

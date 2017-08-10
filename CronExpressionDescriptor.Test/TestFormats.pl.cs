@@ -2,6 +2,9 @@
 
 namespace CronExpressionDescriptor.Test
 {
+    /// <summary>
+    /// Tests for Polish translation
+    /// </summary>
     public class TestFormatsPL : Support.BaseTestFormats
     {
         protected override string GetLocale()

@@ -2,6 +2,10 @@
 
 namespace CronExpressionDescriptor.Test
 {
+    /// <summary>
+    /// Tests for German translation
+    /// </summary>
+
     public class TestFormatsDE : Support.BaseTestFormats
     {
         protected override string GetLocale()

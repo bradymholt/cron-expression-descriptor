@@ -2,6 +2,9 @@
 
 namespace CronExpressionDescriptor.Test
 {
+    /// <summary>
+    /// Tests for Portuguese translation
+    /// </summary>
     public class TestFormatsPTBR : Support.BaseTestFormats
     {
         protected override string GetLocale()

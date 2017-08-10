@@ -4,7 +4,7 @@ using Assert = CronExpressionDescriptor.Test.Support.AssertExtensions;
 namespace CronExpressionDescriptor.Test
 {
     /// <summary>
-    /// Tests for Ukrainian translations
+    /// Tests for Ukrainian translation
     /// </summary>
     public class TestFormatsUk : Support.BaseTestFormats
     {

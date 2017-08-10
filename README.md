@@ -92,7 +92,7 @@ If you need CurrentUICulture support, use version 1.21.2 (`Install-Package CronE
 
 ## Demo
 
-[http://cronexpressiondescriptor.azurewebsites.net](http://cronexpressiondescriptor.azurewebsites.net)
+[https://cronexpressiondescriptor.azurewebsites.net](http://cronexpressiondescriptor.azurewebsites.net)
 
 ## Download
 

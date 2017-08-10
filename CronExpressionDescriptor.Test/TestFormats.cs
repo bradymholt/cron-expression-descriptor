@@ -1,6 +1,6 @@
 ﻿using Xunit;
 using System.Globalization;
-using System.Threading;
+using Assert = CronExpressionDescriptor.Test.Support.AssertExtensions;
 
 namespace CronExpressionDescriptor.Test
 {

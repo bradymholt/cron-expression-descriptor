@@ -1,5 +1,4 @@
-﻿Cron Expression Descriptor
-==========================
+﻿# Cron Expression Descriptor
 A .NET library that converts cron expressions into human readable descriptions.
 
 [![Build Status](https://img.shields.io/travis/bradyholt/cron-expression-descriptor.svg?branch=master)](https://travis-ci.org/bradyholt/cron-expression-descriptor)
@@ -9,17 +8,18 @@ A .NET library that converts cron expressions into human readable descriptions.
 **Contributors**: Renato Lima, Ivan Santos, Fabien Brooke, Siarhei Khalipski, Mustafa SADEDİL, TotalMace, Star Peng, LbISS, Arnaud TAMAILLON, Michael Schuler, Taras(tbudurovych)
 **License**: [MIT](https://github.com/bradyholt/cron-expression-descriptor/blob/dotnet-core/LICENSE)
 
-Features
---------
+## Features
+
  * Supports all cron expression special characters including * / , - ? L W, #
  * Supports 5, 6 (w/ seconds or year), or 7 (w/ seconds and year) part cron expressions
  * Provides casing options (Sentence, Title, Lower, etc.)
  * Localization with support for 15 languages
 
-Languages Available
---------
+## i18n
 
- * English ([Brady Holt](https://github.com/bradyholt))
+The following language translations are available.
+
+ * English - en ([Brady Holt](https://github.com/bradyholt))
  * Brazilian ([Renato Lima](https://github.com/natenho))
  * Spanish ([Ivan Santos](https://github.com/ivansg))
  * Norwegian ([Siarhei Khalipski](https://github.com/KhalipskiSiarhei))
@@ -35,27 +35,54 @@ Languages Available
  * Romanian ([Illegitimis](https://github.com/illegitimis))
  * Swedish ([roobin](https://github.com/roobin))
 
-Demo
-----------
+To use one of these translations, pass in the `Locale` option to `GetDescription`.  For example, to get the description of `0-10 11 * * *` in German:
+
+```
+ExpressionDescriptor.GetDescription("0-10 11 * * *", new Options(){ Locale = "de" });
+> "Jede Minute zwischen 11:00 und 11:10"
+```
+
+Alternatively, you can call `ExpressionDescriptor.SetDefaultLocale("es");` first to set the default locale and then every usage will use this locale by default.
+
+```
+ExpressionDescriptor.SetDefaultLocale("es");
+
+ExpressionDescriptor.GetDescription("*/45 * * * * *");
+> "Cada 45 segundos"
+ExpressionDescriptor.GetDescription("0-10 11 * * *");
+> "Cada minuto entre las 11:00 AM y las 11:10 AM"
+```
+
+### CurrentUICulture
+
+In earlier versions of Cron Expression Descriptor, [Thread.CurrentUICulture](https://msdn.microsoft.com/en-us/library/system.threading.thread.currentuiculture(v=vs.110).aspx) was supported so the following would work:
+```
+CultureInfo myCultureInfo = new CultureInfo("it-IT");
+Thread.CurrentThread.CurrentUICulture = myCultureInfo;
+ExpressionDescriptor.GetDescription("* * * * *");
+> "Ogni minuto"
+```
+
+If you need CurrentUICulture support, use version 1.21.2 (`Install-Package CronExpressionDescriptor -Version 1.21.2`), the latest version with this support.
+
+## Demo
 
 [http://cronexpressiondescriptor.azurewebsites.net](http://cronexpressiondescriptor.azurewebsites.net)
 
-Download
-----------
+## Download
 
 Cron Expression Descriptor releases can be installed with **NuGet**.  [Visit the NuGet Package page](https://www.nuget.org/packages/CronExpressionDescriptor/) for more info.
 
 View [Releases](https://github.com/bradyholt/cron-expression-descriptor/releases) for release version history.
 
-Ports
----------
+## Ports
+
  - Java - [https://github.com/RedHogs/cron-parser](https://github.com/RedHogs/cron-parser)
  - Ruby - [https://github.com/alpinweis/cronex](https://github.com/alpinweis/cronex)
  - Python - [https://github.com/Salamek/cron-descriptor](https://github.com/Salamek/cron-descriptor)
  - JavaScript - [https://github.com/bradyholt/cronstrue](https://github.com/bradyholt/cronstrue)
 
-Usage Examples (as Unit Tests)
---------
+## Usage Examples (as Unit Tests)
 
     Assert.AreEqual("Every minute", ExpressionDescriptor.GetDescription("* * * * *"));
     Assert.AreEqual("Every minute", ExpressionDescriptor.GetDescription("*/1 * * * *"));

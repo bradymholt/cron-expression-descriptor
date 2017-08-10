@@ -90,6 +90,18 @@ ExpressionDescriptor.GetDescription("* * * * *");
 
 If you need CurrentUICulture support, use version 1.21.2 (`Install-Package CronExpressionDescriptor -Version 1.21.2`), the latest version with this support.
 
+## .NET Platform Support
+
+Begining with version 2.0.0, the NuGet package will only contain a library targeting .NET Standard 1.1.  This allows the library to consumed by applications running on the following .NET platforms:
+
+- .NET Core >= 1.0
+- .NET Framework >= 4.5
+- Mono >= 4.6
+- Universal Windows Platform >= 10.0
+- ([More](https://github.com/dotnet/standard/blob/master/docs/versions.md))
+
+If your application is targeting an earlier version of .NET Framework, you can use version `1.21.2` as it has support back to .NET 3.5.  To install this version, run `Install-Package CronExpressionDescriptor -Version 1.21.2`.
+
 ## Demo
 
 [https://cronexpressiondescriptor.azurewebsites.net](http://cronexpressiondescriptor.azurewebsites.net)
@@ -100,11 +112,11 @@ Cron Expression Descriptor releases can be installed with **NuGet**.
 
 ### Package Manager (Visual Studio)
 
-    Install-Package CronExpressionDescriptor -Version 1.21.2
+    Install-Package CronExpressionDescriptor
 
 ### .NET CLI
 
-    dotnet add package CronExpressionDescriptor --version 1.21.2
+    dotnet add package CronExpressionDescriptor
 
 [Visit the NuGet Package page](https://www.nuget.org/packages/CronExpressionDescriptor/) for more info.
 

@@ -20,8 +20,9 @@ Update the `README.md` file and add your name to the _Contributors_ list
 
 If you are adding a language translation you will need to do the following:
 
-1. Add a Resources.[*].resx file than provides the translation.  You can use one of the existing ones as a pattern.
-2. Create a TestsFormats.[*].cs file in CronExpressionDescriptor.Test project with tests for the translation.  You can use one of the existing test files as a pattern.
+1. Determine the language culture name (LCN) to use.  You can reference [Table of Language Culture Names, Codes, and ISO Values Method](https://msdn.microsoft.com/en-us/library/ee825488(v=cs.20).aspx) for help.
+1. Add a `Resources.[LCN].resx` file than provides the translation.  You can use one of the existing ones as a pattern.  In general, please use only the first part of the culture name which denotes the language itself and not the country/region.  This will allow the translation to be used more widely.  However, if the language is very much specific to a country/region then using the second part of of the name is appropriate.  For example, there are 5 culture names for Germany (de-AT, de-DE, dr-LI, de-LU, de-CH) but we only have a resource file named `Resources.de.resx`.  This allows this translation to be used for any of the specific culture names that would be passed in at runtime.  However, for Chinese, we have `Resources.zh-CN.resx` defined because the translation is Chinese Simplified and specific to China itself.
+2. Create a TestsFormats.[LCN].cs file in CronExpressionDescriptor.Test project with tests for the translation.  You can use one of the existing test files as a pattern.
 
 ## Committing and Pushing changes
 

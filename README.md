@@ -33,7 +33,7 @@ Languages Available
  * Italian ([rinaldihno](https://github.com/rinaldihno))
  * Polish ([foka](https://github.com/foka))
  * Romanian ([Illegitimis](https://github.com/illegitimis))
- * Swedish([roobin](https://github.com/roobin))
+ * Swedish ([roobin](https://github.com/roobin))
 
 Demo
 ----------

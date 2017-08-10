@@ -78,7 +78,11 @@ An `CronExpressionDescriptor.Options` object can be passed to `GetDescription`. 
 Example usage:
 
 ```
-ExpressionDescriptor.GetDescription("0-10 11 * * *", new Options(){ DayOfWeekStartIndexZero = false, Use24HourTimeFormat = true Locale = "fr" });
+ExpressionDescriptor.GetDescription("0-10 11 * * *", new Options(){
+    DayOfWeekStartIndexZero = false,
+    Use24HourTimeFormat = true,
+    Locale = "fr"
+});
 ```
 
 ## Demo

@@ -31,6 +31,8 @@
     <h2>Describes Cron expressions as human readable text</h2>
     <form>
         <fieldset>
+            <label for="expression">Cron Expression</label>
+            <input id="expression" name="expression" placeholder="Cron Expression" type="text" value="0 30 10-13 ? * WED,FRI" />
             <label for="locale">Language</label>
             <select id="locale" name="locale">
                 <option value="en-US">English (United States)</option>
@@ -49,8 +51,6 @@
                 <option value="uk">Ukrainian</option>
                 <option value="zh-CHS">Chinese (Simplified) Legacy</option>
             </select>
-            <label for="expression">Cron Expression</label>
-            <input id="expression" name="expression" placeholder="Cron Expression" type="text" value="0 30 10-13 ? * WED,FRI" />
             <button type="button" class="button button-black" id="describe">Describe</button>
         </fieldset>
     </form>
@@ -59,7 +59,7 @@
         <div id="description" class="description">At 30 minutes past the hour, between 10:00 AM and 01:59 PM, only on Wednesday and Friday</div>
     </blockquote>
     <h3>Reference</h3>
-    <p>Cron Expression Descriptor is a C# / .NET Library authored by <a href="http://github.com/bradyholt/cron-expression-descriptor">Brady Holt</a>        and translated into other languages by contributors on <a href="http://github.com/bradyholt/cron-expression-descriptor">GitHub</a>.</p>
+    <p>Cron Expression Descriptor is a C# / .NET Library authored by <a href="https://www.geekytidbits.com/">Brady Holt</a>        and translated into other languages by contributors on <a href="http://github.com/bradyholt/cron-expression-descriptor">GitHub</a>.</p>
     <a href="http://github.com/bradyholt/cron-expression-descriptor" class="github-corner" aria-label="View source on Github">
         <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;"
             aria-hidden="true">

@@ -15,6 +15,21 @@ A .NET library that converts cron expressions into human readable descriptions.
  * Provides casing options (Sentence, Title, Lower, etc.)
  * Localization with support for 15 languages
 
+## Quick Start
+
+    CronExpressionDescriptor.ExpressionDescriptor.GetDescription("* * * * *");
+    > "Every minute"
+
+## Options
+
+An `CronExpressionDescriptor.Options` object can be passed to `GetDescription`.  The following options are available:
+
+- **bool ThrowExceptionOnParseError** - If exception when trying to parse expression and generate description, whether to throw or catch and output the Exception message as the description. (Default: true)
+- **bool Verbose** - Whether to use a verbose description (Default: false)
+- **bool DayOfWeekStartIndexZero** - Whether to interpret cron expression DOW `1` as Sunday or Monday. (Default: true)
+- **?bool Use24HourTimeFormat** - If true, descriptions will use a [24-hour clock](https://en.wikipedia.org/wiki/24-hour_clock) (Default: false but some translations will default to true)
+- **string Locale** - The locale to use (Default: "en")
+
 ## i18n
 
 The following language translations are available.
@@ -65,16 +80,6 @@ ExpressionDescriptor.GetDescription("* * * * *");
 
 If you need CurrentUICulture support, use version 1.21.2 (`Install-Package CronExpressionDescriptor -Version 1.21.2`), the latest version with this support.
 
-## Options
-
-An `CronExpressionDescriptor.Options` object can be passed to `GetDescription`.  The following options are available:
-
-- **bool ThrowExceptionOnParseError** - If exception when trying to parse expression and generate description, whether to throw or catch and output the Exception message as the description. (Default: true)
-- **bool Verbose** - Whether to use a verbose description (Default: false)
-- **bool DayOfWeekStartIndexZero** - Whether to interpret cron expression DOW `1` as Sunday or Monday. (Default: true)
-- **?bool Use24HourTimeFormat** - If true, descriptions will use a [24-hour clock](https://en.wikipedia.org/wiki/24-hour_clock) (Default: false but some translations will default to true)
-- **string Locale** - The locale to use (Default: "en")
-
 Example usage:
 
 ```
@@ -91,7 +96,17 @@ ExpressionDescriptor.GetDescription("0-10 11 * * *", new Options(){
 
 ## Download
 
-Cron Expression Descriptor releases can be installed with **NuGet**.  [Visit the NuGet Package page](https://www.nuget.org/packages/CronExpressionDescriptor/) for more info.
+Cron Expression Descriptor releases can be installed with **NuGet**.
+
+### Package Manager (Visual Studio)
+
+    Install-Package CronExpressionDescriptor -Version 1.21.2
+
+### .NET CLI
+
+    dotnet add package CronExpressionDescriptor --version 1.21.2
+
+[Visit the NuGet Package page](https://www.nuget.org/packages/CronExpressionDescriptor/) for more info.
 
 View [Releases](https://github.com/bradyholt/cron-expression-descriptor/releases) for release version history.
 

@@ -14,10 +14,7 @@
     {
       "taskName": "test",
       "command": "dotnet",
-      "args": [
-        "test",
-        "CronExpressionDescriptor.Test/CronExpressionDescriptor.Test.csproj"
-      ],
+      "args": ["test", "test/test.csproj"],
       "group": {
         "kind": "test",
         "isDefault": true
@@ -29,7 +26,7 @@
       "command": "dotnet",
       "args": ["run"],
       "options": {
-        "cwd": "${workspaceRoot}/CronExpressionDescriptor.Demo"
+        "cwd": "${workspaceRoot}/demo"
       },
       "problemMatcher": ["$msCompile"]
     },
@@ -38,7 +35,7 @@
       "command": "dotnet",
       "args": [
         "pack",
-        "CronExpressionDescriptor/CronExpressionDescriptor.csproj",
+        "lib/CronExpressionDescriptor.csproj",
         "--configuration",
         "release"
       ],
@@ -46,7 +43,7 @@
     },
     {
       "taskName": "nupkg-clean",
-      "command": "rm ${workspaceRoot}/CronExpressionDescriptor/bin/release/*.nupkg",
+      "command": "rm ${workspaceRoot}/lib/bin/release/*.nupkg",
       "type": "shell"
     },
     {
@@ -56,7 +53,7 @@
       "args": [
         "nuget",
         "push",
-        "CronExpressionDescriptor/bin/release/*.nupkg",
+        "lib/bin/release/*.nupkg",
         "-k",
         "${env:NUGET_API_KEY}"
       ],

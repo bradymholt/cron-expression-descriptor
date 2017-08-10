@@ -34,8 +34,10 @@ View [Releases](https://github.com/bradyholt/cron-expression-descriptor/releases
 
 ## Quick Start
 
-    CronExpressionDescriptor.ExpressionDescriptor.GetDescription("* * * * *");
-    > "Every minute"
+```csharp
+CronExpressionDescriptor.ExpressionDescriptor.GetDescription("* * * * *");
+> "Every minute"
+```
 
 ## Options
 
@@ -49,7 +51,7 @@ An `CronExpressionDescriptor.Options` object can be passed to `GetDescription`. 
 
 Example usage:
 
-```
+```csharp
 ExpressionDescriptor.GetDescription("0-10 11 * * *", new Options(){
     DayOfWeekStartIndexZero = false,
     Use24HourTimeFormat = true,
@@ -79,14 +81,14 @@ The following language translations are available.
 
 To use one of these translations, pass in the `Locale` option to `GetDescription`.  For example, to get the description of `0-10 11 * * *` in German:
 
-```
+```csharp
 ExpressionDescriptor.GetDescription("0-10 11 * * *", new Options(){ Locale = "de" });
 > "Jede Minute zwischen 11:00 und 11:10"
 ```
 
 Alternatively, you can call `ExpressionDescriptor.SetDefaultLocale("es");` first to set the default locale and then every usage will use this locale by default.
 
-```
+```csharp
 ExpressionDescriptor.SetDefaultLocale("es");
 
 ExpressionDescriptor.GetDescription("*/45 * * * * *");
@@ -98,7 +100,8 @@ ExpressionDescriptor.GetDescription("0-10 11 * * *");
 ### CurrentUICulture
 
 In earlier versions of Cron Expression Descriptor, [Thread.CurrentUICulture](https://msdn.microsoft.com/en-us/library/system.threading.thread.currentuiculture(v=vs.110).aspx) was supported so the following would work:
-```
+
+```csharp
 CultureInfo myCultureInfo = new CultureInfo("it-IT");
 Thread.CurrentThread.CurrentUICulture = myCultureInfo;
 ExpressionDescriptor.GetDescription("* * * * *");

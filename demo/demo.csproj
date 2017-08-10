@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="../CronExpressionDescriptor/CronExpressionDescriptor.csproj" />
+    <ProjectReference Include="../lib/CronExpressionDescriptor.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />

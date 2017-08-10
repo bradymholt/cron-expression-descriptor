@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronExpressionDescriptor", "CronExpressionDescriptor\CronExpressionDescriptor.csproj", "{C4C055E3-7808-480C-87E2-59EBE6CC0B38}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lib", "lib\CronExpressionDescriptor.csproj", "{C4C055E3-7808-480C-87E2-59EBE6CC0B38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronExpressionDescriptor.Test", "CronExpressionDescriptor.Test\CronExpressionDescriptor.Test.csproj", "{26F44203-47B3-4F63-B767-3296CD22FE82}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{26F44203-47B3-4F63-B767-3296CD22FE82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CronExpressionDescriptor.Demo", "CronExpressionDescriptor.Demo\CronExpressionDescriptor.Demo.csproj", "{9057FC56-A6D1-425B-B453-67F61A1A3890}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "demo", "demo\demo.csproj", "{9057FC56-A6D1-425B-B453-67F61A1A3890}"
 EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution

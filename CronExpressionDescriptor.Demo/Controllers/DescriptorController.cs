@@ -12,13 +12,13 @@ namespace CronExpressionDescriptor.Demo.Controllers
         [HttpGet]
         public JsonResult Get(string expression, string locale)
         {
-            return Json(
-                ExpressionDescriptor.GetDescription(expression, new Options()
-                {
-                    ThrowExceptionOnParseError = false,
-                    Locale = (locale ?? "en-US")
-                })
-            );
+            var result = ExpressionDescriptor.GetDescription(expression, new Options()
+            {
+                ThrowExceptionOnParseError = false,
+                Locale = (locale ?? "en-US")
+            });
+
+            return Json(new { description = result });
         }
     }
 }

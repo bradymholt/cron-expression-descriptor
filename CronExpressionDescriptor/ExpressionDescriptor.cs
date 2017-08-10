@@ -371,7 +371,7 @@ namespace CronExpressionDescriptor
                               dayOfWeekOfMonthDescription = Resources.ResourceManager.GetString("Third", m_culture);
                               break;
                           case "4":
-                              dayOfWeekOfMonthDescription = Resources.ResourceManager.GetString("Forth", m_culture);
+                              dayOfWeekOfMonthDescription = Resources.ResourceManager.GetString("Fourth", m_culture);
                               break;
                           case "5":
                               dayOfWeekOfMonthDescription = Resources.ResourceManager.GetString("Fifth", m_culture);

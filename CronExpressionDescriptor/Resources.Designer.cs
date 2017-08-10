@@ -467,13 +467,13 @@ namespace CronExpressionDescriptor
         }
 
         /// <summary>
-        ///   Looks up a localized string similar to forth.
+        ///   Looks up a localized string similar to fourth.
         /// </summary>
         internal static string Forth
         {
             get
             {
-                return ResourceManager.GetString("Forth", resourceCulture);
+                return ResourceManager.GetString("Fourth", resourceCulture);
             }
         }
 

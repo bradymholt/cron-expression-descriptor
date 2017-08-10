@@ -15,7 +15,8 @@
       "taskName": "test",
       "command": "dotnet",
       "args": [
-        "test CronExpressionDescriptor.Test/CronExpressionDescriptor.Test.csproj"
+        "test",
+        "CronExpressionDescriptor.Test/CronExpressionDescriptor.Test.csproj"
       ],
       "group": {
         "kind": "test",

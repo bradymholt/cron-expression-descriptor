@@ -7,7 +7,7 @@ using Assert = CronExpressionDescriptor.Test.Support.AssertExtensions;
 
 namespace CronExpressionDescriptor.Test
 {
-    public class TestFormatsES : BaseTestFormats
+    public class TestFormatsES : Support.BaseTestFormats
     {
         protected override string GetLocale()
         {

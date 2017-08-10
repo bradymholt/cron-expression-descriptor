@@ -4,7 +4,7 @@ using Xunit;
 
 namespace CronExpressionDescriptor.Test
 {
-    public class TestFormatsDE : BaseTestFormats
+    public class TestFormatsDE : Support.BaseTestFormats
     {
         protected override string GetLocale()
         {

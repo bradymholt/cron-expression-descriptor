@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Threading;
 
-namespace CronExpressionDescriptor.Test
+namespace CronExpressionDescriptor.Test.Support
 {
     public abstract class BaseTestFormats
     {

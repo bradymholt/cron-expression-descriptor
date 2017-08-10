@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace CronExpressionDescriptor.Test
 {
-    public class TestFormatsCN : BaseTestFormats
+    public class TestFormatsCN : Support.BaseTestFormats
     {
         protected override string GetLocale()
         {

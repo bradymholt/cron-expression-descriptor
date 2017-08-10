@@ -7,7 +7,7 @@ namespace CronExpressionDescriptor.Test
     /// <summary>
     /// Tests for Romanian language
     /// </summary>
-    public class TestFormatsRO : BaseTestFormats
+    public class TestFormatsRO : Support.BaseTestFormats
     {
         static readonly Options _verbose = new Options() { Verbose = true };
 

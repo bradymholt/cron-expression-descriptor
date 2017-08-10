@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace CronExpressionDescriptor.Test
 {
-    public class TestFormatsNb : BaseTestFormats
+    public class TestFormatsNb : Support.BaseTestFormats
     {
         protected override string GetLocale()
         {

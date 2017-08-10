@@ -8,7 +8,7 @@ namespace CronExpressionDescriptor.Test
     /// <summary>
     /// Tests for Ukrainian translations
     /// </summary>
-    public class TestFormatsUk : BaseTestFormats
+    public class TestFormatsUk : Support.BaseTestFormats
     {
         protected override string GetLocale()
         {

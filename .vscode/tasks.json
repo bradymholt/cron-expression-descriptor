@@ -46,6 +46,15 @@
         "${env:NUGET_API_KEY}"
       ],
       "problemMatcher": ["$msCompile"]
+    },
+    {
+      "taskName": "run demo",
+      "command": "dotnet",
+      "args": ["run"],
+      "options": {
+        "cwd": "${workspaceRoot}/CronExpressionDescriptor.Demo"
+      },
+      "problemMatcher": ["$msCompile"]
     }
   ]
 }

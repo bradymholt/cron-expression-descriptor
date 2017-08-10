@@ -25,6 +25,15 @@
       "problemMatcher": "$msCompile"
     },
     {
+      "taskName": "run-demo",
+      "command": "dotnet",
+      "args": ["run"],
+      "options": {
+        "cwd": "${workspaceRoot}/CronExpressionDescriptor.Demo"
+      },
+      "problemMatcher": ["$msCompile"]
+    },
+    {
       "taskName": "pack",
       "command": "dotnet",
       "args": [
@@ -36,8 +45,14 @@
       "problemMatcher": ["$msCompile"]
     },
     {
+      "taskName": "nupkg-clean",
+      "command": "rm ${workspaceRoot}/CronExpressionDescriptor/bin/release/*.nupkg",
+      "type": "shell"
+    },
+    {
       "taskName": "release",
       "command": "dotnet",
+      "dependsOn": ["nupkg-clean", "pack"],
       "args": [
         "nuget",
         "push",
@@ -45,15 +60,6 @@
         "-k",
         "${env:NUGET_API_KEY}"
       ],
-      "problemMatcher": ["$msCompile"]
-    },
-    {
-      "taskName": "run demo",
-      "command": "dotnet",
-      "args": ["run"],
-      "options": {
-        "cwd": "${workspaceRoot}/CronExpressionDescriptor.Demo"
-      },
       "problemMatcher": ["$msCompile"]
     }
   ]

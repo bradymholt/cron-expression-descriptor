@@ -8,7 +8,7 @@
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
     <Product>CronExpressionDescriptor</Product>
     <Company></Company>
-    <Description>A library that converts cron expressions into human readable descriptions.  Supports 14 languages: English, Brazillian, Spanish, Norwgian, Turkish, Dutch, Chinese Simplified, Russian, French, German, Ukrainian, Polish, Romanian and Italian.</Description>
+    <Description>A library that converts cron expressions into human readable descriptions.  Supports 15 languages: English, Brazillian, Spanish, Norwgian, Turkish, Dutch, Chinese Simplified, Russian, French, German, Ukrainian, Polish, Romanian Italian, and Swedish.</Description>
     <PackageLicenseUrl>https://github.com/bradyholt/cron-expression-descriptor/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/bradyholt/cron-expression-descriptor</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bradyholt/cron-expression-descriptor</RepositoryUrl>

@@ -5,17 +5,17 @@ A .NET library that converts cron expressions into human readable descriptions.
 [![Build Status](https://img.shields.io/travis/bradyholt/cron-expression-descriptor.svg?branch=master)](https://travis-ci.org/bradyholt/cron-expression-descriptor)
 [![NuGet Version and Downloads count](https://buildstats.info/nuget/CronExpressionDescriptor)](https://www.nuget.org/packages/CronExpressionDescriptor/)
 
-**Author**: Brady Holt (http://www.geekytidbits.com)  
-**Contributors**: Renato Lima, Ivan Santos, Fabien Brooke, Siarhei Khalipski, Mustafa SADEDİL, TotalMace, Star Peng, LbISS, Arnaud TAMAILLON, Michael Schuler, Taras(tbudurovych)  
+**Author**: Brady Holt (http://www.geekytidbits.com)
+**Contributors**: Renato Lima, Ivan Santos, Fabien Brooke, Siarhei Khalipski, Mustafa SADEDİL, TotalMace, Star Peng, LbISS, Arnaud TAMAILLON, Michael Schuler, Taras(tbudurovych)
 **License**: [MIT](http://opensource.org/licenses/MIT)
 
-Features         
+Features
 --------
  * Supports all cron expression special characters including * / , - ? L W, #
  * Supports 5, 6 (w/ seconds or year), or 7 (w/ seconds and year) part cron expressions
  * Provides casing options (Sentence, Title, Lower, etc.)
- * Localization with support for 14 languages
- 
+ * Localization with support for 15 languages
+
 Languages Available
 --------
 
@@ -33,6 +33,7 @@ Languages Available
  * Italian ([rinaldihno](https://github.com/rinaldihno))
  * Polish ([foka](https://github.com/foka))
  * Romanian ([Illegitimis](https://github.com/illegitimis))
+ * Swedish([roobin](https://github.com/roobin))
 
 Demo
 ----------

@@ -36,7 +36,10 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestTimeOfDayCertainDaysOfWeek()
         {
-            Assert.EqualsCaseInsensitive("О 23:00, понеділок по пʼятниця", GetDescription("0 23 ? * MON-FRI"));
+            string expected = "О 23:00, понеділок по пʼятниця";
+            string description = GetDescription("0 23 ? * MON-FRI").Replace('\'', 'ʼ');
+
+            Assert.EqualsCaseInsensitive(expected, description);
         }
 
         [Fact]
@@ -67,7 +70,10 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestWeekdaysAtTime()
         {
-            Assert.EqualsCaseInsensitive("О 11:30, понеділок по пʼятниця", GetDescription("30 11 * * 1-5"));
+            string expected = "О 11:30, понеділок по пʼятниця";
+            string description = GetDescription("30 11 * * 1-5").Replace('\'', 'ʼ');
+
+            Assert.EqualsCaseInsensitive(expected, description);
         }
 
         [Fact]
@@ -149,12 +155,12 @@ namespace CronExpressionDescriptor.Test
         }
 
         [Fact]
-#if __MonoCS__
-        [Ignore("Mono is returning wrong apostrophe character for UK culture..")]
-#endif
         public void TestDayOfWeekRange()
         {
-            Assert.EqualsCaseInsensitive("Кожні 5 хвилин, о 15:00, понеділок по пʼятниця", GetDescription("*/5 15 * * MON-FRI"));
+            string expected = "Кожні 5 хвилин, о 15:00, понеділок по пʼятниця";
+            string description = GetDescription("*/5 15 * * MON-FRI").Replace('\'', 'ʼ');
+
+            Assert.EqualsCaseInsensitive(expected, description);
         }
 
         [Fact]
@@ -238,7 +244,10 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestMinutesPastTheHourRange()
         {
-            Assert.EqualsCaseInsensitive("О 30 хвилині, між 10:00 та 13:59, тільки в середа та пʼятниця", GetDescription("0 30 10-13 ? * WED,FRI"));
+            string expected = "О 30 хвилині, між 10:00 та 13:59, тільки в середа та пʼятниця";
+            string description = GetDescription("0 30 10-13 ? * WED,FRI").Replace('\'', 'ʼ');
+
+            Assert.EqualsCaseInsensitive(expected, description);
         }
 
         [Fact]

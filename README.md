@@ -134,7 +134,7 @@ If your application is targeting an earlier version of .NET Framework, you can u
  - Java - [https://github.com/RedHogs/cron-parser](https://github.com/RedHogs/cron-parser)
  - Ruby - [https://github.com/alpinweis/cronex](https://github.com/alpinweis/cronex)
  - Python - [https://github.com/Salamek/cron-descriptor](https://github.com/Salamek/cron-descriptor)
- - JavaScript - [https://github.com/bradyholt/cronstrue](https://github.com/bradyholt/cronstrue)
+ - JavaScript - [https://github.com/bradyholt/cRonstrue](https://github.com/bradyholt/cRonstrue)
 
 ## Examples
 

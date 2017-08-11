@@ -14,6 +14,7 @@ A .NET library that converts cron expressions into human readable descriptions.
  * Supports 5, 6 (w/ seconds or year), or 7 (w/ seconds and year) part cron expressions
  * Provides casing options (Sentence, Title, Lower, etc.)
  * Localization with support for 15 languages
+ * Supports [Quartz Enterprise Scheduler .NET](https://www.quartz-scheduler.net/) cron expressions
  * Strongly-named assembly ([details](https://msdn.microsoft.com/en-us/library/wd40t7ad(v=vs.100).aspx))
 
 ## Download

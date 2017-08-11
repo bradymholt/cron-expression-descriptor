@@ -93,6 +93,7 @@ ExpressionDescriptor.SetDefaultLocale("es");
 
 ExpressionDescriptor.GetDescription("*/45 * * * * *");
 > "Cada 45 segundos"
+
 ExpressionDescriptor.GetDescription("0-10 11 * * *");
 > "Cada minuto entre las 11:00 AM y las 11:10 AM"
 ```
@@ -103,6 +104,7 @@ In earlier versions of Cron Expression Descriptor, [Thread.CurrentUICulture](htt
 
 ```csharp
 CultureInfo myCultureInfo = new CultureInfo("it-IT");
+# CurrentUICulture is ignored starting in version 2.0
 Thread.CurrentThread.CurrentUICulture = myCultureInfo;
 ExpressionDescriptor.GetDescription("* * * * *");
 > "Ogni minuto"

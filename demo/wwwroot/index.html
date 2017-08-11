@@ -12,12 +12,24 @@
     <link rel="manifest" href="/manifest.json">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.min.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js" async></script>
     <style type="text/css">
         body {
             margin: 15px;
+        }
+
+        h2 {
+            font-size: 2.6rem;
+        }
+
+        .header {
+            display: inline-block;
+            width: 250px;
+            height: 30px;
+            margin-left: 10px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="30"><path d="M 0,14.355469 2.2460938,7.421875 C 7.4218645,9.2448552 11.181626,10.82363 13.525391,12.158203 12.906885,6.2663426 12.581365,2.2136123 12.548828,0 l 7.080078,0 c -0.09768,3.2227258 -0.472027,7.2591801 -1.123047,12.109375 3.35284,-1.692646 7.193982,-3.2551444 11.523438,-4.6875 l 2.246094,6.933594 c -4.134146,1.367244 -8.186877,2.278702 -12.158204,2.734375 1.985652,1.725314 4.785129,4.801483 8.398438,9.228515 L 22.65625,30.46875 C 20.768205,27.89718 18.53839,24.397835 15.966797,19.970703 13.557926,24.560595 11.442043,28.059941 9.6191406,30.46875 L 3.8574219,26.318359 C 7.6334528,21.663463 10.335273,18.587294 11.962891,17.089844 7.763661,16.276098 3.7760348,15.364641 0,14.355469"/></svg>') repeat-x;
         }
 
         .button-black {
@@ -33,7 +45,9 @@
 </head>
 
 <body>
-    <h1>Cron Expression Descriptor</h1>
+    <h1>Cron Expression Descriptor    <div class="header">
+        </div>
+</h1>
     <h2>Describes Cron expressions as human readable text</h2>
     <form>
         <fieldset>
@@ -64,6 +78,12 @@
     <blockquote>
         <div id="description" class="description">At 30 minutes past the hour, between 10:00 AM and 01:59 PM, only on Wednesday and Friday</div>
     </blockquote>
+    <h3>API</h3>
+    <pre><code>curl 'https://cronexpressiondescriptor.azurewebsites.net/api/descriptor/?expression=0+30+10-13+?+*+WED,FRI&locale=en-US'
+
+< HTTP/1.1 200 OK
+< Content-Type: application/json; charset=utf-8
+{"description":"At 30 minutes past the hour, between 10:00 AM and 01:59 PM, only on Wednesday and Friday"}</code></pre>
     <h3>Reference</h3>
     <p>Cron Expression Descriptor is a C# / .NET Library authored by <a href="https://www.geekytidbits.com/">Brady Holt</a>        and translated into other languages by contributors on <a href="http://github.com/bradyholt/cron-expression-descriptor">GitHub</a>.</p>
     <a href="http://github.com/bradyholt/cron-expression-descriptor" class="github-corner" aria-label="View source on Github">
@@ -76,12 +96,6 @@
                 fill="currentColor" class="octo-body"></path>
         </svg>
     </a>
-    <h4>API</h4>
-    <pre><code>curl 'https://cronexpressiondescriptor.azurewebsites.net/api/descriptor/?expression=0+30+10-13+?+*+WED,FRI&locale=en-US'
-
-< HTTP/1.1 200 OK
-< Content-Type: application/json; charset=utf-8
-{"description":"At 30 minutes past the hour, between 10:00 AM and 01:59 PM, only on Wednesday and Friday"}</code></pre>
     <style>
         .github-corner:hover .octo-arm {
             animation: octocat-wave 560ms ease-in-out

@@ -12,42 +12,30 @@
     <link rel="manifest" href="/manifest.json">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+    <style>
+        /* normalize.css */
+        button,hr,input{overflow:visible}audio,canvas,progress,video{display:inline-block}progress,sub,sup{vertical-align:baseline}html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0} menu,article,aside,details,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button,input{}button,select{text-transform:none}[type=submit], [type=reset],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:ButtonText dotted 1px}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}[hidden],template{display:none}
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.min.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js" async></script>
-    <style type="text/css">
-        body {
-            margin: 15px;
-        }
-
-        h2 {
-            font-size: 2.6rem;
-        }
-
-        .header {
-            display: inline-block;
-            width: 250px;
-            height: 30px;
-            margin-left: 10px;
+    <style>
+        body { margin: 15px;}
+        h2 { font-size: 2.6rem; }
+        .button-black { background-color: black; border-color: black; }
+        .description { color: #009933; font-weight: bold; }
+        .header { display: inline-block; width: 250px; height: 30px; margin-left: 10px;
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="30"><path d="M 0,14.355469 2.2460938,7.421875 C 7.4218645,9.2448552 11.181626,10.82363 13.525391,12.158203 12.906885,6.2663426 12.581365,2.2136123 12.548828,0 l 7.080078,0 c -0.09768,3.2227258 -0.472027,7.2591801 -1.123047,12.109375 3.35284,-1.692646 7.193982,-3.2551444 11.523438,-4.6875 l 2.246094,6.933594 c -4.134146,1.367244 -8.186877,2.278702 -12.158204,2.734375 1.985652,1.725314 4.785129,4.801483 8.398438,9.228515 L 22.65625,30.46875 C 20.768205,27.89718 18.53839,24.397835 15.966797,19.970703 13.557926,24.560595 11.442043,28.059941 9.6191406,30.46875 L 3.8574219,26.318359 C 7.6334528,21.663463 10.335273,18.587294 11.962891,17.089844 7.763661,16.276098 3.7760348,15.364641 0,14.355469"/></svg>') repeat-x;
         }
-
-        .button-black {
-            background-color: black;
-            border-color: black;
-        }
-
-        .description {
-            color: #009933;
-            font-weight: bold;
-        }
+    </style>
+    <style>
+        /* GitHub ribbon */
+        .github-corner:hover .octo-arm { animation: octocat-wave 560ms ease-in-out }
+        @keyframes octocat-wave { 0%, 100% { transform: rotate(0) } 20%, 60% { transform: rotate(-25deg) } 40%, 80% { transform: rotate(10deg) } }
+        @media (max-width:500px) { .github-corner:hover .octo-arm { animation: none } .github-corner .octo-arm { animation: octocat-wave 560ms ease-in-out } }
     </style>
 </head>
-
 <body>
-    <h1>Cron Expression Descriptor    <div class="header">
-        </div>
-</h1>
+    <h1>Cron Expression Descriptor <div class="header"></div></h1>
     <h2>Describes Cron expressions as human readable text</h2>
     <form>
         <fieldset>
@@ -96,35 +84,6 @@
                 fill="currentColor" class="octo-body"></path>
         </svg>
     </a>
-    <style>
-        .github-corner:hover .octo-arm {
-            animation: octocat-wave 560ms ease-in-out
-        }
-
-        @keyframes octocat-wave {
-            0%,
-            100% {
-                transform: rotate(0)
-            }
-            20%,
-            60% {
-                transform: rotate(-25deg)
-            }
-            40%,
-            80% {
-                transform: rotate(10deg)
-            }
-        }
-
-        @media (max-width:500px) {
-            .github-corner:hover .octo-arm {
-                animation: none
-            }
-            .github-corner .octo-arm {
-                animation: octocat-wave 560ms ease-in-out
-            }
-        }
-    </style>
     <script>
         document.getElementById("describe").onclick = function () {
             axios.get("/api/descriptor/", {
@@ -133,9 +92,9 @@
                     locale: document.getElementById("locale").value
                 }
             })
-                .then(function (response) {
-                    document.getElementById("description").innerText = response.data.description
-                });
+            .then(function (response) {
+                document.getElementById("description").innerText = response.data.description;
+            });
         };
     </script>
     <script>
@@ -149,7 +108,5 @@
         ga('create', 'UA-19416043-5', 'auto');
         ga('send', 'pageview');
     </script>
-
 </body>
-
 </html>

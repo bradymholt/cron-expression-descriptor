@@ -104,8 +104,9 @@ In earlier versions of Cron Expression Descriptor, [Thread.CurrentUICulture](htt
 
 ```csharp
 CultureInfo myCultureInfo = new CultureInfo("it-IT");
-# CurrentUICulture is ignored starting in version 2.0
+// CurrentUICulture is ignored starting in version 2.0
 Thread.CurrentThread.CurrentUICulture = myCultureInfo;
+
 ExpressionDescriptor.GetDescription("* * * * *");
 > "Ogni minuto"
 ```

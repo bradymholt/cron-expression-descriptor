@@ -27,6 +27,6 @@ If you are adding a language translation you will need to do the following:
 
 ## Committing and Pushing changes
 
-1. Run tests with `dotnet test` from the `CronExpressionDescriptor.Test` folder (or, `dotnet test CronExpressionDescriptor.Test/CronExpressionDescriptor.Test.csproj` from root folder).
+1. Run tests with `dotnet test` from the `CronExpressionDescriptor.Test` folder (or, `dotnet test test/Test.csproj` from root folder).
 2. Commit and push changes up to GitHub
 1. [Create a Pull Request](https://help.github.com/articles/creating-a-pull-request/).  Please use a simple description that explains the changes in brief.

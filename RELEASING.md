@@ -6,14 +6,14 @@
 The following instructions are for building, packaging and releasing the library to NuGet.
 
 1. Ensure [.NET Core SDK](https://www.microsoft.com/net/download/core#/sdk) version >= 1.0.4 is installed
-2. Update `<Version/>` and `<PackageReleaseNotes/>` in `CronExpressionDescriptor/CronExpressionDescriptor.csproj`.
+2. Update `<Version/>` and `<PackageReleaseNotes/>` in `Cib/onExpressionDescriptor.csproj`.
 3. Ensure `NUGET_API_KEY` environment variable is set
 4. Run these commands to build, pack, and push a NuGet package:
 
 ```
 dotnet restore
-dotnet pack CronExpressionDescriptor/CronExpressionDescriptor.csproj --configuration release
-dotnet nuget push CronExpressionDescriptor/bin/release/*.nupkg -k $NUGET_API_KEY
+dotnet pack lib/CronExpressionDescriptor.csproj --configuration release
+dotnet nuget push lib/bin/release/*.nupkg -k $NUGET_API_KEY
 ```
 
 5. Run these commands to create a GitHub tag:

@@ -109,7 +109,7 @@ ExpressionDescriptor.GetDescription("* * * * *");
 > "Ogni minuto"
 ```
 
-Platforms only implementing .NET Standard 1.6 or below (i.e. .NET Core 1.0) do not supoort `Thread.CurrentUICulture` and English ("en") will be used by default.
+Platforms only implementing .NET Standard 1.6 or below (i.e. .NET Core 1.0) do not supoort `Thread.CurrentUICulture` and English ("en") will be used by default, unless `Locale` option is passed in.
 
 ## .NET Platform Support
 

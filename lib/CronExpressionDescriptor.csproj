@@ -1,13 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard1.1</TargetFramework>
+    <TargetFrameworks>netstandard1.3;netstandard2.0</TargetFrameworks>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(TargetFramework.Contains('netstandard1'))">
+    <DefineConstants>NET_STANDARD_1</DefineConstants>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>CronExpressionDescriptor.snk</AssemblyOriginatorKeyFile>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
     <Product>CronExpressionDescriptor</Product>
-    <Version>2.0.0-alpha-3</Version>
+    <Version>2.0.0-alpha-4</Version>
     <PackageReleaseNotes>Target netstandard1.1 for .NET Core support</PackageReleaseNotes>
     <Authors>Brady Holt</Authors>
     <Description>A library that converts cron expressions into human readable descriptions.  Supports 15 languages: English, Brazillian, Spanish, Norwgian, Turkish, Dutch, Chinese Simplified, Russian, French, German, Ukrainian, Polish, Romanian Italian, and Swedish.</Description>
@@ -17,4 +20,7 @@
     <PackageTags>cron, schedule, quartz, quartz.net, cron expression</PackageTags>
     <PackageIconUrl>https://raw.githubusercontent.com/bradyholt/cron-expression-descriptor/master/demo/wwwroot/favicon-64x64.png</PackageIconUrl>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Threading.Thread" Version="4.3.0" />
+  </ItemGroup>
 </Project>

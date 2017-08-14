@@ -99,16 +99,17 @@ ExpressionDescriptor.GetDescription("0-10 11 * * *");
 
 ### CurrentUICulture
 
-In earlier versions of Cron Expression Descriptor, [Thread.CurrentUICulture](https://msdn.microsoft.com/en-us/library/system.threading.thread.currentuiculture(v=vs.110).aspx) was supported so the following would work:
+If you are targeting a platform that [supports .NET Standard >= 2.0](https://github.com/dotnet/standard/blob/master/docs/versions.md),  [Thread.CurrentUICulture](https://msdn.microsoft.com/en-us/library/system.threading.thread.currentuiculture(v=vs.110).aspx) is supported for determining the default locale so the following will work:
 
 ```csharp
 CultureInfo myCultureInfo = new CultureInfo("it-IT");
 Thread.CurrentThread.CurrentUICulture = myCultureInfo;
+
 ExpressionDescriptor.GetDescription("* * * * *");
 > "Ogni minuto"
 ```
 
-If you need CurrentUICulture support, use version 1.21.2 (`Install-Package CronExpressionDescriptor -Version 1.21.2`), the latest version with this support.
+Platforms only implementing .NET Standard 1.6 or below (i.e. .NET Core 1.0) do not supoort `Thread.CurrentUICulture` and English ("en") will be used by default.
 
 ## .NET Platform Support
 

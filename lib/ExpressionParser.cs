@@ -8,7 +8,7 @@ using System.Globalization;
 namespace CronExpressionDescriptor
 {
     /// <summary>
-    /// Cron Expression Parser 
+    /// Cron Expression Parser
     /// </summary>
     public class ExpressionParser
     {
@@ -39,7 +39,11 @@ namespace CronExpressionDescriptor
 
             if (string.IsNullOrEmpty(m_expression))
             {
+                #if NET_STANDARD_1
                 throw new Exception("Field 'expression' not found.");
+                #else
+                throw new MissingFieldException("Field 'expression' not found.");
+                #endif
             }
             else
             {
@@ -83,7 +87,7 @@ namespace CronExpressionDescriptor
         }
 
         /// <summary>
-        /// Converts cron expression components into consistent, predictable formats. 
+        /// Converts cron expression components into consistent, predictable formats.
         /// </summary>
         /// <param name="expressionParts">A 7 part string array, one part for each component of the cron expression</param>
         private void NormalizeExpression(string[] expressionParts)
@@ -169,7 +173,7 @@ namespace CronExpressionDescriptor
                 expressionParts[0] = string.Empty;
             }
 
-            // Loop through all parts and apply global normalization 
+            // Loop through all parts and apply global normalization
             for (int i = 0; i < expressionParts.Length; i++)
             {
                 // convert all '*/1' to '*'
@@ -180,8 +184,8 @@ namespace CronExpressionDescriptor
 
                 /* Convert Month,DOW,Year step values with a starting value (i.e. not '*') to between expressions.
                    This allows us to reuse the between expression handling for step values.
-                   
-                   For Example: 
+
+                   For Example:
                     - month part '3/2' will be converted to '3-12/2' (every 2 months between March and December)
                     - DOW part '3/2' will be converted to '3-6/2' (every 2 days between Tuesday and Saturday)
                 */

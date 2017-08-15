@@ -82,13 +82,25 @@
   </a>
   <script>
     function getParameterByName(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)", "i"),
+          results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    function updateQuery(expression, locale){
+      if ('URLSearchParams' in window) {
+        var searchParams = new URLSearchParams(window.location.search)
+        searchParams.set("expression", expression);
+        searchParams.set("locale", locale);
+        var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
+        if (history){
+          history.pushState(null, '', newRelativePathQuery);
+        }
+      }
     }
 
     function fetchDescription(){
@@ -106,18 +118,6 @@
       .then(function (response) {
           document.getElementById("description").innerText = response.data.description;
       });
-    }
-
-    function updateQuery(expression, locale){
-      if ('URLSearchParams' in window) {
-        var searchParams = new URLSearchParams(window.location.search)
-        searchParams.set("expression", expression);
-        searchParams.set("locale", locale);
-        var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
-        if (history){
-          history.pushState(null, '', newRelativePathQuery);
-        }
-      }
     }
 
     document.getElementById("describe").onclick = fetchDescription;

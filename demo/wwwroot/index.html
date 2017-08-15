@@ -93,12 +93,12 @@
 
     function updateQuery(expression, locale){
       if ('URLSearchParams' in window) {
-        var searchParams = new URLSearchParams(window.location.search)
+        var searchParams = new URLSearchParams()
         searchParams.set("expression", expression);
         searchParams.set("locale", locale);
         var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
         if (history){
-          history.pushState(null, '', newRelativePathQuery);
+          history.replaceState(null, '', newRelativePathQuery);
         }
       }
     }

@@ -11,9 +11,9 @@ namespace CronExpressionDescriptor.Test.Support
             return "en-US";
         }
 
-        protected string GetDescription(string expression)
+        protected string GetDescription(string expression, bool verbose = false)
         {
-            return GetDescription(expression, new Options());
+            return GetDescription(expression, new Options() { Verbose = verbose });
         }
 
         protected string GetDescription(string expression, Options options)

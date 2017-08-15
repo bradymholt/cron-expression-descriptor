@@ -98,7 +98,7 @@
         searchParams.set("locale", locale);
         var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
         if (history){
-          history.replaceState(null, '', newRelativePathQuery);
+          history.pushState(null, '', newRelativePathQuery);
         }
       }
     }

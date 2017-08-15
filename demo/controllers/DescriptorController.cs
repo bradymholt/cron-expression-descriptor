@@ -14,7 +14,10 @@ namespace CronExpressionDescriptor.Demo.Controllers
         {
             var result = ExpressionDescriptor.GetDescription(expression, new Options()
             {
+
                 ThrowExceptionOnParseError = false,
+                Verbose = false,
+                DayOfWeekStartIndexZero = true,
                 Locale = (locale ?? "en-US")
             });
 

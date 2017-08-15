@@ -14,8 +14,14 @@ namespace CronExpressionDescriptor
     /// </summary>
     public class ExpressionDescriptor
     {
+        private static string s_defaultLocale;
+        public static void SetDefaultLocale(string locale)
+        {
+            s_defaultLocale = locale;
+        }
+
         private readonly char[] m_specialCharacters = new char[] { '/', '-', ',', '*' };
-        private readonly string[] m_24hourTimeFormatTwoLetterISOLanguageName = new string[] { "ru", "uk", "de", "it", "tr", "pl", "ro" };
+        private readonly string[] m_24hourTimeFormatLocales = new string[] { "ru-RU", "uk-UA", "de-DE", "it-IT", "tr-TR", "pl-PL", "ro-RO" };
 
         private string m_expression;
         private Options m_options;
@@ -42,22 +48,8 @@ namespace CronExpressionDescriptor
             m_expressionParts = new string[7];
             m_parsed = false;
 
-            if (!string.IsNullOrEmpty(options.Locale))
-            {
-                m_culture = new CultureInfo(options.Locale);
-            }
-            else
-            {
-                // If options.Locale not specified...
-
-                #if NET_STANDARD_1
-                // .NET Standard 1.* will use English as default
-                m_culture = new CultureInfo("en-US");
-                #else
-                // .NET Standard >= 2.0 will use CurrentUICulture as default
-                m_culture = Thread.CurrentThread.CurrentUICulture;
-                #endif
-            }
+            var locale = options.Locale ?? s_defaultLocale ?? "en";
+            m_culture = new CultureInfo(locale);
 
             if (m_options.Use24HourTimeFormat != null)
             {
@@ -67,7 +59,7 @@ namespace CronExpressionDescriptor
             else
             {
                 // 24HourTimeFormat not specified, default based on m_24hourTimeFormatLocales
-                m_use24HourTimeFormat = m_24hourTimeFormatTwoLetterISOLanguageName.Contains(m_culture.TwoLetterISOLanguageName);
+                m_use24HourTimeFormat = m_24hourTimeFormatLocales.Contains(locale);
             }
         }
 
@@ -270,10 +262,7 @@ namespace CronExpressionDescriptor
                (s => s),
                (s => string.Format(Resources.ResourceManager.GetString("EveryX0Seconds", m_culture), s)),
                (s => Resources.ResourceManager.GetString("SecondsX0ThroughX1PastTheMinute", m_culture)),
-               (s =>
-               {
-                   try
-                   {
+               (s => { try {
                        return s == "0"
                    ? string.Empty
                            : (int.Parse(s) < 20)
@@ -281,8 +270,7 @@ namespace CronExpressionDescriptor
                        : Resources.ResourceManager.GetString("AtX0SecondsPastTheMinuteGt20", m_culture) ?? Resources.ResourceManager.GetString("AtX0SecondsPastTheMinute", m_culture);
 
                    }
-                   catch { return CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute; }
-               }));
+                   catch { return CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute; }} ));
 
             return description;
         }
@@ -345,9 +333,7 @@ namespace CronExpressionDescriptor
                 // we will not specified a DOW description.
                 description = string.Empty;
 
-            }
-            else
-            {
+            } else {
                 description = GetSegmentDescription(m_expressionParts[5],
                 Resources.ResourceManager.GetString("ComaEveryDay", m_culture),
               (s =>

@@ -37,7 +37,7 @@
   <form>
     <fieldset>
       <label for="expression">Cron Expression</label>
-      <input id="expression" name="expression" placeholder="Cron Expression" type="text" value="0 30 10-13 ? * WED,FRI" />
+      <input id="expression" name="expression" placeholder="Cron Expression" type="text" value="" />
       <label for="locale">Language</label>
       <select id="locale" name="locale">
         <option value="en">English</option>
@@ -61,7 +61,7 @@
   </form>
   <h3>Output</h3>
   <blockquote>
-    <div id="description" class="description">At 30 minutes past the hour, between 10:00 AM and 01:59 PM, only on Wednesday and Friday</div>
+    <div id="description" class="description"></div>
   </blockquote>
   <h3>API</h3>
   <pre><code>curl 'https://cronexpressiondescriptor.azurewebsites.net/api/descriptor/?expression=0+30+10-13+?+*+WED,FRI&locale=en-US'
@@ -91,28 +91,52 @@
         return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
 
-    function getDescription(){
-        axios.get("/api/descriptor/", {
-            params: {
-                expression: document.getElementById("expression").value,
-                locale: document.getElementById("locale").value
-            }
-        })
-        .then(function (response) {
-            document.getElementById("description").innerText = response.data.description;
-        });
+    function fetchDescription(){
+      var expression = document.getElementById("expression").value;
+      var locale = document.getElementById("locale").value;
+
+      updateQuery(expression, locale);
+
+      axios.get("/api/descriptor/", {
+          params: {
+              expression: expression,
+              locale: locale
+          }
+      })
+      .then(function (response) {
+          document.getElementById("description").innerText = response.data.description;
+      });
     }
 
-    document.getElementById("describe").onclick = getDescription;
+    function updateQuery(expression, locale){
+      if ('URLSearchParams' in window) {
+        var searchParams = new URLSearchParams(window.location.search)
+        searchParams.set("expression", expression);
+        searchParams.set("locale", locale);
+        var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
+        if (history){
+          history.pushState(null, '', newRelativePathQuery);
+        }
+      }
+    }
+
+    document.getElementById("describe").onclick = fetchDescription;
     document.addEventListener("DOMContentLoaded", function(event) {
+        var expressionDefault = "0 30 10-13 ? * WED,FRI";
+        var descriptionDefault = "At 30 minutes past the hour, between 10:00 AM and 01:59 PM, only on Wednesday and Friday";
+
         var locale = getParameterByName("locale");
         if (locale) { document.getElementById("locale").value = locale; }
 
         var expressionQuery = getParameterByName("expression");
+        document.getElementById("expression").value = expressionQuery || expressionDefault;
+
         if (expressionQuery) {
-            document.getElementById("expression").value = expressionQuery;
-            getDescription();
+          fetchDescription();
+        } else {
+          document.getElementById("description").innerText = descriptionDefault;
         }
+
     });
   </script>
   <script>

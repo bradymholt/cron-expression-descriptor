@@ -1,0 +1,128 @@
+{
+  "runtimeTarget": {
+    "name": ".NETStandard,Version=v2.0/",
+    "signature": "85b7a34908d0bc8691ce98e3c84c36c3584f8bef"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETStandard,Version=v2.0": {},
+    ".NETStandard,Version=v2.0/": {
+      "CronExpressionDescriptor/2.0.0-alpha-8": {
+        "dependencies": {
+          "NETStandard.Library": "2.0.0",
+          "System.Threading.Thread": "4.3.0"
+        },
+        "runtime": {
+          "CronExpressionDescriptor.dll": {}
+        },
+        "resources": {
+          "de/CronExpressionDescriptor.resources.dll": {
+            "locale": "de"
+          },
+          "es/CronExpressionDescriptor.resources.dll": {
+            "locale": "es"
+          },
+          "fr/CronExpressionDescriptor.resources.dll": {
+            "locale": "fr"
+          },
+          "it/CronExpressionDescriptor.resources.dll": {
+            "locale": "it"
+          },
+          "nb/CronExpressionDescriptor.resources.dll": {
+            "locale": "nb"
+          },
+          "nl/CronExpressionDescriptor.resources.dll": {
+            "locale": "nl"
+          },
+          "pl/CronExpressionDescriptor.resources.dll": {
+            "locale": "pl"
+          },
+          "pt/CronExpressionDescriptor.resources.dll": {
+            "locale": "pt"
+          },
+          "ro/CronExpressionDescriptor.resources.dll": {
+            "locale": "ro"
+          },
+          "ru/CronExpressionDescriptor.resources.dll": {
+            "locale": "ru"
+          },
+          "sv/CronExpressionDescriptor.resources.dll": {
+            "locale": "sv"
+          },
+          "tr/CronExpressionDescriptor.resources.dll": {
+            "locale": "tr"
+          },
+          "uk/CronExpressionDescriptor.resources.dll": {
+            "locale": "uk"
+          },
+          "zh-CN/CronExpressionDescriptor.resources.dll": {
+            "locale": "zh-CN"
+          }
+        }
+      },
+      "Microsoft.NETCore.Platforms/1.1.0": {},
+      "Microsoft.NETCore.Targets/1.1.0": {},
+      "NETStandard.Library/2.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0"
+        }
+      },
+      "System.Runtime/4.3.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0"
+        }
+      },
+      "System.Threading.Thread/4.3.0": {
+        "dependencies": {
+          "System.Runtime": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Threading.Thread.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CronExpressionDescriptor/2.0.0-alpha-8": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.NETCore.Platforms/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
+      "path": "microsoft.netcore.platforms/1.1.0",
+      "hashPath": "microsoft.netcore.platforms.1.1.0.nupkg.sha512"
+    },
+    "Microsoft.NETCore.Targets/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-J3OFwwnDTPvR9jmP6Od9B0Eb7apHZdpNGGxNq2GqO/LkWZDYUGY9iAF+gVluSkuocsnEPVBgY4dMhT9Eag4U1Q==",
+      "path": "microsoft.netcore.targets/1.1.0",
+      "hashPath": "microsoft.netcore.targets.1.1.0.nupkg.sha512"
+    },
+    "NETStandard.Library/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7jnbRU+L08FXKMxqUflxEXtVymWvNOrS8yHgu9s6EM8Anr6T/wIX4nZ08j/u3Asz+tCufp3YVwFSEvFTPYmBPA==",
+      "path": "netstandard.library/2.0.0",
+      "hashPath": "netstandard.library.2.0.0.nupkg.sha512"
+    },
+    "System.Runtime/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JufQi0vPQ0xGnAczR13AUFglDyVYt4Kqnz1AZaiKZ5+GICq0/1MH/mO/eAJHt/mHW1zjKBJd7kV26SrxddAhiw==",
+      "path": "system.runtime/4.3.0",
+      "hashPath": "system.runtime.4.3.0.nupkg.sha512"
+    },
+    "System.Threading.Thread/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mC2Yc9bmqOzzP9kbVZ6PMsJABNtQe3vhsLwqkAX/F6tg/2n4We2Lc021zaXw5QYOuYm6Vw4QpfWk6/3f5t7SOQ==",
+      "path": "system.threading.thread/4.3.0",
+      "hashPath": "system.threading.thread.4.3.0.nupkg.sha512"
+    }
+  }
+}

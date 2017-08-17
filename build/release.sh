@@ -4,9 +4,6 @@
 set -e
 set -o pipefail
 
-# Expand variables in output
-set -x
-
 # cd to root dir
 cd $(dirname $0)/../
 

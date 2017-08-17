@@ -64,7 +64,7 @@ git tag -a $VERSION -m "${NOTES}"
 git push --tags
 
 # Create release on GitHub
-RELEASE_RESPONSE=$(curl -H "Authorization: token $GITHUB_API_TOKEN" -d "{\"tag_name\":\"$VERSION\",\"prerelease\": $PRERELEASE}" https://api.github.com/repos/$GH_REPO/releases)
+RELEASE_RESPONSE=$(curl -H "Authorization: token $GITHUB_API_TOKEN" -d "{\"tag_name\":\"$VERSION\", \"name\":\"$VERSION\",\"body\":\"$NOTES\",\"prerelease\": $PRERELEASE}" https://api.github.com/repos/$GH_REPO/releases)
 
 # Get the release id and then upload the and upload the .nupkg
 eval $(echo "$RELEASE_RESPONSE" | grep -m 1 "id.:" | grep -w id | tr : = | tr -cd '[[:alnum:]]=')

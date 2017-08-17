@@ -38,7 +38,7 @@ dotnet test -c release test/Test.csproj
 # Update CronExpressionDescriptor.csproj with version and release notes
 sed -i.bak "s|\(<Version>\)[^<>]*\(</Version>\)|\1$VERSION\2|" lib/CronExpressionDescriptor.csproj
 sed -i.bak "s|\(<PackageReleaseNotes>\)[^<>]*\(</PackageReleaseNotes>\)|\1$NOTES\2|" lib/CronExpressionDescriptor.csproj
-rm CronExpressionDescriptor.csproj.bak
+rm lib/CronExpressionDescriptor.csproj.bak
 
 # Build, pack, and push to NuGet
 dotnet build -c release -p:SignAssembly=True,PublicSign=True lib/CronExpressionDescriptor.csproj

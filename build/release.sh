@@ -56,5 +56,5 @@ git commit -am  "New release: $VERSION"
 #curl -H "Authorization: token $GITHUB_API_TOKEN" -d "{\"tag_name\":\"$VERSION\", \"name\":\"$VERSION\",\"body\":\"$NOTES\",\"prerelease\": $PRERELEASE}" https://api.github.com/repos/bradyholt/cron-expression-descriptor/releases
 RELEASE_RESPONSE=$(curl -H "Authorization: token $GITHUB_API_TOKEN" https://api.github.com/repos/bradyholt/cron-expression-descriptor/releases/tags/$VERSION)
 eval $(echo "$RELEASE_RESPONSE" | grep -m 1 "id.:" | grep -w id | tr : = | tr -cd '[[:alnum:]]=')
-[ "$RELEASE_ID" ] || { echo "Error: Failed to get release id for tag: $VERSION"; echo "$RELEASE_RESPONSE" | awk 'length($0)<100' >&2; exit 1; }
-echo $RELEASE_ID
+[ "$id" ] || { echo "Error: Failed to get release id for tag: $VERSION"; echo "$RELEASE_RESPONSE" | awk 'length($0)<100' >&2; exit 1; }
+echo $id

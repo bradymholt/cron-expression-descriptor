@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Releases CronExpressionDescriptor
+# This includes: running tests, building in release mode, signing, packaging, publishing on
+# NuGet, creating a GitHub release, uploading .nupkg to GitHub release.
+#
+# Example:
+#   release.sh 2.0.0 "Fixed DOW bug causing exception"
+
 # Halt immediately on any error
 set -e
 set -o pipefail
@@ -57,10 +64,9 @@ git tag -a $VERSION -m "${NOTES}"
 git push --tags
 
 # Create release on GitHub
-curl -H "Authorization: token $GITHUB_API_TOKEN" -d "{\"tag_name\":\"$VERSION\", \"name\":\"$VERSION\",\"body\":\"$NOTES\",\"prerelease\": $PRERELEASE}" https://api.github.com/repos/$GH_REPO/releases
+RELEASE_RESPONSE=$(curl -H "Authorization: token $GITHUB_API_TOKEN" -d "{\"tag_name\":\"$VERSION\",\"prerelease\": $PRERELEASE}" https://api.github.com/repos/$GH_REPO/releases)
 
 # Get the release id and then upload the and upload the .nupkg
-response=$(curl -H "Authorization: token $GITHUB_API_TOKEN" https://api.github.com/repos/bradyholt/cron-expression-descriptor/releases/tags/$VERSION)
-eval $(echo "$response" | grep -m 1 "id.:" | grep -w id | tr : = | tr -cd '[[:alnum:]]=')
+eval $(echo "$RELEASE_RESPONSE" | grep -m 1 "id.:" | grep -w id | tr : = | tr -cd '[[:alnum:]]=')
 [ "$id" ] || { echo "Error: Failed to get release id for tag: $VERSION"; echo "$RELEASE_RESPONSE" | awk 'length($0)<100' >&2; exit 1; }
 curl -H "Authorization: token $GITHUB_API_TOKEN"  -H "Content-Type: application/octet-stream" --data-binary @"$RELEASE_PATH/$NUPKG_FILE" https://uploads.github.com/repos/$GH_REPO/releases/$id/assets?name=$NUPKG_FILE

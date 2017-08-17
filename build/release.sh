@@ -30,10 +30,10 @@ if [[ $VERSION == *"-"* ]]; then
   PRERELEASE=true
 fi
 
-dotnet restore
+#dotnet restore
 
 # Run tests
-dotnet test -c release test/Test.csproj
+#dotnet test -c release test/Test.csproj
 
 # Update CronExpressionDescriptor.csproj with version and release notes
 sed -i.bak "s|\(<Version>\)[^<>]*\(</Version>\)|\1$VERSION\2|" lib/CronExpressionDescriptor.csproj
@@ -41,16 +41,16 @@ sed -i.bak "s|\(<PackageReleaseNotes>\)[^<>]*\(</PackageReleaseNotes>\)|\1$NOTES
 rm lib/CronExpressionDescriptor.csproj.bak
 
 # Build, pack, and push to NuGet
-dotnet build -c release -p:SignAssembly=True,PublicSign=True lib/CronExpressionDescriptor.csproj
-dotnet pack -c release --no-build lib/CronExpressionDescriptor.csproj
+#dotnet build -c release -p:SignAssembly=True,PublicSign=True lib/CronExpressionDescriptor.csproj
+#dotnet pack -c release --no-build lib/CronExpressionDescriptor.csproj
 #dotnet nuget push lib/bin/release/CronExpressionDescriptor.$VERSION.nupkg -k $NUGET_API_KEY
 
 # Commit changes to project file
 git commit -am  "New release: $VERSION"
 
 # Create release tag
-git tag -a $VERSION -m "${NOTES}"
-git push --tags
+#git tag -a $VERSION -m "${NOTES}"
+#git push --tags
 
 # Create release on GitHub
 #curl -H "Authorization: token $GITHUB_API_TOKEN" -d "{\"tag_name\":\"$VERSION\", \"name\":\"$VERSION\",\"body\":\"$NOTES\",\"prerelease\": $PRERELEASE}" https://api.github.com/repos/bradyholt/cron-expression-descriptor/releases

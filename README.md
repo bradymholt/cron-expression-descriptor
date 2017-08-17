@@ -101,30 +101,26 @@ ExpressionDescriptor.GetDescription("0-10 11 * * *");
 
 ### CurrentUICulture
 
-If you are targeting a platform that [supports .NET Standard >= 2.0](https://github.com/dotnet/standard/blob/master/docs/versions.md),  [Thread.CurrentUICulture](https://msdn.microsoft.com/en-us/library/system.threading.thread.currentuiculture(v=vs.110).aspx) is supported for determining the default locale, without explicitly passing it in with the `Locale` option, so the following will work:
+[Thread.CurrentUICulture](https://msdn.microsoft.com/en-us/library/system.threading.thread.currentuiculture(v=vs.110).aspx) is supported for determining the default locale, without explicitly passing it in with the `Locale` option, so the following will work:
 
 ```csharp
 CultureInfo myCultureInfo = new CultureInfo("it-IT");
-// CurrentUICulture is ignored starting in version 2.0
 Thread.CurrentThread.CurrentUICulture = myCultureInfo;
 
 ExpressionDescriptor.GetDescription("* * * * *");
 > "Ogni minuto"
 ```
 
-Platforms only implementing .NET Standard 1.6 or below (i.e. .NET Core 1.0) do not supoort `Thread.CurrentUICulture` and English ("en") will be used by default, unless `Locale` option is passed in.
-
 ## .NET Platform Support
 
-Begining with version 2.0.0, the NuGet package will contain a library targeting .NET Standard 1.3 and .NET Standard 2.0.  This allows the library to consumed by applications running on the following .NET platforms:
+Begining with version 2.0.0, the NuGet package will contain a library targeting .NET Standard 2.0.  This allows the library to consumed by applications running on the following .NET platforms:
 
-- .NET Core >= 1.0
-- .NET Framework >= 4.6
-- Mono >= 4.6
-- Universal Windows Platform >= 10.0
+- .NET Core >= 2.0
+- .NET Framework >= 4.6.1
+- Mono >= 5.4
 - ([More](https://github.com/dotnet/standard/blob/master/docs/versions.md))
 
-If your application is targeting an earlier version of .NET Framework (i.e. 4.5 or 3.5), you can use version `1.21.2` as it has support back to .NET Framework 3.5.  To install this version, run `Install-Package CronExpressionDescriptor -Version 1.21.2`.
+If your application is targeting an earlier version of .NET Framework (i.e. 4.6, 4.5 or 3.5), you can use version `1.21.2` as it has support back to .NET Framework 3.5.  To install this version, run `Install-Package CronExpressionDescriptor -Version 1.21.2`.
 
 ## Demo
 

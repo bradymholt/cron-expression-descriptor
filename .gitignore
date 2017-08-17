@@ -24,3 +24,4 @@ TestResult.xml
 applicationhost.config
 CronExpressionDescriptor/Resources.ro.Designer.cs
 nuget.exe
+*.bak

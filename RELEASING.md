@@ -6,9 +6,8 @@
 The following instructions are for building, packaging and releasing the library to NuGet.
 
 1. Ensure [.NET Core SDK](https://www.microsoft.com/net/download/core#/sdk) version >= 1.0.4 is installed
-2. Update `<Version/>` and `<PackageReleaseNotes/>` in `lib/onExpressionDescriptor.csproj`.
-3. Ensure `NUGET_API_KEY` environment variable is set
-4. Run the following command:
+3. Ensure `NUGET_API_KEY` and `GITHUB_API_TOKEN` environment variables are set
+4. Run the `build/release.sh` command, passing in the version and release notes:
 
 ```
 ./build/release.sh [VERSION_NUMBER] "[RELEASE_NOTES]"
@@ -20,7 +19,8 @@ This will:
 2. Create NuGet package
 3. Upload NuGet package
 4. Create a git tag for the release
-4. Create a Relese on GitHub
+5. Create a Relese on GitHub
+6. Upload the .nupkg file as a release asset to GitHub
 
 ## Deploying the Demo site
 

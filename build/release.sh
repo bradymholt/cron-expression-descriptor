@@ -4,6 +4,9 @@
 set -e
 set -o pipefail
 
+# Expand variables in output
+set -x
+
 # cd to root dir
 cd $(dirname $0)/../
 
@@ -14,10 +17,10 @@ if [[ $# -ne 2 ]]; then
   exit 1
 fi
 
-# if [[ `git status --porcelain` ]]; then
-#   echo "All changes must be committed first."
-#   exit 1
-# fi
+if [[ `git status --porcelain` ]]; then
+  echo "All changes must be committed first."
+  exit 1
+fi
 
 : ${NUGET_API_KEY?"NUGET_API_KEY must be set"}
 : ${GITHUB_API_TOKEN?"GITHUB_API_TOKEN must be set"}
@@ -29,32 +32,38 @@ PRERELEASE=false
 if [[ $VERSION == *"-"* ]]; then
   PRERELEASE=true
 fi
+RELEASE_PATH="lib/bin/release"
+NUPKG_FILE="CronExpressionDescriptor.$VERSION.nupkg"
+LIB_CSPROJ="lib/CronExpressionDescriptor.csproj"
+GH_REPO="bradyholt/cron-expression-descriptor"
 
-#dotnet restore
+dotnet restore
 
 # Run tests
-#dotnet test -c release test/Test.csproj
+dotnet test -c release test/Test.csproj
 
 # Update CronExpressionDescriptor.csproj with version and release notes
-sed -i.bak "s|\(<Version>\)[^<>]*\(</Version>\)|\1$VERSION\2|" lib/CronExpressionDescriptor.csproj
-sed -i.bak "s|\(<PackageReleaseNotes>\)[^<>]*\(</PackageReleaseNotes>\)|\1$NOTES\2|" lib/CronExpressionDescriptor.csproj
-rm lib/CronExpressionDescriptor.csproj.bak
+sed -i.bak "s|\(<Version>\)[^<>]*\(</Version>\)|\1$VERSION\2|" $LIB_CSPROJ
+sed -i.bak "s|\(<PackageReleaseNotes>\)[^<>]*\(</PackageReleaseNotes>\)|\1$NOTES\2|" $LIB_CSPROJ
+rm ${LIB_CSPROJ}.bak
 
 # Build, pack, and push to NuGet
-#dotnet build -c release -p:SignAssembly=True,PublicSign=True lib/CronExpressionDescriptor.csproj
-#dotnet pack -c release --no-build lib/CronExpressionDescriptor.csproj
-#dotnet nuget push lib/bin/release/CronExpressionDescriptor.$VERSION.nupkg -k $NUGET_API_KEY
+dotnet build -c release -p:SignAssembly=True,PublicSign=True $LIB_CSPROJ
+dotnet pack -c release --no-build $LIB_CSPROJ
+dotnet nuget push "$RELEASE_PATH/$NUPKG_FILE" -k $NUGET_API_KEY
 
 # Commit changes to project file
 git commit -am  "New release: $VERSION"
 
 # Create release tag
-#git tag -a $VERSION -m "${NOTES}"
-#git push --tags
+git tag -a $VERSION -m "${NOTES}"
+git push --tags
 
 # Create release on GitHub
-#curl -H "Authorization: token $GITHUB_API_TOKEN" -d "{\"tag_name\":\"$VERSION\", \"name\":\"$VERSION\",\"body\":\"$NOTES\",\"prerelease\": $PRERELEASE}" https://api.github.com/repos/bradyholt/cron-expression-descriptor/releases
-RELEASE_RESPONSE=$(curl -H "Authorization: token $GITHUB_API_TOKEN" https://api.github.com/repos/bradyholt/cron-expression-descriptor/releases/tags/$VERSION)
-eval $(echo "$RELEASE_RESPONSE" | grep -m 1 "id.:" | grep -w id | tr : = | tr -cd '[[:alnum:]]=')
+curl -H "Authorization: token $GITHUB_API_TOKEN" -d "{\"tag_name\":\"$VERSION\", \"name\":\"$VERSION\",\"body\":\"$NOTES\",\"prerelease\": $PRERELEASE}" https://api.github.com/repos/$GH_REPO/releases
+
+# Get the release id and then upload the and upload the .nupkg
+response=$(curl -H "Authorization: token $GITHUB_API_TOKEN" https://api.github.com/repos/bradyholt/cron-expression-descriptor/releases/tags/$VERSION)
+eval $(echo "$response" | grep -m 1 "id.:" | grep -w id | tr : = | tr -cd '[[:alnum:]]=')
 [ "$id" ] || { echo "Error: Failed to get release id for tag: $VERSION"; echo "$RELEASE_RESPONSE" | awk 'length($0)<100' >&2; exit 1; }
-echo $id
+curl -H "Authorization: token $GITHUB_API_TOKEN"  -H "Content-Type: application/octet-stream" --data-binary @"$RELEASE_PATH/$NUPKG_FILE" https://uploads.github.com/repos/$GH_REPO/releases/$id/assets?name=$NUPKG_FILE

@@ -1,0 +1,63 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "taskName": "build",
+      "command": "dotnet",
+      "args": ["build"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "taskName": "test",
+      "command": "dotnet",
+      "args": ["test", "test/Test.csproj"],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "taskName": "run-demo",
+      "command": "dotnet",
+      "args": ["run"],
+      "options": {
+        "cwd": "${workspaceRoot}/demo"
+      },
+      "problemMatcher": ["$msCompile"]
+    },
+    {
+      "taskName": "pack",
+      "command": "dotnet",
+      "args": [
+        "pack",
+        "lib/CronExpressionDescriptor.csproj",
+        "--configuration",
+        "release"
+      ],
+      "problemMatcher": ["$msCompile"]
+    },
+    {
+      "taskName": "nupkg-clean",
+      "command": "rm ${workspaceRoot}/lib/bin/release/*.nupkg",
+      "type": "shell"
+    },
+    {
+      "taskName": "release",
+      "command": "dotnet",
+      "dependsOn": ["nupkg-clean", "pack"],
+      "args": [
+        "nuget",
+        "push",
+        "lib/bin/release/*.nupkg",
+        "-k",
+        "${env:NUGET_API_KEY}"
+      ],
+      "problemMatcher": ["$msCompile"]
+    }
+  ]
+}

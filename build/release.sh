@@ -14,10 +14,10 @@ if [[ $# -ne 2 ]]; then
   exit 1
 fi
 
-if [[ `git status --porcelain` ]]; then
-  echo "All changes must be committed first."
-  exit 1
-fi
+# if [[ `git status --porcelain` ]]; then
+#   echo "All changes must be committed first."
+#   exit 1
+# fi
 
 : ${NUGET_API_KEY?"NUGET_API_KEY must be set"}
 : ${GITHUB_API_TOKEN?"GITHUB_API_TOKEN must be set"}
@@ -43,7 +43,7 @@ rm lib/CronExpressionDescriptor.csproj.bak
 # Build, pack, and push to NuGet
 dotnet build -c release -p:SignAssembly=True,PublicSign=True lib/CronExpressionDescriptor.csproj
 dotnet pack -c release --no-build lib/CronExpressionDescriptor.csproj
-dotnet nuget push lib/bin/release/CronExpressionDescriptor.$VERSION.nupkg -k $NUGET_API_KEY
+#dotnet nuget push lib/bin/release/CronExpressionDescriptor.$VERSION.nupkg -k $NUGET_API_KEY
 
 # Commit changes to project file
 git commit -am  "New release: $VERSION"
@@ -53,4 +53,8 @@ git tag -a $VERSION -m "${NOTES}"
 git push --tags
 
 # Create release on GitHub
-curl -H "Authorization: token $GITHUB_API_TOKEN" -d "{\"tag_name\":\"$VERSION\", \"name\":\"$VERSION\",\"body\":\"$NOTES\",\"prerelease\": $PRERELEASE}" https://api.github.com/repos/bradyholt/cron-expression-descriptor/releases
+#curl -H "Authorization: token $GITHUB_API_TOKEN" -d "{\"tag_name\":\"$VERSION\", \"name\":\"$VERSION\",\"body\":\"$NOTES\",\"prerelease\": $PRERELEASE}" https://api.github.com/repos/bradyholt/cron-expression-descriptor/releases
+RELASE_RESPONSE=$(curl -H "Authorization: token $GITHUB_API_TOKEN" https://api.github.com/repos/bradyholt/cron-expression-descriptor/releases/tags/$VERSION)
+eval $(echo "$response" | grep -m 1 "id.:" | grep -w id | tr : = | tr -cd '[[:alnum:]]=')
+[ "$id" ] || { echo "Error: Failed to get release id for tag: $tag"; echo "$response" | awk 'length($0)<100' >&2; exit 1; }
+echo $id

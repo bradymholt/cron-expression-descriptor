@@ -53,4 +53,4 @@ git tag -a $VERSION -m "${NOTES}"
 git push --tags
 
 # Create release on GitHub
-curl -H "Authorization: token $GITHUB_API_TOKEN" -X POST -d '{"tag_name":"$VERSION", "prerelease": $PRERELEASE}' https://api.github.com/repos/bradyholt/cron-expression-descriptor/releases
+curl -H "Authorization: token $GITHUB_API_TOKEN" -d "{\"tag_name\":\"$VERSION\", \"name\":\"$VERSION\",\"body\":\"$NOTES\",\"prerelease\": $PRERELEASE}" https://api.github.com/repos/bradyholt/cron-expression-descriptor/releases

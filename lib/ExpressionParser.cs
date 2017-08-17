@@ -12,6 +12,20 @@ namespace CronExpressionDescriptor
     /// </summary>
     public class ExpressionParser
     {
+        /* Cron reference
+
+          ┌───────────── minute (0 - 59)
+          │ ┌───────────── hour (0 - 23)
+          │ │ ┌───────────── day of month (1 - 31)
+          │ │ │ ┌───────────── month (1 - 12)
+          │ │ │ │ ┌───────────── day of week (0 - 6) (Sunday to Saturday; 7 is also Sunday on some systems)
+          │ │ │ │ │
+          │ │ │ │ │
+          │ │ │ │ │
+          * * * * *  command to execute
+
+         */
+
         private string m_expression;
         private Options m_options;
         private CultureInfo m_en_culture;

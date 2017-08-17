@@ -9,8 +9,8 @@
     <SignAssembly>False</SignAssembly>
     <AssemblyOriginatorKeyFile>CronExpressionDescriptor.snk</AssemblyOriginatorKeyFile>
     <Product>CronExpressionDescriptor</Product>
-    <Version>2.0.0-alpha-4</Version>
-    <PackageReleaseNotes>Target netstandard1.3;netstandard2.0 for .NET Core supportssss</PackageReleaseNotes>
+    <Version>2.0.0-alpha-5</Version>
+    <PackageReleaseNotes>Target netstandard1.3;netstandard2.0 for .NET Core support</PackageReleaseNotes>
     <Authors>Brady Holt</Authors>
     <Description>A library that converts cron expressions into human readable descriptions.  Supports 15 languages: English, Brazillian, Spanish, Norwgian, Turkish, Dutch, Chinese Simplified, Russian, French, German, Ukrainian, Polish, Romanian Italian, and Swedish.</Description>
     <PackageLicenseUrl>https://github.com/bradyholt/cron-expression-descriptor/blob/master/LICENSE</PackageLicenseUrl>

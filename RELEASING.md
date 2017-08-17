@@ -8,24 +8,19 @@ The following instructions are for building, packaging and releasing the library
 1. Ensure [.NET Core SDK](https://www.microsoft.com/net/download/core#/sdk) version >= 1.0.4 is installed
 2. Update `<Version/>` and `<PackageReleaseNotes/>` in `lib/onExpressionDescriptor.csproj`.
 3. Ensure `NUGET_API_KEY` environment variable is set
-4. Run these commands to build, pack, and push a NuGet package:
+4. Run the following command:
 
 ```
-dotnet restore
-dotnet pack lib/CronExpressionDescriptor.csproj --configuration release
-dotnet nuget push lib/bin/release/*.nupkg -k $NUGET_API_KEY
+./build/release.sh [VERSION_NUMBER] "[RELEASE_NOTES]"
 ```
 
-5. Run these commands to create a GitHub tag:
+This will:
 
-```
-git tag -a [VERSION_NUMBER] -m [VERSION_NOTES]
-git push --tags
-```
-
-6. Navigate to [Draft New Release](https://github.com/bradyholt/cron-expression-descriptor/releases/new) on GitHub
-7. Leave title and description blank so that git tag message will be used
-8. Click **Publish release**
+1. Run tests
+2. Create NuGet package
+3. Upload NuGet package
+4. Create a git tag for the release
+4. Create a Relese on GitHub
 
 ## Deploying the Demo site
 

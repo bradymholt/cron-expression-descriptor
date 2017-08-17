@@ -25,21 +25,21 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "* * * * *",
                 expected: "În fiecare minut",
-                expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi");
+                expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi");
         }
 
         [Fact]
         public void TestEvery1Minute()
         {
-            Harness(cron: "*/1 * * * *", expected: "În fiecare minut", expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi");
-            Harness(cron: "0 0/1 * * * ?", expected: "În fiecare minut", expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi");
+            Harness(cron: "*/1 * * * *", expected: "În fiecare minut", expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi");
+            Harness(cron: "0 0/1 * * * ?", expected: "În fiecare minut", expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi");
         }
 
         [Fact]
         public void TestEveryHour()
         {
-            Harness(cron: "0 0 * * * ?", expected: "În fiecare oră", expectedVerbose: "În fiecare oră, în fiecare zi, în fiecare zi");
-            Harness(cron: "0 0 0/1 * * ?", expected: "În fiecare oră", expectedVerbose: "În fiecare oră, în fiecare zi, în fiecare zi");
+            Harness(cron: "0 0 * * * ?", expected: "În fiecare oră", expectedVerbose: "În fiecare oră, în fiecare zi");
+            Harness(cron: "0 0 0/1 * * ?", expected: "În fiecare oră", expectedVerbose: "În fiecare oră, în fiecare zi");
         }
 
         [Fact]
@@ -53,7 +53,7 @@ namespace CronExpressionDescriptor.Test
         public void TestEverySecond()
         {
             Harness(cron: "* * * * * *", expected: "În fiecare secundă"
-                , expectedVerbose: "În fiecare secundă, în fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi");
+                , expectedVerbose: "În fiecare secundă, în fiecare minut, în fiecare oră, în fiecare zi");
         }
 
         [Fact]
@@ -61,7 +61,7 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "*/45 * * * * *",
                 expected: "La fiecare 45 secunde",
-                expectedVerbose: "La fiecare 45 secunde, în fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi");
+                expectedVerbose: "La fiecare 45 secunde, în fiecare minut, în fiecare oră, în fiecare zi");
         }
 
         [Fact]
@@ -69,18 +69,18 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "*/5 * * * *",
                 expected: "La fiecare 5 minute",
-                expectedVerbose: "La fiecare 5 minute, în fiecare oră, în fiecare zi, în fiecare zi");
+                expectedVerbose: "La fiecare 5 minute, în fiecare oră, în fiecare zi");
 
             Harness(cron: "0 0/10 * * * ?",
                 expected: "La fiecare 10 minute",
-                expectedVerbose: "La fiecare 10 minute, în fiecare oră, în fiecare zi, în fiecare zi");
+                expectedVerbose: "La fiecare 10 minute, în fiecare oră, în fiecare zi");
         }
 
         [Fact]
         public void TestEvery5MinutesOnTheSecond()
         {
             Harness(cron: "0 */5 * * * *", expected: "La fiecare 5 minute",
-                expectedVerbose: "La fiecare 5 minute, în fiecare oră, în fiecare zi, în fiecare zi");
+                expectedVerbose: "La fiecare 5 minute, în fiecare oră, în fiecare zi");
         }
 
         [Fact]
@@ -94,21 +94,21 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestDailyAtTime()
         {
-            Harness(cron: "30 11 * * *", expected: "La 11:30", expectedVerbose: "La 11:30, în fiecare zi, în fiecare zi");
+            Harness(cron: "30 11 * * *", expected: "La 11:30", expectedVerbose: "La 11:30, în fiecare zi");
         }
 
         [Fact]
         public void TestMinuteSpan()
         {
             Harness("0-10 11 * * *", expected: "În fiecare minut între 11:00 și 11:10",
-                expectedVerbose: "În fiecare minut între 11:00 și 11:10, în fiecare zi, în fiecare zi");
+                expectedVerbose: "În fiecare minut între 11:00 și 11:10, în fiecare zi");
         }
 
         [Fact]
         public void TestOneMonthOnly()
         {
             Harness(cron: "* * * 3 *", expected: "În fiecare minut, doar în martie",
-                expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi, doar în martie");
+                expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, doar în martie");
         }
 
         [Fact]
@@ -116,14 +116,14 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "* * * 3,6 *",
                 expected: "În fiecare minut, doar în martie și iunie",
-                expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi, doar în martie și iunie");
+                expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, doar în martie și iunie");
         }
 
         [Fact]
         public void TestTwoTimesEachAfternoon()
         {
             Harness(cron: "30 14,16 * * *", expected: "La 14:30 și 16:30",
-                expectedVerbose: "La 14:30 și 16:30, în fiecare zi, în fiecare zi");
+                expectedVerbose: "La 14:30 și 16:30, în fiecare zi");
         }
 
         [Fact]
@@ -131,7 +131,7 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "30 6,14,16 * * *",
                 expected: "La 06:30, 14:30 și 16:30",
-                expectedVerbose: "La 06:30, 14:30 și 16:30, în fiecare zi, în fiecare zi");
+                expectedVerbose: "La 06:30, 14:30 și 16:30, în fiecare zi");
         }
 
         [Fact]
@@ -152,13 +152,13 @@ namespace CronExpressionDescriptor.Test
         public void TestMonthName()
         {
             Harness(cron: "23 12 * JAN *", expected: "La 12:23, doar în ianuarie",
-                expectedVerbose: "La 12:23, în fiecare zi, în fiecare zi, doar în ianuarie");
+                expectedVerbose: "La 12:23, în fiecare zi, doar în ianuarie");
         }
 
         [Fact]
         public void TestDayOfMonthWithQuestionMark()
         {
-            Harness(cron: "23 12 ? JAN *", expected: "La 12:23, doar în ianuarie", expectedVerbose: "La 12:23, în fiecare zi, în fiecare zi, doar în ianuarie");
+            Harness(cron: "23 12 ? JAN *", expected: "La 12:23, doar în ianuarie", expectedVerbose: "La 12:23, în fiecare zi, doar în ianuarie");
         }
 
         [Fact]
@@ -166,14 +166,14 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "23 12 * JAN-FEB *",
                 expected: "La 12:23, din ianuarie până în februarie",
-                expectedVerbose: "La 12:23, în fiecare zi, în fiecare zi, din ianuarie până în februarie");
+                expectedVerbose: "La 12:23, în fiecare zi, din ianuarie până în februarie");
         }
 
         [Fact]
         public void TestMonthNameRange3()
         {
             Harness(cron: "23 12 * JAN-MAR *", expected: "La 12:23, din ianuarie până în martie",
-                expectedVerbose: "La 12:23, în fiecare zi, în fiecare zi, din ianuarie până în martie");
+                expectedVerbose: "La 12:23, în fiecare zi, din ianuarie până în martie");
         }
 
         [Fact]
@@ -272,7 +272,7 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "30 02 14 * * *",
                 expected: "La 14:02:30",
-                expectedVerbose: "La 14:02:30, în fiecare zi, în fiecare zi");
+                expectedVerbose: "La 14:02:30, în fiecare zi");
         }
 
         [Fact]
@@ -280,7 +280,7 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "5-10 * * * * *",
                 expected: "Între secunda 5 și secunda 10",
-                expectedVerbose: "Între secunda 5 și secunda 10, în fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi");
+                expectedVerbose: "Între secunda 5 și secunda 10, în fiecare minut, în fiecare oră, în fiecare zi");
         }
 
         [Fact]
@@ -288,7 +288,7 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "5-10 30-35 10-12 * * *",
                 expected: "Între secunda 5 și secunda 10, între minutele 30 și 35, între 10:00 și 12:59",
-                expectedVerbose: "Între secunda 5 și secunda 10, între minutele 30 și 35, între 10:00 și 12:59, în fiecare zi, în fiecare zi");
+                expectedVerbose: "Între secunda 5 și secunda 10, între minutele 30 și 35, între 10:00 și 12:59, în fiecare zi");
         }
 
         [Fact]
@@ -296,7 +296,7 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "30 */5 * * * *",
                 expected: "La și 30 de secunde, la fiecare 5 minute",
-                expectedVerbose: "La și 30 de secunde, la fiecare 5 minute, în fiecare oră, în fiecare zi, în fiecare zi");
+                expectedVerbose: "La și 30 de secunde, la fiecare 5 minute, în fiecare oră, în fiecare zi");
         }
 
         [Fact]
@@ -312,7 +312,7 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "10 0/5 * * * ?",
                 expected: "La și 10 secunde, la fiecare 5 minute",
-                expectedVerbose: "La și 10 secunde, la fiecare 5 minute, în fiecare oră, în fiecare zi, în fiecare zi");
+                expectedVerbose: "La și 10 secunde, la fiecare 5 minute, în fiecare oră, în fiecare zi");
         }
 
         [Fact]
@@ -327,7 +327,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestRecurringFirstOfMonth()
         {
-            Harness(cron: "0 0 6 1/1 * ?", expected: "La 06:00", expectedVerbose: "La 06:00, în fiecare zi, în fiecare zi");
+            Harness(cron: "0 0 6 1/1 * ?", expected: "La 06:00", expectedVerbose: "La 06:00, în fiecare zi");
         }
 
         [Fact]
@@ -335,21 +335,21 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "0 5 0/1 * * ?",
                 expected: "La și 5 minute",
-                expectedVerbose: "La și 5 minute, în fiecare oră, în fiecare zi, în fiecare zi");
+                expectedVerbose: "La și 5 minute, în fiecare oră, în fiecare zi");
         }
 
         [Fact]
         public void TestOneYearOnlyWithSeconds()
         {
             Harness(cron: "* * * * * * 2013", expected: "În fiecare secundă, doar în 2013",
-                expectedVerbose: "În fiecare secundă, în fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi, doar în 2013");
+                expectedVerbose: "În fiecare secundă, în fiecare minut, în fiecare oră, în fiecare zi, doar în 2013");
         }
 
         [Fact]
         public void TestOneYearOnlyWithoutSeconds()
         {
             Harness(cron: "* * * * * 2013", expected: "În fiecare minut, doar în 2013",
-                expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi, doar în 2013");
+                expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, doar în 2013");
         }
 
         [Fact]
@@ -357,7 +357,7 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "* * * * * 2013,2014",
                 expected: "În fiecare minut, doar în 2013 și 2014",
-                expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, în fiecare zi, doar în 2013 și 2014");
+                expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, doar în 2013 și 2014");
         }
 
         [Fact]
@@ -365,7 +365,7 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "23 12 * JAN-FEB * 2013-2014",
                 expected: "La 12:23, din ianuarie până în februarie, din 2013 până în 2014",
-                expectedVerbose: "La 12:23, în fiecare zi, în fiecare zi, din ianuarie până în februarie, din 2013 până în 2014");
+                expectedVerbose: "La 12:23, în fiecare zi, din ianuarie până în februarie, din 2013 până în 2014");
         }
 
         [Fact]
@@ -373,7 +373,7 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "23 12 * JAN-MAR * 2013-2015",
                 expected: "La 12:23, din ianuarie până în martie, din 2013 până în 2015",
-                expectedVerbose: "La 12:23, în fiecare zi, în fiecare zi, din ianuarie până în martie, din 2013 până în 2015");
+                expectedVerbose: "La 12:23, în fiecare zi, din ianuarie până în martie, din 2013 până în 2015");
         }
 
         [Fact]
@@ -405,7 +405,7 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "0 25 7-19/13 ? * *",
                 expected: "La și 25 de minute, la fiecare 13 ore, între 07:00 și 19:59",
-                expectedVerbose: "La și 25 de minute, la fiecare 13 ore, între 07:00 și 19:59, în fiecare zi, în fiecare zi");
+                expectedVerbose: "La și 25 de minute, la fiecare 13 ore, între 07:00 și 19:59, în fiecare zi");
         }
 
         [Fact]
@@ -413,7 +413,7 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "0 25 7-20/13 ? * *",
                expected: "La și 25 de minute, la fiecare 13 ore, între 07:00 și 20:59",
-               expectedVerbose: "La și 25 de minute, la fiecare 13 ore, între 07:00 și 20:59, în fiecare zi, în fiecare zi");
+               expectedVerbose: "La și 25 de minute, la fiecare 13 ore, între 07:00 și 20:59, în fiecare zi");
         }
 
         [Fact]
@@ -453,7 +453,7 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "2,4-5 1 * * *",
                 expected: "La și 2 și de 4 până 5 minute, la 01:00",
-                expectedVerbose: "La și 2 și de 4 până 5 minute, la 01:00, în fiecare zi, în fiecare zi");
+                expectedVerbose: "La și 2 și de 4 până 5 minute, la 01:00, în fiecare zi");
         }
 
         [Fact]
@@ -461,14 +461,14 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "2,26-28 18 * * *",
                 expected: "La și 2 și de 26 până 28 minute, la 18:00",
-                expectedVerbose: "La și 2 și de 26 până 28 minute, la 18:00, în fiecare zi, în fiecare zi");
+                expectedVerbose: "La și 2 și de 26 până 28 minute, la 18:00, în fiecare zi");
         }
 
         [Fact]
         public void TrailingSpaceDoesNotCauseAWrongDescription()
         {
             // GitHub Issue #51: https://github.com/bradyholt/cron-expression-descriptor/issues/51
-            Harness(cron: "0 7 * * * ", expected: "La 07:00", expectedVerbose: "La 07:00, în fiecare zi, în fiecare zi");
+            Harness(cron: "0 7 * * * ", expected: "La 07:00", expectedVerbose: "La 07:00, în fiecare zi");
         }
 
         [Fact]

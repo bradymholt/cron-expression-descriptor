@@ -5,7 +5,7 @@
 
 The following instructions are for building, packaging and releasing the library to NuGet.
 
-1. Ensure [.NET Core SDK](https://www.microsoft.com/net/download/core#/sdk) version >= 1.0.4 is installed
+1. Ensure [.NET Core SDK](https://www.microsoft.com/net/download/core#/sdk) version >= 2.0.0 is installed
 3. Ensure `NUGET_API_KEY` and `GITHUB_API_TOKEN` environment variables are set
 4. Run the `build/release.sh` command, passing in the version and release notes:
 

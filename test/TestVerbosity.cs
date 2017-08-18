@@ -10,5 +10,12 @@ namespace CronExpressionDescriptor.Test
             ExpressionDescriptor ceh = new ExpressionDescriptor("30 4 1 * *", new Options() { Verbose = true });
             Assert.Equal("At 04:30 AM, on day 1 of the month", ceh.GetDescription(DescriptionTypeEnum.FULL));
         }
+
+        [Fact]
+        public void TestEveryMinuteSimpleExpression()
+        {
+            ExpressionDescriptor ceh = new ExpressionDescriptor("* * * * *", new Options() { Verbose = true });
+            Assert.Equal("Every minute, every hour, every day", ceh.GetDescription(DescriptionTypeEnum.FULL));
+        }
     }
 }

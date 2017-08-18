@@ -125,6 +125,12 @@ namespace CronExpressionDescriptor.Test
         }
 
         [Fact]
+        public void TestLowerCaseMonthName()
+        {
+            Assert.Equal("At 12:23 PM, only in January", GetDescription("23 12 * jan *"));
+        }
+
+        [Fact]
         public void TestDayOfMonthWithQuestionMark()
         {
             Assert.Equal("At 12:23 PM, only in January", GetDescription("23 12 ? JAN *"));
@@ -155,6 +161,12 @@ namespace CronExpressionDescriptor.Test
         }
 
         [Fact]
+        public void TestDayOfWeekRangeWithDOWLowerCased()
+        {
+            Assert.Equal("Every 5 minutes, at 03:00 PM, Monday through Friday", GetDescription("*/5 15 * * MoN-fri"));
+        }
+
+        [Fact]
         public void TestDayOfWeekOnceInMonth()
         {
             Assert.Equal("Every minute, on the third Monday of the month", GetDescription("* * * * MON#3"));
@@ -171,6 +183,7 @@ namespace CronExpressionDescriptor.Test
         {
             Assert.Equal("Every 5 minutes, on the last day of the month, only in January", GetDescription("*/5 * L JAN *"));
         }
+
 
         [Fact]
         public void TestLastWeekdayOfTheMonth()

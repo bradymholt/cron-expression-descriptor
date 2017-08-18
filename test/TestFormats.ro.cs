@@ -128,8 +128,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestThreeTimesDaily()
         {
-            Harness (
-              cron:"30 6,14,16 * * *", expected:"La 06:30, 14:30 și 16:30", expectedVerbose: "La 06:30, 14:30 și 16:30, în fiecare zi");
+            Harness (cron:"30 6,14,16 * * *", expected:"La 06:30, 14:30 și 16:30", expectedVerbose: "La 06:30, 14:30 și 16:30, în fiecare zi");
         }
 
         [Fact]
@@ -200,7 +199,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestLastDayOfTheWeekOfTheMonth()
         {
-            Harness(cron: "* * * * 4L", 
+            Harness(cron: "* * * * 4L",
                 expected: "În fiecare minut, în ultima joi a lunii",
                 expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, în ultima joi a lunii");
         }
@@ -217,7 +216,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestLastWeekdayOfTheMonth()
         {
-            Harness(cron: "* * LW * *", 
+            Harness(cron: "* * LW * *",
                 expected: "În fiecare minut, în ultima zi lucrătoare a lunii",
                 expectedVerbose: "În fiecare minut, în fiecare oră, în ultima zi lucrătoare a lunii");
         }
@@ -235,12 +234,12 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "* * 1W * *", expected: "În fiecare minut, în prima zi a săptămânii a lunii"
                 , expectedVerbose: "În fiecare minut, în fiecare oră, în prima zi a săptămânii a lunii");
-           }
+        }
 
         [Fact]
         public void TestThirteenthWeekdayOfTheMonth()
         {
-            Harness(cron: "* * 13W * *", 
+            Harness(cron: "* * 13W * *",
                 expected: "În fiecare minut, în cea mai apropiată zi a săptămânii de ziua 13 a lunii",
                 expectedVerbose: "În fiecare minut, în fiecare oră, în cea mai apropiată zi a săptămânii de ziua 13 a lunii");
         }

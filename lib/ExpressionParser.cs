@@ -109,25 +109,25 @@ namespace CronExpressionDescriptor
             // Convert 0/, 1/ to */
             if (expressionParts[0].StartsWith("0/"))
             {
-                 // Seconds
+                // Seconds
                 expressionParts[0] = expressionParts[0].Replace("0/", "*/");
             }
 
             if (expressionParts[1].StartsWith("0/"))
             {
-                 // Minutes
+                // Minutes
                 expressionParts[1] = expressionParts[1].Replace("0/", "*/");
             }
 
             if (expressionParts[2].StartsWith("0/"))
             {
-                 // Hours
+                // Hours
                 expressionParts[2] = expressionParts[2].Replace("0/", "*/");
             }
 
             if (expressionParts[3].StartsWith("1/"))
             {
-                 // DOM
+                // DOM
                 expressionParts[3] = expressionParts[3].Replace("1/", "*/");
             }
 
@@ -166,7 +166,8 @@ namespace CronExpressionDescriptor
             {
                 DayOfWeek currentDay = (DayOfWeek)i;
                 string currentDayOfWeekDescription = currentDay.ToString().Substring(0, 3).ToUpperInvariant();
-                expressionParts[5] = expressionParts[5].Replace(currentDayOfWeekDescription, i.ToString());
+                expressionParts[5] = Regex.Replace(expressionParts[5], currentDayOfWeekDescription, i.ToString(), RegexOptions.IgnoreCase);
+
             }
 
             // Convert JAN-DEC format to 1-12 format
@@ -174,7 +175,7 @@ namespace CronExpressionDescriptor
             {
                 DateTime currentMonth = new DateTime(DateTime.Now.Year, i, 1);
                 string currentMonthDescription = currentMonth.ToString("MMM", m_en_culture).ToUpperInvariant();
-                expressionParts[4] = expressionParts[4].Replace(currentMonthDescription, i.ToString());
+                expressionParts[4] = Regex.Replace(expressionParts[4], currentMonthDescription, i.ToString(), RegexOptions.IgnoreCase);
             }
 
             // Convert 0 second to (empty)
@@ -201,16 +202,19 @@ namespace CronExpressionDescriptor
                 */
 
                 if (expressionParts[i].Contains("/")
-                    && expressionParts[i].IndexOfAny(new char[] { '*', '-', ',' }) == -1) {
+                    && expressionParts[i].IndexOfAny(new char[] { '*', '-', ',' }) == -1)
+                {
                     string stepRangeThrough = null;
-                    switch(i) {
+                    switch (i)
+                    {
                         case 4: stepRangeThrough = "12"; break;
                         case 5: stepRangeThrough = "6"; break;
                         case 6: stepRangeThrough = "9999"; break;
                         default: stepRangeThrough = null; break;
                     }
 
-                    if (stepRangeThrough != null) {
+                    if (stepRangeThrough != null)
+                    {
                         string[] parts = expressionParts[i].Split('/');
                         expressionParts[i] = string.Format("{0}-{1}/{2}", parts[0], stepRangeThrough, parts[1]);
                     }

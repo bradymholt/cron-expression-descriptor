@@ -150,13 +150,6 @@ namespace CronExpressionDescriptor
                 string dayOfWeekDesc = GetDayOfWeekDescription();
                 string yearDesc = GetYearDescription();
 
-                // fixes #76 (Verbose description duplicates "Every day" token for day of month and day of week), refactor as you please
-                string everyDay = Resources.ResourceManager.GetString("ComaEveryDay", m_culture);
-                if (dayOfMonthDesc == everyDay && dayOfWeekDesc == everyDay)
-                {
-                    dayOfMonthDesc = string.Empty;
-                }
-
                 description = string.Format("{0}{1}{2}{3}{4}",
                     timeSegment,
                     dayOfMonthDesc,
@@ -409,7 +402,7 @@ namespace CronExpressionDescriptor
                             format = GetString("ComaOnlyOnX0");
                         }
 
-                        return format; 
+                        return format;
                       }),
                     (s => GetString("ComaX0ThroughX1"))
               );
@@ -507,8 +500,8 @@ namespace CronExpressionDescriptor
         /// <summary>
         /// Generates the segment description
         /// <remarks>
-        /// Range expressions used the 'ComaX0ThroughX1' resource 
-        /// However Romanian language has different idioms for 
+        /// Range expressions used the 'ComaX0ThroughX1' resource
+        /// However Romanian language has different idioms for
         /// 1. 'from number to number' (minutes, seconds, hours, days) => ComaMinX0ThroughMinX1 optional resource
         /// 2. 'from month to month' ComaMonthX0ThroughMonthX1 optional resource
         /// 3. 'from year to year' => ComaYearX0ThroughYearX1 oprtional resource

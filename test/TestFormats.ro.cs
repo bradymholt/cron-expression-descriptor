@@ -7,7 +7,7 @@ namespace CronExpressionDescriptor.Test
     /// </summary>
     public class TestFormatsRO : Support.BaseTestFormats
     {
-        static readonly Options _verbose = new Options() { Verbose = true };
+        static readonly Options _verbose = new Options() { Verbose = true, Use24HourTimeFormat = true };
 
         protected override string GetLocale()
         {
@@ -23,16 +23,16 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestEveryMinute()
         {
-            Harness(cron: "* * * * *",
-                expected: "În fiecare minut",
+            Harness (cron: "* * * * *", 
+                expected: "În fiecare minut", 
                 expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi");
         }
 
         [Fact]
         public void TestEvery1Minute()
         {
-            Harness(cron: "*/1 * * * *", expected: "În fiecare minut", expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi");
-            Harness(cron: "0 0/1 * * * ?", expected: "În fiecare minut", expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi");
+            Harness(cron: "*/1 * * * *"  , expected: "În fiecare minut", expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi");
+            Harness(cron: "0 0/1 * * * ?", expected: "În fiecare minut", expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi");            
         }
 
         [Fact]
@@ -60,8 +60,8 @@ namespace CronExpressionDescriptor.Test
         public void TestEvery45Seconds()
         {
             Harness(cron: "*/45 * * * * *",
-                expected: "La fiecare 45 secunde",
-                expectedVerbose: "La fiecare 45 secunde, în fiecare minut, în fiecare oră, în fiecare zi");
+                expected: "La fiecare 45 secunde", 
+                expectedVerbose: "La fiecare 45 secunde, în fiecare minut, în fiecare oră, în fiecare zi"); 
         }
 
         [Fact]
@@ -79,8 +79,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestEvery5MinutesOnTheSecond()
         {
-            Harness(cron: "0 */5 * * * *", expected: "La fiecare 5 minute",
-                expectedVerbose: "La fiecare 5 minute, în fiecare oră, în fiecare zi");
+            Harness(cron: "0 */5 * * * *", expected: "La fiecare 5 minute", expectedVerbose: "La fiecare 5 minute, în fiecare oră, în fiecare zi");
         }
 
         [Fact]
@@ -94,27 +93,28 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestDailyAtTime()
         {
-            Harness(cron: "30 11 * * *", expected: "La 11:30", expectedVerbose: "La 11:30, în fiecare zi");
+            Harness(cron: "30 11 * * *"
+            , expected: "La 11:30"
+            , expectedVerbose: "La 11:30, în fiecare zi");
         }
 
         [Fact]
         public void TestMinuteSpan()
         {
-            Harness("0-10 11 * * *", expected: "În fiecare minut între 11:00 și 11:10",
-                expectedVerbose: "În fiecare minut între 11:00 și 11:10, în fiecare zi");
+            Harness("0-10 11 * * *", expected: "În fiecare minut între 11:00 și 11:10", expectedVerbose: "În fiecare minut între 11:00 și 11:10, în fiecare zi");
         }
 
         [Fact]
         public void TestOneMonthOnly()
         {
-            Harness(cron: "* * * 3 *", expected: "În fiecare minut, doar în martie",
-                expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, doar în martie");
+            Harness (cron:"* * * 3 *", expected:"În fiecare minut, doar în martie", 
+                expectedVerbose:"În fiecare minut, în fiecare oră, în fiecare zi, doar în martie");
         }
 
         [Fact]
         public void TestTwoMonthsOnly()
         {
-            Harness(cron: "* * * 3,6 *",
+            Harness ( cron:"* * * 3,6 *",
                 expected: "În fiecare minut, doar în martie și iunie",
                 expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, doar în martie și iunie");
         }
@@ -122,16 +122,13 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestTwoTimesEachAfternoon()
         {
-            Harness(cron: "30 14,16 * * *", expected: "La 14:30 și 16:30",
-                expectedVerbose: "La 14:30 și 16:30, în fiecare zi");
+            Harness(cron: "30 14,16 * * *", expected: "La 14:30 și 16:30", expectedVerbose: "La 14:30 și 16:30, în fiecare zi");  
         }
 
         [Fact]
         public void TestThreeTimesDaily()
         {
-            Harness(cron: "30 6,14,16 * * *",
-                expected: "La 06:30, 14:30 și 16:30",
-                expectedVerbose: "La 06:30, 14:30 și 16:30, în fiecare zi");
+            Harness (cron:"30 6,14,16 * * *", expected:"La 06:30, 14:30 și 16:30", expectedVerbose: "La 06:30, 14:30 și 16:30, în fiecare zi");
         }
 
         [Fact]
@@ -143,16 +140,15 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestDayOfMonth()
         {
-            Harness(cron: "23 12 15 * *",
-                expected: "La 12:23, în ziua 15 a lunii",
+            Harness(cron: "23 12 15 * *", 
+                expected: "La 12:23, în ziua 15 a lunii", 
                 expectedVerbose: "La 12:23, în ziua 15 a lunii");
         }
 
         [Fact]
         public void TestMonthName()
         {
-            Harness(cron: "23 12 * JAN *", expected: "La 12:23, doar în ianuarie",
-                expectedVerbose: "La 12:23, în fiecare zi, doar în ianuarie");
+            Harness(cron: "23 12 * JAN *", expected: "La 12:23, doar în ianuarie", expectedVerbose: "La 12:23, în fiecare zi, doar în ianuarie");
         }
 
         [Fact]
@@ -164,7 +160,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestMonthNameRange2()
         {
-            Harness(cron: "23 12 * JAN-FEB *",
+            Harness(cron:"23 12 * JAN-FEB *",
                 expected: "La 12:23, din ianuarie până în februarie",
                 expectedVerbose: "La 12:23, în fiecare zi, din ianuarie până în februarie");
         }
@@ -172,8 +168,10 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestMonthNameRange3()
         {
-            Harness(cron: "23 12 * JAN-MAR *", expected: "La 12:23, din ianuarie până în martie",
-                expectedVerbose: "La 12:23, în fiecare zi, din ianuarie până în martie");
+            Harness(
+              cron: "23 12 * JAN-MAR *", 
+              expected: "La 12:23, din ianuarie până în martie",
+              expectedVerbose: "La 12:23, în fiecare zi, din ianuarie până în martie");
         }
 
         [Fact]
@@ -185,7 +183,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestDayOfWeekRange()
         {
-            Harness(cron: "*/5 15 * * MON-FRI",
+            Harness(cron: "*/5 15 * * MON-FRI", 
                 expected: "La fiecare 5 minute, la 15:00, de luni până vineri",
                 expectedVerbose: "La fiecare 5 minute, la 15:00, în fiecare zi, de luni până vineri");
         }
@@ -193,8 +191,8 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestDayOfWeekOnceInMonth()
         {
-            Harness(cron: "* * * * MON#3",
-                expected: "În fiecare minut, în a treia luni a lunii",
+            Harness(cron: "* * * * MON#3", 
+                expected: "În fiecare minut, în a treia luni a lunii", 
                 expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, în a treia luni a lunii");
         }
 
@@ -209,8 +207,10 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestLastDayOfTheMonth()
         {
-            Harness(cron: "*/5 * L JAN *", expected: "La fiecare 5 minute, în ultima zi a lunii, doar în ianuarie",
-                expectedVerbose: "La fiecare 5 minute, în fiecare oră, în ultima zi a lunii, doar în ianuarie");
+            Harness(
+              cron: "*/5 * L JAN *", 
+              expected: "La fiecare 5 minute, în ultima zi a lunii, doar în ianuarie",
+              expectedVerbose: "La fiecare 5 minute, în fiecare oră, în ultima zi a lunii, doar în ianuarie");
         }
 
         [Fact]
@@ -255,7 +255,7 @@ namespace CronExpressionDescriptor.Test
         public void TestParticularWeekdayOfTheMonth()
         {
             Harness(cron: "* * 5W * *",
-                expected: "În fiecare minut, în cea mai apropiată zi a săptămânii de ziua 5 a lunii",
+                expected: "În fiecare minut, în cea mai apropiată zi a săptămânii de ziua 5 a lunii", 
                 expectedVerbose: "În fiecare minut, în fiecare oră, în cea mai apropiată zi a săptămânii de ziua 5 a lunii");
         }
 
@@ -270,15 +270,13 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestTimeOfDayWithSeconds()
         {
-            Harness(cron: "30 02 14 * * *",
-                expected: "La 14:02:30",
-                expectedVerbose: "La 14:02:30, în fiecare zi");
+            Harness(cron: "30 02 14 * * *", expected: "La 14:02:30", expectedVerbose: "La 14:02:30, în fiecare zi");
         }
 
         [Fact]
-        public void TestSecondInternvals()
+        public void TestSecondsInterval()
         {
-            Harness(cron: "5-10 * * * * *",
+            Harness(cron: "5-10 * * * * *", 
                 expected: "Între secunda 5 și secunda 10",
                 expectedVerbose: "Între secunda 5 și secunda 10, în fiecare minut, în fiecare oră, în fiecare zi");
         }
@@ -302,15 +300,16 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestMinutesPastTheHourRange()
         {
-            Harness(cron: "0 30 10-13 ? * WED,FRI",
-                expected: "La și 30 de minute, între 10:00 și 13:59, doar miercuri și vineri",
-                expectedVerbose: "La și 30 de minute, între 10:00 și 13:59, în fiecare zi, doar miercuri și vineri");
+            Harness(
+              cron: "0 30 10-13 ? * WED,FRI",
+              expected: "La și 30 de minute, între 10:00 și 13:59, doar miercuri și vineri",
+              expectedVerbose: "La și 30 de minute, între 10:00 și 13:59, în fiecare zi, doar miercuri și vineri");            
         }
 
         [Fact]
         public void TestSecondsPastTheMinuteInterval()
         {
-            Harness(cron: "10 0/5 * * * ?",
+            Harness (cron:"10 0/5 * * * ?", 
                 expected: "La și 10 secunde, la fiecare 5 minute",
                 expectedVerbose: "La și 10 secunde, la fiecare 5 minute, în fiecare oră, în fiecare zi");
         }
@@ -318,10 +317,12 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestBetweenWithInterval()
         {
-            //"Every 03 minutes, minutes 2 through 59 past the hour, at 01:00 AM, 09:00 AM, and 10:00 PM, between day 11 and 26 of the month, January through June"
-            Harness(cron: "2-59/3 1,9,22 11-26 1-6 ?",
-                expected: "La fiecare 3 minute, între minutele 2 și 59, la 01:00, 09:00, și 22:00, între zilele 11 și 26 ale lunii, din ianuarie până în iunie",
-                expectedVerbose: "La fiecare 3 minute, între minutele 2 și 59, la 01:00, 09:00, și 22:00, între zilele 11 și 26 ale lunii, din ianuarie până în iunie");
+           //"Every 03 minutes, minutes 02 through 59 past the hour, at 01:00, 09:00, and 10:00, between day 11 and 26 of the month, January through June"
+           // , în fiecare zi
+            Harness (
+              cron: "2-59/3 1,9,22 11-26 1-6 ?",
+              expected: "La fiecare 3 minute, între minutele 2 și 59, la 01:00, 09:00, și 22:00, între zilele 11 și 26 ale lunii, din ianuarie până în iunie",
+              expectedVerbose: "La fiecare 3 minute, între minutele 2 și 59, la 01:00, 09:00, și 22:00, între zilele 11 și 26 ale lunii, din ianuarie până în iunie");
         }
 
         [Fact]
@@ -333,7 +334,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestMinutesPastTheHour()
         {
-            Harness(cron: "0 5 0/1 * * ?",
+            Harness (cron:"0 5 0/1 * * ?", 
                 expected: "La și 5 minute",
                 expectedVerbose: "La și 5 minute, în fiecare oră, în fiecare zi");
         }
@@ -348,14 +349,14 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestOneYearOnlyWithoutSeconds()
         {
-            Harness(cron: "* * * * * 2013", expected: "În fiecare minut, doar în 2013",
+            Harness(cron:"* * * * * 2013", expected:"În fiecare minut, doar în 2013",
                 expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, doar în 2013");
         }
 
         [Fact]
         public void TestTwoYearsOnly()
         {
-            Harness(cron: "* * * * * 2013,2014",
+            Harness (cron:"* * * * * 2013,2014",
                 expected: "În fiecare minut, doar în 2013 și 2014",
                 expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, doar în 2013 și 2014");
         }
@@ -363,32 +364,34 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestYearRange2()
         {
-            Harness(cron: "23 12 * JAN-FEB * 2013-2014",
-                expected: "La 12:23, din ianuarie până în februarie, din 2013 până în 2014",
-                expectedVerbose: "La 12:23, în fiecare zi, din ianuarie până în februarie, din 2013 până în 2014");
+            Harness (cron:"23 12 * JAN-FEB * 2013-2014",
+                expected:"La 12:23, din ianuarie până în februarie, din 2013 până în 2014",
+                expectedVerbose:"La 12:23, în fiecare zi, din ianuarie până în februarie, din 2013 până în 2014");
         }
 
         [Fact]
         public void TestYearRange3()
         {
-            Harness(cron: "23 12 * JAN-MAR * 2013-2015",
-                expected: "La 12:23, din ianuarie până în martie, din 2013 până în 2015",
-                expectedVerbose: "La 12:23, în fiecare zi, din ianuarie până în martie, din 2013 până în 2015");
+            Harness (
+              cron:"23 12 * JAN-MAR * 2013-2015",
+              expected: "La 12:23, din ianuarie până în martie, din 2013 până în 2015",
+              expectedVerbose: "La 12:23, în fiecare zi, din ianuarie până în martie, din 2013 până în 2015" );
         }
 
         [Fact]
         public void TestHourRange()
         {
-            Harness(cron: "0 0/30 8-9 5,20 * ?",
-                expected: "La fiecare 30 minute, între 08:00 și 09:59, în ziua 5 și 20 a lunii",
-                expectedVerbose: "La fiecare 30 minute, între 08:00 și 09:59, în ziua 5 și 20 a lunii");
+            Harness (
+              cron: "0 0/30 8-9 5,20 * ?",
+              expected: "La fiecare 30 minute, între 08:00 și 09:59, în ziua 5 și 20 a lunii",
+              expectedVerbose: "La fiecare 30 minute, între 08:00 și 09:59, în ziua 5 și 20 a lunii" );
         }
 
         [Fact]
         public void TestDayOfWeekModifier()
         {
-            Harness(cron: "23 12 * * SUN#2",
-                expected: "La 12:23, în a doua duminică a lunii",
+            Harness(cron: "23 12 * * SUN#2", 
+                expected: "La 12:23, în a doua duminică a lunii", 
                 expectedVerbose: "La 12:23, în fiecare zi, în a doua duminică a lunii");
         }
 
@@ -419,9 +422,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestEvery3Day()
         {
-            Harness(cron: "0 0 8 1/3 * ? *",
-                expected: "La 08:00, la fiecare 3 zile",
-                expectedVerbose: "La 08:00, la fiecare 3 zile");
+            Harness(cron: "0 0 8 1/3 * ? *", expected: "La 08:00, la fiecare 3 zile", expectedVerbose: "La 08:00, la fiecare 3 zile");
         }
 
         [Fact]
@@ -451,17 +452,17 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestMutiPartRangeSeconds()
         {
-            Harness(cron: "2,4-5 1 * * *",
-                expected: "La și 2 și de 4 până 5 minute, la 01:00",
-                expectedVerbose: "La și 2 și de 4 până 5 minute, la 01:00, în fiecare zi");
+            Harness (cron:"2,4-5 1 * * *",
+                expected: "La și 2 și de la 4 până la 5 minute, la 01:00",
+                expectedVerbose: "La și 2 și de la 4 până la 5 minute, la 01:00, în fiecare zi");
         }
 
         [Fact]
         public void TestMutiPartRangeSeconds2()
         {
             Harness(cron: "2,26-28 18 * * *",
-                expected: "La și 2 și de 26 până 28 minute, la 18:00",
-                expectedVerbose: "La și 2 și de 26 până 28 minute, la 18:00, în fiecare zi");
+                expected: "La și 2 și de la 26 până la 28 minute, la 18:00",
+                expectedVerbose: "La și 2 și de la 26 până la 28 minute, la 18:00, în fiecare zi");
         }
 
         [Fact]
@@ -484,25 +485,26 @@ namespace CronExpressionDescriptor.Test
         public void TestSecondsInternalWithStepValue()
         {
             // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
-            Assert.Equal("La fiecare 30 secunde, pornire la și 5 secunde", GetDescription("5/30 * * * * ?"));
+            Assert.Equal("La fiecare 30 secunde, începând la și 5 secunde", GetDescription("5/30 * * * * ?"));
         }
 
         [Fact]
         public void TestMinutesInternalWithStepValue()
         {
-            Assert.Equal("La fiecare 30 minute, pornire la și 5 minute", GetDescription("0 5/30 * * * ?"));
+            Assert.Equal("La fiecare 30 minute, începând la și 5 minute", GetDescription("0 5/30 * * * ?"));
         }
 
         [Fact]
         public void TestHoursInternalWithStepValue()
         {
-            Assert.Equal("În fiecare secundă, la fiecare 8 ore, pornire la 05:00", GetDescription(" * * 5/8 * * ?"));
+            Assert.Equal("În fiecare secundă, la fiecare 8 ore, începând la 05:00", GetDescription(" * * 5/8 * * ?"));
         }
 
         [Fact]
         public void TestDayOfMonthInternalWithStepValue()
         {
-            Assert.Equal("La 07:05, la fiecare 3 zile, pornire în ziua 2 a lunii", GetDescription("0 5 7 2/3 * ? *"));
+            // 'începând cu a doua zi a lunii' would be more appropriate
+            Assert.Equal("La 07:05, la fiecare 3 zile, începând în ziua 2 a lunii", GetDescription("0 5 7 2/3 * ? *"));
         }
 
         [Fact]

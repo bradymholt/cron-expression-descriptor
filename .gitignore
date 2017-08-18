@@ -25,3 +25,9 @@ applicationhost.config
 CronExpressionDescriptor/Resources.ro.Designer.cs
 nuget.exe
 *.bak
+lib/bin/
+lib/obj/
+test/bin/
+test/obj/
+demo/bin/
+demo/obj/

@@ -150,6 +150,13 @@ namespace CronExpressionDescriptor
                 string dayOfWeekDesc = GetDayOfWeekDescription();
                 string yearDesc = GetYearDescription();
 
+                // fixes #76 (Verbose description duplicates "Every day" token for day of month and day of week), refactor as you please
+                string everyDay = Resources.ResourceManager.GetString("ComaEveryDay", m_culture);
+                if (dayOfMonthDesc == everyDay && dayOfWeekDesc == everyDay)
+                {
+                    dayOfMonthDesc = string.Empty;
+                }
+
                 description = string.Format("{0}{1}{2}{3}{4}",
                     timeSegment,
                     dayOfMonthDesc,
@@ -161,7 +168,7 @@ namespace CronExpressionDescriptor
             }
             catch (Exception ex)
             {
-                description = Resources.ResourceManager.GetString("AnErrorOccuredWhenGeneratingTheExpressionD", m_culture);
+                description = GetString("AnErrorOccuredWhenGeneratingTheExpressionD");
                 if (m_options.ThrowExceptionOnParseError)
                 {
                     throw new FormatException(description, ex);
@@ -190,7 +197,7 @@ namespace CronExpressionDescriptor
                 && secondsExpression.IndexOfAny(m_specialCharacters) == -1)
             {
                 //specific time of day (i.e. 10 14)
-                description.Append(Resources.ResourceManager.GetString("AtSpace", m_culture)).Append(FormatTime(hourExpression, minuteExpression, secondsExpression));
+                description.Append(GetString("AtSpace")).Append(FormatTime(hourExpression, minuteExpression, secondsExpression));
             }
             else if (minuteExpression.Contains("-")
                 && !minuteExpression.Contains(",")
@@ -198,7 +205,7 @@ namespace CronExpressionDescriptor
             {
                 //minute range in single hour (i.e. 0-10 11)
                 string[] minuteParts = minuteExpression.Split('-');
-                description.Append(string.Format(Resources.ResourceManager.GetString("EveryMinuteBetweenX0AndX1", m_culture),
+                description.Append(string.Format(GetString("EveryMinuteBetweenX0AndX1"),
                     FormatTime(hourExpression, minuteParts[0]),
                     FormatTime(hourExpression, minuteParts[1])));
             }
@@ -208,7 +215,7 @@ namespace CronExpressionDescriptor
             {
                 //hours list with single minute (o.e. 30 6,14,16)
                 string[] hourParts = hourExpression.Split(',');
-                description.Append(Resources.ResourceManager.GetString("At", m_culture));
+                description.Append(GetString("At"));
                 for (int i = 0; i < hourParts.Length; i++)
                 {
                     description.Append(" ").Append(FormatTime(hourParts[i], minuteExpression));
@@ -220,7 +227,7 @@ namespace CronExpressionDescriptor
 
                     if (i == hourParts.Length - 2)
                     {
-                        description.Append(Resources.ResourceManager.GetString("SpaceAnd", m_culture));
+                        description.Append(GetString("SpaceAnd"));
                     }
                 }
             }
@@ -258,24 +265,27 @@ namespace CronExpressionDescriptor
         /// <returns>The SECONDS description</returns>
         protected string GetSecondsDescription()
         {
-            string description = GetSegmentDescription(m_expressionParts[0],
-                 Resources.ResourceManager.GetString("EverySecond", m_culture),
+            string description = GetSegmentDescription(
+               m_expressionParts[0],
+               GetString("EverySecond"),
                (s => s),
-               (s => string.Format(Resources.ResourceManager.GetString("EveryX0Seconds", m_culture), s)),
-               (s => Resources.ResourceManager.GetString("SecondsX0ThroughX1PastTheMinute", m_culture)),
-               (s =>
-               {
-                   try
-                   {
+               (s => string.Format(GetString("EveryX0Seconds"), s)),
+               (s => GetString("SecondsX0ThroughX1PastTheMinute")),
+               (s => {
+                   try {
                        return s == "0"
-                   ? string.Empty
-                           : (int.Parse(s) < 20)
-                       ? Resources.ResourceManager.GetString("AtX0SecondsPastTheMinute", m_culture)
-                       : Resources.ResourceManager.GetString("AtX0SecondsPastTheMinuteGt20", m_culture) ?? Resources.ResourceManager.GetString("AtX0SecondsPastTheMinute", m_culture);
+                        ? string.Empty
+                        : (int.Parse(s) < 20)
+                            ? GetString("AtX0SecondsPastTheMinute")
+                            : GetString("AtX0SecondsPastTheMinuteGt20") ?? GetString("AtX0SecondsPastTheMinute");
 
                    }
-                   catch { return CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute; }
-               }));
+                   catch {
+                       return CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute;
+                   }
+               }),
+               (s => GetString("ComaMinX0ThroughMinX1") ?? GetString("ComaX0ThroughX1"))
+               );
 
             return description;
         }
@@ -286,23 +296,25 @@ namespace CronExpressionDescriptor
         /// <returns>The MINUTE description</returns>
         protected string GetMinutesDescription()
         {
-            string description = GetSegmentDescription(m_expressionParts[1],
-                Resources.ResourceManager.GetString("EveryMinute", m_culture),
-                (s => s),
-                (s => string.Format(Resources.ResourceManager.GetString("EveryX0Minutes", m_culture), s)),
-                (s => Resources.ResourceManager.GetString("MinutesX0ThroughX1PastTheHour", m_culture)),
-                (s =>
-                {
-                    try
-                    {
+            string description = GetSegmentDescription(
+                expression: m_expressionParts[1],
+                allDescription: GetString("EveryMinute"),
+                getSingleItemDescription: (s => s),
+                getIntervalDescriptionFormat: (s => string.Format(GetString("EveryX0Minutes"), s)),
+                getBetweenDescriptionFormat: (s => GetString("MinutesX0ThroughX1PastTheHour")),
+                getDescriptionFormat: (s => {
+                    try {
                         return s == "0"
                           ? string.Empty
                           : (int.Parse(s) < 20)
-                              ? Resources.ResourceManager.GetString("AtX0MinutesPastTheHour", m_culture)
-                              : Resources.ResourceManager.GetString("AtX0MinutesPastTheHourGt20", m_culture) ?? Resources.ResourceManager.GetString("AtX0MinutesPastTheHour", m_culture);
+                              ? GetString("AtX0MinutesPastTheHour")
+                              : GetString("AtX0MinutesPastTheHourGt20") ?? GetString("AtX0MinutesPastTheHour");
                     }
-                    catch { return Resources.ResourceManager.GetString("AtX0MinutesPastTheHour", m_culture); }
-                }));
+                    catch {
+                        return GetString("AtX0MinutesPastTheHour"); }
+                }),
+                getRangeFormat: (s => GetString("ComaMinX0ThroughMinX1") ?? GetString("ComaX0ThroughX1"))
+            );
 
             return description;
         }
@@ -315,11 +327,13 @@ namespace CronExpressionDescriptor
         {
             string expression = m_expressionParts[2];
             string description = GetSegmentDescription(expression,
-                 Resources.ResourceManager.GetString("EveryHour", m_culture),
-               (s => FormatTime(s, "0")),
-               (s => string.Format(Resources.ResourceManager.GetString("EveryX0Hours", m_culture), s)),
-               (s => Resources.ResourceManager.GetString("BetweenX0AndX1", m_culture)),
-               (s => Resources.ResourceManager.GetString("AtX0", m_culture)));
+                   GetString("EveryHour"),
+                   (s => FormatTime(s, "0")),
+                   (s => string.Format(GetString("EveryX0Hours"), s)),
+                   (s => GetString("BetweenX0AndX1")),
+                   (s => GetString("AtX0")),
+                   (s => GetString("ComaMinX0ThroughMinX1") ?? GetString("ComaX0ThroughX1"))
+               );
 
             return description;
         }
@@ -342,65 +356,63 @@ namespace CronExpressionDescriptor
             }
             else
             {
-                description = GetSegmentDescription(m_expressionParts[5],
-                Resources.ResourceManager.GetString("ComaEveryDay", m_culture),
-              (s =>
-              {
-                  string exp = s;
-                  if (s.Contains("#"))
-                  {
-                      exp = s.Remove(s.IndexOf("#"));
-                  }
-                  else if (s.Contains("L"))
-                  {
-                      exp = exp.Replace("L", string.Empty);
-                  }
+                description = GetSegmentDescription(
+                    m_expressionParts[5],
+                    GetString("ComaEveryDay"),
+                    (s =>
+                    {
+                        string exp = s.Contains("#")
+                            ? s.Remove(s.IndexOf("#"))
+                            : s.Contains("L")
+                                ? s.Replace("L", string.Empty)
+                                : s;
 
-                  return m_culture.DateTimeFormat.GetDayName(((DayOfWeek)Convert.ToInt32(exp)));
-              }),
-              (s => string.Format(Resources.ResourceManager.GetString("ComaEveryX0DaysOfTheWeek", m_culture), s)),
-              (s => Resources.ResourceManager.GetString("ComaX0ThroughX1", m_culture)),
-              (s =>
-              {
-                  string format = null;
-                  if (s.Contains("#"))
-                  {
-                      string dayOfWeekOfMonthNumber = s.Substring(s.IndexOf("#") + 1);
-                      string dayOfWeekOfMonthDescription = null;
-                      switch (dayOfWeekOfMonthNumber)
-                      {
-                          case "1":
-                              dayOfWeekOfMonthDescription = Resources.ResourceManager.GetString("First", m_culture);
-                              break;
-                          case "2":
-                              dayOfWeekOfMonthDescription = Resources.ResourceManager.GetString("Second", m_culture);
-                              break;
-                          case "3":
-                              dayOfWeekOfMonthDescription = Resources.ResourceManager.GetString("Third", m_culture);
-                              break;
-                          case "4":
-                              dayOfWeekOfMonthDescription = Resources.ResourceManager.GetString("Fourth", m_culture);
-                              break;
-                          case "5":
-                              dayOfWeekOfMonthDescription = Resources.ResourceManager.GetString("Fifth", m_culture);
-                              break;
-                      }
+                        return m_culture.DateTimeFormat.GetDayName(((DayOfWeek)Convert.ToInt32(exp)));
+                    }),
+                    (s => string.Format(GetString("ComaEveryX0DaysOfTheWeek"), s)),
+                    (s => GetString("ComaX0ThroughX1")),
+                    (s => {
+                        string format = null;
+                        if (s.Contains("#"))
+                        {
+                            string dayOfWeekOfMonthNumber = s.Substring(s.IndexOf("#") + 1);
+                            string dayOfWeekOfMonthDescription = null;
+                            switch (dayOfWeekOfMonthNumber)
+                            {
+                                case "1":
+                                    dayOfWeekOfMonthDescription = GetString("First");
+                                    break;
+                                case "2":
+                                    dayOfWeekOfMonthDescription = GetString("Second");
+                                    break;
+                                case "3":
+                                    dayOfWeekOfMonthDescription = GetString("Third");
+                                    break;
+                                case "4":
+                                    dayOfWeekOfMonthDescription = GetString("Forth");
+                                    break;
+                                case "5":
+                                    dayOfWeekOfMonthDescription = GetString("Fifth");
+                                    break;
+                            }
 
 
-                      format = string.Concat(Resources.ResourceManager.GetString("ComaOnThe", m_culture),
-                          dayOfWeekOfMonthDescription, Resources.ResourceManager.GetString("SpaceX0OfTheMonth", m_culture));
-                  }
-                  else if (s.Contains("L"))
-                  {
-                      format = Resources.ResourceManager.GetString("ComaOnTheLastX0OfTheMonth", m_culture);
-                  }
-                  else
-                  {
-                      format = Resources.ResourceManager.GetString("ComaOnlyOnX0", m_culture);
-                  }
+                            format = string.Concat(GetString("ComaOnThe"),
+                                dayOfWeekOfMonthDescription, GetString("SpaceX0OfTheMonth"));
+                        }
+                        else if (s.Contains("L"))
+                        {
+                            format = GetString("ComaOnTheLastX0OfTheMonth");
+                        }
+                        else
+                        {
+                            format = GetString("ComaOnlyOnX0");
+                        }
 
-                  return format;
-              }));
+                        return format; 
+                      }),
+                    (s => GetString("ComaX0ThroughX1"))
+              );
             }
 
             return description;
@@ -412,12 +424,15 @@ namespace CronExpressionDescriptor
         /// <returns>The MONTH description</returns>
         protected string GetMonthDescription()
         {
-            string description = GetSegmentDescription(m_expressionParts[4],
+            string description = GetSegmentDescription(
+                m_expressionParts[4],
                 string.Empty,
                (s => new DateTime(DateTime.Now.Year, Convert.ToInt32(s), 1).ToString("MMMM", m_culture)),
-               (s => string.Format(Resources.ResourceManager.GetString("ComaEveryX0Months", m_culture), s)),
-               (s => Resources.ResourceManager.GetString("ComaMonthX0ThroughMonthX1", m_culture) ?? Resources.ResourceManager.GetString("ComaX0ThroughX1", m_culture)),
-               (s => Resources.ResourceManager.GetString("ComaOnlyInX0", m_culture)));
+               (s => string.Format(GetString("ComaEveryX0Months"), s)),
+               (s => GetString("ComaMonthX0ThroughMonthX1") ?? GetString("ComaX0ThroughX1")),
+               (s => GetString("ComaOnlyInX0")),
+               (s => GetString("ComaMonthX0ThroughMonthX1") ?? GetString("ComaX0ThroughX1"))
+            );
 
             return description;
         }
@@ -434,11 +449,11 @@ namespace CronExpressionDescriptor
             switch (expression)
             {
                 case "L":
-                    description = Resources.ResourceManager.GetString("ComaOnTheLastDayOfTheMonth", m_culture);
+                    description = GetString("ComaOnTheLastDayOfTheMonth");
                     break;
                 case "WL":
                 case "LW":
-                    description = Resources.ResourceManager.GetString("ComaOnTheLastWeekdayOfTheMonth", m_culture);
+                    description = GetString("ComaOnTheLastWeekdayOfTheMonth");
                     break;
                 default:
                     Regex regex = new Regex("(\\d{1,2}W)|(W\\d{1,2})");
@@ -447,21 +462,22 @@ namespace CronExpressionDescriptor
                         Match m = regex.Match(expression);
                         int dayNumber = Int32.Parse(m.Value.Replace("W", ""));
 
-                        string dayString = dayNumber == 1 ? Resources.ResourceManager.GetString("FirstWeekday", m_culture) :
-                            String.Format(Resources.ResourceManager.GetString("WeekdayNearestDayX0", m_culture), dayNumber);
-                        description = String.Format(Resources.ResourceManager.GetString("ComaOnTheX0OfTheMonth", m_culture), dayString);
+                        string dayString = dayNumber == 1 ? GetString("FirstWeekday") :
+                            String.Format(GetString("WeekdayNearestDayX0"), dayNumber);
+                        description = String.Format(GetString("ComaOnTheX0OfTheMonth"), dayString);
 
                         break;
                     }
                     else
                     {
                         description = GetSegmentDescription(expression,
-                            Resources.ResourceManager.GetString("ComaEveryDay", m_culture),
+                            GetString("ComaEveryDay"),
                             (s => s),
-                            (s => s == "1" ? Resources.ResourceManager.GetString("ComaEveryDay", m_culture) :
-                                Resources.ResourceManager.GetString("ComaEveryX0Days", m_culture)),
-                            (s => Resources.ResourceManager.GetString("ComaBetweenDayX0AndX1OfTheMonth", m_culture)),
-                            (s => Resources.ResourceManager.GetString("ComaOnDayX0OfTheMonth", m_culture)));
+                            (s => s == "1" ? GetString("ComaEveryDay") : GetString("ComaEveryX0Days")),
+                            (s => GetString("ComaBetweenDayX0AndX1OfTheMonth")),
+                            (s => GetString("ComaOnDayX0OfTheMonth")),
+                            (s => GetString("ComaX0ThroughX1"))
+                        );
                         break;
                     }
             }
@@ -479,15 +495,25 @@ namespace CronExpressionDescriptor
                 string.Empty,
                (s => Regex.IsMatch(s, @"^\d+$") ?
                 new DateTime(Convert.ToInt32(s), 1, 1).ToString("yyyy") : s),
-               (s => string.Format(Resources.ResourceManager.GetString("ComaEveryX0Years", m_culture), s)),
-               (s => Resources.ResourceManager.GetString("ComaYearX0ThroughYearX1", m_culture) ?? Resources.ResourceManager.GetString("ComaX0ThroughX1", m_culture)),
-               (s => Resources.ResourceManager.GetString("ComaOnlyInX0", m_culture)));
+               (s => string.Format(GetString("ComaEveryX0Years"), s)),
+               (s => GetString("ComaYearX0ThroughYearX1") ?? GetString("ComaX0ThroughX1")),
+               (s => GetString("ComaOnlyInX0")),
+               (s => GetString("ComaYearX0ThroughYearX1") ?? GetString("ComaX0ThroughX1"))
+            );
 
             return description;
         }
 
         /// <summary>
         /// Generates the segment description
+        /// <remarks>
+        /// Range expressions used the 'ComaX0ThroughX1' resource 
+        /// However Romanian language has different idioms for 
+        /// 1. 'from number to number' (minutes, seconds, hours, days) => ComaMinX0ThroughMinX1 optional resource
+        /// 2. 'from month to month' ComaMonthX0ThroughMonthX1 optional resource
+        /// 3. 'from year to year' => ComaYearX0ThroughYearX1 oprtional resource
+        /// therefore <paramref name="getRangeFormat"/> was introduced
+        /// </remarks>
         /// </summary>
         /// <param name="expression"></param>
         /// <param name="allDescription"></param>
@@ -495,13 +521,15 @@ namespace CronExpressionDescriptor
         /// <param name="getIntervalDescriptionFormat"></param>
         /// <param name="getBetweenDescriptionFormat"></param>
         /// <param name="getDescriptionFormat"></param>
+        /// <param name="getRangeFormat">function that formats range expressions depending on cron parts</param>
         /// <returns></returns>
         protected string GetSegmentDescription(string expression,
             string allDescription,
             Func<string, string> getSingleItemDescription,
             Func<string, string> getIntervalDescriptionFormat,
             Func<string, string> getBetweenDescriptionFormat,
-            Func<string, string> getDescriptionFormat
+            Func<string, string> getDescriptionFormat,
+            Func<string, string> getRangeFormat
             )
         {
             string description = null;
@@ -541,7 +569,7 @@ namespace CronExpressionDescriptor
                     //remove any leading comma
                     rangeItemDescription = rangeItemDescription.Replace(", ", "");
 
-                    description += string.Format(Resources.ResourceManager.GetString("CommaStartingX0", m_culture), rangeItemDescription);
+                    description += string.Format(GetString("CommaStartingX0"), rangeItemDescription);
                 }
             }
             else if (expression.Contains(","))
@@ -563,13 +591,12 @@ namespace CronExpressionDescriptor
 
                     if (i > 0 && segments.Length > 1 && (i == segments.Length - 1 || segments.Length == 2))
                     {
-                        descriptionContent += Resources.ResourceManager.GetString("SpaceAndSpace", m_culture);
+                        descriptionContent += GetString("SpaceAndSpace");
                     }
 
                     if (segments[i].Contains("-"))
                     {
-                        string betweenSegmentDescription = GenerateBetweenSegmentDescription(segments[i],
-                        (s => Resources.ResourceManager.GetString("ComaX0ThroughX1", m_culture)), getSingleItemDescription);
+                        string betweenSegmentDescription = GenerateBetweenSegmentDescription(segments[i], getRangeFormat, getSingleItemDescription);
 
                         //remove any leading comma
                         betweenSegmentDescription = betweenSegmentDescription.Replace(", ", "");
@@ -637,7 +664,7 @@ namespace CronExpressionDescriptor
             string period = string.Empty;
             if (!m_use24HourTimeFormat)
             {
-                period = Resources.ResourceManager.GetString((hour >= 12) ? "PMPeriod" : "AMPeriod", m_culture);
+                period = GetString((hour >= 12) ? "PMPeriod" : "AMPeriod");
                 if (period.Length > 0)
                 {
                     // add preceeding space
@@ -671,12 +698,23 @@ namespace CronExpressionDescriptor
         {
             if (!useVerboseFormat)
             {
-                description = description.Replace(Resources.ResourceManager.GetString("ComaEveryMinute", m_culture), string.Empty);
-                description = description.Replace(Resources.ResourceManager.GetString("ComaEveryHour", m_culture), string.Empty);
-                description = description.Replace(Resources.ResourceManager.GetString("ComaEveryDay", m_culture), string.Empty);
+                description = description.Replace(GetString("ComaEveryMinute"), string.Empty);
+                description = description.Replace(GetString("ComaEveryHour"), string.Empty);
+                description = description.Replace(GetString("ComaEveryDay"), string.Empty);
             }
 
             return description;
+        }
+
+        /// <summary>
+        /// Gets a localized string resource
+        /// refactored because Resources.ResourceManager.GetString was way too long
+        /// </summary>
+        /// <param name="resourceName">name of the resource</param>
+        /// <returns>translated resource</returns>
+        protected string GetString (string resourceName)
+        {
+            return Resources.ResourceManager.GetString(resourceName, m_culture);
         }
 
         #region Static

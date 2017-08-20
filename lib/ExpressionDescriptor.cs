@@ -48,8 +48,14 @@ namespace CronExpressionDescriptor
             }
             else
             {
-                // use CurrentUICulture as default
+                // If options.Locale not specified...
+#if NET_STANDARD_1X
+                 // .NET Standard 1.* will use English as default
+                 m_culture = new CultureInfo("en-US");
+#else
+                // .NET Standard >= 2.0 will use CurrentUICulture as default
                 m_culture = Thread.CurrentThread.CurrentUICulture;
+#endif
             }
 
             if (m_options.Use24HourTimeFormat != null)
@@ -264,8 +270,10 @@ namespace CronExpressionDescriptor
                (s => s),
                (s => string.Format(GetString("EveryX0Seconds"), s)),
                (s => GetString("SecondsX0ThroughX1PastTheMinute")),
-               (s => {
-                   try {
+               (s =>
+               {
+                   try
+                   {
                        return s == "0"
                         ? string.Empty
                         : (int.Parse(s) < 20)
@@ -273,7 +281,8 @@ namespace CronExpressionDescriptor
                             : GetString("AtX0SecondsPastTheMinuteGt20") ?? GetString("AtX0SecondsPastTheMinute");
 
                    }
-                   catch {
+                   catch
+                   {
                        return CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute;
                    }
                }),
@@ -295,16 +304,20 @@ namespace CronExpressionDescriptor
                 getSingleItemDescription: (s => s),
                 getIntervalDescriptionFormat: (s => string.Format(GetString("EveryX0Minutes"), s)),
                 getBetweenDescriptionFormat: (s => GetString("MinutesX0ThroughX1PastTheHour")),
-                getDescriptionFormat: (s => {
-                    try {
+                getDescriptionFormat: (s =>
+                {
+                    try
+                    {
                         return s == "0"
                           ? string.Empty
                           : (int.Parse(s) < 20)
                               ? GetString("AtX0MinutesPastTheHour")
                               : GetString("AtX0MinutesPastTheHourGt20") ?? GetString("AtX0MinutesPastTheHour");
                     }
-                    catch {
-                        return GetString("AtX0MinutesPastTheHour"); }
+                    catch
+                    {
+                        return GetString("AtX0MinutesPastTheHour");
+                    }
                 }),
                 getRangeFormat: (s => GetString("ComaMinX0ThroughMinX1") ?? GetString("ComaX0ThroughX1"))
             );
@@ -364,7 +377,8 @@ namespace CronExpressionDescriptor
                     }),
                     (s => string.Format(GetString("ComaEveryX0DaysOfTheWeek"), s)),
                     (s => GetString("ComaX0ThroughX1")),
-                    (s => {
+                    (s =>
+                    {
                         string format = null;
                         if (s.Contains("#"))
                         {
@@ -403,7 +417,7 @@ namespace CronExpressionDescriptor
                         }
 
                         return format;
-                      }),
+                    }),
                     (s => GetString("ComaX0ThroughX1"))
               );
             }
@@ -705,7 +719,7 @@ namespace CronExpressionDescriptor
         /// </summary>
         /// <param name="resourceName">name of the resource</param>
         /// <returns>translated resource</returns>
-        protected string GetString (string resourceName)
+        protected string GetString(string resourceName)
         {
             return Resources.ResourceManager.GetString(resourceName, m_culture);
         }

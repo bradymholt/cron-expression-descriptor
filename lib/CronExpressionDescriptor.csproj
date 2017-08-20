@@ -1,6 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard1.1;netstandard2.0</TargetFrameworks>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(TargetFramework.Contains('netstandard1'))">
+    <DefineConstants>NET_STANDARD_1X</DefineConstants>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>False</SignAssembly>
@@ -17,6 +20,8 @@
     <PackageIconUrl>https://raw.githubusercontent.com/bradyholt/cron-expression-descriptor/master/demo/wwwroot/favicon-64x64.png</PackageIconUrl>
   </PropertyGroup>
   <ItemGroup>
+  </ItemGroup>
+  <ItemGroup Condition="!$(TargetFramework.Contains('netstandard1'))">
     <PackageReference Include="System.Threading.Thread" Version="4.3.0" />
   </ItemGroup>
 </Project>

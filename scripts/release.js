@@ -35,7 +35,7 @@ let notes = args[1];
 let preRelease = version.indexOf("-") > -1; // If version contains a '-' character (i.e. 2.0.0-alpha-1) we will consider this a pre-release
 
 let releasePath = "lib/bin/release";
-let nupkgFile = "CronExpressionDescriptor.$VERSION.nupkg";
+let nupkgFile = `CronExpressionDescriptor.${version}.nupkg`;
 let libCsproj = "lib/CronExpressionDescriptor.csproj";
 let ghRepo = "bradyholt/cron-expression-descriptor";
 
@@ -69,7 +69,7 @@ $(`git push --tags`);
 // Create release on GitHub
 let response = $$(`curl -f -H "Authorization: token ${env.GITHUB_API_TOKEN}" \
   -d "{"tag_name":"${version}", "name":"${version}","body":"${notes}","prerelease": ${preRelease}}" \
-  https://api.github.com/repos/$GH_REPO/releases`
+  https://api.github.com/repos/${ghRepo}/releases`
 );
 
 let releaseId = JSON.parse(response).id;

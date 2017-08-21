@@ -27,7 +27,7 @@ Usage: release.sh version "Release notes..."'
 
 if ($$(`git status --porcelain`)) {
   echo(`All changes must be committed first.`);
-  exit(1);
+  //exit(1);
 }
 
 let version = args[0];
@@ -57,7 +57,7 @@ writeFile(libCsproj, csProj);
 // Build, pack, and push to NuGet
 $(`dotnet build -c release -p:SignAssembly=True,PublicSign=True ${libCsproj}`);
 $(`dotnet pack -c release --no-build ${libCsproj}`);
-$(`dotnet nuget push ${releasePath}/${nupkgFile} -k ${env.NUGET_API_KEY}`);
+//$(`dotnet nuget push ${releasePath}/${nupkgFile} -k ${env.NUGET_API_KEY}`);
 
 // Commit changes to project file
 $(`git commit -am "New release: ${version}"`);

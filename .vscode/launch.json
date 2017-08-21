@@ -23,6 +23,16 @@
             "type": "coreclr",
             "request": "attach",
             "processId": "${command:pickProcess}"
+        },
+        {
+          "type": "node",
+          "request": "launch",
+          "name": "Debug release.js",
+          "stopOnEntry": true,
+          "program": "${workspaceRoot}/scripts/release.js",
+          "args": [
+            "0.0", "Debugging"
+          ]
         }
     ]
 }

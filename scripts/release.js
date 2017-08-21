@@ -63,7 +63,7 @@ $(`dotnet nuget push ${releasePath}/${nupkgFile} -k ${env.NUGET_API_KEY}`);
 $(`git commit -am "New release: ${version}"`);
 
 // Create release tag
-$(`git tag -a $VERSION -m "${notes}"`);
+$(`git tag -a ${version} -m "${notes}"`);
 $(`git push --tags`);
 
 // Create release on GitHub

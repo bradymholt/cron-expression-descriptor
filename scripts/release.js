@@ -68,7 +68,7 @@ $(`git push --tags`);
 
 // Create release on GitHub
 let response = $$(`curl -f -H "Authorization: token ${env.GITHUB_API_TOKEN}" \
-  -d "{"tag_name":"${version}", "name":"${version}","body":"${notes}","prerelease": ${preRelease}}" \
+  -d '{"tag_name":"${version}", "name":"${version}","body":"${notes}","prerelease": ${preRelease}}' \
   https://api.github.com/repos/${ghRepo}/releases`
 );
 

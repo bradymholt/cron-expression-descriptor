@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/local/bin/jbash
 
 /* Releases CronExpressionDescriptor
    This includes: running tests, building in release mode, signing, packaging, publishing on
@@ -6,12 +6,6 @@
 
    Example:
      release.sh 2.0.0 "Fixed DOW bug causing exception" */
-
-// jsbash
-_p = process; args = _p.argv.slice(2); cd = _p.chdir; exit = _p.exit; env = _p.env; echo = console.log;
-_e = "utf-8"; _fs = require("fs"); readFile = (path, encoding = _e) => { return _fs.readFileSync(path, { encoding }) }; writeFile = (path, contents, encoding = _e) => { _fs.writeFileSync(path, contents, { encoding }) };
-$$ = (cmd, stream) => { r = (require("child_process").execSync(cmd, { stdio: stream ? "inherit" : "pipe" }) ); return !!r ? r.toString().replace(/^\n$/, "") : null; };
-$ = cmd => { return $(cmd, true); };
 
 // cd to root dir
 cd(`${__dirname}/../`);
@@ -24,7 +18,7 @@ Example:
   exit(1);
 }
 
-if ($$(`git status --porcelain`)) {
+if ($(`git status --porcelain`)) {
   echo(`All changes must be committed first.`);
   exit(1);
 }
@@ -38,8 +32,8 @@ let nupkgFile = `CronExpressionDescriptor.${version}.nupkg`;
 let libCsproj = "lib/CronExpressionDescriptor.csproj";
 let ghRepo = "bradyholt/cron-expression-descriptor";
 
-$(`dotnet restore`);
-$(`dotnet test -c release test/Test.csproj`);
+eval(`dotnet restore`);
+eval(`dotnet test -c release test/Test.csproj`);
 
 // Update CronExpressionDescriptor.csproj with version and release notes
 let csProj = readFile(libCsproj);
@@ -54,19 +48,19 @@ csProj = csProj.replace(
 writeFile(libCsproj, csProj);
 
 // Build, pack, and push to NuGet
-$(`dotnet build -c release -p:SignAssembly=True,PublicSign=True ${libCsproj}`);
-$(`dotnet pack -c release --no-build ${libCsproj}`);
-$(`dotnet nuget push ${releasePath}/${nupkgFile} -k ${env.NUGET_API_KEY}`);
+eval(`dotnet build -c release -p:SignAssembly=True,PublicSign=True ${libCsproj}`);
+eval(`dotnet pack -c release --no-build ${libCsproj}`);
+eval(`dotnet nuget push ${releasePath}/${nupkgFile} -k ${env.NUGET_API_KEY}`);
 
 // Commit changes to project file
-$(`git commit -am "New release: ${version}"`);
+eval(`git commit -am "New release: ${version}"`);
 
 // Create release tag
-$(`git tag -a ${version} -m "${notes}"`);
-$(`git push --tags`);
+eval(`git tag -a ${version} -m "${notes}"`);
+eval(`git push --tags`);
 
 // Create release on GitHub
-let response = $$(`curl -f -H "Authorization: token ${env.GITHUB_API_TOKEN}" \
+let response = $(`curl -f -H "Authorization: token ${env.GITHUB_API_TOKEN}" \
   -d '{"tag_name":"${version}", "name":"${version}","body":"${notes}","prerelease": ${preRelease}}' \
   https://api.github.com/repos/${ghRepo}/releases`
 );
@@ -74,7 +68,7 @@ let response = $$(`curl -f -H "Authorization: token ${env.GITHUB_API_TOKEN}" \
 let releaseId = JSON.parse(response).id;
 
 // Get the release id and then upload the and upload the .nupkg
-$(`curl -H "Authorization: token ${env.GITHUB_API_TOKEN}" -H "Content-Type: application/octet-stream" \
+eval(`curl -H "Authorization: token ${env.GITHUB_API_TOKEN}" -H "Content-Type: application/octet-stream" \
   --data-binary @"${releasePath}/${nupkgFile}" \
   https://uploads.github.com/repos/${ghRepo}/releases/${releaseId}/assets?name=${nupkgFile}`);
 

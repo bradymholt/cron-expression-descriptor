@@ -10,24 +10,23 @@
 // jsbash
 _p = process; args = _p.argv.slice(2); cd = _p.chdir; exit = _p.exit; env = _p.env; echo = console.log;
 _e = "utf-8"; _fs = require("fs"); readFile = (path, encoding = _e) => { return _fs.readFileSync(path, { encoding }) }; writeFile = (path, contents, encoding = _e) => { _fs.writeFileSync(path, contents, { encoding }) };
-$$ = (cmd, stream) => { r = (require("child_process").execSync(cmd, { stdio: stream ? "inherit" : "pipe" }) ); return !!r ? r.toString().replace(/\n$/, "") : null; };
-$ = cmd => { return $$(cmd, true); };
-//
+$$ = (cmd, stream) => { r = (require("child_process").execSync(cmd, { stdio: stream ? "inherit" : "pipe" }) ); return !!r ? r.toString().replace(/^\n$/, "") : null; };
+$ = cmd => { return $(cmd, true); };
 
 // cd to root dir
 cd(`${__dirname}/../`);
 
 if (args.length != 2) {
   echo(`
-Usage: release.sh version "Release notes..."'
-  release.js 2.0.0 "Fixed DOW bug causing exception"'
-  release.js 2.0.0-rc1`);
+Usage: release.sh version "Release notes..."
+Example:
+  release.js 2.0.0 "Fixed DOW bug causing exception"`);
   exit(1);
 }
 
 if ($$(`git status --porcelain`)) {
   echo(`All changes must be committed first.`);
-  //exit(1);
+  exit(1);
 }
 
 let version = args[0];
@@ -57,7 +56,7 @@ writeFile(libCsproj, csProj);
 // Build, pack, and push to NuGet
 $(`dotnet build -c release -p:SignAssembly=True,PublicSign=True ${libCsproj}`);
 $(`dotnet pack -c release --no-build ${libCsproj}`);
-//$(`dotnet nuget push ${releasePath}/${nupkgFile} -k ${env.NUGET_API_KEY}`);
+$(`dotnet nuget push ${releasePath}/${nupkgFile} -k ${env.NUGET_API_KEY}`);
 
 // Commit changes to project file
 $(`git commit -am "New release: ${version}"`);
@@ -78,3 +77,5 @@ let releaseId = JSON.parse(response).id;
 $(`curl -H "Authorization: token ${env.GITHUB_API_TOKEN}" -H "Content-Type: application/octet-stream" \
   --data-binary @"${releasePath}/${nupkgFile}" \
   https://uploads.github.com/repos/${ghRepo}/releases/${releaseId}/assets?name=${nupkgFile}`);
+
+echo(`DONE!  Released version ${version} to NuGet and GitHub.`);

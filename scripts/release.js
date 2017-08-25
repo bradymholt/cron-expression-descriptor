@@ -7,6 +7,9 @@
    Example:
      release.sh 2.0.0 "Fixed DOW bug causing exception" */
 
+// Halt on an error
+set("-e");
+
 // cd to root dir
 cd(`${__dirname}/../`);
 

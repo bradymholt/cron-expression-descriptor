@@ -396,7 +396,7 @@ namespace CronExpressionDescriptor
                                     dayOfWeekOfMonthDescription = GetString("Third");
                                     break;
                                 case "4":
-                                    dayOfWeekOfMonthDescription = GetString("Forth");
+                                    dayOfWeekOfMonthDescription = GetString("Fourth");
                                     break;
                                 case "5":
                                     dayOfWeekOfMonthDescription = GetString("Fifth");

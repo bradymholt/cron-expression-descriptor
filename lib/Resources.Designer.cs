@@ -469,7 +469,7 @@ namespace CronExpressionDescriptor
         /// <summary>
         ///   Looks up a localized string similar to fourth.
         /// </summary>
-        internal static string Forth
+        internal static string Fourth
         {
             get
             {

@@ -51,7 +51,7 @@ csProj = csProj.replace(
 writeFile(libCsproj, csProj);
 
 // Build, pack, and push to NuGet
-eval(`dotnet build -c release -p:SignAssembly=True,PublicSign=True ${libCsproj}`);
+eval(`dotnet build -c release ${libCsproj}`);
 eval(`dotnet pack -c release --no-build ${libCsproj}`);
 eval(`dotnet nuget push ${releasePath}/${nupkgFile} -k ${env.NUGET_API_KEY}`);
 

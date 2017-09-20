@@ -11,7 +11,7 @@ The following instructions are for building, packaging and releasing the library
 4. Run the `scripts/release.js` command, passing in the version and release notes:
 
 ```
-./scripts/release.sh [VERSION_NUMBER] "[RELEASE_NOTES]"
+./scripts/release.js [VERSION_NUMBER] "[RELEASE_NOTES]"
 ```
 
 This will:

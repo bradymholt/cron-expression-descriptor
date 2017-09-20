@@ -60,7 +60,7 @@ eval(`git commit -am "New release: ${version}"`);
 
 // Create release tag
 eval(`git tag -a ${version} -m "${notes}"`);
-eval(`git push --tags`);
+eval(`git push --follow-tags`);
 
 // Create release on GitHub
 let response = $(`curl -f -H "Authorization: token ${env.GITHUB_API_TOKEN}" \

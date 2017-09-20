@@ -360,7 +360,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestDayOfWeekInternalWithStepValue()
         {
-            Assert.Equal("Um 07:05, every 3 days of the week, Dienstag bis Samstag", GetDescription("0 5 7 ? * 2/3 *"));
+            Assert.Equal("Um 07:05, alle 3 Tage der Woche, Dienstag bis Samstag", GetDescription("0 5 7 ? * 2/3 *"));
         }
 
         [Fact]

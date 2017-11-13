@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -157,14 +157,13 @@ namespace CronExpressionDescriptor
                 string yearDesc = GetYearDescription();
 
                 description = string.Format("{0}{1}{2}{3}{4}",
-                    timeSegment,
-                    dayOfMonthDesc,
-                    dayOfWeekDesc,
-                    monthDesc,
-                    yearDesc);
+                       timeSegment,
+                       dayOfMonthDesc,
+                       dayOfWeekDesc,
+                       monthDesc,
+                       yearDesc);
 
-                description = Transform
-          Verbosity(description, m_options.Verbose);
+                description = TransformVerbosity(description, m_options.Verbose);
             }
             catch (Exception ex)
             {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -157,11 +157,11 @@ namespace CronExpressionDescriptor
                 string yearDesc = GetYearDescription();
 
                 description = string.Format("{0}{1}{2}{3}{4}",
-                    timeSegment,
-                    dayOfMonthDesc,
-                    dayOfWeekDesc,
-                    monthDesc,
-                    yearDesc);
+                       timeSegment,
+                       dayOfMonthDesc,
+                       dayOfWeekDesc,
+                       monthDesc,
+                       yearDesc);
 
                 description = TransformVerbosity(description, m_options.Verbose);
             }
@@ -272,19 +272,20 @@ namespace CronExpressionDescriptor
                (s => GetString("SecondsX0ThroughX1PastTheMinute")),
                (s =>
                {
-                   try
+                 int i = 0;
+                 if (int.TryParse(s, out i))
                    {
                        return s == "0"
                         ? string.Empty
-                        : (int.Parse(s) < 20)
+                        : (i < 20)
                             ? GetString("AtX0SecondsPastTheMinute")
                             : GetString("AtX0SecondsPastTheMinuteGt20") ?? GetString("AtX0SecondsPastTheMinute");
 
-                   }
-                   catch
-                   {
-                       return CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute;
-                   }
+                  }
+                  else
+                  {
+                      return CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute;
+                  }
                }),
                (s => GetString("ComaMinX0ThroughMinX1") ?? GetString("ComaX0ThroughX1"))
                );
@@ -306,7 +307,8 @@ namespace CronExpressionDescriptor
                 getBetweenDescriptionFormat: (s => GetString("MinutesX0ThroughX1PastTheHour")),
                 getDescriptionFormat: (s =>
                 {
-                    try
+                    int i = 0;
+                    if (int.TryParse(s, out i))
                     {
                         return s == "0"
                           ? string.Empty
@@ -314,7 +316,7 @@ namespace CronExpressionDescriptor
                               ? GetString("AtX0MinutesPastTheHour")
                               : GetString("AtX0MinutesPastTheHourGt20") ?? GetString("AtX0MinutesPastTheHour");
                     }
-                    catch
+                    else
                     {
                         return GetString("AtX0MinutesPastTheHour");
                     }

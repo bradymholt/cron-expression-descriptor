@@ -296,4 +296,8 @@
     <value>vid {0} minuter över</value>
     <comment>AtX0MinutesPastTheHourGt20</comment>
   </data>
+  <data name="CommaDaysBeforeTheLastDayOfTheMonth" xml:space="preserve">
+    <value>, {0} dagar före den sista dagen i månaden</value>
+    <comment>CommaDaysBeforeTheLastDayOfTheMonth description</comment>
+  </data>
 </root>

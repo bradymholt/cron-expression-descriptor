@@ -575,5 +575,11 @@ namespace CronExpressionDescriptor
                 return ResourceManager.GetString("WeekdayNearestDayX0", resourceCulture);
             }
         }
+
+        internal static string CommaDaysBeforeTheLastDayOfTheMonth{
+          get {
+            return ResourceManager.GetString("CommaDaysBeforeTheLastDayOfTheMonth", resourceCulture);
+          }
+        }
     }
 }

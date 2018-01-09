@@ -187,7 +187,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestLastDayOffset()
         {
-            Assert.Equal("At 00:00 AM, 5 days before the last day of the month", GetDescription("0 0 0 L-5 * ?"));
+            Assert.Equal("At 12:00 AM, 5 days before the last day of the month", GetDescription("0 0 0 L-5 * ?"));
         }
 
         [Fact]
@@ -427,7 +427,7 @@ namespace CronExpressionDescriptor.Test
         public void TestDayOfWeekWithDayOfMonth()
         {
             // GitHub Issue #46: https://github.com/bradyholt/cron-expression-descriptor/issues/46
-            Assert.Equal("At 00:00 AM, on day 1, 2, and 3 of the month, only on Wednesday and Friday", GetDescription("0 0 0 1,2,3 * WED,FRI"));
+            Assert.Equal("At 12:00 AM, on day 1, 2, and 3 of the month, only on Wednesday and Friday", GetDescription("0 0 0 1,2,3 * WED,FRI"));
         }
 
         [Fact]

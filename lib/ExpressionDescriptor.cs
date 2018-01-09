@@ -696,6 +696,10 @@ namespace CronExpressionDescriptor
                 {
                     hour -= 12;
                 }
+                if (hour == 0)
+                {
+                    hour = 12;
+                }
             }
 
             string minute = Convert.ToInt32(minuteExpression).ToString();

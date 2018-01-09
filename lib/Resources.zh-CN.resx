@@ -292,4 +292,8 @@
     <value>, 开始 {0}</value>
     <comment>CommaStartingX0 description</comment>
   </data>
+  <data name="CommaDaysBeforeTheLastDayOfTheMonth" xml:space="preserve">
+    <value>, {0} 这个月的最后一天的前几天</value>
+    <comment>CommaDaysBeforeTheLastDayOfTheMonth description</comment>
+  </data>
 </root>

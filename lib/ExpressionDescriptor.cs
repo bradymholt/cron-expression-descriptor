@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,8 +50,8 @@ namespace CronExpressionDescriptor
             {
                 // If options.Locale not specified...
 #if NET_STANDARD_1X
-                 // .NET Standard 1.* will use English as default
-                 m_culture = new CultureInfo("en-US");
+                // .NET Standard 1.* will use English as default
+                m_culture = new CultureInfo("en-US");
 #else
                 // .NET Standard >= 2.0 will use CurrentUICulture as default
                 m_culture = Thread.CurrentThread.CurrentUICulture;
@@ -272,8 +272,8 @@ namespace CronExpressionDescriptor
                (s => GetString("SecondsX0ThroughX1PastTheMinute")),
                (s =>
                {
-                 int i = 0;
-                 if (int.TryParse(s, out i))
+                   int i = 0;
+                   if (int.TryParse(s, out i))
                    {
                        return s == "0"
                         ? string.Empty
@@ -281,11 +281,11 @@ namespace CronExpressionDescriptor
                             ? GetString("AtX0SecondsPastTheMinute")
                             : GetString("AtX0SecondsPastTheMinuteGt20") ?? GetString("AtX0SecondsPastTheMinute");
 
-                  }
-                  else
-                  {
-                      return CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute;
-                  }
+                   }
+                   else
+                   {
+                       return CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute;
+                   }
                }),
                (s => GetString("ComaMinX0ThroughMinX1") ?? GetString("ComaX0ThroughX1"))
                );
@@ -465,10 +465,10 @@ namespace CronExpressionDescriptor
                     description = GetString("ComaOnTheLastWeekdayOfTheMonth");
                     break;
                 default:
-                    Regex regex = new Regex("(\\d{1,2}W)|(W\\d{1,2})");
-                    if (regex.IsMatch(expression))
+                    Regex weekDayNumberMatches = new Regex("(\\d{1,2}W)|(W\\d{1,2})");
+                    if (weekDayNumberMatches.IsMatch(expression))
                     {
-                        Match m = regex.Match(expression);
+                        Match m = weekDayNumberMatches.Match(expression);
                         int dayNumber = Int32.Parse(m.Value.Replace("W", ""));
 
                         string dayString = dayNumber == 1 ? GetString("FirstWeekday") :
@@ -479,15 +479,27 @@ namespace CronExpressionDescriptor
                     }
                     else
                     {
-                        description = GetSegmentDescription(expression,
-                            GetString("ComaEveryDay"),
-                            (s => s),
-                            (s => s == "1" ? GetString("ComaEveryDay") : GetString("ComaEveryX0Days")),
-                            (s => GetString("ComaBetweenDayX0AndX1OfTheMonth")),
-                            (s => GetString("ComaOnDayX0OfTheMonth")),
-                            (s => GetString("ComaX0ThroughX1"))
-                        );
-                        break;
+                        // Handle "last day offset" (i.e. L-5:  "5 days before the last day of the month")
+                        Regex lastDayOffSetMatches = new Regex("L-(\\d{1,2})");
+                        if (lastDayOffSetMatches.IsMatch(expression))
+                        {
+                            Match m = lastDayOffSetMatches.Match(expression);
+                            string offSetDays = m.Groups[1].Value;
+                            description = String.Format(GetString("CommaDaysBeforeTheLastDayOfTheMonth"), offSetDays);
+                            break;
+                        }
+                        else
+                        {
+                            description = GetSegmentDescription(expression,
+                                GetString("ComaEveryDay"),
+                                (s => s),
+                                (s => s == "1" ? GetString("ComaEveryDay") : GetString("ComaEveryX0Days")),
+                                (s => GetString("ComaBetweenDayX0AndX1OfTheMonth")),
+                                (s => GetString("ComaOnDayX0OfTheMonth")),
+                                (s => GetString("ComaX0ThroughX1"))
+                            );
+                            break;
+                        }
                     }
             }
 

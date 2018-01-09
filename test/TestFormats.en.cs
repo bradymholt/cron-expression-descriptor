@@ -184,6 +184,11 @@ namespace CronExpressionDescriptor.Test
             Assert.Equal("Every 5 minutes, on the last day of the month, only in January", GetDescription("*/5 * L JAN *"));
         }
 
+        [Fact]
+        public void TestLastDayOffset()
+        {
+            Assert.Equal("At 00:00 AM, 5 days before the last day of the month", GetDescription("0 0 0 L-5 * ?"));
+        }
 
         [Fact]
         public void TestLastWeekdayOfTheMonth()

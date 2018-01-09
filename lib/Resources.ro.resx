@@ -320,4 +320,8 @@
     <value>după amiază</value>
     <comment>PM / In the afternoon</comment>
   </data>
+  <data name="CommaDaysBeforeTheLastDayOfTheMonth" xml:space="preserve">
+    <value>, {0} zile înainte de ultima zi a lunii</value>
+    <comment>CommaDaysBeforeTheLastDayOfTheMonth description</comment>
+  </data>
 </root>

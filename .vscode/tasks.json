@@ -2,17 +2,17 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "taskName": "build",
+      "label": "build",
       "command": "dotnet",
       "args": ["build"],
       "group": {
         "kind": "build",
         "isDefault": true
       },
-      "problemMatcher": "$msCompile"
+      "problemMatcher":"$msCompile"
     },
     {
-      "taskName": "test",
+      "label": "test",
       "command": "dotnet",
       "args": ["test", "test/Test.csproj"],
       "group": {
@@ -22,7 +22,7 @@
       "problemMatcher": "$msCompile"
     },
     {
-      "taskName": "run-demo",
+      "label": "run-demo",
       "command": "dotnet",
       "args": ["run"],
       "options": {
@@ -31,7 +31,7 @@
       "problemMatcher": ["$msCompile"]
     },
     {
-      "taskName": "pack",
+      "label": "pack",
       "command": "dotnet",
       "args": [
         "pack",
@@ -42,12 +42,12 @@
       "problemMatcher": ["$msCompile"]
     },
     {
-      "taskName": "nupkg-clean",
+      "label": "nupkg-clean",
       "command": "rm ${workspaceRoot}/lib/bin/release/*.nupkg",
       "type": "shell"
     },
     {
-      "taskName": "release",
+      "label": "release",
       "command": "dotnet",
       "dependsOn": ["nupkg-clean", "pack"],
       "args": [

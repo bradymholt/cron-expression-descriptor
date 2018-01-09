@@ -33,7 +33,7 @@ let preRelease = version.indexOf("-") > -1; // If version contains a '-' charact
 let releasePath = "lib/bin/release";
 let nupkgFile = `CronExpressionDescriptor.${version}.nupkg`;
 let libCsproj = "lib/CronExpressionDescriptor.csproj";
-let ghRepo = "bradyholt/cron-expression-descriptor";
+let ghRepo = "bradymholt/cron-expression-descriptor";
 
 eval(`dotnet restore`);
 eval(`dotnet test -c release test/Test.csproj`);

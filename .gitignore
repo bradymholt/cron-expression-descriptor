@@ -31,3 +31,5 @@ test/bin/
 test/obj/
 demo/bin/
 demo/obj/
+.vs
+.idea

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Globalization;
 
@@ -170,7 +168,7 @@ namespace CronExpressionDescriptor
             {
                 DayOfWeek currentDay = (DayOfWeek)i;
                 string currentDayOfWeekDescription = currentDay.ToString().Substring(0, 3).ToUpperInvariant();
-                expressionParts[5] = Regex.Replace(expressionParts[5], currentDayOfWeekDescription, i.ToString(), RegexOptions.IgnoreCase);
+                expressionParts[5] = Regex.Replace(expressionParts[5], currentDayOfWeekDescription, i.ToString(), RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
 
             }
 
@@ -179,7 +177,7 @@ namespace CronExpressionDescriptor
             {
                 DateTime currentMonth = new DateTime(DateTime.Now.Year, i, 1);
                 string currentMonthDescription = currentMonth.ToString("MMM", m_en_culture).ToUpperInvariant();
-                expressionParts[4] = Regex.Replace(expressionParts[4], currentMonthDescription, i.ToString(), RegexOptions.IgnoreCase);
+                expressionParts[4] = Regex.Replace(expressionParts[4], currentMonthDescription, i.ToString(), RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
             }
 
             // Convert 0 second to (empty)

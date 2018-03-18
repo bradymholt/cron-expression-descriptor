@@ -112,7 +112,7 @@ ExpressionDescriptor.GetDescription("* * * * *");
 
 ## .NET Platform Support
 
-Begining with version 2.0.0, the NuGet package will contain a library targeting .NET Standard 1.1 and 2.0.  This allows the library to consumed by applications running on the following .NET platforms:
+Begining with version 2.0.0, the NuGet package will contain a library targeting .NET Standard 1.1 and 2.0.  This allows the library to be consumed by applications running on the following .NET platforms:
 
 - .NET Core >= 1.0
 - .NET Framework >= 4.5

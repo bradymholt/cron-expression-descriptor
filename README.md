@@ -2,7 +2,7 @@
 A .NET library that converts cron expressions into human readable descriptions.
 
 [![Build Status](https://img.shields.io/travis/bradymholt/cron-expression-descriptor.svg?branch=master)](https://travis-ci.org/bradyholt/cron-expression-descriptor)
-[![NuGet Version and Downloads count](https://buildstats.info/nuget/CronExpressionDescriptor)](https://www.nuget.org/packages/CronExpressionDescriptor/)
+[![NuGet version](https://badge.fury.io/nu/CronExpressionDescriptor.svg)](https://badge.fury.io/nu/CronExpressionDescriptor)
 
 **Author**: Brady Holt (http://www.geekytidbits.com)
 **Contributors**: Renato Lima, Ivan Santos, Fabien Brooke, Siarhei Khalipski, Mustafa SADEDİL, TotalMace, Star Peng, LbISS, Arnaud TAMAILLON, Michael Schuler, Taras(tbudurovych)

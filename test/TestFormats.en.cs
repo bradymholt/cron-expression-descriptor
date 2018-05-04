@@ -474,10 +474,15 @@ namespace CronExpressionDescriptor.Test
         }
 
         [Fact]
-        public void TestMinitesCombinedWithMultipleHourRanges()
+        public void TestMinutesCombinedWithMultipleHourRanges()
         {
             Assert.Equal("At 1 minutes past the hour, at 01:00 AM and 03:00 AM through 04:59 AM", GetDescription("1 1,3-4 * * *"));
+        }
 
+        [Fact]
+        public void TestMinuteRangeConbinedWithSecondRange()
+        {
+            Assert.Equal("Seconds 12 through 50 past the minute, minutes 0 through 10 past the hour, at 06:00 AM, only in 2022", GetDescription("12-50 0-10 6 * * * 2022"));
         }
     }
 }

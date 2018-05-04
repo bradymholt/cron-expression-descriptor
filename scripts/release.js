@@ -1,4 +1,4 @@
-#!/usr/local/bin/jbash
+#!/usr/bin/env npx jbash
 
 /* Releases CronExpressionDescriptor
    This includes: running tests, building in release mode, signing, packaging, publishing on

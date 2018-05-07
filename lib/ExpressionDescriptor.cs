@@ -15,7 +15,7 @@ namespace CronExpressionDescriptor
   public class ExpressionDescriptor
   {
     private readonly char[] m_specialCharacters = new char[] { '/', '-', ',', '*' };
-    private readonly string[] m_24hourTimeFormatTwoLetterISOLanguageName = new string[] { "ru", "uk", "de", "it", "tr", "pl", "ro" };
+    private readonly string[] m_24hourTimeFormatTwoLetterISOLanguageName = new string[] { "ru", "uk", "de", "it", "tr", "pl", "ro", "da" };
 
     private string m_expression;
     private Options m_options;

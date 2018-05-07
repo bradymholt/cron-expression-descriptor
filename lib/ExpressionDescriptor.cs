@@ -284,7 +284,7 @@ namespace CronExpressionDescriptor
            }
            else
            {
-             return CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute;
+             return GetString("AtX0SecondsPastTheMinute");
            }
          }),
          (s => GetString("ComaMinX0ThroughMinX1") ?? GetString("ComaX0ThroughX1"))

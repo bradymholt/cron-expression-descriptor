@@ -208,7 +208,7 @@ namespace CronExpressionDescriptor
             FormatTime(hourExpression, minuteParts[0]),
             FormatTime(hourExpression, minuteParts[1])));
       }
-      else if (hourExpression.Contains(",")
+      else if (secondsExpression == "" && hourExpression.Contains(",")
           && hourExpression.IndexOf('-') == -1
           && minuteExpression.IndexOfAny(m_specialCharacters) == -1)
       {

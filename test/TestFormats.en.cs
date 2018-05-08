@@ -484,5 +484,10 @@ namespace CronExpressionDescriptor.Test
         {
             Assert.Equal("Seconds 12 through 50 past the minute, minutes 0 through 10 past the hour, at 06:00 AM, only in 2022", GetDescription("12-50 0-10 6 * * * 2022"));
         }
+
+        [Fact]
+        public void TestSecondsExpressionCombinedWithHoursListAndSingleMinute()
+{            Assert.Equal("At 5 seconds past the minute, at 30 minutes past the hour, at 06:00 AM, 02:00 PM, and 04:00 PM, on day 5 of the month", GetDescription("5 30 6,14,16 5 * *"));
+        }
     }
 }

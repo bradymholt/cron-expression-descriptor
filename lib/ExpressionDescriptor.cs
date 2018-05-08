@@ -15,7 +15,7 @@ namespace CronExpressionDescriptor
   public class ExpressionDescriptor
   {
     private readonly char[] m_specialCharacters = new char[] { '/', '-', ',', '*' };
-    private readonly string[] m_24hourTimeFormatTwoLetterISOLanguageName = new string[] { "ru", "uk", "de", "it", "tr", "pl", "ro" };
+    private readonly string[] m_24hourTimeFormatTwoLetterISOLanguageName = new string[] { "ru", "uk", "de", "it", "tr", "pl", "ro", "da" };
 
     private string m_expression;
     private Options m_options;
@@ -284,7 +284,7 @@ namespace CronExpressionDescriptor
            }
            else
            {
-             return CronExpressionDescriptor.Resources.AtX0SecondsPastTheMinute;
+             return GetString("AtX0SecondsPastTheMinute");
            }
          }),
          (s => GetString("ComaMinX0ThroughMinX1") ?? GetString("ComaX0ThroughX1"))

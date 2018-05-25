@@ -5,7 +5,6 @@ A .NET library that converts cron expressions into human readable descriptions.
 [![NuGet version](https://badge.fury.io/nu/CronExpressionDescriptor.svg)](https://badge.fury.io/nu/CronExpressionDescriptor)
 
 **Author**: Brady Holt (http://www.geekytidbits.com)
-**Contributors**: Renato Lima, Ivan Santos, Fabien Brooke, Siarhei Khalipski, Mustafa SADEDİL, TotalMace, Star Peng, LbISS, Arnaud TAMAILLON, Michael Schuler, Taras(tbudurovych)
 **License**: [MIT](https://github.com/bradyholt/cron-expression-descriptor/blob/dotnet-core/LICENSE)
 
 ## Features
@@ -13,7 +12,7 @@ A .NET library that converts cron expressions into human readable descriptions.
  * Supports all cron expression special characters including * / , - ? L W, #
  * Supports 5, 6 (w/ seconds or year), or 7 (w/ seconds and year) part cron expressions
  * Provides casing options (Sentence, Title, Lower, etc.)
- * Localization with support for 16 languages
+ * Localization with support for 17 languages
  * Supports [Quartz Enterprise Scheduler .NET](https://www.quartz-scheduler.net/) cron expressions
 
 ## Download
@@ -65,21 +64,22 @@ The following language translations are available.
 
  * English - en ([Brady Holt](https://github.com/bradyholt))
  * Brazilian Portuguese - pt-BR ([Renato Lima](https://github.com/natenho))
- * Spanish - es ([Ivan Santos](https://github.com/ivansg))
- * Norwegian - nb ([Siarhei Khalipski](https://github.com/KhalipskiSiarhei))
- * Turkish - tr ([Mustafa SADEDİL](https://github.com/sadedil))
- * Dutch - nl ([TotalMace](https://github.com/TotalMace))
  * Chinese Simplified - zh-CH ([Star Peng](https://github.com/starpeng))
- * Russian - ru ([LbISS](https://github.com/LbISS))
+ * Danish - da ([Rasmus Melchior Jacobsen](https://github.com/rmja))
+ * Dutch - nl ([TotalMace](https://github.com/TotalMace))
  * French - fr ([Arnaud TAMAILLON](https://github.com/Greybird))
  * German - de ([Michael Schuler](https://github.com/mschuler))
- * Ukrainian - uk ([Taras](https://github.com/tbudurovych))
  * Italian - it ([rinaldihno](https://github.com/rinaldihno))
+ * Norwegian - nb ([Siarhei Khalipski](https://github.com/KhalipskiSiarhei))
  * Polish - pl ([foka](https://github.com/foka))
  * Romanian - ro ([Illegitimis](https://github.com/illegitimis))
+ * Russian - ru ([LbISS](https://github.com/LbISS))
+ * Slovenian - sl-SI ([Jani Bevk](https://github.com/jenzy))
+ * Spanish - es ([Ivan Santos](https://github.com/ivansg))
  * Swedish - sv ([roobin](https://github.com/roobin))
- * Danish - da ([Rasmus Melchior Jacobsen](https://github.com/rmja))
-
+ * Turkish - tr ([Mustafa SADEDİL](https://github.com/sadedil))
+ * Ukrainian - uk ([Taras](https://github.com/tbudurovych))
+ 
 To use one of these translations, pass in the `Locale` option to `GetDescription`.  For example, to get the description of `0-10 11 * * *` in German:
 
 ```csharp

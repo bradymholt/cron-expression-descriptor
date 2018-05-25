@@ -370,14 +370,14 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestEvery2DayOfTheWeekInRange()
         {
-            // GitHub Issue #58: https://github.com/bradyholt/cron-expression-descriptor/issues/58
+            // GitHub Issue #58: https://github.com/bradymholt/cron-expression-descriptor/issues/58
             Assert.Equal("Vsako sekundo, vsakih 2 dni v tednu, od ponedeljek do petek", GetDescription("* * * ? * 1-5/2"));
         }
 
         [Fact]
         public void TestEvery2DayOfTheWeekInRangeWithSundayStartOne()
         {
-            // GitHub Issue #59: https://github.com/bradyholt/cron-expression-descriptor/issues/59
+            // GitHub Issue #59: https://github.com/bradymholt/cron-expression-descriptor/issues/59
 
             var options = new Options { DayOfWeekStartIndexZero = false };
 
@@ -412,28 +412,28 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TrailingSpaceDoesNotCauseAWrongDescription()
         {
-            // GitHub Issue #51: https://github.com/bradyholt/cron-expression-descriptor/issues/51
+            // GitHub Issue #51: https://github.com/bradymholt/cron-expression-descriptor/issues/51
             Assert.Equal("Ob 07:00", GetDescription("0 7 * * * "));
         }
 
         [Fact]
         public void TestMultiPartDayOfTheWeek()
         {
-            // GitHub Issue #44: https://github.com/bradyholt/cron-expression-descriptor/issues/44
+            // GitHub Issue #44: https://github.com/bradymholt/cron-expression-descriptor/issues/44
             Assert.Equal("Ob 10:00, samo v od ponedeljek do četrtek in nedelja", GetDescription("0 00 10 ? * MON-THU,SUN *"));
         }
 
         [Fact]
         public void TestDayOfWeekWithDayOfMonth()
         {
-            // GitHub Issue #46: https://github.com/bradyholt/cron-expression-descriptor/issues/46
+            // GitHub Issue #46: https://github.com/bradymholt/cron-expression-descriptor/issues/46
             Assert.Equal("Ob 00:00, 1, 2, in 3. dan v mesecu, samo v sreda in petek", GetDescription("0 0 0 1,2,3 * WED,FRI"));
         }
 
         [Fact]
         public void TestSecondsInternalWithStepValue()
         {
-            // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
+            // GitHub Issue #49: https://github.com/bradymholt/cron-expression-descriptor/issues/49
             Assert.Equal("Vsakih 30 sekund, začenši ob 5. sekundi", GetDescription("5/30 * * * * ?"));
         }
 

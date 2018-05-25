@@ -342,7 +342,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestSecondsInternalWithStepValue()
         {
-            // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
+            // GitHub Issue #49: https://github.com/bradymholt/cron-expression-descriptor/issues/49
             Assert.Equal("Her 30 saniyede bir, başlangıç dakikaların 5. saniyesinde", GetDescription("5/30 * * * * ?"));
         }
 

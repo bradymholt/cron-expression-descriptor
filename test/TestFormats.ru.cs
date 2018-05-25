@@ -328,7 +328,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestSecondsInternalWithStepValue()
         {
-            // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
+            // GitHub Issue #49: https://github.com/bradymholt/cron-expression-descriptor/issues/49
             Assert.EqualsCaseInsensitive("Каждые 30 секунд, начало в 5 секунд", GetDescription("5/30 * * * * ?"));
         }
 

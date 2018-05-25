@@ -273,7 +273,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestSecondsInternalWithStepValue()
         {
-            // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
+            // GitHub Issue #49: https://github.com/bradymholt/cron-expression-descriptor/issues/49
             Assert.Equal("A cada 30 segundos, iniciando aos 5 segundos do minuto", GetDescription("5/30 * * * * ?"));
         }
 

@@ -327,7 +327,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestSecondsInternalWithStepValue()
         {
-            // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
+            // GitHub Issue #49: https://github.com/bradymholt/cron-expression-descriptor/issues/49
             Assert.Equal("每 30 秒, 开始 在每分钟的 5 秒", GetDescription("5/30 * * * * ?"));
         }
 

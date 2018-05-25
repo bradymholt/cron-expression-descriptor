@@ -468,14 +468,14 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TrailingSpaceDoesNotCauseAWrongDescription()
         {
-            // GitHub Issue #51: https://github.com/bradyholt/cron-expression-descriptor/issues/51
+            // GitHub Issue #51: https://github.com/bradymholt/cron-expression-descriptor/issues/51
             Harness(cron: "0 7 * * * ", expected: "La 07:00", expectedVerbose: "La 07:00, în fiecare zi");
         }
 
         [Fact]
         public void TestMultiPartDayOfTheWeek()
         {
-            // GitHub Issue #44: https://github.com/bradyholt/cron-expression-descriptor/issues/44
+            // GitHub Issue #44: https://github.com/bradymholt/cron-expression-descriptor/issues/44
             Harness(cron: "0 00 10 ? * MON-THU,SUN *",
                 expected: "La 10:00, doar de luni până joi și duminică",
                 expectedVerbose: "La 10:00, în fiecare zi, doar de luni până joi și duminică");
@@ -484,7 +484,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestSecondsInternalWithStepValue()
         {
-            // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
+            // GitHub Issue #49: https://github.com/bradymholt/cron-expression-descriptor/issues/49
             Assert.Equal("La fiecare 30 secunde, începând la și 5 secunde", GetDescription("5/30 * * * * ?"));
         }
 

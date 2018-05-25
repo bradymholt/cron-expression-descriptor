@@ -346,14 +346,14 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestEvery2DayOfTheWeekInRange()
         {
-            // GitHub Issue #58: https://github.com/bradyholt/cron-expression-descriptor/issues/58
+            // GitHub Issue #58: https://github.com/bradymholt/cron-expression-descriptor/issues/58
             Assert.Equal("Co sekundę, co 2 dni tygodnia, od poniedziałek do piątek", GetDescription("* * * ? * 1-5/2"));
         }
 
         [Fact]
         public void TestEvery2DayOfTheWeekInRangeWithSundayStartOne()
         {
-            // GitHub Issue #59: https://github.com/bradyholt/cron-expression-descriptor/issues/59
+            // GitHub Issue #59: https://github.com/bradymholt/cron-expression-descriptor/issues/59
 
             var options = new Options { DayOfWeekStartIndexZero = false };
 
@@ -388,21 +388,21 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TrailingSpaceDoesNotCauseAWrongDescription()
         {
-            // GitHub Issue #51: https://github.com/bradyholt/cron-expression-descriptor/issues/51
+            // GitHub Issue #51: https://github.com/bradymholt/cron-expression-descriptor/issues/51
             Assert.Equal("O 07:00", GetDescription("0 7 * * * "));
         }
 
         [Fact]
         public void TestMultiPartDayOfTheWeek()
         {
-            // GitHub Issue #44: https://github.com/bradyholt/cron-expression-descriptor/issues/44
+            // GitHub Issue #44: https://github.com/bradymholt/cron-expression-descriptor/issues/44
             Assert.Equal("O 10:00, tylko od poniedziałek do czwartek i niedziela", GetDescription("0 00 10 ? * MON-THU,SUN *"));
         }
 
         [Fact]
         public void TestSecondsInternalWithStepValue()
         {
-            // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
+            // GitHub Issue #49: https://github.com/bradymholt/cron-expression-descriptor/issues/49
             Assert.Equal("Co 30 sekund, startowy w 5 sekundzie", GetDescription("5/30 * * * * ?"));
         }
 

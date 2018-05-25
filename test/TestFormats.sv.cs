@@ -373,7 +373,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestSecondsInternalWithStepValue()
         {
-            // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
+            // GitHub Issue #49: https://github.com/bradymholt/cron-expression-descriptor/issues/49
             Assert.EqualsCaseInsensitive("Upprepas efter 30 sekunder, börjar efter 5 sekunder", GetDescription("5/30 * * * * ?"));
         }
 

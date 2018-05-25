@@ -5,7 +5,7 @@ A .NET library that converts cron expressions into human readable descriptions.
 [![NuGet version](https://badge.fury.io/nu/CronExpressionDescriptor.svg)](https://badge.fury.io/nu/CronExpressionDescriptor)
 
 **Author**: Brady Holt (http://www.geekytidbits.com)
-**License**: [MIT](https://github.com/bradyholt/cron-expression-descriptor/blob/dotnet-core/LICENSE)
+**License**: [MIT](https://github.com/bradymholt/cron-expression-descriptor/blob/dotnet-core/LICENSE)
 
 ## Features
 
@@ -29,7 +29,7 @@ Cron Expression Descriptor releases can be installed with **NuGet**.
 
 [Visit the NuGet Package page](https://www.nuget.org/packages/CronExpressionDescriptor/) for more info.
 
-View [Releases](https://github.com/bradyholt/cron-expression-descriptor/releases) for release version history.
+View [Releases](https://github.com/bradymholt/cron-expression-descriptor/releases) for release version history.
 
 ## Quick Start
 
@@ -62,7 +62,7 @@ ExpressionDescriptor.GetDescription("0-10 11 * * *", new Options(){
 
 The following language translations are available.
 
- * English - en ([Brady Holt](https://github.com/bradyholt))
+ * English - en ([Brady Holt](https://github.com/bradymholt))
  * Brazilian Portuguese - pt-BR ([Renato Lima](https://github.com/natenho))
  * Chinese Simplified - zh-CH ([Star Peng](https://github.com/starpeng))
  * Danish - da ([Rasmus Melchior Jacobsen](https://github.com/rmja))
@@ -135,7 +135,7 @@ If you need an assembly that is [signed with a strong name](https://msdn.microso
  - Java - [https://github.com/RedHogs/cron-parser](https://github.com/RedHogs/cron-parser)
  - Ruby - [https://github.com/alpinweis/cronex](https://github.com/alpinweis/cronex)
  - Python - [https://github.com/Salamek/cron-descriptor](https://github.com/Salamek/cron-descriptor)
- - JavaScript - [https://github.com/bradyholt/cRonstrue](https://github.com/bradyholt/cRonstrue)
+ - JavaScript - [https://github.com/bradymholt/cRonstrue](https://github.com/bradymholt/cRonstrue)
 
 ## Examples
 

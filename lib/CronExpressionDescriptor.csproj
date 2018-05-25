@@ -13,11 +13,11 @@
     <PackageReleaseNotes>New Slovenian translation</PackageReleaseNotes>
     <Authors>Brady Holt</Authors>
     <Description>A library that converts cron expressions into human readable descriptions.  Supports multiple languages including: English, Brazillian, Spanish, Norwgian, Turkish, Dutch, Chinese Simplified, Russian, French, German, Ukrainian, Polish, Romanian Italian, Swedish, Slovenian, and Danish.</Description>
-    <PackageLicenseUrl>https://github.com/bradyholt/cron-expression-descriptor/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/bradyholt/cron-expression-descriptor</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/bradyholt/cron-expression-descriptor</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/bradymholt/cron-expression-descriptor/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/bradymholt/cron-expression-descriptor</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/bradymholt/cron-expression-descriptor</RepositoryUrl>
     <PackageTags>cron, schedule, quartz, quartz.net, cron expression</PackageTags>
-    <PackageIconUrl>https://raw.githubusercontent.com/bradyholt/cron-expression-descriptor/master/demo/wwwroot/favicon-64x64.png</PackageIconUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/bradymholt/cron-expression-descriptor/master/demo/wwwroot/favicon-64x64.png</PackageIconUrl>
   </PropertyGroup>
   <ItemGroup>
   </ItemGroup>

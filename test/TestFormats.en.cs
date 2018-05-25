@@ -370,14 +370,14 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestEvery2DayOfTheWeekInRange()
         {
-            // GitHub Issue #58: https://github.com/bradyholt/cron-expression-descriptor/issues/58
+            // GitHub Issue #58: https://github.com/bradymholt/cron-expression-descriptor/issues/58
             Assert.Equal("Every second, every 2 days of the week, Monday through Friday", GetDescription("* * * ? * 1-5/2"));
         }
 
         [Fact]
         public void TestEvery2DayOfTheWeekInRangeWithSundayStartOne()
         {
-            // GitHub Issue #59: https://github.com/bradyholt/cron-expression-descriptor/issues/59
+            // GitHub Issue #59: https://github.com/bradymholt/cron-expression-descriptor/issues/59
 
             var options = new Options { DayOfWeekStartIndexZero = false };
 
@@ -412,28 +412,28 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TrailingSpaceDoesNotCauseAWrongDescription()
         {
-            // GitHub Issue #51: https://github.com/bradyholt/cron-expression-descriptor/issues/51
+            // GitHub Issue #51: https://github.com/bradymholt/cron-expression-descriptor/issues/51
             Assert.Equal("At 07:00 AM", GetDescription("0 7 * * * "));
         }
 
         [Fact]
         public void TestMultiPartDayOfTheWeek()
         {
-            // GitHub Issue #44: https://github.com/bradyholt/cron-expression-descriptor/issues/44
+            // GitHub Issue #44: https://github.com/bradymholt/cron-expression-descriptor/issues/44
             Assert.Equal("At 10:00 AM, only on Monday through Thursday and Sunday", GetDescription("0 00 10 ? * MON-THU,SUN *"));
         }
 
         [Fact]
         public void TestDayOfWeekWithDayOfMonth()
         {
-            // GitHub Issue #46: https://github.com/bradyholt/cron-expression-descriptor/issues/46
+            // GitHub Issue #46: https://github.com/bradymholt/cron-expression-descriptor/issues/46
             Assert.Equal("At 12:00 AM, on day 1, 2, and 3 of the month, only on Wednesday and Friday", GetDescription("0 0 0 1,2,3 * WED,FRI"));
         }
 
         [Fact]
         public void TestSecondsInternalWithStepValue()
         {
-            // GitHub Issue #49: https://github.com/bradyholt/cron-expression-descriptor/issues/49
+            // GitHub Issue #49: https://github.com/bradymholt/cron-expression-descriptor/issues/49
             Assert.Equal("Every 30 seconds, starting at 5 seconds past the minute", GetDescription("5/30 * * * * ?"));
         }
 

@@ -64,7 +64,7 @@ The following language translations are available.
 
  * English - en ([Brady Holt](https://github.com/bradymholt))
  * Brazilian Portuguese - pt-BR ([Renato Lima](https://github.com/natenho))
- * Chinese Simplified - zh-CH ([Star Peng](https://github.com/starpeng))
+ * Chinese Simplified - zh-CN ([Star Peng](https://github.com/starpeng))
  * Danish - da ([Rasmus Melchior Jacobsen](https://github.com/rmja))
  * Dutch - nl ([TotalMace](https://github.com/TotalMace))
  * French - fr ([Arnaud TAMAILLON](https://github.com/Greybird))

@@ -79,6 +79,7 @@ The following language translations are available.
  * Swedish - sv ([roobin](https://github.com/roobin))
  * Turkish - tr ([Mustafa SADEDİL](https://github.com/sadedil))
  * Ukrainian - uk ([Taras](https://github.com/tbudurovych))
+ * Japanese - ja
  
 To use one of these translations, pass in the `Locale` option to `GetDescription`.  For example, to get the description of `0-10 11 * * *` in German:
 

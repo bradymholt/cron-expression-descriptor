@@ -5,7 +5,7 @@
    NuGet, creating a GitHub release, uploading .nupkg to GitHub release.
 
    Example:
-     release.sh 2.0.0 "Fixed DOW bug causing exception" */
+     release.js 2.0.0 "Fixed DOW bug causing exception" */
 
 // Halt on an error
 set("-e");
@@ -15,7 +15,7 @@ cd(`${__dirname}/../`);
 
 if (args.length != 2) {
   echo(`
-Usage: release.sh version "Release notes..."
+Usage: release.js version "Release notes..."
 Example:
   release.js 2.0.0 "Fixed DOW bug causing exception"`);
   exit(1);

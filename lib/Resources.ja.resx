@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -129,20 +129,20 @@
     <comment>AnErrorOccuredWhenGeneratingTheExpressionD description</comment>
   </data>
   <data name="AtSpace" xml:space="preserve">
-    <value>次において実施 </value>
-    <comment>At description</comment>
+    <value> </value>
+  <comment>At description</comment>
   </data>
   <data name="EveryMinuteBetweenX0AndX1" xml:space="preserve">
-    <value>{0} から {1} まで毎分</value>
-    <comment>EveryMinuteBetweenX0AndX1 description</comment>
+    <value>{0} 分から {1} 分まで毎分</value>
+  <comment>EveryMinuteBetweenX0AndX1 description</comment>
   </data>
   <data name="At" xml:space="preserve">
-    <value>次において実施</value>
-    <comment>At description</comment>
+    <value> </value>
+  <comment>At description</comment>
   </data>
   <data name="SpaceAnd" xml:space="preserve">
-    <value>と</value>
-    <comment>And description</comment>
+    <value> と</value>
+  <comment>And description</comment>
   </data>
   <data name="EverySecond" xml:space="preserve">
     <value>毎秒</value>
@@ -154,11 +154,11 @@
   </data>
   <data name="SecondsX0ThroughX1PastTheMinute" xml:space="preserve">
     <value>毎分 {0} 秒から {1} 秒まで</value>
-    <comment>SecondsX0ThroughX1PastTheMinute description</comment>
+  <comment>SecondsX0ThroughX1PastTheMinute description</comment>
   </data>
   <data name="AtX0SecondsPastTheMinute" xml:space="preserve">
-    <value>毎分 {0} 秒過ぎ</value>
-    <comment>AtX0SecondsPastTheMinute description</comment>
+    <value>{0} 秒</value>
+  <comment>AtX0SecondsPastTheMinute description</comment>
   </data>
   <data name="EveryX0Minutes" xml:space="preserve">
     <value>{0} 分ごと</value>
@@ -169,8 +169,8 @@
     <comment>MinutesX0ThroughX1PastTheHour description</comment>
   </data>
   <data name="AtX0MinutesPastTheHour" xml:space="preserve">
-    <value>毎時 {0} 分過ぎ</value>
-    <comment>AtX0MinutesPastTheHour description</comment>
+    <value>{0} 分</value>
+  <comment>AtX0MinutesPastTheHour description</comment>
   </data>
   <data name="EveryX0Hours" xml:space="preserve">
     <value>{0} 時間ごと</value>
@@ -181,72 +181,72 @@
     <comment>BetweenX0AndX1 description</comment>
   </data>
   <data name="AtX0" xml:space="preserve">
-    <value>次において実施 {0}</value>
-    <comment>AtX0 description</comment>
+    <value>{0}</value>
+  <comment>AtX0 description</comment>
   </data>
   <data name="ComaEveryDay" xml:space="preserve">
-    <value>、毎日</value>
-    <comment>ComaEveryDay description</comment>
+    <value>, 毎日</value>
+  <comment>ComaEveryDay description</comment>
   </data>
   <data name="ComaEveryX0DaysOfTheWeek" xml:space="preserve">
-    <value>、週のうち {0} 日ごと</value>
-    <comment>EveryX0DaysOfTheWeek description</comment>
+    <value>, 週のうち {0} 日ごと</value>
+  <comment>EveryX0DaysOfTheWeek description</comment>
   </data>
   <data name="ComaX0ThroughX1" xml:space="preserve">
-    <value>、{0} から {1} まで</value>
-    <comment>X0ThroughX1 description</comment>
+    <value>, {0} から {1} まで</value>
+  <comment>X0ThroughX1 description</comment>
   </data>
   <data name="First" xml:space="preserve">
-    <value>1 番目</value>
-    <comment>First description</comment>
+    <value>月の1 番目の</value>
+  <comment>First description</comment>
   </data>
   <data name="Second" xml:space="preserve">
-    <value>2 番目</value>
-    <comment>Second description</comment>
+    <value>月の2 番目の</value>
+  <comment>Second description</comment>
   </data>
   <data name="Third" xml:space="preserve">
-    <value>3 番目</value>
-    <comment>Third description</comment>
+    <value>月の3 番目の</value>
+  <comment>Third description</comment>
   </data>
   <data name="Fourth" xml:space="preserve">
-    <value>4 番目</value>
-    <comment>Fourth description</comment>
+    <value>月の4 番目の</value>
+  <comment>Fourth description</comment>
   </data>
   <data name="Fifth" xml:space="preserve">
-    <value>5 番目</value>
-    <comment>Fifth description</comment>
+    <value>月の5 番目の</value>
+  <comment>Fifth description</comment>
   </data>
   <data name="ComaOnThe" xml:space="preserve">
-    <value>次に</value>
-    <comment>OnThe description</comment>
+    <value>, </value>
+  <comment>OnThe description</comment>
   </data>
   <data name="SpaceX0OfTheMonth" xml:space="preserve">
-    <value>月のうち {0}</value>
-    <comment>X0OfTheMonth description</comment>
+    <value> {0}</value>
+  <comment>X0OfTheMonth description</comment>
   </data>
   <data name="ComaOnTheLastX0OfTheMonth" xml:space="preserve">
-    <value>月の最後の {0} に</value>
-    <comment>OnTheLastX0OfTheMonth description</comment>
+    <value>, {0}</value>
+  <comment>OnTheLastX0OfTheMonth description</comment>
   </data>
   <data name="ComaOnlyOnX0" xml:space="preserve">
-    <value>{0} にのみ</value>
-    <comment>OnlyOnX0 description</comment>
+    <value>, {0}</value>
+  <comment>OnlyOnX0 description</comment>
   </data>
   <data name="ComaEveryX0Months" xml:space="preserve">
-    <value>、{0} か月ごと</value>
-    <comment>EveryX0Months description</comment>
+    <value>, {0} か月ごと</value>
+  <comment>EveryX0Months description</comment>
   </data>
   <data name="ComaOnlyInX0" xml:space="preserve">
-    <value>{0} でのみ</value>
-    <comment>ComaOnlyInX0 description</comment>
+    <value>, {0}</value>
+  <comment>ComaOnlyInX0 description</comment>
   </data>
   <data name="ComaOnTheLastDayOfTheMonth" xml:space="preserve">
-    <value>次の最終日に</value>
-    <comment>ComaOnTheLastDayOfTheMonth description</comment>
+    <value>, 月の最終日</value>
+  <comment>ComaOnTheLastDayOfTheMonth description</comment>
   </data>
   <data name="ComaOnTheLastWeekdayOfTheMonth" xml:space="preserve">
-    <value>月の最後の平日に</value>
-    <comment>OnTheLastWeekdayOfTheMonth description</comment>
+    <value>, 月の最後の平日</value>
+  <comment>OnTheLastWeekdayOfTheMonth description</comment>
   </data>
   <data name="FirstWeekday" xml:space="preserve">
     <value>最初の平日</value>
@@ -257,51 +257,51 @@
     <comment>WeekdayNearestDayX0 description</comment>
   </data>
   <data name="ComaOnTheX0OfTheMonth" xml:space="preserve">
-    <value>月の {0} に</value>
-    <comment>ComaOnTheX0OfTheMonth description</comment>
+    <value>, {0}</value>
+  <comment>ComaOnTheX0OfTheMonth description</comment>
   </data>
   <data name="ComaEveryX0Days" xml:space="preserve">
-    <value>、{0} 日ごと</value>
-    <comment>ComaEveryX0Days description</comment>
+    <value>, {0} 日ごと</value>
+  <comment>ComaEveryX0Days description</comment>
   </data>
   <data name="ComaBetweenDayX0AndX1OfTheMonth" xml:space="preserve">
-    <value>、月の {0} 日から {1} 日の間</value>
-    <comment>BetweenDayX0AndX1OfTheMonth description</comment>
+    <value>, 月の {0} 日から {1} 日の間</value>
+  <comment>BetweenDayX0AndX1OfTheMonth description</comment>
   </data>
   <data name="ComaOnDayX0OfTheMonth" xml:space="preserve">
-    <value>、月の {0} 日目</value>
-    <comment>ComaOnDayX0OfTheMonth description</comment>
+    <value>, {0} 日</value>
+  <comment>ComaOnDayX0OfTheMonth description</comment>
   </data>
   <data name="SpaceAndSpace" xml:space="preserve">
-    <value>と </value>
-    <comment>And description</comment>
+    <value> と </value>
+  <comment>And description</comment>
   </data>
   <data name="ComaEveryMinute" xml:space="preserve">
-    <value>、毎分</value>
-    <comment>ComaEveryMinute1 description</comment>
+    <value>, 毎分</value>
+  <comment>ComaEveryMinute1 description</comment>
   </data>
   <data name="ComaEveryHour" xml:space="preserve">
-    <value>、毎時</value>
-    <comment>ComaEveryHour description</comment>
+    <value>, 毎時</value>
+  <comment>ComaEveryHour description</comment>
   </data>
   <data name="ComaEveryX0Years" xml:space="preserve">
-    <value>、{0} 年ごと</value>
-    <comment>ComaEveryX0Years description</comment>
+    <value>, {0} 年ごと</value>
+  <comment>ComaEveryX0Years description</comment>
   </data>
   <data name="CommaStartingX0" xml:space="preserve">
-    <value>、{0} に開始</value>
-    <comment>CommaStartingX0 description</comment>
+    <value>, {0}に開始</value>
+  <comment>CommaStartingX0 description</comment>
   </data>
   <data name="AMPeriod" xml:space="preserve">
-    <value>AM</value>
-    <comment>AM / In the morning</comment>
+    <value>午前</value>
+  <comment>AM / In the morning</comment>
   </data>
   <data name="PMPeriod" xml:space="preserve">
-    <value>PM</value>
-    <comment>PM / In the afternoon</comment>
+    <value>午後</value>
+  <comment>PM / In the afternoon</comment>
   </data>
   <data name="CommaDaysBeforeTheLastDayOfTheMonth" xml:space="preserve">
-    <value>月の最終日の {0} 日前</value>
-    <comment>CommaDaysBeforeTheLastDayOfTheMonth description</comment>
+    <value>, 月末から {0} 日前</value>
+  <comment>CommaDaysBeforeTheLastDayOfTheMonth description</comment>
   </data>
 </root>

@@ -1,4 +1,4 @@
-﻿# Cron Expression Descriptor
+# Cron Expression Descriptor
 A .NET library that converts cron expressions into human readable descriptions.
 
 [![Build Status](https://travis-ci.org/bradymholt/cron-expression-descriptor.svg?branch=master)](https://travis-ci.org/bradymholt/cron-expression-descriptor)
@@ -80,6 +80,7 @@ The following language translations are available.
  * Turkish - tr ([Mustafa SADEDİL](https://github.com/sadedil))
  * Ukrainian - uk ([Taras](https://github.com/tbudurovych))
  * Japanese - ja ([Alin Sarivan](https://github.com/asarivan))
+ * Finnish - fi ([Mikael Rosenberg](https://github.com/MR77FI))
  
 To use one of these translations, pass in the `Locale` option to `GetDescription`.  For example, to get the description of `0-10 11 * * *` in German:
 

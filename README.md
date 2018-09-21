@@ -63,15 +63,17 @@ ExpressionDescriptor.GetDescription("0-10 11 * * *", new Options(){
 The following language translations are available.
 
  * English - en ([Brady Holt](https://github.com/bradymholt))
- * Brazilian Portuguese - pt-BR ([Renato Lima](https://github.com/natenho))
  * Chinese Simplified - zh-CN ([Star Peng](https://github.com/starpeng))
  * Danish - da ([Rasmus Melchior Jacobsen](https://github.com/rmja))
  * Dutch - nl ([TotalMace](https://github.com/TotalMace))
+ * Finnish - fi ([Mikael Rosenberg](https://github.com/MR77FI))
  * French - fr ([Arnaud TAMAILLON](https://github.com/Greybird))
  * German - de ([Michael Schuler](https://github.com/mschuler))
  * Italian - it ([rinaldihno](https://github.com/rinaldihno))
+ * Japanese - ja ([Alin Sarivan](https://github.com/asarivan))
  * Norwegian - nb ([Siarhei Khalipski](https://github.com/KhalipskiSiarhei))
  * Polish - pl ([foka](https://github.com/foka))
+ * Portuguese (Brazil) - pt-BR ([Renato Lima](https://github.com/natenho))
  * Romanian - ro ([Illegitimis](https://github.com/illegitimis))
  * Russian - ru ([LbISS](https://github.com/LbISS))
  * Slovenian - sl-SI ([Jani Bevk](https://github.com/jenzy))
@@ -79,8 +81,6 @@ The following language translations are available.
  * Swedish - sv ([roobin](https://github.com/roobin))
  * Turkish - tr ([Mustafa SADEDİL](https://github.com/sadedil))
  * Ukrainian - uk ([Taras](https://github.com/tbudurovych))
- * Japanese - ja ([Alin Sarivan](https://github.com/asarivan))
- * Finnish - fi ([Mikael Rosenberg](https://github.com/MR77FI))
  
 To use one of these translations, pass in the `Locale` option to `GetDescription`.  For example, to get the description of `0-10 11 * * *` in German:
 

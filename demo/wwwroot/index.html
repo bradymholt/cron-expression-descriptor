@@ -1,20 +1,21 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <title>Cron Expression Descriptor - make a cron schedule human readable</title>
-  <meta name="description" content="Describes crontab cron expressions as human readable text. Supports 15 Languages."/>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Describe Cron expressions as human readable text">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/manifest.json">
-  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 
-  <meta name="theme-color" content="#ffffff">
-  <style>
-    /* normalize.css */
+<head>
+    <title>Cron Expression Descriptor - make a cron schedule human readable</title>
+    <meta name="description" content="Describes crontab cron expressions as human readable text. Supports 15 Languages." />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Describe Cron expressions as human readable text">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        /* normalize.css */
     button,hr,input{overflow:visible}audio,canvas,progress,video{display:inline-block}progress,sub,sup{vertical-align:baseline}html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0} menu,article,aside,details,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}figcaption,figure,main{display:block}figure{margin:1em 40px}hr{box-sizing:content-box;height:0}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}dfn{font-style:italic}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}audio:not([controls]){display:none;height:0}img{border-style:none}svg:not(:root){overflow:hidden}button,input,optgroup,select,textarea{font-family:sans-serif;font-size:100%;line-height:1.15;margin:0}button,input{}button,select{text-transform:none}[type=submit], [type=reset],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:ButtonText dotted 1px}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}[hidden],template{display:none}
 
     /* milligram.css (stripped down) */
@@ -25,132 +26,140 @@
     .description { color: #009933; font-weight: bold; }
     .header { display: inline-block; width: 250px; height: 30px; margin-left: 10px; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="30"><path d="M 0,14.355469 2.2460938,7.421875 C 7.4218645,9.2448552 11.181626,10.82363 13.525391,12.158203 12.906885,6.2663426 12.581365,2.2136123 12.548828,0 l 7.080078,0 c -0.09768,3.2227258 -0.472027,7.2591801 -1.123047,12.109375 3.35284,-1.692646 7.193982,-3.2551444 11.523438,-4.6875 l 2.246094,6.933594 c -4.134146,1.367244 -8.186877,2.278702 -12.158204,2.734375 1.985652,1.725314 4.785129,4.801483 8.398438,9.228515 L 22.65625,30.46875 C 20.768205,27.89718 18.53839,24.397835 15.966797,19.970703 13.557926,24.560595 11.442043,28.059941 9.6191406,30.46875 L 3.8574219,26.318359 C 7.6334528,21.663463 10.335273,18.587294 11.962891,17.089844 7.763661,16.276098 3.7760348,15.364641 0,14.355469"/></svg>') repeat-x; }
   </style>
-  <style>
-    /* GitHub ribbon */
+    <style>
+        /* GitHub ribbon */
     .github-corner:hover .octo-arm { animation: octocat-wave 560ms ease-in-out }
     @keyframes octocat-wave { 0%, 100% { transform: rotate(0) } 20%, 60% { transform: rotate(-25deg) } 40%, 80% { transform: rotate(10deg) } }
     @media (max-width:500px) { .github-corner:hover .octo-arm { animation: none } .github-corner .octo-arm { animation: octocat-wave 560ms ease-in-out } }
   </style>
-  <script src="https://unpkg.com/axios/dist/axios.min.js" defer></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js" defer></script>
 </head>
+
 <body>
-  <h1>Cron Expression Descriptor <div class="header"></div></h1>
-  <h2>Describes Cron expressions as human readable text</h2>
-  <form>
-    <fieldset>
-      <label for="expression">Cron Expression</label>
-      <input id="expression" name="expression" placeholder="Cron Expression" type="text" value="" />
-      <label for="locale">Language</label>
-      <select id="locale" name="locale">            
-        <option value="en">English</option>
-        <option value="zh-CN">Chinese (Simplified)</option>
-        <option value="da">Danish</option>
-        <option value="nl">Dutch</option>
-        <option value="fr">French</option>
-        <option value="de">German</option>
-        <option value="it">Italian</option>
-        <option value="ja">Japanese</option>
-        <option value="no">Norwegian</option>
-        <option value="pl">Polish</option>
-        <option value="pt">Portuguese</option>
-        <option value="ro">Romanian</option>
-        <option value="ru">Russian</option>
-        <option value="es">Spanish</option>
-        <option value="sl-SI">Slovenian</option>
-        <option value="sv">Swedish</option>
-        <option value="tr">Turkish</option>
-        <option value="uk">Ukrainian</option>
-      </select>
-      <button type="button" class="button button-black" id="describe">Describe</button>
-    </fieldset>
-  </form>
-  <h3>Output</h3>
-  <blockquote>
-    <div id="description" class="description"></div>
-  </blockquote>
-  <h3>API</h3>
-  <pre><code>curl 'https://cronexpressiondescriptor.azurewebsites.net/api/descriptor/?expression=0+30+10-13+?+*+WED,FRI&locale=en-US'
+    <h1>Cron Expression Descriptor <div class="header"></div>
+    </h1>
+    <h2>Describes Cron expressions as human readable text</h2>
+    <form>
+        <fieldset>
+            <label for="expression">Cron Expression</label>
+            <input id="expression" name="expression" placeholder="Cron Expression" type="text" value="" />
+            <label for="locale">Language</label>
+            <select id="locale" name="locale">
+                <option value="en">English</option>
+                <option value="zh-CN">Chinese (Simplified)</option>
+                <option value="da">Danish</option>
+                <option value="nl">Dutch</option>
+                <option value="fi">Finnish</option>
+                <option value="fr">French</option>
+                <option value="de">German</option>
+                <option value="it">Italian</option>
+                <option value="ja">Japanese</option>
+                <option value="no">Norwegian</option>
+                <option value="pl">Polish</option>
+                <option value="pt">Portuguese</option>
+                <option value="ro">Romanian</option>
+                <option value="ru">Russian</option>
+                <option value="sl-SI">Slovenian</option>
+                <option value="es">Spanish</option>
+                <option value="sv">Swedish</option>
+                <option value="tr">Turkish</option>
+                <option value="uk">Ukrainian</option>
+            </select>
+            <button type="button" class="button button-black" id="describe">Describe</button>
+        </fieldset>
+    </form>
+    <h3>Output</h3>
+    <blockquote>
+        <div id="description" class="description"></div>
+    </blockquote>
+    <h3>API</h3>
+    <pre><code>curl 'https://cronexpressiondescriptor.azurewebsites.net/api/descriptor/?expression=0+30+10-13+?+*+WED,FRI&locale=en-US'
 
 < HTTP/1.1 200 OK
 < Content-Type: application/json; charset=utf-8
 {"description":"At 30 minutes past the hour, between 10:00 AM and 01:59 PM, only on Wednesday and Friday"}</code></pre>
-  <h3>Reference</h3>
-  <p>Cron Expression Descriptor is a C# / .NET Library authored by <a href="https://www.geekytidbits.com/">Brady Holt</a> and translated into other languages by contributors on <a href="http://github.com/bradymholt/cron-expression-descriptor">GitHub</a>.</p>
-  <a href="http://github.com/bradymholt/cron-expression-descriptor" class="github-corner" aria-label="View source on Github">
-    <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
-      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
-      <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
-          fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
-      <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
-          fill="currentColor" class="octo-body"></path>
-    </svg>
-  </a>
-  <script>
-    function getParameterByName(name, url) {
-      if (!url) url = window.location.href;
-      name = name.replace(/[\[\]]/g, "\\$&");
-      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)", "i"),
-          results = regex.exec(url);
-      if (!results) return null;
-      if (!results[2]) return '';
-      return decodeURIComponent(results[2].replace(/\+/g, " "));
-    }
-
-    function updateQuery(expression, locale){
-      if ('URLSearchParams' in window) {
-        var searchParams = new URLSearchParams()
-        searchParams.set("expression", expression);
-        searchParams.set("locale", locale);
-        var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
-        if (history){
-          history.replaceState(null, '', newRelativePathQuery);
-        }
-      }
-    }
-
-    function fetchDescription(){
-      var expression = document.getElementById("expression").value;
-      var locale = document.getElementById("locale").value;
-
-      updateQuery(expression, locale);
-
-      axios.get("/api/descriptor/", {
-          params: {
-              expression: expression,
-              locale: locale
-          }
-      })
-      .then(function (response) {
-          document.getElementById("description").innerText = response.data.description;
-      });
-    }
-
-    document.getElementById("describe").onclick = fetchDescription;
-    document.addEventListener("DOMContentLoaded", function(event) {
-        var expressionDefault = "0 30 10-13 ? * WED,FRI";
-        var descriptionDefault = "At 30 minutes past the hour, between 10:00 AM and 01:59 PM, only on Wednesday and Friday";
-
-        var locale = getParameterByName("locale");
-        if (locale) { document.getElementById("locale").value = locale; }
-
-        var expressionQuery = getParameterByName("expression");
-        document.getElementById("expression").value = expressionQuery || expressionDefault;
-
-        if (expressionQuery) {
-          fetchDescription();
-        } else {
-          document.getElementById("description").innerText = descriptionDefault;
+    <h3>Reference</h3>
+    <p>Cron Expression Descriptor is a C# / .NET Library authored by <a href="https://www.geekytidbits.com/">Brady Holt</a>
+        and translated into other languages by contributors on <a href="http://github.com/bradymholt/cron-expression-descriptor">GitHub</a>.</p>
+    <a href="http://github.com/bradymholt/cron-expression-descriptor" class="github-corner" aria-label="View source on Github">
+        <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;"
+            aria-hidden="true">
+            <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+            <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+                fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+            <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+                fill="currentColor" class="octo-body"></path>
+        </svg>
+    </a>
+    <script>
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)", "i"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
         }
 
-    });
-  </script>
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-19416043-5', 'auto');
-    ga('send', 'pageview');
-  </script>
+        function updateQuery(expression, locale) {
+            if ('URLSearchParams' in window) {
+                var searchParams = new URLSearchParams()
+                searchParams.set("expression", expression);
+                searchParams.set("locale", locale);
+                var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
+                if (history) {
+                    history.replaceState(null, '', newRelativePathQuery);
+                }
+            }
+        }
+
+        function fetchDescription() {
+            var expression = document.getElementById("expression").value;
+            var locale = document.getElementById("locale").value;
+
+            updateQuery(expression, locale);
+
+            axios.get("/api/descriptor/", {
+                params: {
+                    expression: expression,
+                    locale: locale
+                }
+            })
+                .then(function (response) {
+                    document.getElementById("description").innerText = response.data.description;
+                });
+        }
+
+        document.getElementById("describe").onclick = fetchDescription;
+        document.addEventListener("DOMContentLoaded", function (event) {
+            var expressionDefault = "0 30 10-13 ? * WED,FRI";
+            var descriptionDefault = "At 30 minutes past the hour, between 10:00 AM and 01:59 PM, only on Wednesday and Friday";
+
+            var locale = getParameterByName("locale");
+            if (locale) { document.getElementById("locale").value = locale; }
+
+            var expressionQuery = getParameterByName("expression");
+            document.getElementById("expression").value = expressionQuery || expressionDefault;
+
+            if (expressionQuery) {
+                fetchDescription();
+            } else {
+                document.getElementById("description").innerText = descriptionDefault;
+            }
+
+        });
+    </script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-19416043-5', 'auto');
+        ga('send', 'pageview');
+    </script>
 </body>
+
 </html>

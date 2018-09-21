@@ -63,7 +63,6 @@ ExpressionDescriptor.GetDescription("0-10 11 * * *", new Options(){
 The following language translations are available.
 
  * English - en ([Brady Holt](https://github.com/bradymholt))
- * Brazilian Portuguese - pt-BR ([Renato Lima](https://github.com/natenho))
  * Chinese Simplified - zh-CN ([Star Peng](https://github.com/starpeng))
  * Danish - da ([Rasmus Melchior Jacobsen](https://github.com/rmja))
  * Dutch - nl ([TotalMace](https://github.com/TotalMace))
@@ -72,6 +71,7 @@ The following language translations are available.
  * Italian - it ([rinaldihno](https://github.com/rinaldihno))
  * Norwegian - nb ([Siarhei Khalipski](https://github.com/KhalipskiSiarhei))
  * Polish - pl ([foka](https://github.com/foka))
+ * Portuguese (Brazil) - pt-BR ([Renato Lima](https://github.com/natenho))
  * Romanian - ro ([Illegitimis](https://github.com/illegitimis))
  * Russian - ru ([LbISS](https://github.com/LbISS))
  * Slovenian - sl-SI ([Jani Bevk](https://github.com/jenzy))

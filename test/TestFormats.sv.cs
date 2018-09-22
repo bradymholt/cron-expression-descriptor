@@ -179,7 +179,7 @@ namespace CronExpressionDescriptor.Test
         public void TestDayOfWeekRange()
         {
             Assert.EqualsCaseInsensitive(
-                "Upprepas efter 5 minuter, på 03:00 PM, måndag till och med fredag",
+                "Upprepas efter 5 minuter, mellan 03:00 PM och 03:59 PM, måndag till och med fredag",
                 GetDescription("*/5 15 * * MON-FRI"));
         }
 

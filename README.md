@@ -217,7 +217,7 @@ ExpressionDescriptor.GetDescription("23 12 * * SUN");
 > "At 12:23 PM, only on Sunday"
 
 ExpressionDescriptor.GetDescription("*/5 15 * * MON-FRI");
-> "Every 5 minutes, at 03:00 PM, Monday through Friday"
+> "Every 5 minutes, between 03:00 PM and 03:59 PM, Monday through Friday"
 
 ExpressionDescriptor.GetDescription("* * * * MON#3");
 > "Every minute, on the third Monday of the month"

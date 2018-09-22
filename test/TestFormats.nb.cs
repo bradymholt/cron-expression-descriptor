@@ -156,7 +156,7 @@ namespace CronExpressionDescriptor.Test
         public void TestDayOfWeekRange()
         {
             Assert.Equal(
-                "Hvert 5 minutt, på 03:00 PM, mandag til og med fredag",
+                "Hvert 5 minutt, mellom 03:00 PM og 03:59 PM, mandag til og med fredag",
                 GetDescription("*/5 15 * * MON-FRI"));
         }
 

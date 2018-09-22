@@ -157,13 +157,13 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestDayOfWeekRange()
         {
-            Assert.Equal("Joka 5. minuutti, klo 15:00, maanantai - perjantai", GetDescription("*/5 15 * * MON-FRI"));
+            Assert.Equal("Joka 5. minuutti, 15:00 - 15:59 välillä, maanantai - perjantai", GetDescription("*/5 15 * * MON-FRI"));
         }
 
         [Fact]
         public void TestDayOfWeekRangeWithDOWLowerCased()
         {
-            Assert.Equal("Joka 5. minuutti, klo 15:00, maanantai - perjantai", GetDescription("*/5 15 * * MoN-fri"));
+            Assert.Equal("Joka 5. minuutti, 15:00 - 15:59 välillä, maanantai - perjantai", GetDescription("*/5 15 * * MoN-fri"));
         }
 
         [Fact]

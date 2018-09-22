@@ -150,7 +150,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestDayOfWeekRange()
         {
-            Assert.Equal("每 5 分钟, 在 03:00 PM, 星期一 到 星期五", GetDescription("*/5 15 * * MON-FRI"));
+            Assert.Equal("每 5 分钟, 在 03:00 PM 和 03:59 PM 之间, 星期一 到 星期五", GetDescription("*/5 15 * * MON-FRI"));
         }
 
         [Fact]

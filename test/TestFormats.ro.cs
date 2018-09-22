@@ -184,8 +184,8 @@ namespace CronExpressionDescriptor.Test
         public void TestDayOfWeekRange()
         {
             Harness(cron: "*/5 15 * * MON-FRI", 
-                expected: "La fiecare 5 minute, la 15:00, de luni până vineri",
-                expectedVerbose: "La fiecare 5 minute, la 15:00, în fiecare zi, de luni până vineri");
+                expected: "La fiecare 5 minute, între 15:00 și 15:59, de luni până vineri",
+                expectedVerbose: "La fiecare 5 minute, între 15:00 și 15:59, în fiecare zi, de luni până vineri");
         }
 
         [Fact]

@@ -160,7 +160,7 @@ namespace CronExpressionDescriptor.Test
 
         public void TestDayOfWeekRange()
         {
-            Assert.Equal("Her 5 dakikada bir, saat 15:00, Pazartesi ile Cuma arasında", GetDescription("*/5 15 * * MON-FRI"));
+            Assert.Equal("Her 5 dakikada bir, 15:00 ile 15:59 arasında, Pazartesi ile Cuma arasında", GetDescription("*/5 15 * * MON-FRI"));
         }
 
         [Fact]

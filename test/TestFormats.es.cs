@@ -152,7 +152,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestDayOfWeekRange()
         {
-            Assert.EqualsCaseInsensitive("Cada 5 minutos, a las 03:00 PM, de lunes a viernes", GetDescription("*/5 15 * * MON-FRI"));
+            Assert.EqualsCaseInsensitive("Cada 5 minutos, entre las 03:00 PM y las 03:59 PM, de lunes a viernes", GetDescription("*/5 15 * * MON-FRI"));
         }
 
         [Fact]

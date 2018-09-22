@@ -157,13 +157,13 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestDayOfWeekRange()
         {
-            Assert.Equal("Vsakih 5 minut, ob 15:00, od ponedeljek do petek", GetDescription("*/5 15 * * MON-FRI"));
+            Assert.Equal("Vsakih 5 minut, od 15:00 do 15:59, od ponedeljek do petek", GetDescription("*/5 15 * * MON-FRI"));
         }
 
         [Fact]
         public void TestDayOfWeekRangeWithDOWLowerCased()
         {
-            Assert.Equal("Vsakih 5 minut, ob 15:00, od ponedeljek do petek", GetDescription("*/5 15 * * MoN-fri"));
+            Assert.Equal("Vsakih 5 minut, od 15:00 do 15:59, od ponedeljek do petek", GetDescription("*/5 15 * * MoN-fri"));
         }
 
         [Fact]

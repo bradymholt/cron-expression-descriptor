@@ -157,7 +157,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestDayOfWeekRange()
         {
-            string expected = "Кожні 5 хвилин, о 15:00, понеділок по пʼятниця";
+            string expected = "Кожні 5 хвилин, між 15:00 та 15:59, понеділок по пʼятниця";
             string description = GetDescription("*/5 15 * * MON-FRI").Replace('\'', 'ʼ');
 
             Assert.EqualsCaseInsensitive(expected, description);

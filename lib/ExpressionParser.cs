@@ -186,6 +186,17 @@ namespace CronExpressionDescriptor
         expressionParts[0] = string.Empty;
       }
 
+      // If time interval is specified for seconds or minutes and next time part is single item, make it a "self-range" so
+      // the expression can be interpreted as an interval 'between' range.
+      //     For example:
+      //     0-20/3 9 * * * => 0-20/3 9-9 * * * (9 => 9-9)
+      //     */5 3 * * * => */5 3-3 * * * (3 => 3-3)
+      if (expressionParts[2].IndexOfAny(new char[] { '*', '-', ',','/' }) == -1
+        && (Regex.IsMatch(expressionParts[1], @"\*|\/") || Regex.IsMatch(expressionParts[0], @"\*|\/")))
+      {
+        expressionParts[2] += $"-{expressionParts[2]}";
+      }
+
       // Loop through all parts and apply global normalization
       for (int i = 0; i < expressionParts.Length; i++)
       {
@@ -220,16 +231,6 @@ namespace CronExpressionDescriptor
             string[] parts = expressionParts[i].Split('/');
             expressionParts[i] = string.Format("{0}-{1}/{2}", parts[0], stepRangeThrough, parts[1]);
           }
-        }
-
-        // If time interval is specified for seconds or minutes and next time part is single item, make it a "self-range" so
-        // the expression can be interpreted as an interval 'between' range.
-        //     For example:
-        //     0-20/3 9 * * * => 0-20/3 9-9 * * * (9 => 9-9)
-        //     */5 3 * * * => */5 3-3 * * * (3 => 3-3)
-        if ((i == 1 || i == 2) && expressionParts[i].IndexOfAny(new char[] { '*', '-', ',' }) == -1 && expressionParts[i - 1].IndexOf("/", StringComparison.Ordinal) > -1)
-        {
-          expressionParts[i] += $"-{expressionParts[i]}";
         }
       }
     }

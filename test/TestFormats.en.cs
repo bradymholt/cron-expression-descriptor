@@ -492,8 +492,39 @@ namespace CronExpressionDescriptor.Test
     }
 
     [Fact]
-    public void TestMinuteRangeWithInterval(){
-        Assert.Equal("Every 3 minutes, minutes 0 through 20 past the hour, between 09:00 AM and 09:59 AM", GetDescription("0-20/3 9 * * *"));
+    public void TestMinuteRangeWithInterval()
+    {
+      Assert.Equal("Every 3 minutes, minutes 0 through 20 past the hour, between 09:00 AM and 09:59 AM", GetDescription("0-20/3 9 * * *"));
+    }
+
+    [Fact]
+    public void MinutesZero1()
+    {
+      Assert.Equal("Every second, at 0 minutes past the hour, every 4 hours", GetDescription("* 0 */4 * * *"));
+    }
+
+    [Fact]
+    public void MinutesZero2()
+    {
+      Assert.Equal("Every 10 seconds, at 0 minutes past the hour", GetDescription("*/10 0 * * * *"));
+    }
+
+    [Fact]
+    public void MinutesZero3()
+    {
+      Assert.Equal("Every second, at 0 minutes past the hour, between 12:00 AM and 12:59 AM", GetDescription("* 0 0 * * *"));
+    }
+
+    [Fact]
+    public void MinutesZero4()
+    {
+      Assert.Equal("Every minute, between 12:00 AM and 12:59 AM", GetDescription("* 0 * * *"));
+    }
+
+    [Fact]
+    public void MinutesZero5()
+    {
+      Assert.Equal("Every second, at 0 minutes past the hour", GetDescription("* 0 * * * *"));
     }
   }
 }

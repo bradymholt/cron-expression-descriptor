@@ -239,14 +239,14 @@ namespace CronExpressionDescriptor
 
         description.Append(secondsDescription);
 
-        if (description.Length > 0)
+        if (description.Length > 0 && minutesDescription.Length > 0)
         {
           description.Append(", ");
         }
 
         description.Append(minutesDescription);
 
-        if (description.Length > 0)
+        if (description.Length > 0 && hourExpression.Length > 0)
         {
           description.Append(", ");
         }
@@ -299,6 +299,7 @@ namespace CronExpressionDescriptor
     /// <returns>The MINUTE description</returns>
     protected string GetMinutesDescription()
     {
+      string secondsExpression = m_expressionParts[0];
       string description = GetSegmentDescription(
           expression: m_expressionParts[1],
           allDescription: GetString("EveryMinute"),
@@ -310,7 +311,7 @@ namespace CronExpressionDescriptor
             int i = 0;
             if (int.TryParse(s, out i))
             {
-              return s == "0"
+              return s == "0" && secondsExpression == ""
                       ? string.Empty
                       : (int.Parse(s) < 20)
                           ? GetString("AtX0MinutesPastTheHour")
@@ -726,6 +727,7 @@ namespace CronExpressionDescriptor
         description = description.Replace(GetString("ComaEveryMinute"), string.Empty);
         description = description.Replace(GetString("ComaEveryHour"), string.Empty);
         description = description.Replace(GetString("ComaEveryDay"), string.Empty);
+        description = Regex.Replace(description, @"\, ?$", "");
       }
 
       return description;

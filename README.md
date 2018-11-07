@@ -63,7 +63,8 @@ ExpressionDescriptor.GetDescription("0-10 11 * * *", new Options(){
 The following language translations are available.
 
  * English - en ([Brady Holt](https://github.com/bradymholt))
- * Chinese Simplified - zh-CN ([Star Peng](https://github.com/starpeng))
+ * Chinese Simplified - zh-Hans (zh-CN) ([Star Peng](https://github.com/starpeng))
+ * Chinese Traditional - zh-Hant (zh-TW) ([Ricky Chiang](https://github.com/metavige))
  * Danish - da ([Rasmus Melchior Jacobsen](https://github.com/rmja))
  * Dutch - nl ([TotalMace](https://github.com/TotalMace))
  * Finnish - fi ([Mikael Rosenberg](https://github.com/MR77FI))

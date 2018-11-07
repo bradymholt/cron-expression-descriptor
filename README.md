@@ -40,7 +40,7 @@ CronExpressionDescriptor.ExpressionDescriptor.GetDescription("* * * * *");
 
 ## Options
 
-An `CronExpressionDescriptor.Options` object can be passed to `GetDescription`.  The following options are available:
+A `CronExpressionDescriptor.Options` object can be passed to `GetDescription`.  The following options are available:
 
 - **bool ThrowExceptionOnParseError** - If exception when trying to parse expression and generate description, whether to throw or catch and output the Exception message as the description. (Default: true)
 - **bool Verbose** - Whether to use a verbose description (Default: false)

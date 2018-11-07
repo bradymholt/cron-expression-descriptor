@@ -12,7 +12,7 @@ A .NET library that converts cron expressions into human readable descriptions.
  * Supports all cron expression special characters including * / , - ? L W, #
  * Supports 5, 6 (w/ seconds or year), or 7 (w/ seconds and year) part cron expressions
  * Provides casing options (Sentence, Title, Lower, etc.)
- * Localization with support for 19 languages
+ * Localization with support for 20 languages
  * Supports [Quartz Enterprise Scheduler .NET](https://www.quartz-scheduler.net/) cron expressions
 
 ## Download
@@ -40,7 +40,7 @@ CronExpressionDescriptor.ExpressionDescriptor.GetDescription("* * * * *");
 
 ## Options
 
-An `CronExpressionDescriptor.Options` object can be passed to `GetDescription`.  The following options are available:
+A `CronExpressionDescriptor.Options` object can be passed to `GetDescription`.  The following options are available:
 
 - **bool ThrowExceptionOnParseError** - If exception when trying to parse expression and generate description, whether to throw or catch and output the Exception message as the description. (Default: true)
 - **bool Verbose** - Whether to use a verbose description (Default: false)
@@ -116,7 +116,7 @@ ExpressionDescriptor.GetDescription("* * * * *");
 
 ## .NET Platform Support
 
-Begining with version 2.0.0, the NuGet package will contain a library targeting .NET Standard 1.1 and 2.0.  This allows the library to be consumed by applications running on the following .NET platforms:
+Beginning with version 2.0.0, the NuGet package will contain a library targeting .NET Standard 1.1 and 2.0.  This allows the library to be consumed by applications running on the following .NET platforms:
 
 - .NET Core >= 1.0
 - .NET Framework >= 4.5

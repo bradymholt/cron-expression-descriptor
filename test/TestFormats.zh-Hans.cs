@@ -9,7 +9,7 @@ namespace CronExpressionDescriptor.Test
     {
         protected override string GetLocale()
         {
-            return "zh-CN";
+            return "zh-hans";
         }
 
         [Fact]

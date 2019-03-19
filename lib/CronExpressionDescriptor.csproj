@@ -9,8 +9,8 @@
     <SignAssembly>False</SignAssembly>
     <AssemblyOriginatorKeyFile>CronExpressionDescriptor.snk</AssemblyOriginatorKeyFile>
     <Product>CronExpressionDescriptor</Product>
-    <Version>2.9.0</Version>
-    <PackageReleaseNotes>adds zh-TW i18n support</PackageReleaseNotes>
+    <Version>2.10.0</Version>
+    <PackageReleaseNotes>Interpret DOW '7' as Sunday with DayOfWeekStartIndexZero=true</PackageReleaseNotes>
     <Authors>Brady Holt</Authors>
     <Description>A library that converts cron expressions into human readable descriptions.  Supports multiple languages including: English, Brazillian, Spanish, Norwgian, Turkish, Dutch, Chinese Simplified, Russian, French, German, Ukrainian, Polish, Romanian Italian, Swedish, Slovenian, Danish, Finnish and Japanese.</Description>
     <PackageLicenseUrl>https://github.com/bradymholt/cron-expression-descriptor/blob/master/LICENSE</PackageLicenseUrl>

@@ -7,14 +7,10 @@ Thanks for being willing to contribute!
 
 ## Project setup
 
-1. Ensure [.NET Core SDK](https://www.microsoft.com/net/download/core#/sdk) version >= 1.0.4 is installed
+1. Ensure [.NET Core SDK](https://www.microsoft.com/net/download/core#/sdk) version >=  2.0.0 is installed
 2. Fork and clone the repo
 3. `dotnet restore` to install dependencies
 4. Create a branch for your PR
-
-## Add yourself as a contributor
-
-Update the `README.md` file and add your name to the _Contributors_ list
 
 ## i18n
 

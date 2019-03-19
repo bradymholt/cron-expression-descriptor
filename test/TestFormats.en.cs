@@ -526,5 +526,10 @@ namespace CronExpressionDescriptor.Test
     {
       Assert.Equal("Every second, at 0 minutes past the hour", GetDescription("* 0 * * * *"));
     }
+
+    [Fact]
+    public void Sunday7(){
+        Assert.Equal("At 09:00 AM, only on Sunday", GetDescription("0 0 9 ? * 7"));
+    }
   }
 }

@@ -151,11 +151,29 @@ namespace CronExpressionDescriptor
         expressionParts[6] = expressionParts[6].Replace("1/", "*/");
       }
 
-      // Handle DayOfWeekStartIndexZero option where SUN=1 rather than SUN=0
-      if (!m_options.DayOfWeekStartIndexZero)
-      {
-        expressionParts[5] = DecreaseDaysOfWeek(expressionParts[5]);
-      }
+      // Adjust DOW based on dayOfWeekStartIndexZero option
+      expressionParts[5] = Regex.Replace(expressionParts[5], @"(^\d)|([^#/\s]\d)+", t =>
+      { //skip anything preceeding by # or /
+        string dowDigits = Regex.Replace(t.Value, @"\D", ""); // extract digit part (i.e. if "-2" or ",2", just take 2)
+        string dowDigitsAdjusted = dowDigits;
+
+        if (m_options.DayOfWeekStartIndexZero)
+        {
+          // "7" also means Sunday so we will convert to "0" to normalize it
+          if (dowDigits == "7")
+          {
+            dowDigitsAdjusted = "0";
+          }
+        }
+        else
+        {
+          // If dayOfWeekStartIndexZero==false, Sunday is specified as 1 and Saturday is specified as 7.
+          // To normalize, we will shift the  DOW number down so that 1 becomes 0, 2 becomes 1, and so on.
+          dowDigitsAdjusted = (Int32.Parse(dowDigits) - 1).ToString();
+        }
+
+        return t.Value.Replace(dowDigits, dowDigitsAdjusted);
+      });
 
       // Convert DOM '?' to '*'
       if (expressionParts[3] == "?")
@@ -191,7 +209,7 @@ namespace CronExpressionDescriptor
       //     For example:
       //     0-20/3 9 * * * => 0-20/3 9-9 * * * (9 => 9-9)
       //     */5 3 * * * => */5 3-3 * * * (3 => 3-3)
-      if (expressionParts[2].IndexOfAny(new char[] { '*', '-', ',','/' }) == -1
+      if (expressionParts[2].IndexOfAny(new char[] { '*', '-', ',', '/' }) == -1
         && (Regex.IsMatch(expressionParts[1], @"\*|\/") || Regex.IsMatch(expressionParts[0], @"\*|\/")))
       {
         expressionParts[2] += $"-{expressionParts[2]}";
@@ -233,22 +251,6 @@ namespace CronExpressionDescriptor
           }
         }
       }
-    }
-
-    private static string DecreaseDaysOfWeek(string dayOfWeekExpressionPart)
-    {
-      char[] dowChars = dayOfWeekExpressionPart.ToCharArray();
-      for (int i = 0; i < dowChars.Length; i++)
-      {
-        int charNumeric;
-        if ((i == 0 || dowChars[i - 1] != '#' && dowChars[i - 1] != '/')
-            && int.TryParse(dowChars[i].ToString(), out charNumeric))
-        {
-          dowChars[i] = (charNumeric - 1).ToString()[0];
-        }
-      }
-
-      return new string(dowChars);
     }
   }
 }

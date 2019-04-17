@@ -11,8 +11,8 @@ A .NET library that converts cron expressions into human readable descriptions.
 
  * Supports all cron expression special characters including * / , - ? L W, #
  * Supports 5, 6 (w/ seconds or year), or 7 (w/ seconds and year) part cron expressions
- * Provides casing options (Sentence case, Title Case, lowercase, etc.)
  * Localization with support for 20 languages
+ * Provides casing options (Sentence case, Title Case, lowercase, etc.)
  * Supports [Quartz Enterprise Scheduler .NET](https://www.quartz-scheduler.net/) cron expressions
 
 ## Download

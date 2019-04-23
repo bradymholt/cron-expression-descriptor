@@ -296,4 +296,7 @@
     <value>, {0} 這個月的最後一天的前幾天</value>
     <comment>CommaDaysBeforeTheLastDayOfTheMonth description</comment>
   </data>
+  <data name="ComaOnlyInYearX0" xml:space="preserve">
+    <value>, 僅在 {0}</value>
+  </data>
 </root>

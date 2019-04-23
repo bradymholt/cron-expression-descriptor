@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using Assert = CronExpressionDescriptor.Test.Support.AssertExtensions;
 
 namespace CronExpressionDescriptor.Test
@@ -32,8 +32,8 @@ namespace CronExpressionDescriptor.Test
 
         public void TestEveryHour()
         {
-            Assert.EqualsCaseInsensitive("Varje timma", GetDescription("0 0 * * * ?"));
-            Assert.EqualsCaseInsensitive("Varje timma", GetDescription("0 0 0/1 * * ?"));
+            Assert.EqualsCaseInsensitive("Varje timme", GetDescription("0 0 * * * ?"));
+            Assert.EqualsCaseInsensitive("Varje timme", GetDescription("0 0 0/1 * * ?"));
         }
 
         [Fact]
@@ -41,7 +41,7 @@ namespace CronExpressionDescriptor.Test
         public void TesttimmaOfDayCertainDaysOfWeek()
         {
             Assert.EqualsCaseInsensitive(
-                "På 11:00 PM, måndag till och med fredag", GetDescription("0 23 ? * MON-FRI"));
+                "Klockan 23:00, måndag till och med fredag", GetDescription("0 23 ? * MON-FRI"));
         }
 
         [Fact]
@@ -76,14 +76,14 @@ namespace CronExpressionDescriptor.Test
 
         public void TestWeekdaysAttimma()
         {
-            Assert.EqualsCaseInsensitive("På 11:30 AM, måndag till och med fredag", GetDescription("30 11 * * 1-5"));
+            Assert.EqualsCaseInsensitive("Klockan 11:30, måndag till och med fredag", GetDescription("30 11 * * 1-5"));
         }
 
         [Fact]
 
         public void TestDailyAttimma()
         {
-            Assert.EqualsCaseInsensitive("På 11:30 AM", GetDescription("30 11 * * *"));
+            Assert.EqualsCaseInsensitive("Klockan 11:30", GetDescription("30 11 * * *"));
         }
 
         [Fact]
@@ -91,7 +91,7 @@ namespace CronExpressionDescriptor.Test
         public void TestMinuteSpan()
         {
             Assert.EqualsCaseInsensitive(
-                "Varje minut mellan 11:00 AM och 11:10 AM", GetDescription("0-10 11 * * *"));
+                "Varje minut mellan 11:00 och 11:10", GetDescription("0-10 11 * * *"));
         }
 
         [Fact]
@@ -112,7 +112,7 @@ namespace CronExpressionDescriptor.Test
 
         public void TestTwotimmasEachAfternoon()
         {
-            Assert.EqualsCaseInsensitive("På 02:30 PM och 04:30 PM", GetDescription("30 14,16 * * *"));
+            Assert.EqualsCaseInsensitive("Klockan 14:30 och 16:30", GetDescription("30 14,16 * * *"));
         }
 
         [Fact]
@@ -120,35 +120,35 @@ namespace CronExpressionDescriptor.Test
         public void TestThreetimmasDaily()
         {
             Assert.EqualsCaseInsensitive(
-                "På 06:30 AM, 02:30 PM och 04:30 PM", GetDescription("30 6,14,16 * * *"));
+                "Klockan 06:30, 14:30 och 16:30", GetDescription("30 6,14,16 * * *"));
         }
 
         [Fact]
 
         public void TestOnceAWeek()
         {
-            Assert.EqualsCaseInsensitive("På 09:46 AM, bara på måndag", GetDescription("46 9 * * 1"));
+            Assert.EqualsCaseInsensitive("Klockan 09:46, bara på måndag", GetDescription("46 9 * * 1"));
         }
 
         [Fact]
 
         public void TestDayOfMonth()
         {
-            Assert.EqualsCaseInsensitive("På 12:23 PM, på dag 15 av månaden", GetDescription("23 12 15 * *"));
+            Assert.EqualsCaseInsensitive("Klockan 12:23, dag 15 i månaden", GetDescription("23 12 15 * *"));
         }
 
         [Fact]
 
         public void TestMonthName()
         {
-            Assert.EqualsCaseInsensitive("På 12:23 PM, bara i januari", GetDescription("23 12 * JAN *"));
+            Assert.EqualsCaseInsensitive("Klockan 12:23, bara i januari", GetDescription("23 12 * JAN *"));
         }
 
         [Fact]
 
         public void TestDayOfMonthWithQuestionMark()
         {
-            Assert.EqualsCaseInsensitive("På 12:23 PM, bara i januari", GetDescription("23 12 ? JAN *"));
+            Assert.EqualsCaseInsensitive("Klockan 12:23, bara i januari", GetDescription("23 12 ? JAN *"));
         }
 
         [Fact]
@@ -156,7 +156,7 @@ namespace CronExpressionDescriptor.Test
         public void TestMonthNameRange2()
         {
             Assert.EqualsCaseInsensitive(
-                "På 12:23 PM, januari till och med februari", GetDescription("23 12 * JAN-FEB *"));
+                "Klockan 12:23, januari till och med februari", GetDescription("23 12 * JAN-FEB *"));
         }
 
         [Fact]
@@ -164,14 +164,14 @@ namespace CronExpressionDescriptor.Test
         public void TestMonthNameRange3()
         {
             Assert.EqualsCaseInsensitive(
-                "På 12:23 PM, januari till och med mars", GetDescription("23 12 * JAN-MAR *"));
+                "Klockan 12:23, januari till och med mars", GetDescription("23 12 * JAN-MAR *"));
         }
 
         [Fact]
 
         public void TestDayOfWeekName()
         {
-            Assert.EqualsCaseInsensitive("På 12:23 PM, bara på söndag", GetDescription("23 12 * * SUN"));
+            Assert.EqualsCaseInsensitive("Klockan 12:23, bara på söndag", GetDescription("23 12 * * SUN"));
         }
 
         [Fact]
@@ -179,7 +179,7 @@ namespace CronExpressionDescriptor.Test
         public void TestDayOfWeekRange()
         {
             Assert.EqualsCaseInsensitive(
-                "Upprepas efter 5 minuter, mellan 03:00 PM och 03:59 PM, måndag till och med fredag",
+                "Upprepas efter 5 minuter, mellan 15:00 och 15:59, måndag till och med fredag",
                 GetDescription("*/5 15 * * MON-FRI"));
         }
 
@@ -188,7 +188,7 @@ namespace CronExpressionDescriptor.Test
         public void TestDayOfWeekOnceInMonth()
         {
             Assert.EqualsCaseInsensitive(
-                "Varje minut, den tredje måndag av månaden", GetDescription("* * * * MON#3"));
+                "Varje minut, den tredje måndag i månaden", GetDescription("* * * * MON#3"));
         }
 
         [Fact]
@@ -196,7 +196,7 @@ namespace CronExpressionDescriptor.Test
         public void TestLastDayOfTheWeekOfTheMonth()
         {
             Assert.EqualsCaseInsensitive(
-                "Varje minut, på den sista torsdag av månaden", GetDescription("* * * * 4L"));
+                "Varje minut, den sista torsdag i månaden", GetDescription("* * * * 4L"));
         }
 
         [Fact]
@@ -204,7 +204,7 @@ namespace CronExpressionDescriptor.Test
         public void TestLastDayOfTheMonth()
         {
             Assert.EqualsCaseInsensitive(
-                "Upprepas efter 5 minuter, på den sista dagen i månaden, bara i januari",
+                "Upprepas efter 5 minuter, den sista dagen i månaden, bara i januari",
                 GetDescription("*/5 * L JAN *"));
         }
 
@@ -213,7 +213,7 @@ namespace CronExpressionDescriptor.Test
         public void TestLastWeekdayOfTheMonth()
         {
             Assert.EqualsCaseInsensitive(
-                "Varje minut, på den siste veckodagen i månaden", GetDescription("* * LW * *"));
+                "Varje minut, den sista veckodagen i månaden", GetDescription("* * LW * *"));
         }
 
         [Fact]
@@ -221,7 +221,7 @@ namespace CronExpressionDescriptor.Test
         public void TestLastWeekdayOfTheMonth2()
         {
             Assert.EqualsCaseInsensitive(
-                "Varje minut, på den siste veckodagen i månaden", GetDescription("* * WL * *"));
+                "Varje minut, den sista veckodagen i månaden", GetDescription("* * WL * *"));
         }
 
         [Fact]
@@ -229,7 +229,7 @@ namespace CronExpressionDescriptor.Test
         public void TestFirstWeekdayOfTheMonth()
         {
             Assert.EqualsCaseInsensitive(
-                "Varje minut, på den första dagen i veckan av månaden", GetDescription("* * 1W * *"));
+                "Varje minut, den första dagen i veckan i månaden", GetDescription("* * 1W * *"));
         }
 
         [Fact]
@@ -237,7 +237,7 @@ namespace CronExpressionDescriptor.Test
         public void TestFirstWeekdayOfTheMonth2()
         {
             Assert.EqualsCaseInsensitive(
-                "Varje minut, på den första dagen i veckan av månaden", GetDescription("* * W1 * *"));
+                "Varje minut, den första dagen i veckan i månaden", GetDescription("* * W1 * *"));
         }
 
         [Fact]
@@ -245,7 +245,7 @@ namespace CronExpressionDescriptor.Test
         public void TestParticularWeekdayOfTheMonth()
         {
             Assert.EqualsCaseInsensitive(
-                "Varje minut, på den veckodag närmast dag 5 av månaden",
+                "Varje minut, den veckodag som är närmast dag 5 i månaden",
                 GetDescription("* * 5W * *"));
         }
 
@@ -254,7 +254,7 @@ namespace CronExpressionDescriptor.Test
         public void TestParticularWeekdayOfTheMonth2()
         {
             Assert.EqualsCaseInsensitive(
-                "Varje minut, på den veckodag närmast dag 5 av månaden",
+                "Varje minut, den veckodag som är närmast dag 5 i månaden",
                 GetDescription("* * W5 * *"));
         }
 
@@ -262,7 +262,7 @@ namespace CronExpressionDescriptor.Test
 
         public void TesttimmaOfDayWithSeconds()
         {
-            Assert.EqualsCaseInsensitive("På 02:02:30 PM", GetDescription("30 02 14 * * *"));
+            Assert.EqualsCaseInsensitive("Klockan 14:02:30", GetDescription("30 02 14 * * *"));
         }
 
         [Fact]
@@ -278,7 +278,7 @@ namespace CronExpressionDescriptor.Test
         public void TestSecondMinutesHoursIntervals()
         {
             Assert.EqualsCaseInsensitive(
-                "Mellan sekund 5 och 10 varje minut, mellan minut 30 och 35 varje timma, mellan 10:00 AM och 12:59 PM",
+                "Mellan sekund 5 och 10 varje minut, mellan minut 30 och 35 varje timme, mellan 10:00 och 12:59",
                 GetDescription("5-10 30-35 10-12 * * *"));
         }
 
@@ -295,7 +295,7 @@ namespace CronExpressionDescriptor.Test
         public void TestMinutesPastTheHourRange()
         {
             Assert.EqualsCaseInsensitive(
-                "Vid 30 minuter över, mellan 10:00 AM och 01:59 PM, bara på onsdag och fredag",
+                "Vid 30 minuter över, mellan 10:00 och 13:59, bara på onsdag och fredag",
                 GetDescription("0 30 10-13 ? * WED,FRI"));
         }
 
@@ -312,7 +312,7 @@ namespace CronExpressionDescriptor.Test
         public void TestBetweenWithInterval()
         {
             Assert.EqualsCaseInsensitive(
-                "Upprepas efter 3 minuter, mellan minut 2 och 59 varje timma, på 01:00 AM, 09:00 AM, och 10:00 PM, mellan dag 11 och 26 i månaden, januari till och med juni",
+                "Upprepas efter 3 minuter, mellan minut 2 och 59 varje timme, klockan 01:00, 09:00, och 22:00, mellan dag 11 och 26 i månaden, januari till och med juni",
                 GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
         }
 
@@ -320,7 +320,7 @@ namespace CronExpressionDescriptor.Test
 
         public void TestRecurringFirstOfMonth()
         {
-            Assert.EqualsCaseInsensitive("På 06:00 AM", GetDescription("0 0 6 1/1 * ?"));
+            Assert.EqualsCaseInsensitive("Klockan 06:00", GetDescription("0 0 6 1/1 * ?"));
         }
 
         [Fact]
@@ -334,14 +334,14 @@ namespace CronExpressionDescriptor.Test
 
         public void TestOneYearOnlyWithSeconds()
         {
-            Assert.EqualsCaseInsensitive("Varje sekund, bara i 2013", GetDescription("* * * * * * 2013"));
+            Assert.EqualsCaseInsensitive("Varje sekund, bara under 2013", GetDescription("* * * * * * 2013"));
         }
 
         [Fact]
 
         public void TestOneYearOnlyWithoutSeconds()
         {
-            Assert.EqualsCaseInsensitive("Varje minut, bara i 2013", GetDescription("* * * * * 2013"));
+            Assert.EqualsCaseInsensitive("Varje minut, bara under 2013", GetDescription("* * * * * 2013"));
         }
 
         [Fact]
@@ -349,7 +349,7 @@ namespace CronExpressionDescriptor.Test
         public void TestTwoYearsOnly()
         {
             Assert.EqualsCaseInsensitive(
-                "Varje minut, bara i 2013 och 2014", GetDescription("* * * * * 2013,2014"));
+                "Varje minut, bara under 2013 och 2014", GetDescription("* * * * * 2013,2014"));
         }
 
         [Fact]
@@ -357,7 +357,7 @@ namespace CronExpressionDescriptor.Test
         public void TestYearRange2()
         {
             Assert.EqualsCaseInsensitive(
-                "På 12:23 PM, januari till och med februari, 2013 till och med 2014",
+                "Klockan 12:23, januari till och med februari, 2013 till och med 2014",
                 GetDescription("23 12 * JAN-FEB * 2013-2014"));
         }
 
@@ -366,7 +366,7 @@ namespace CronExpressionDescriptor.Test
         public void TestYearRange3()
         {
             Assert.EqualsCaseInsensitive(
-                "På 12:23 PM, januari till och med mars, 2013 till och med 2015",
+                "Klockan 12:23, januari till och med mars, 2013 till och med 2015",
                 GetDescription("23 12 * JAN-MAR * 2013-2015"));
         }
 
@@ -386,31 +386,31 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestHoursInternalWithStepValue()
         {
-            Assert.EqualsCaseInsensitive("Varje sekund, upprepas efter 8 timmar, börjar på 05:00 AM", GetDescription("* * 5/8 * * ?"));
+            Assert.EqualsCaseInsensitive("Varje sekund, upprepas efter 8 timmar, börjar klockan 05:00", GetDescription("* * 5/8 * * ?"));
         }
 
         [Fact]
         public void TestDayOfMonthInternalWithStepValue()
         {
-            Assert.EqualsCaseInsensitive("På 07:05 AM, var 3(:e/:a) dag, börjar på dag 2 av månaden", GetDescription("0 5 7 2/3 * ? *"));
+            Assert.EqualsCaseInsensitive("Klockan 07:05, var 3:e dag, börjar dag 2 i månaden", GetDescription("0 5 7 2/3 * ? *"));
         }
 
         [Fact]
         public void TestMonthInternalWithStepValue()
         {
-            Assert.EqualsCaseInsensitive("På 07:05 AM, var 2(:e/:a) månad, mars till och med december", GetDescription("0 5 7 ? 3/2 ? *"));
+            Assert.EqualsCaseInsensitive("Klockan 07:05, var 2:e månad, mars till och med december", GetDescription("0 5 7 ? 3/2 ? *"));
         }
 
         [Fact]
         public void TestDayOfWeekInternalWithStepValue()
         {
-            Assert.EqualsCaseInsensitive("På 07:05 AM, var 3(:e/:a) veckodag, tisdag till och med lördag", GetDescription("0 5 7 ? * 2/3 *"));
+            Assert.EqualsCaseInsensitive("Klockan 07:05, var 3:e veckodag, tisdag till och med lördag", GetDescription("0 5 7 ? * 2/3 *"));
         }
 
         [Fact]
         public void TestYearInternalWithStepValue()
         {
-            Assert.EqualsCaseInsensitive("På 07:05 AM, var 4 år, 2016 till och med 9999", GetDescription("0 5 7 ? * ? 2016/4"));
+            Assert.EqualsCaseInsensitive("Klockan 07:05, var 4:e år, 2016 till och med 9999", GetDescription("0 5 7 ? * ? 2016/4"));
         }
     }
 }

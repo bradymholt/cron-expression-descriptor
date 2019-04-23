@@ -15,7 +15,7 @@ namespace CronExpressionDescriptor
   public class ExpressionDescriptor
   {
     private readonly char[] m_specialCharacters = new char[] { '/', '-', ',', '*' };
-    private readonly string[] m_24hourTimeFormatTwoLetterISOLanguageName = new string[] { "ru", "uk", "de", "it", "tr", "pl", "ro", "da", "sl", "fi" };
+    private readonly string[] m_24hourTimeFormatTwoLetterISOLanguageName = new string[] { "ru", "uk", "de", "it", "tr", "pl", "ro", "da", "sl", "fi", "sv" };
 
     private string m_expression;
     private Options m_options;
@@ -519,7 +519,7 @@ namespace CronExpressionDescriptor
           new DateTime(Convert.ToInt32(s), 1, 1).ToString("yyyy") : s),
          (s => string.Format(GetString("ComaEveryX0Years"), s)),
          (s => GetString("ComaYearX0ThroughYearX1") ?? GetString("ComaX0ThroughX1")),
-         (s => GetString("ComaOnlyInX0")),
+         (s => GetString("ComaOnlyInYearX0")),
          (s => GetString("ComaYearX0ThroughYearX1") ?? GetString("ComaX0ThroughX1"))
       );
 

@@ -300,4 +300,7 @@
     <value>viikonpäivä lähintä {0} päivää</value>
     <comment>WeekdayNearestDayX0 description</comment>
   </data>
+  <data name="ComaOnlyInYearX0" xml:space="preserve">
+    <value>, vain {0}</value>
+  </data>
 </root>

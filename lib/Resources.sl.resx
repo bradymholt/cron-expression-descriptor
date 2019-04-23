@@ -296,4 +296,7 @@
     <value>, {0} dni pred koncem meseca</value>
     <comment>CommaDaysBeforeTheLastDayOfTheMonth description</comment>
   </data>
+  <data name="ComaOnlyInYearX0" xml:space="preserve">
+    <value>, samo v {0}</value>
+  </data>
 </root>

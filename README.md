@@ -11,7 +11,7 @@ A .NET library that converts cron expressions into human readable descriptions.
 
  * Supports all cron expression special characters including * / , - ? L W, #
  * Supports 5, 6 (w/ seconds or year), or 7 (w/ seconds and year) part cron expressions
- * Localization with support for 20 languages
+ * Localization with support for 21 languages
  * Provides casing options (Sentence case, Title Case, lowercase, etc.)
  * Supports [Quartz Enterprise Scheduler .NET](https://www.quartz-scheduler.net/) cron expressions
 
@@ -73,6 +73,7 @@ The following language translations are available.
  * Italian - it ([rinaldihno](https://github.com/rinaldihno))
  * Japanese - ja ([Alin Sarivan](https://github.com/asarivan))
  * Norwegian - nb ([Siarhei Khalipski](https://github.com/KhalipskiSiarhei))
+ * Persian (Farsi) - fa ([A. Bahrami](https://github.com/alirezakoo))
  * Polish - pl ([foka](https://github.com/foka))
  * Portuguese (Brazil) - pt-BR ([Renato Lima](https://github.com/natenho))
  * Romanian - ro ([Illegitimis](https://github.com/illegitimis))

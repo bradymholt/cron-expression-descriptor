@@ -73,7 +73,7 @@ The following language translations are available.
  * Italian - it ([rinaldihno](https://github.com/rinaldihno))
  * Japanese - ja ([Alin Sarivan](https://github.com/asarivan))
  * Norwegian - nb ([Siarhei Khalipski](https://github.com/KhalipskiSiarhei))
- * Persian (Farsi) - fa([A. Bahrami](https://github.com/alirezakoo))
+ * Persian (Farsi) - fa ([A. Bahrami](https://github.com/alirezakoo))
  * Polish - pl ([foka](https://github.com/foka))
  * Portuguese (Brazil) - pt-BR ([Renato Lima](https://github.com/natenho))
  * Romanian - ro ([Illegitimis](https://github.com/illegitimis))

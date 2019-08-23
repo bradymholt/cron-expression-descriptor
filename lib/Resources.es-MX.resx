@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="EveryMinute" xml:space="preserve">
+    <value>cada un minuto</value>
+  </data>
+  <data name="EveryHour" xml:space="preserve">
+    <value>cada una hora</value>
+    <comment>Descripción Cada una hora</comment>
+  </data>
+  <data name="AnErrorOccuredWhenGeneratingTheExpressionD" xml:space="preserve">
+    <value>Error al momento de generar la descripción de la expresión.  Verifique la sintaxis de la expresión Cron.</value>
+    <comment>Error al momento de generar la descripción de la expresión D.</comment>
+  </data>
+  <data name="AtSpace" xml:space="preserve">
+    <value>A las </value>
+    <comment>Descripción A las</comment>
+  </data>
+  <data name="EveryMinuteBetweenX0AndX1" xml:space="preserve">
+    <value>Cada un minuto entre las {0} y las {1}</value>
+    <comment>Descripción Cada un minuto entre las X0 y las X1</comment>
+  </data>
+  <data name="At" xml:space="preserve">
+    <value>A las</value>
+    <comment>Descripción A las</comment>
+  </data>
+  <data name="SpaceAnd" xml:space="preserve">
+    <value> y</value>
+    <comment>Descripción Y</comment>
+  </data>
+  <data name="EverySecond" xml:space="preserve">
+    <value>cada un segundo</value>
+    <comment>Descripción Cada un segundo</comment>
+  </data>
+  <data name="EveryX0Seconds" xml:space="preserve">
+    <value>cada {0} segundos</value>
+    <comment>Descripción Cada X0 segundos</comment>
+  </data>
+  <data name="SecondsX0ThroughX1PastTheMinute" xml:space="preserve">
+    <value>segundos {0} hasta {1} después del minuto</value>
+    <comment>Descripción Segundos X0 hasta X1 después del minuto</comment>
+  </data>
+  <data name="AtX0SecondsPastTheMinute" xml:space="preserve">
+    <value>a {0} segundos después del minuto</value>
+    <comment>Descripción A X0 segundos después del minuto</comment>
+  </data>
+  <data name="EveryX0Minutes" xml:space="preserve">
+    <value>cada {0} minutos</value>
+    <comment>Descripción Cada X0 minutos</comment>
+  </data>
+  <data name="MinutesX0ThroughX1PastTheHour" xml:space="preserve">
+    <value>minutos {0} hasta {1} después de la hora</value>
+    <comment>Descripción minutos X0 hasta X1 después de la hora</comment>
+  </data>
+  <data name="AtX0MinutesPastTheHour" xml:space="preserve">
+    <value>a {0} minutos después de la hora</value>
+    <comment>Descripción A X0 minutos después de la hora</comment>
+  </data>
+  <data name="EveryX0Hours" xml:space="preserve">
+    <value>cada {0} horas</value>
+    <comment>Descripción Cada X0 horas</comment>
+  </data>
+  <data name="BetweenX0AndX1" xml:space="preserve">
+    <value>entre {0} y {1}</value>
+    <comment>Descripción Entre X0 y X1</comment>
+  </data>
+  <data name="AtX0" xml:space="preserve">
+    <value>a {0}</value>
+    <comment>Descripción A X0</comment>
+  </data>
+  <data name="ComaEveryDay" xml:space="preserve">
+    <value>, todos los días</value>
+    <comment>Descripción Coma todos los días</comment>
+  </data>
+  <data name="ComaEveryX0DaysOfTheWeek" xml:space="preserve">
+    <value>, cada {0} días de la semana</value>
+    <comment>Descripción Cada X0 días de la semana</comment>
+  </data>
+  <data name="ComaX0ThroughX1" xml:space="preserve">
+    <value>, {0} hasta {1}</value>
+    <comment>Descripción X0 hasta X1</comment>
+  </data>
+  <data name="First" xml:space="preserve">
+    <value>primero</value>
+    <comment>Descripción Primero</comment>
+  </data>
+  <data name="Second" xml:space="preserve">
+    <value>segundo</value>
+    <comment>Descripción Segundo</comment>
+  </data>
+  <data name="Third" xml:space="preserve">
+    <value>tercero</value>
+    <comment>Descripción Tercero</comment>
+  </data>
+  <data name="Fourth" xml:space="preserve">
+    <value>cuarto</value>
+    <comment>Descripción Cuarto</comment>
+  </data>
+  <data name="Fifth" xml:space="preserve">
+    <value>quinto</value>
+    <comment>Descripción Quinto</comment>
+  </data>
+  <data name="ComaOnThe" xml:space="preserve">
+    <value>, el </value>
+    <comment>Descripción El</comment>
+  </data>
+  <data name="SpaceX0OfTheMonth" xml:space="preserve">
+    <value> {0} del mes</value>
+    <comment>Descripción X0 del mes</comment>
+  </data>
+  <data name="ComaOnTheLastX0OfTheMonth" xml:space="preserve">
+    <value>, el último {0} del mes</value>
+    <comment>Descripción El último X0 del mes</comment>
+  </data>
+  <data name="ComaOnlyOnX0" xml:space="preserve">
+    <value>, solo el {0}</value>
+    <comment>Descripción Solo el X0</comment>
+  </data>
+  <data name="ComaEveryX0Months" xml:space="preserve">
+    <value>, cada {0} meses</value>
+    <comment>Descripción Cada X0 meses</comment>
+  </data>
+  <data name="ComaOnlyInX0" xml:space="preserve">
+    <value>, solo en {0}</value>
+    <comment>Descripción Coma solo en X0</comment>
+  </data>
+  <data name="ComaOnTheLastDayOfTheMonth" xml:space="preserve">
+    <value>, el último día del mes</value>
+    <comment>Descripción Coma el último día del mes</comment>
+  </data>
+  <data name="ComaOnTheLastWeekdayOfTheMonth" xml:space="preserve">
+    <value>, el último día hábil del mes</value>
+    <comment>Descripción El último día hábil del mes</comment>
+  </data>
+  <data name="FirstWeekday" xml:space="preserve">
+    <value>primer día hábil</value>
+    <comment>Descripción Primer día hábil</comment>
+  </data>
+  <data name="WeekdayNearestDayX0" xml:space="preserve">
+    <value>el día más próximo al día hábil {0}</value>
+    <comment>Descripción El día más próximo al día hábil X0</comment>
+  </data>
+  <data name="ComaOnTheX0OfTheMonth" xml:space="preserve">
+    <value>, el {0} del mes</value>
+    <comment>Descripción Coma el X0 del mes</comment>
+  </data>
+  <data name="ComaEveryX0Days" xml:space="preserve">
+    <value>, cada {0} días</value>
+    <comment>Descripción Coma cada X0 días</comment>
+  </data>
+  <data name="ComaBetweenDayX0AndX1OfTheMonth" xml:space="preserve">
+    <value>, entre el {0} y el {1} día del mes</value>
+    <comment>Descripción Entre el X0 y el X1 día del mes</comment>
+  </data>
+  <data name="ComaOnDayX0OfTheMonth" xml:space="preserve">
+    <value>, el día {0} del mes</value>
+    <comment>Descripción Coma el día X0 del mes</comment>
+  </data>
+  <data name="SpaceAndSpace" xml:space="preserve">
+    <value> y </value>
+    <comment>Descripción Y</comment>
+  </data>
+  <data name="ComaEveryMinute" xml:space="preserve">
+    <value>, cada un minuto</value>
+    <comment>Descripción Coma cada 1 minuto</comment>
+  </data>
+  <data name="ComaEveryHour" xml:space="preserve">
+    <value>, cada una hora</value>
+    <comment>Descripción Coma cada una hora</comment>
+  </data>
+  <data name="ComaEveryX0Years" xml:space="preserve">
+    <value>, cada {0} años</value>
+    <comment>Descripción Coma cada X0 años</comment>
+  </data>
+  <data name="CommaStartingX0" xml:space="preserve">
+    <value>, a partir de {0}</value>
+    <comment>Descripción Coma a partir de X0</comment>
+  </data>
+  <data name="AMPeriod" xml:space="preserve">
+    <value>A. M.</value>
+    <comment>A. M./A la mañana</comment>
+  </data>
+  <data name="PMPeriod" xml:space="preserve">
+    <value>P. M.</value>
+    <comment>P. M./A la tarde</comment>
+  </data>
+  <data name="CommaDaysBeforeTheLastDayOfTheMonth" xml:space="preserve">
+    <value>, {0} días antes del último día del mes</value>
+    <comment>Descripción Coma días antes del último día del mes</comment>
+  </data>
+  <data name="ComaOnlyInYearX0" xml:space="preserve">
+    <value>, solo en {0}</value>
+  </data>
+</root>

@@ -42,7 +42,7 @@ CronExpressionDescriptor.ExpressionDescriptor.GetDescription("* * * * *");
 
 A `CronExpressionDescriptor.Options` object can be passed to `GetDescription`.  The following options are available:
 
-- **bool ThrowExceptionOnParseError** - If exception when trying to parse expression and generate description, whether to throw or catch and output the Exception message as the description. (Default: true)
+- **bool ThrowExceptionOnParseError** - If exception occurs when trying to parse expression and generate description, whether to throw or catch and output the Exception message as the description. (Default: true)
 - **bool Verbose** - Whether to use a verbose description (Default: false)
 - **bool DayOfWeekStartIndexZero** - Whether to interpret cron expression DOW `1` as Sunday or Monday. (Default: true)
 - **?bool Use24HourTimeFormat** - If true, descriptions will use a [24-hour clock](https://en.wikipedia.org/wiki/24-hour_clock) (Default: false but some translations will default to true)

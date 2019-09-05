@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Globalization;
@@ -104,6 +104,8 @@ namespace CronExpressionDescriptor
     /// <param name="expressionParts">A 7 part string array, one part for each component of the cron expression</param>
     private void NormalizeExpression(string[] expressionParts)
     {
+      bool skipWeekDayNormalization = Regex.IsMatch(expressionParts[5], @"[a-zA-Z]");
+
       // Convert ? to * only for DOM and DOW
       expressionParts[3] = expressionParts[3].Replace("?", "*");
       expressionParts[5] = expressionParts[5].Replace("?", "*");
@@ -181,14 +183,7 @@ namespace CronExpressionDescriptor
         expressionParts[3] = "*";
       }
 
-      // Convert SUN-SAT format to 0-6 format
-      for (int i = 0; i <= 6; i++)
-      {
-        DayOfWeek currentDay = (DayOfWeek)i;
-        string currentDayOfWeekDescription = currentDay.ToString().Substring(0, 3).ToUpperInvariant();
-        expressionParts[5] = Regex.Replace(expressionParts[5], currentDayOfWeekDescription, i.ToString(), RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
 
-      }
 
       // Convert JAN-DEC format to 1-12 format
       for (int i = 1; i <= 12; i++)
@@ -239,7 +234,11 @@ namespace CronExpressionDescriptor
           switch (i)
           {
             case 4: stepRangeThrough = "12"; break;
-            case 5: stepRangeThrough = "6"; break;
+            case 5:
+                if (skipWeekDayNormalization)
+                    stepRangeThrough = null;
+                else stepRangeThrough = "6";
+                break;
             case 6: stepRangeThrough = "9999"; break;
             default: stepRangeThrough = null; break;
           }

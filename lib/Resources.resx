@@ -307,4 +307,8 @@
   <data name="ComaOnlyInYearX0" xml:space="preserve">
     <value>, only in {0}</value>
   </data>
+  <data name="ComaEveryX0Weeks" xml:space="preserve">
+    <value>, every {0} weeks</value>
+    <comment>ComaEveryX0Weeks description</comment>
+  </data>
 </root>

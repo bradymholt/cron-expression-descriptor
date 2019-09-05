@@ -365,6 +365,16 @@ namespace CronExpressionDescriptor
       }
       else
       {
+        bool isEveryNthWeekRecurrence = Regex.IsMatch(m_expressionParts[5], @"[a-zA-Z]+\/");
+
+        // Convert SUN-SAT format to 0-6 format
+        for (int i = 0; i <= 6; i++)
+        {
+            DayOfWeek currentDay = (DayOfWeek)i;
+            string currentDayOfWeekDescription = currentDay.ToString().Substring(0, 3).ToUpperInvariant();
+                m_expressionParts[5] = Regex.Replace(m_expressionParts[5], currentDayOfWeekDescription, i.ToString(), RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+        }
+
         description = GetSegmentDescription(
             m_expressionParts[5],
             GetString("ComaEveryDay"),
@@ -421,7 +431,7 @@ namespace CronExpressionDescriptor
 
               return format;
             }),
-            (s => GetString("ComaX0ThroughX1"))
+            (s => GetString("ComaX0ThroughX1")), isEveryNthWeekRecurrence
       );
       }
 
@@ -551,7 +561,7 @@ namespace CronExpressionDescriptor
         Func<string, string> getIntervalDescriptionFormat,
         Func<string, string> getBetweenDescriptionFormat,
         Func<string, string> getDescriptionFormat,
-        Func<string, string> getRangeFormat
+        Func<string, string> getRangeFormat, bool isEveryNthWeekRecurrence = false
         )
     {
       string description = null;
@@ -567,6 +577,72 @@ namespace CronExpressionDescriptor
       else if (expression.IndexOfAny(new char[] { '/', '-', ',' }) == -1)
       {
         description = string.Format(getDescriptionFormat(expression), getSingleItemDescription(expression));
+      }
+      else if (isEveryNthWeekRecurrence)
+      {
+        if (expression.Contains("/"))
+        {
+            string[] segments = expression.Split('/');
+            description = string.Format(GetString("ComaEveryX0Weeks"), segments[1]);
+
+            //interval contains 'between' piece (i.e. 2-59/3 )
+            if (segments[0].Contains("-"))
+            {
+                string betweenSegmentDescription = GenerateBetweenSegmentDescription(segments[0], getBetweenDescriptionFormat, getSingleItemDescription);
+
+                if (!betweenSegmentDescription.StartsWith(", "))
+                {
+                    description += ", ";
+                }
+
+                description += betweenSegmentDescription;
+            }
+            else if (segments[0].IndexOfAny(new char[] { '*', ',' }) == -1)
+            {
+                string rangeItemDescription = string.Format(getDescriptionFormat(segments[0]), getSingleItemDescription(segments[0]));
+
+                description += rangeItemDescription;
+            }
+            else if (segments[0].Contains(","))
+            {
+                string[] subsegments = segments[0].Split(',');
+
+                string descriptionContent = string.Empty;
+                for (int i = 0; i < subsegments.Length; i++)
+                {
+                    if (i > 0 && subsegments.Length > 2)
+                    {
+                        descriptionContent += ",";
+
+                        if (i < subsegments.Length - 1)
+                        {
+                            descriptionContent += " ";
+                        }
+                    }
+
+                    if (i > 0 && subsegments.Length > 1 && (i == subsegments.Length - 1 || subsegments.Length == 2))
+                    {
+                        descriptionContent += GetString("SpaceAndSpace");
+                    }
+
+                    if (subsegments[i].Contains("-"))
+                    {
+                        string betweenSegmentDescription = GenerateBetweenSegmentDescription(subsegments[i], getRangeFormat, getSingleItemDescription);
+
+                        //remove any leading comma
+                        betweenSegmentDescription = betweenSegmentDescription.Replace(", ", "");
+
+                        descriptionContent += betweenSegmentDescription;
+                    }
+                    else
+                    {
+                        descriptionContent += getSingleItemDescription(subsegments[i]);
+                    }
+                }
+
+                description += string.Format(getDescriptionFormat(expression), descriptionContent);
+            }
+        }
       }
       else if (expression.Contains("/"))
       {

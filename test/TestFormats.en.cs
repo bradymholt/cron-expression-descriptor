@@ -527,9 +527,25 @@ namespace CronExpressionDescriptor.Test
       Assert.Equal("Every second, at 0 minutes past the hour", GetDescription("* 0 * * * *"));
     }
 
-    [Fact]
-    public void Sunday7(){
+    [Fact]    
+    public void Sunday7()
+    {
         Assert.Equal("At 09:00 AM, only on Sunday", GetDescription("0 0 9 ? * 7"));
+    }
+    [Fact]
+    public void TestEvery2WeeksOnFriday()
+    {
+        Assert.Equal("At 12:00 PM, every 2 weeks, only on Friday", GetDescription("0 0 12 ? * FRI/2"));
+    }
+    [Fact]
+    public void TestEvery3WeeksWedThroughFri()
+    {
+        Assert.Equal("At 12:00 PM, every 3 weeks, Wednesday through Friday", GetDescription("0 0 12 ? * WED-FRI/3"));
+    }
+    [Fact]
+    public void TestEvery4WeeksTueAndFri()
+    {
+        Assert.Equal("At 12:00 PM, every 4 weeks, only on Tuesday and Friday", GetDescription("0 0 12 ? * TUE,FRI/4"));
     }
   }
 }

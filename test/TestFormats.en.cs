@@ -538,8 +538,9 @@ namespace CronExpressionDescriptor.Test
     }
 
     [Fact]
-    public void Sunday7(){
-        Assert.Equal("At 09:00 AM, only on Sunday", GetDescription("0 0 9 ? * 7"));
+    public void Sunday7()
+    {
+      Assert.Equal("At 09:00 AM, only on Sunday", GetDescription("0 0 9 ? * 7"));
     }
   }
 }

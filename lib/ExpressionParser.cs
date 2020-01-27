@@ -152,7 +152,7 @@ namespace CronExpressionDescriptor
       }
 
       // Adjust DOW based on dayOfWeekStartIndexZero option
-      expressionParts[5] = Regex.Replace(expressionParts[5], @"(\d)|([#/\s]\d)+", t =>
+      expressionParts[5] = Regex.Replace(expressionParts[5], @"(^\d)|([^#/\s]\d)", t =>
       { //skip anything preceeding by # or /
         string dowDigits = Regex.Replace(t.Value, @"\D", ""); // extract digit part (i.e. if "-2" or ",2", just take 2)
         string dowDigitsAdjusted = dowDigits;

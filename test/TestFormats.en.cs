@@ -386,6 +386,16 @@ namespace CronExpressionDescriptor.Test
     }
 
     [Fact]
+    public void TestMultiWithDayOfWeekStartIndexZeroFalse()
+    {
+      // Coverage for GitHub Issue #126: https://github.com/bradymholt/cron-expression-descriptor/issues/126
+      var options = new Options { DayOfWeekStartIndexZero = false };
+
+      Assert.Equal("Every second, only on Sunday, Monday, and Tuesday",
+          GetDescription("* * * ? * 1,2,3", options));
+    }
+
+    [Fact]
     public void TestEvery3Month()
     {
       Assert.Equal("At 07:05 AM, on day 2 of the month, every 3 months", GetDescription("0 5 7 2 1/3 ? *"));

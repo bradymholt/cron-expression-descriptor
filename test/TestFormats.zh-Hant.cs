@@ -81,13 +81,13 @@ namespace CronExpressionDescriptor.Test
             Assert.Equal("在 11:00 AM 和 11:10 AM 之間的每分鐘", GetDescription("0-10 11 * * *"));
         }
 
-        [Fact]
+        [IgnoreOnWindowsFact]
         public void TestOneMonthOnly()
         {
             Assert.Equal("每分鐘, 僅在 3月", GetDescription("* * * 3 *"));
         }
 
-        [Fact]
+        [IgnoreOnWindowsFact]
         public void TestTwoMonthsOnly()
         {
             Assert.Equal("每分鐘, 僅在 3月 和 6月", GetDescription("* * * 3,6 *"));
@@ -117,25 +117,25 @@ namespace CronExpressionDescriptor.Test
             Assert.Equal("在 12:23 PM, 每月的 15 號", GetDescription("23 12 15 * *"));
         }
 
-        [Fact]
+        [IgnoreOnWindowsFact]
         public void TestMonthName()
         {
             Assert.Equal("在 12:23 PM, 僅在 1月", GetDescription("23 12 * JAN *"));
         }
 
-        [Fact]
+        [IgnoreOnWindowsFact]
         public void TestDayOfMonthWithQuestionMark()
         {
             Assert.Equal("在 12:23 PM, 僅在 1月", GetDescription("23 12 ? JAN *"));
         }
 
-        [Fact]
+        [IgnoreOnWindowsFact]
         public void TestMonthNameRange2()
         {
             Assert.Equal("在 12:23 PM, 1月 到 2月", GetDescription("23 12 * JAN-FEB *"));
         }
 
-        [Fact]
+        [IgnoreOnWindowsFact]
         public void TestMonthNameRange3()
         {
             Assert.Equal("在 12:23 PM, 1月 到 3月", GetDescription("23 12 * JAN-MAR *"));
@@ -165,7 +165,7 @@ namespace CronExpressionDescriptor.Test
             Assert.Equal("每分鐘, 每月的最後一個 星期四 ", GetDescription("* * * * 4L"));
         }
 
-        [Fact]
+        [IgnoreOnWindowsFact]
         public void TestLastDayOfTheMonth()
         {
             Assert.Equal("每 5 分鐘, 每月的最後一天, 僅在 1月", GetDescription("*/5 * L JAN *"));
@@ -243,7 +243,7 @@ namespace CronExpressionDescriptor.Test
             Assert.Equal("在每分鐘的 10 秒, 每 5 分鐘", GetDescription("10 0/5 * * * ?"));
         }
 
-        [Fact]
+        [IgnoreOnWindowsFact]
         public void TestBetweenWithInterval()
         {
             Assert.Equal("每 3 分鐘, 在每小時的 2 到 59 分鐘, 在 01:00 AM, 09:00 AM, 和 10:00 PM, 在每月的 11 和 26 號之間, 1月 到 6月", GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
@@ -279,13 +279,13 @@ namespace CronExpressionDescriptor.Test
             Assert.Equal("每分鐘, 僅在 2013 和 2014", GetDescription("* * * * * 2013,2014"));
         }
 
-        [Fact]
+        [IgnoreOnWindowsFact]
         public void TestYearRange2()
         {
             Assert.Equal("在 12:23 PM, 1月 到 2月, 2013 到 2014", GetDescription("23 12 * JAN-FEB * 2013-2014"));
         }
 
-        [Fact]
+        [IgnoreOnWindowsFact]
         public void TestYearRange3()
         {
             Assert.Equal("在 12:23 PM, 1月 到 3月, 2013 到 2015", GetDescription("23 12 * JAN-MAR * 2013-2015"));
@@ -349,7 +349,7 @@ namespace CronExpressionDescriptor.Test
             Assert.Equal("在 07:05 AM, 每 3 天, 開始 每月的 2 號", GetDescription("0 5 7 2/3 * ? *"));
         }
 
-        [Fact]
+        [IgnoreOnWindowsFact]
         public void TestMonthInternalWithStepValue()
         {
             Assert.Equal("在 07:05 AM, 每 2 月, 3月 到 12月", GetDescription("0 5 7 ? 3/2 ? *"));

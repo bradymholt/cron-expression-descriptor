@@ -54,7 +54,7 @@ namespace CronExpressionDescriptor
 #if NET_STANDARD_1X
         throw new Exception("Field 'expression' not found.");
 #else
-                throw new MissingFieldException("Field 'expression' not found.");
+        throw new MissingFieldException("Field 'expression' not found.");
 #endif
       }
       else

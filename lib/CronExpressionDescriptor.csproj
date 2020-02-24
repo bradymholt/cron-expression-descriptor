@@ -20,8 +20,5 @@
     <PackageIconUrl>https://raw.githubusercontent.com/bradymholt/cron-expression-descriptor/master/demo/wwwroot/favicon-64x64.png</PackageIconUrl>
   </PropertyGroup>
   <ItemGroup>
-  </ItemGroup>
-  <ItemGroup Condition="!$(TargetFramework.Contains('netstandard1'))">
-    <PackageReference Include="System.Threading.Thread" Version="4.3.0" />
-  </ItemGroup>
+  </ItemGroup>  
 </Project>

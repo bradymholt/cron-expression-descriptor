@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Text.RegularExpressions;
 using System.Resources;
 using System.Globalization;
@@ -53,8 +52,8 @@ namespace CronExpressionDescriptor
         // .NET Standard 1.* will use English as default
         m_culture = new CultureInfo("en-US");
 #else
-                // .NET Standard >= 2.0 will use CurrentUICulture as default
-                m_culture = Thread.CurrentThread.CurrentUICulture;
+        // .NET Standard >= 2.0 will use CurrentUICulture as default
+        m_culture = System.Threading.Thread.CurrentThread.CurrentUICulture;
 #endif
       }
 

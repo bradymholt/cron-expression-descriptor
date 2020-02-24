@@ -165,7 +165,7 @@ namespace CronExpressionDescriptor.Test
             Assert.Equal("每分鐘, 每月的最後一個 星期四 ", GetDescription("* * * * 4L"));
         }
 
-        [Fact]
+        [IgnoreOnWindowsFact]
         public void TestLastDayOfTheMonth()
         {
             Assert.Equal("每 5 分鐘, 每月的最後一天, 僅在 1月", GetDescription("*/5 * L JAN *"));

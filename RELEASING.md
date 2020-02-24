@@ -23,6 +23,10 @@ This will:
 5. Create a Relese on GitHub
 6. Upload the .nupkg file as a release asset to GitHub
 
+### Pre-releases
+
+To publish a pre-release version, add a "-" suffix to the version, such as "1.0.1-alpha" or "2.18-beta".  By default Nuget will not update to pre-release versions.
+
 ## Deploying the Demo site
 
 The [demo site](https://cronexpressiondescriptor.azurewebsites.net) is automatically deployed to the Azure App Service by a GitHub deployment hook configured in Azure.

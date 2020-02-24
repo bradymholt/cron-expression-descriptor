@@ -1,6 +1,5 @@
 using Xunit;
 
-#if !Windows // These tests fail on Windows because of i18n platform differences
 namespace CronExpressionDescriptor.Test
 {
     /// <summary>
@@ -88,7 +87,7 @@ namespace CronExpressionDescriptor.Test
             Assert.Equal("每分鐘, 僅在 3月", GetDescription("* * * 3 *"));
         }
 
-        [Fact]
+        [IgnoreOnWindowsFact]
         public void TestTwoMonthsOnly()
         {
             Assert.Equal("每分鐘, 僅在 3月 和 6月", GetDescription("* * * 3,6 *"));
@@ -369,4 +368,3 @@ namespace CronExpressionDescriptor.Test
         }
     }
 }
-#endif

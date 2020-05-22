@@ -15,6 +15,10 @@ A .NET library that converts cron expressions into human readable descriptions.
  * Provides casing options (Sentence case, Title Case, lowercase, etc.)
  * Supports [Quartz Enterprise Scheduler .NET](https://www.quartz-scheduler.net/) cron expressions
 
+## Demo
+
+[https://cronexpressiondescriptor.azurewebsites.net](http://cronexpressiondescriptor.azurewebsites.net)
+
 ## Download
 
 Cron Expression Descriptor releases can be installed with **NuGet**.
@@ -131,10 +135,6 @@ If your application is targeting an earlier version of .NET Framework (i.e. 4.0 
 ### Strong Name Signing
 
 If you need an assembly that is [signed with a strong name](https://msdn.microsoft.com/en-us/library/wd40t7ad(v=vs.100).aspx), you can use version 1.21.2 as it is currently the latest version signed with a strong name.
-
-## Demo
-
-[https://cronexpressiondescriptor.azurewebsites.net](http://cronexpressiondescriptor.azurewebsites.net)
 
 ## Ports
 

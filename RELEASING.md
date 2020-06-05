@@ -29,6 +29,10 @@ To publish a pre-release version, add a "-" suffix to the version, such as "1.0.
 
 ## Deploying the Demo site
 
-The [demo site](https://cronexpressiondescriptor.azurewebsites.net) is automatically deployed to the Azure App Service by a GitHub deployment hook configured in Azure.
-
-![image](https://user-images.githubusercontent.com/759811/29218928-1521b88c-7e7c-11e7-8f81-4ff96dc0ccf5.png)
+```
+cd demo
+dotnet publish -c release
+cp -R 
+cp -R ./bin/Release/netstandard2.1/publish/wwwroot/* ../docs/
+git commit --all -m "Build demo site" 
+```

@@ -17,7 +17,7 @@ A .NET library that converts cron expressions into human readable descriptions.
 
 ## Demo
 
-[https://cronexpressiondescriptor.azurewebsites.net](http://cronexpressiondescriptor.azurewebsites.net)
+[https://bradymholt.github.io/cron-expression-descriptor](https://bradymholt.github.io/cron-expression-descriptor/)
 
 ## Download
 

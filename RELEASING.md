@@ -31,7 +31,7 @@ To publish a pre-release version, add a "-" suffix to the version, such as "1.0.
 
 ```
 cd demo
-dotnet publish -c release
+dotnet publish -c Release
 cp -R 
 cp -R ./bin/Release/netstandard2.1/publish/wwwroot/* ../docs/
 git commit --all -m "Build demo site" 

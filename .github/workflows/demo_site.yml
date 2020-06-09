@@ -17,7 +17,7 @@ jobs:
       run: |
         cd demo
         dotnet publish -c Release
-        cp -R ./bin/Release/netstandard2.1/publish/wwwroot/* ../docs/
+        cp -Rv "./bin/Release/netstandard2.1/publish/wwwroot/*" ../docs/
      - name: git commit
        run: |
         git config user.name $GITHUB_ACTOR

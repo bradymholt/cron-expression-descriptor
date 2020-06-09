@@ -22,7 +22,7 @@ jobs:
         git config user.name $GITHUB_ACTOR
         git config user.email gh-actions-${GITHUB_ACTOR}@github.com
         git remote add gh-origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-        git commit --all -m "Build demo site" 
+        git add -A && git commit -m "Build demo site" 
         git push gh-origin HEAD:master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

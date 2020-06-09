@@ -29,5 +29,4 @@ To publish a pre-release version, add a "-" suffix to the version, such as "1.0.
 
 ## Deploying the Demo site
 
-The demo site is automatically built and deployed using the `.github/workflows/demo_site.yml` GitHub Actions workflow.
-
+The demo site is automatically built and deployed using the `.github/workflows/demo_site.yml` GitHub Actions workflow.  The demo site is hosted on GitHub Pages.

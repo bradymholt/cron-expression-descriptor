@@ -1,7 +1,6 @@
 name: Build and Publish Demo Site
 
 on:
-  push:
   pull_request:
     types: closed
 jobs:

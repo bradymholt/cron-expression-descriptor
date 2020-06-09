@@ -1,12 +1,15 @@
 ﻿@page "/"
+@using System.Globalization;
+@using Microsoft.AspNetCore.WebUtilities; 
+@inject NavigationManager UriHelper 
+@inject NavigationManager NavigationManager
+
 <form>
     <fieldset>
-        <label for="expression">Cron Expression</label>
-        <input id="expression" name="expression" @bind="expression" placeholder="" type="text" />
         <label for="locale">Language</label>
-        <select id="locale" name="locale" @bind="locale">
+        <select id="locale" name="locale" @onchange="LocaleChanged" value="@locale">
             <option value="en-US">English</option>
-            @* <option value="zh-CN">Chinese (Simplified)</option>
+            <option value="zh-CN">Chinese (Simplified)</option>
             <option value="zh-TW">Chinese (Traditional)</option>
             <option value="da">Danish</option>
             <option value="nl">Dutch</option>
@@ -24,8 +27,10 @@
             <option value="es">Spanish</option>
             <option value="sv">Swedish</option>
             <option value="tr">Turkish</option>
-            <option value="uk">Ukrainian</option> *@
+            <option value="uk">Ukrainian</option>
         </select>
+        <label for="expression">Cron Expression</label>
+        <input id="expression" name="expression" @bind="expression" placeholder="" type="text" />        
         <button type="button" class="button button-black" id="describe" @onclick="UpdateDescription">Describe</button>
     </fieldset>
 </form>
@@ -37,24 +42,33 @@
 </blockquote>
 
 @code {
-    private string expression = "* * * * *";
-    private string locale = "en-US";
-    private string description = "";
-    private void UpdateDescription()
-    {       
-      var options = new CronExpressionDescriptor.Options()
-      {
-        ThrowExceptionOnParseError = false,
-        Verbose = false,
-        DayOfWeekStartIndexZero = true,
-        Locale = (this.locale)
-      };
-
-      this.description = CronExpressionDescriptor.ExpressionDescriptor.GetDescription(this.expression, options);
-    }
-
-    protected override void OnInitialized()
+  private string locale = "en-US";
+  private string expression = "0 23 ? * MON-FRI";
+  private string description = "";
+  private void UpdateDescription()
+  {
+    var options = new CronExpressionDescriptor.Options()
     {
-      this.UpdateDescription();
-    }
+      ThrowExceptionOnParseError = false,
+      Verbose = false,
+      DayOfWeekStartIndexZero = true,
+    };
+
+    this.description = CronExpressionDescriptor.ExpressionDescriptor.GetDescription(this.expression, options);
+  }
+
+  private void LocaleChanged(ChangeEventArgs e)
+  {
+    NavigationManager.NavigateTo($"/?locale={e.Value.ToString()}&expression={this.expression}", true);
+  }
+
+  protected override void OnInitialized()
+  {      
+    var uri = UriHelper.ToAbsoluteUri(UriHelper.Uri);
+    this.expression = QueryHelpers.ParseQuery(uri.Query).TryGetValue("expression", out var type) ? type.First() : this.expression;
+
+    this.locale = CultureInfo.DefaultThreadCurrentCulture?.ToString() ?? this.locale;
+
+    this.UpdateDescription();
+  }
 }

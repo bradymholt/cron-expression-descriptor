@@ -59,7 +59,7 @@
 
   private void LocaleChanged(ChangeEventArgs e)
   {
-    NavigationManager.NavigateTo($"/?locale={e.Value.ToString()}&expression={this.expression}", true);
+    NavigationManager.NavigateTo($"?locale={e.Value.ToString()}&expression={this.expression}", true);
   }
 
   protected override void OnInitialized()

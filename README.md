@@ -142,6 +142,7 @@ If you need an assembly that is [signed with a strong name](https://msdn.microso
  - Ruby - [https://github.com/alpinweis/cronex](https://github.com/alpinweis/cronex)
  - Python - [https://github.com/Salamek/cron-descriptor](https://github.com/Salamek/cron-descriptor)
  - JavaScript - [https://github.com/bradymholt/cRonstrue](https://github.com/bradymholt/cRonstrue)
+ - Go - [https://github.com/lnquy/cron](https://github.com/lnquy/cron)
 
 ## Frequently Asked Questions
 

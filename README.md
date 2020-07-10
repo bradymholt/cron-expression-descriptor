@@ -138,10 +138,12 @@ If you need an assembly that is [signed with a strong name](https://msdn.microso
 
 ## Ports
 
+This library has been ported to several other languages.
+
+ - JavaScript - [https://github.com/bradymholt/cRonstrue](https://github.com/bradymholt/cRonstrue)
  - Java - [https://github.com/RedHogs/cron-parser](https://github.com/RedHogs/cron-parser)
  - Ruby - [https://github.com/alpinweis/cronex](https://github.com/alpinweis/cronex)
  - Python - [https://github.com/Salamek/cron-descriptor](https://github.com/Salamek/cron-descriptor)
- - JavaScript - [https://github.com/bradymholt/cRonstrue](https://github.com/bradymholt/cRonstrue)
  - Go - [https://github.com/lnquy/cron](https://github.com/lnquy/cron)
 
 ## Frequently Asked Questions

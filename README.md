@@ -142,6 +142,7 @@ This library has been ported to several other languages.
 
  - JavaScript - [https://github.com/bradymholt/cRonstrue](https://github.com/bradymholt/cRonstrue)
  - Java - [https://github.com/RedHogs/cron-parser](https://github.com/RedHogs/cron-parser)
+ - Java - [https://github.com/voidburn/cron-expression-descriptor](https://github.com/voidburn/cron-expression-descriptor)
  - Ruby - [https://github.com/alpinweis/cronex](https://github.com/alpinweis/cronex)
  - Python - [https://github.com/Salamek/cron-descriptor](https://github.com/Salamek/cron-descriptor)
  - Go - [https://github.com/lnquy/cron](https://github.com/lnquy/cron)

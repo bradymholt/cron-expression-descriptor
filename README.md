@@ -152,6 +152,10 @@ This library has been ported to several other languages.
 
 This library does not do full validation of cron expressions and assumes the expression passed in is valid. If you need to validate an expression consider using a library like [Cronos](https://github.com/HangfireIO/Cronos). 
 
+> Does this library support showing the "next" scheduled date
+
+No, this is not supported.
+
 ## Examples
 
 ExpressionDescriptor.GetDescription("* * * * *");

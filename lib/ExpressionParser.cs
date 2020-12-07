@@ -72,10 +72,18 @@ namespace CronExpressionDescriptor
         }
         else if (expressionPartsTemp.Length == 6)
         {
-          //If last element ends with 4 digits, a year element has been supplied and no seconds element
-          Regex yearRegex = new Regex("\\d{4}$");
-          if (yearRegex.IsMatch(expressionPartsTemp[5]))
+          /* We will detect if this 6 part expression has a year specified and if so we will shift the parts and treat the 
+             first part as a minute part rather than a second part. 
+
+             Ways we detect:
+               1. Last part is a literal year (i.e. 2020)
+               2. 3rd or 5th part is specified as "?" (DOM or DOW)
+          */                    
+          bool isYearWithNoSecondsPart = Regex.IsMatch(expressionPartsTemp[5], "\\d{4}$") || expressionPartsTemp[4] == "?" || expressionPartsTemp[2] == "?";
+
+          if (isYearWithNoSecondsPart)
           {
+            // Shift parts over by one
             Array.Copy(expressionPartsTemp, 0, parsed, 1, 6);
           }
           else

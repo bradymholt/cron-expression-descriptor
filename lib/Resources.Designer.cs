@@ -84,11 +84,11 @@ namespace CronExpressionDescriptor
         /// <summary>
         ///   Looks up a localized string similar to An error occured when generating the expression description.  Check the cron expression syntax..
         /// </summary>
-        internal static string AnErrorOccuredWhenGeneratingTheExpressionD
+        internal static string AnErrorOccurredWhenGeneratingTheExpressionD
         {
             get
             {
-                return ResourceManager.GetString("AnErrorOccuredWhenGeneratingTheExpressionD", resourceCulture);
+                return ResourceManager.GetString("AnErrorOccurredWhenGeneratingTheExpressionD", resourceCulture);
             }
         }
 

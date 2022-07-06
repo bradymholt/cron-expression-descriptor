@@ -166,7 +166,7 @@ namespace CronExpressionDescriptor
       }
       catch (Exception ex)
       {
-        description = GetString("AnErrorOccuredWhenGeneratingTheExpressionD");
+        description = GetString("AnErrorOccurredWhenGeneratingTheExpressionD");
         if (m_options.ThrowExceptionOnParseError)
         {
           throw new FormatException(description, ex);
@@ -532,7 +532,7 @@ namespace CronExpressionDescriptor
     /// However Romanian language has different idioms for
     /// 1. 'from number to number' (minutes, seconds, hours, days) => ComaMinX0ThroughMinX1 optional resource
     /// 2. 'from month to month' ComaMonthX0ThroughMonthX1 optional resource
-    /// 3. 'from year to year' => ComaYearX0ThroughYearX1 oprtional resource
+    /// 3. 'from year to year' => ComaYearX0ThroughYearX1 optional resource
     /// therefore <paramref name="getRangeFormat"/> was introduced
     /// </remarks>
     /// </summary>
@@ -661,7 +661,7 @@ namespace CronExpressionDescriptor
     }
 
     /// <summary>
-    /// Given time parts, will contruct a formatted time description
+    /// Given time parts, will construct a formatted time description
     /// </summary>
     /// <param name="hourExpression">Hours part</param>
     /// <param name="minuteExpression">Minutes part</param>
@@ -672,7 +672,7 @@ namespace CronExpressionDescriptor
     }
 
     /// <summary>
-    /// Given time parts, will contruct a formatted time description
+    /// Given time parts, will construct a formatted time description
     /// </summary>
     /// <param name="hourExpression">Hours part</param>
     /// <param name="minuteExpression">Minutes part</param>
@@ -688,7 +688,7 @@ namespace CronExpressionDescriptor
         period = GetString((hour >= 12) ? "PMPeriod" : "AMPeriod");
         if (period.Length > 0)
         {
-          // add preceeding space
+          // add preceding space
           period = string.Concat(" ", period);
         }
 
@@ -762,8 +762,8 @@ namespace CronExpressionDescriptor
     /// <returns>The cron expression description</returns>
     public static string GetDescription(string expression, Options options)
     {
-      ExpressionDescriptor descripter = new ExpressionDescriptor(expression, options);
-      return descripter.GetDescription(DescriptionTypeEnum.FULL);
+      ExpressionDescriptor descriptor = new ExpressionDescriptor(expression, options);
+      return descriptor.GetDescription(DescriptionTypeEnum.FULL);
     }
     #endregion
   }

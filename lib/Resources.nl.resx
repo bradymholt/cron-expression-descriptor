@@ -124,9 +124,9 @@
     <value>elk uur</value>
     <comment>EveryHour description</comment>
   </data>
-  <data name="AnErrorOccuredWhenGeneratingTheExpressionD" xml:space="preserve">
+  <data name="AnErrorOccurredWhenGeneratingTheExpressionD" xml:space="preserve">
     <value>Er is een fout opgetreden bij het vertalen van de gegevens. Controleer de gegevens.</value>
-    <comment>AnErrorOccuredWhenGeneratingTheExpressionD description</comment>
+    <comment>AnErrorOccurredWhenGeneratingTheExpressionD description</comment>
   </data>
   <data name="AtSpace" xml:space="preserve">
     <value>Op </value>

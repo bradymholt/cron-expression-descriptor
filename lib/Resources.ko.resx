@@ -124,9 +124,9 @@
     <value>매시간</value>
     <comment>EveryHour 설명</comment>
   </data>
-  <data name="AnErrorOccuredWhenGeneratingTheExpressionD" xml:space="preserve">
+  <data name="AnErrorOccurredWhenGeneratingTheExpressionD" xml:space="preserve">
     <value>표현식 설명을 생성하는 동안 오류가 발생했습니다.  cron 표현식 구문을 확인합니다.</value>
-    <comment>AnErrorOccuredWhenGeneratingTheExpressionD 설명</comment>
+    <comment>AnErrorOccurredWhenGeneratingTheExpressionD 설명</comment>
   </data>
   <data name="AtSpace" xml:space="preserve">
     <value>시간 </value>

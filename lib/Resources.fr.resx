@@ -124,9 +124,9 @@
     <value>toutes les heures</value>
     <comment>EveryHour description</comment>
   </data>
-  <data name="AnErrorOccuredWhenGeneratingTheExpressionD" xml:space="preserve">
+  <data name="AnErrorOccurredWhenGeneratingTheExpressionD" xml:space="preserve">
     <value>Une erreur est survenue en générant la description de l'expression cron. Vérifiez sa syntaxe.</value>
-    <comment>AnErrorOccuredWhenGeneratingTheExpressionD description</comment>
+    <comment>AnErrorOccurredWhenGeneratingTheExpressionD description</comment>
   </data>
   <data name="AtSpace" xml:space="preserve">
     <value>À </value>

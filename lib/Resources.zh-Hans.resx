@@ -124,9 +124,9 @@
     <value>每小时</value>
     <comment>EveryHour description</comment>
   </data>
-  <data name="AnErrorOccuredWhenGeneratingTheExpressionD" xml:space="preserve">
+  <data name="AnErrorOccurredWhenGeneratingTheExpressionD" xml:space="preserve">
     <value>生成表达式描述时发生了错误，请检查cron表达式语法。</value>
-    <comment>AnErrorOccuredWhenGeneratingTheExpressionD description</comment>
+    <comment>AnErrorOccurredWhenGeneratingTheExpressionD description</comment>
   </data>
   <data name="AtSpace" xml:space="preserve">
     <value>在 </value>

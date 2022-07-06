@@ -166,7 +166,7 @@ namespace CronExpressionDescriptor
       }
       catch (Exception ex)
       {
-        description = GetString("AnErrorOccuredWhenGeneratingTheExpressionD");
+        description = GetString("AnErrorOccurredWhenGeneratingTheExpressionD");
         if (m_options.ThrowExceptionOnParseError)
         {
           throw new FormatException(description, ex);

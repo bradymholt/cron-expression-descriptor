@@ -124,7 +124,7 @@
     <value>cada una hora</value>
     <comment>Descripción Cada una hora</comment>
   </data>
-  <data name="AnErrorOccuredWhenGeneratingTheExpressionD" xml:space="preserve">
+  <data name="AnErrorOccurredWhenGeneratingTheExpressionD" xml:space="preserve">
     <value>Error al momento de generar la descripción de la expresión.  Verifique la sintaxis de la expresión Cron.</value>
     <comment>Error al momento de generar la descripción de la expresión D.</comment>
   </data>

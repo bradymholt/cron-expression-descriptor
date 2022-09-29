@@ -17,7 +17,7 @@
     <PackageProjectUrl>https://github.com/bradymholt/cron-expression-descriptor</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bradymholt/cron-expression-descriptor</RepositoryUrl>
     <PackageTags>cron, schedule, quartz, quartz.net, cron expression</PackageTags>
-    <PackageIcon>demo\wwwroot\favicon-64x64.png</PackageIcon>
+    <PackageIcon>demo/wwwroot/favicon-64x64.png</PackageIcon>
   </PropertyGroup>
   <ItemGroup>
   </ItemGroup>

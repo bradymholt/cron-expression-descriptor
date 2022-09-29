@@ -9,8 +9,8 @@
     <SignAssembly>False</SignAssembly>
     <AssemblyOriginatorKeyFile>CronExpressionDescriptor.snk</AssemblyOriginatorKeyFile>
     <Product>CronExpressionDescriptor</Product>
-    <Version>2.16.0</Version>
-    <PackageReleaseNotes>Fix detection of 6 part expressions with year specified as *</PackageReleaseNotes>
+    <Version>2.17.0</Version>
+    <PackageReleaseNotes>Fix: At specific time translates to 'om' not 'op' in Dutch</PackageReleaseNotes>
     <Authors>Brady Holt</Authors>
     <Description>A library that converts cron expressions into human readable descriptions.  Supports multiple languages including: English, Brazillian, Spanish, Norwgian, Turkish, Dutch, Chinese Simplified, Russian, French, German, Ukrainian, Persian (Farsi), Polish, Romanian Italian, Swedish, Slovenian, Danish, Finnish and Japanese.</Description>
     <PackageLicenseUrl>https://github.com/bradymholt/cron-expression-descriptor/blob/master/LICENSE</PackageLicenseUrl>

@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.1;netstandard2.0</TargetFrameworks>    
+    <TargetFrameworks>netstandard1.1;netstandard2.0;net6.0</TargetFrameworks>    
   </PropertyGroup>
   <PropertyGroup Condition="$(TargetFramework.Contains('netstandard1'))">
     <DefineConstants>NET_STANDARD_1X</DefineConstants>

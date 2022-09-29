@@ -9,15 +9,15 @@
     <SignAssembly>False</SignAssembly>
     <AssemblyOriginatorKeyFile>CronExpressionDescriptor.snk</AssemblyOriginatorKeyFile>
     <Product>CronExpressionDescriptor</Product>
-    <Version>2.17.0</Version>
-    <PackageReleaseNotes>Fix: At specific time translates to 'om' not 'op' in Dutch</PackageReleaseNotes>
+    <Version>2.17.1</Version>
+    <PackageReleaseNotes>Update nuget package fields</PackageReleaseNotes>
     <Authors>Brady Holt</Authors>
     <Description>A library that converts cron expressions into human readable descriptions.  Supports multiple languages including: English, Brazillian, Spanish, Norwgian, Turkish, Dutch, Chinese Simplified, Russian, French, German, Ukrainian, Persian (Farsi), Polish, Romanian Italian, Swedish, Slovenian, Danish, Finnish and Japanese.</Description>
     <PackageLicense>https://github.com/bradymholt/cron-expression-descriptor/blob/master/LICENSE</PackageLicense>
     <PackageProjectUrl>https://github.com/bradymholt/cron-expression-descriptor</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bradymholt/cron-expression-descriptor</RepositoryUrl>
     <PackageTags>cron, schedule, quartz, quartz.net, cron expression</PackageTags>
-    <PackageIcon>https://raw.githubusercontent.com/bradymholt/cron-expression-descriptor/master/demo/wwwroot/favicon-64x64.png</PackageIcon>
+    <PackageIcon>demo\wwwroot\favicon-64x64.png</PackageIcon>
   </PropertyGroup>
   <ItemGroup>
   </ItemGroup>

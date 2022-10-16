@@ -145,6 +145,7 @@ This library has been ported to several other languages.
  - Java - [https://github.com/voidburn/cron-expression-descriptor](https://github.com/voidburn/cron-expression-descriptor)
  - Ruby - [https://github.com/alpinweis/cronex](https://github.com/alpinweis/cronex)
  - Python - [https://github.com/Salamek/cron-descriptor](https://github.com/Salamek/cron-descriptor)
+ - PHP - [https://github.com/panlatent/cron-expression-descriptor](https://github.com/panlatent/cron-expression-descriptor)
  - Go - [https://github.com/lnquy/cron](https://github.com/lnquy/cron)
 
 ## Frequently Asked Questions

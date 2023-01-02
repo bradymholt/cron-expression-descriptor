@@ -1,4 +1,5 @@
-# Cron Expression Descriptor
+# Cron Expression Descriptor [![Build](https://github.com/bradymholt/cron-expression-descriptor/actions/workflows/build.yml/badge.svg)](https://github.com/bradymholt/cron-expression-descriptor/actions/workflows/build.yml) [![NuGet version](https://badge.fury.io/nu/CronExpressionDescriptor.svg)](https://badge.fury.io/nu/CronExpressionDescriptor)
+
 
 <img align="left" src="https://user-images.githubusercontent.com/759811/210273710-b13913e2-0a71-4d9d-94da-1fe538b8a73e.gif"/>
 
@@ -11,9 +12,6 @@
 
 
 A .NET library that converts cron expressions into human readable descriptions.
-
-[![Build](https://github.com/bradymholt/cron-expression-descriptor/actions/workflows/build.yml/badge.svg)](https://github.com/bradymholt/cron-expression-descriptor/actions/workflows/build.yml)
-[![NuGet version](https://badge.fury.io/nu/CronExpressionDescriptor.svg)](https://badge.fury.io/nu/CronExpressionDescriptor)
 
 **Author**: Brady Holt (http://www.geekytidbits.com)
 **License**: [MIT](https://github.com/bradymholt/cron-expression-descriptor/blob/dotnet-core/LICENSE)

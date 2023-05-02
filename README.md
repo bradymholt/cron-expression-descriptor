@@ -9,9 +9,12 @@
 
 <br/>
 
-
-
 A .NET library that converts cron expressions into human readable descriptions.
+
+```
+CronExpressionDescriptor.ExpressionDescriptor.GetDescription("* * * * *");
+> "Every minute"
+```
 
 **Author**: Brady Holt (http://www.geekytidbits.com)
 **License**: [MIT](https://github.com/bradymholt/cron-expression-descriptor/blob/dotnet-core/LICENSE)

@@ -19,6 +19,7 @@
     <RepositoryUrl>https://github.com/bradymholt/cron-expression-descriptor</RepositoryUrl>
     <PackageTags>cron, schedule, quartz, quartz.net, cron expression</PackageTags>
     <PackageIcon>icon.png</PackageIcon>
+    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>  
   <ItemGroup>
     <None Include="../icon.png" Pack="true" Visible="false" PackagePath="" />

@@ -170,7 +170,7 @@
     <comment>EveryX0DaysOfTheWeek description</comment>
   </data>
   <data name="ComaEveryX0Months" xml:space="preserve">
-    <value>, hver {0} måned]</value>
+    <value>, hver {0} måned</value>
     <comment>EveryX0Months description</comment>
   </data>
   <data name="ComaEveryX0Years" xml:space="preserve">
@@ -253,7 +253,7 @@
     <comment>FirstWeekday description</comment>
   </data>
   <data name="Fourth" xml:space="preserve">
-    <value>fjede</value>
+    <value>fjerde</value>
     <comment>Fourth description</comment>
   </data>
   <data name="MinutesX0ThroughX1PastTheHour" xml:space="preserve">

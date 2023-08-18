@@ -122,11 +122,11 @@
     <comment>AnErrorOccurredWhenGeneratingTheExpressionD description</comment>
   </data>
   <data name="At" xml:space="preserve">
-    <value>På</value>
+    <value>Klokken</value>
     <comment>At description</comment>
   </data>
   <data name="AtSpace" xml:space="preserve">
-    <value>På </value>
+    <value>Klokken </value>
     <comment>At description</comment>
   </data>
   <data name="AtX0" xml:space="preserve">
@@ -134,11 +134,11 @@
     <comment>AtX0 description</comment>
   </data>
   <data name="AtX0MinutesPastTheHour" xml:space="preserve">
-    <value>på {0} minutter etter timen</value>
+    <value>{0} minutter etter timen</value>
     <comment>AtX0MinutesPastTheHour description</comment>
   </data>
   <data name="AtX0SecondsPastTheMinute" xml:space="preserve">
-    <value>på {0} sekunder etter minuttet</value>
+    <value>{0} sekunder etter minuttet</value>
     <comment>AtX0SecondsPastTheMinute description</comment>
   </data>
   <data name="BetweenX0AndX1" xml:space="preserve">
@@ -146,7 +146,7 @@
     <comment>BetweenX0AndX1 description</comment>
   </data>
   <data name="ComaBetweenDayX0AndX1OfTheMonth" xml:space="preserve">
-    <value>, mellom dag {0} og {1} av måneden</value>
+    <value>, mellom {0}. og {1}. dag i måneden</value>
     <comment>BetweenDayX0AndX1OfTheMonth description</comment>
   </data>
   <data name="ComaEveryDay" xml:space="preserve">
@@ -162,23 +162,23 @@
     <comment>ComaEveryMinute1 description</comment>
   </data>
   <data name="ComaEveryX0Days" xml:space="preserve">
-    <value>, hver {0} dag</value>
+    <value>, hver {0}. dag</value>
     <comment>ComaEveryX0Days description</comment>
   </data>
   <data name="ComaEveryX0DaysOfTheWeek" xml:space="preserve">
-    <value>, hver {0} ukedag</value>
+    <value>, hver {0}. ukedag</value>
     <comment>EveryX0DaysOfTheWeek description</comment>
   </data>
   <data name="ComaEveryX0Months" xml:space="preserve">
-    <value>, hver {0} måned</value>
+    <value>, hver {0}. måned</value>
     <comment>EveryX0Months description</comment>
   </data>
   <data name="ComaEveryX0Years" xml:space="preserve">
-    <value>, hvert {0} år</value>
+    <value>, hvert {0}. år</value>
     <comment>ComaEveryX0Years description</comment>
   </data>
   <data name="ComaOnDayX0OfTheMonth" xml:space="preserve">
-    <value>, på dag {0} av måneden</value>
+    <value>, {0}. dag i måneden</value>
     <comment>ComaOnDayX0OfTheMonth description</comment>
   </data>
   <data name="ComaOnlyInX0" xml:space="preserve">
@@ -190,23 +190,23 @@
     <comment>OnlyOnX0 description</comment>
   </data>
   <data name="ComaOnThe" xml:space="preserve">
-    <value>, på den </value>
+    <value>, den </value>
     <comment>OnThe description</comment>
   </data>
   <data name="ComaOnTheLastDayOfTheMonth" xml:space="preserve">
-    <value>, på den siste dagen i måneden</value>
+    <value>, den siste dagen i måneden</value>
     <comment>ComaOnTheLastDayOfTheMonth description</comment>
   </data>
   <data name="ComaOnTheLastWeekdayOfTheMonth" xml:space="preserve">
-    <value>, på den siste ukedagen i måneden</value>
+    <value>, den siste ukedagen i måneden</value>
     <comment>OnTheLastWeekdayOfTheMonth description</comment>
   </data>
   <data name="ComaOnTheLastX0OfTheMonth" xml:space="preserve">
-    <value>, på den siste {0} av måneden</value>
+    <value>, den siste {0} i måneden</value>
     <comment>OnTheLastX0OfTheMonth description</comment>
   </data>
   <data name="ComaOnTheX0OfTheMonth" xml:space="preserve">
-    <value>, på den {0} av måneden</value>
+    <value>, den {0} i måneden</value>
     <comment>ComaOnTheX0OfTheMonth description</comment>
   </data>
   <data name="ComaX0ThroughX1" xml:space="preserve">
@@ -229,15 +229,15 @@
     <comment>EverySecond description</comment>
   </data>
   <data name="EveryX0Hours" xml:space="preserve">
-    <value>hver {0} time</value>
+    <value>hver {0}. time</value>
     <comment>EveryX0Hours description</comment>
   </data>
   <data name="EveryX0Minutes" xml:space="preserve">
-    <value>hvert {0} minutt</value>
+    <value>hvert {0}. minutt</value>
     <comment>EveryX0Minutes description</comment>
   </data>
   <data name="EveryX0Seconds" xml:space="preserve">
-    <value>hvert {0} sekund</value>
+    <value>hvert {0}. sekund</value>
     <comment>EveryX0Seconds description</comment>
   </data>
   <data name="Fifth" xml:space="preserve">
@@ -277,7 +277,7 @@
     <comment>And description</comment>
   </data>
   <data name="SpaceX0OfTheMonth" xml:space="preserve">
-    <value> {0} av måneden</value>
+    <value> {0} i måneden</value>
     <comment>X0OfTheMonth description</comment>
   </data>
   <data name="Third" xml:space="preserve">
@@ -285,7 +285,7 @@
     <comment>Third description</comment>
   </data>
   <data name="WeekdayNearestDayX0" xml:space="preserve">
-    <value>ukedag nærmest dag {0}</value>
+    <value>ukedag nærmest {0}. dag</value>
     <comment>WeekdayNearestDayX0 description</comment>
   </data>
   <data name="CommaStartingX0" xml:space="preserve">

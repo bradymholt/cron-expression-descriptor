@@ -1,0 +1,75 @@
+name: Publish
+on:
+  workflow_dispatch:
+    inputs:
+      version_type:
+        type: choice
+        description: Version type
+        default: minor
+        options:
+        - major
+        - minor
+        - patch    
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: refs/heads/main
+      - name: Setup git repo
+        run: |
+          git config user.name $GITHUB_ACTOR
+          git config user.email gh-actions-${GITHUB_ACTOR}@github.com
+          git remote add gh-origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 2.1.806  
+      - name: Bump release version
+        id: bump-version
+        run: |
+          export NEW_VERSION=$(./scripts/get-new-release-version.js ${{ github.event.inputs.version_type }})
+          echo "new-version=$NEW_VERSION" >> "$GITHUB_OUTPUT"          
+      - name: Publish to NuGet
+        run: 
+          ./scripts/release.js ${{ steps.bump-version.outputs.new-version}}
+      - name: Commit changes and release tag
+        run: |
+          git commit -am "New release: ${{ steps.bump-version.outputs.new-version}}"
+          git tag ${{ steps.bump-version.outputs.new-version}}
+          git push --follow-tags      
+      - name: Create a Release
+        id: create-release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.bump-version.outputs.new-version}}
+          generate_release_notes: true          
+      - name: Comment on PRs with link to release they are included in
+        uses: actions/github-script@v6
+        env:
+          RELEASE_ID: ${{ steps.create-release.outputs.id }}
+        with:
+          script: |
+            const releaseId = process.env.RELEASE_ID;
+            console.log(`Fetching release_id: ${releaseId} ...`);
+            const getReleaseResponse = await github.rest.repos.getRelease({
+              release_id: process.env.RELEASE_ID,
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+            const release = getReleaseResponse.data;
+
+            const prNumbersInRelease = new Set(Array.from(release.body.matchAll(/\/pull\/(\d+)/g)).map(p=>p[1]));
+
+            for(let prNumber of prNumbersInRelease) {
+              console.log(`Adding comment on PR #${prNumber} ...`);
+              await github.rest.issues.createComment({
+                issue_number: prNumber,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: `The changes in PR were just released in [${release.name}](https://github.com/${context.repo.owner}/${context.repo.repo}/releases/tag/${release.tag_name}) 🎉.`
+              })
+            }

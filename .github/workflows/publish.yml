@@ -46,7 +46,7 @@ jobs:
           git commit -am "New release: ${{ steps.bump-version.outputs.new-version}}"
           git tag ${{ steps.bump-version.outputs.new-version}}
           git pull gh-origin
-          git push gh-origin HEAD:main --tags          
+          git push gh-origin HEAD:master --tags          
       - name: Create a Release
         id: create-release
         uses: softprops/action-gh-release@v1

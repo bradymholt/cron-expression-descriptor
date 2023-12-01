@@ -1,4 +1,4 @@
-#!/usr/bin/env npx jsh
+#!/usr/bin/env -S npx jsh
 
 usage(`
 Usage:

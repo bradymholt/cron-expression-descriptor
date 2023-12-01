@@ -46,6 +46,7 @@ jobs:
         run: |
           git commit -am "New release: ${{ steps.bump-version.outputs.new-version}}"
           git tag ${{ steps.bump-version.outputs.new-version}}
+          git pull
           git push --follow-tags      
       - name: Create a Release
         id: create-release

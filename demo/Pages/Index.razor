@@ -1,7 +1,7 @@
 ﻿@page "/"
 @using System.Globalization;
-@using Microsoft.AspNetCore.WebUtilities; 
-@inject NavigationManager UriHelper 
+@using Microsoft.AspNetCore.WebUtilities;
+@inject NavigationManager UriHelper
 @inject NavigationManager NavigationManager
 
 <form>
@@ -16,6 +16,7 @@
             <option value="fi">Finnish</option>
             <option value="fr">French</option>
             <option value="de">German</option>
+            <option value="hu">Hungarian</option>
             <option value="it">Italian</option>
             <option value="ja">Japanese</option>
             <option value="nb">Norwegian</option>
@@ -30,7 +31,7 @@
             <option value="uk">Ukrainian</option>
         </select>
         <label for="expression">Cron Expression</label>
-        <input id="expression" name="expression" @bind="expression" placeholder="" type="text" />        
+        <input id="expression" name="expression" @bind="expression" placeholder="" type="text" />
         <button type="button" class="button button-black" id="describe" @onclick="UpdateDescription">Describe</button>
     </fieldset>
 </form>
@@ -42,33 +43,33 @@
 </blockquote>
 
 @code {
-  private string locale = "en-US";
-  private string expression = "0 23 ? * MON-FRI";
-  private string description = "";
-  private void UpdateDescription()
-  {
-    var options = new CronExpressionDescriptor.Options()
+    private string locale = "en-US";
+    private string expression = "0 23 ? * MON-FRI";
+    private string description = "";
+    private void UpdateDescription()
     {
-      ThrowExceptionOnParseError = false,
-      Verbose = false,
-      DayOfWeekStartIndexZero = true,
-    };
+        var options = new CronExpressionDescriptor.Options()
+        {
+            ThrowExceptionOnParseError = false,
+            Verbose = false,
+            DayOfWeekStartIndexZero = true,
+        };
 
-    this.description = CronExpressionDescriptor.ExpressionDescriptor.GetDescription(this.expression, options);
-  }
+        this.description = CronExpressionDescriptor.ExpressionDescriptor.GetDescription(this.expression, options);
+    }
 
-  private void LocaleChanged(ChangeEventArgs e)
-  {
-    NavigationManager.NavigateTo($"?locale={e.Value.ToString()}&expression={this.expression}", true);
-  }
+    private void LocaleChanged(ChangeEventArgs e)
+    {
+        NavigationManager.NavigateTo($"?locale={e.Value.ToString()}&expression={this.expression}", true);
+    }
 
-  protected override void OnInitialized()
-  {      
-    var uri = UriHelper.ToAbsoluteUri(UriHelper.Uri);
-    this.expression = QueryHelpers.ParseQuery(uri.Query).TryGetValue("expression", out var type) ? type.First() : this.expression;
+    protected override void OnInitialized()
+    {
+        var uri = UriHelper.ToAbsoluteUri(UriHelper.Uri);
+        this.expression = QueryHelpers.ParseQuery(uri.Query).TryGetValue("expression", out var type) ? type.First() : this.expression;
 
-    this.locale = CultureInfo.DefaultThreadCurrentCulture?.ToString() ?? this.locale;
+        this.locale = CultureInfo.DefaultThreadCurrentCulture?.ToString() ?? this.locale;
 
-    this.UpdateDescription();
-  }
+        this.UpdateDescription();
+    }
 }

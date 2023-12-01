@@ -27,6 +27,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+      - run: npm install jsh -g
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v3
         with:

@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: refs/heads/main
+          ref: refs/heads/master
       - name: Setup git repo
         run: |
           git config user.name $GITHUB_ACTOR
@@ -34,6 +34,8 @@ jobs:
           export NEW_VERSION=$(./scripts/get-new-release-version.js ${{ github.event.inputs.version_type }})
           echo "new-version=$NEW_VERSION" >> "$GITHUB_OUTPUT"          
       - name: Publish to NuGet
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
         run: 
           ./scripts/release.js ${{ steps.bump-version.outputs.new-version}}
       - name: Commit changes and release tag

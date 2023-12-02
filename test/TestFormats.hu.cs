@@ -498,7 +498,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestSecondsExpressionCombinedWithHoursListésSingleMinute()
         {
-            Assert.Equal("At 5 seconds past the minute, at 30 minutes past the hour, at 06:00, 14:00, és 16:00, on day 5 of the month", GetDescription("5 30 6,14,16 5 * *"));
+            Assert.Equal("5 másodperccel egész perc után, 30 perccel egész óra után, 06:00, 14:00, és 16:00, a hónap 5. napján", GetDescription("5 30 6,14,16 5 * *"));
         }
 
         [Fact]

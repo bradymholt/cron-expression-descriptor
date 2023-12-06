@@ -1,10 +1,8 @@
 using System;
-using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Resources;
-using System.Globalization;
 
 namespace CronExpressionDescriptor
 {
@@ -14,7 +12,7 @@ namespace CronExpressionDescriptor
   public class ExpressionDescriptor
   {
     private readonly char[] m_specialCharacters = new char[] { '/', '-', ',', '*' };
-    private readonly string[] m_24hourTimeFormatTwoLetterISOLanguageName = new string[] { "ru", "uk", "de", "it", "tr", "pl", "ro", "da", "sl", "fi", "sv", "nb" };
+    private readonly string[] m_24hourTimeFormatTwoLetterISOLanguageName = new string[] { "ru", "uk", "de", "it", "tr", "pl", "ro", "da", "sl", "fi", "sv", "nb", "hu" };
 
     private string m_expression;
     private Options m_options;

@@ -23,7 +23,7 @@ CronExpressionDescriptor.ExpressionDescriptor.GetDescription("* * * * *");
 
  * Supports all cron expression special characters including * / , - ? L W, #
  * Supports 5, 6 (w/ seconds or year), or 7 (w/ seconds and year) part cron expressions
- * Localization with support for 25 languages
+ * Localization with support for 26 languages
  * Provides casing options (Sentence case, Title Case, lowercase, etc.)
  * Supports [Quartz Enterprise Scheduler .NET](https://www.quartz-scheduler.net/) cron expressions
 
@@ -87,6 +87,7 @@ The following language translations are available.
  * French - fr ([Arnaud TAMAILLON](https://github.com/Greybird))
  * German - de ([Michael Schuler](https://github.com/mschuler))
  * Hebrew - he ([Ariel Deil](https://github.com/arieldeil))
+ * Hungarian - hu ([Varga Miklós](https://github.com/Micky2149))
  * Italian - it ([rinaldihno](https://github.com/rinaldihno))
  * Japanese - ja ([Alin Sarivan](https://github.com/asarivan))
  * Korean - ko ([Ion Mincu](https://github.com/ionmincu))
@@ -103,7 +104,7 @@ The following language translations are available.
  * Vietnamese - vi ([Nguyen Duc Son](https://github.com/ali33))
  * Turkish - tr ([Mustafa SADEDİL](https://github.com/sadedil))
  * Ukrainian - uk ([Taras](https://github.com/tbudurovych))
- 
+
 To use one of these translations, pass in the `Locale` option to `GetDescription`.  For example, to get the description of `0-10 11 * * *` in German:
 
 ```csharp
@@ -167,7 +168,7 @@ This library has been ported to several other languages.
 
 > The cron expression I am passing in is not valid and this library is giving strange output.  What should I do?
 
-This library does not do full validation of cron expressions and assumes the expression passed in is valid. If you need to validate an expression consider using a library like [Cronos](https://github.com/HangfireIO/Cronos). 
+This library does not do full validation of cron expressions and assumes the expression passed in is valid. If you need to validate an expression consider using a library like [Cronos](https://github.com/HangfireIO/Cronos).
 
 > Does this library support showing the "next" scheduled date?
 

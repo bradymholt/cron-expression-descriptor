@@ -16,9 +16,9 @@ jobs:
         os: [ubuntu-latest, macos-12, windows-latest]
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 2.1.806
     - name: Run tests

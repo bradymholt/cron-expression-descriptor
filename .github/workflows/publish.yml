@@ -20,7 +20,8 @@ jobs:
       - name: Setup git repo
         run: |
           git config user.name $GITHUB_ACTOR
-          git config user.email gh-actions-${GITHUB_ACTOR}@github.com          
+          git config user.email gh-actions-${GITHUB_ACTOR}@github.com         
+          git remote add gh-origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/setup-node@v4
@@ -44,7 +45,7 @@ jobs:
         run: |
           git commit -am "New release: ${{ steps.bump-version.outputs.new-version}}"
           git tag ${{ steps.bump-version.outputs.new-version}}          
-          git push --tags          
+          git push gh-origin HEAD:master --tags
       - name: Create a Release
         id: create-release
         uses: softprops/action-gh-release@v1

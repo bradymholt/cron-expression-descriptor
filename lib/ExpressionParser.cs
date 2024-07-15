@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Globalization;
@@ -26,7 +26,6 @@ namespace CronExpressionDescriptor
 
     private string m_expression;
     private Options m_options;
-    private CultureInfo m_en_culture;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ExpressionParser"/> class
@@ -37,7 +36,6 @@ namespace CronExpressionDescriptor
     {
       m_expression = expression;
       m_options = options;
-      m_en_culture = new CultureInfo("en-US"); //Default to English
     }
 
     /// <summary>
@@ -202,7 +200,7 @@ namespace CronExpressionDescriptor
       for (int i = 1; i <= 12; i++)
       {
         DateTime currentMonth = new DateTime(DateTime.Now.Year, i, 1);
-        string currentMonthDescription = currentMonth.ToString("MMM", m_en_culture).ToUpperInvariant();
+        string currentMonthDescription = currentMonth.ToString("MMM", CultureInfo.InvariantCulture).ToUpperInvariant();
         expressionParts[4] = Regex.Replace(expressionParts[4], currentMonthDescription, i.ToString(), RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
       }
 

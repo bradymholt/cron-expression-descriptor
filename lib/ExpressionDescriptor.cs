@@ -486,6 +486,13 @@ namespace CronExpressionDescriptor
               description = String.Format(GetString("CommaDaysBeforeTheLastDayOfTheMonth"), offSetDays);
               break;
             }
+            else if (expression == "*" && m_expressionParts[5] != "*")
+            {
+              // DOW is specified, but DOM is *, so do not generate DOM description.
+              // Otherwise, we could get a contradiction like "every day, on Tuesday"
+              description = string.Empty;
+              break;
+            }
             else
             {
               description = GetSegmentDescription(expression,

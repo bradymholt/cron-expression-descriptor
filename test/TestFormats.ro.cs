@@ -46,7 +46,7 @@ namespace CronExpressionDescriptor.Test
         public void TestTimeOfDayCertainDaysOfWeek()
         {
             Harness(cron: "0 23 ? * MON-FRI", expected: "La 23:00, de luni până vineri"
-                , expectedVerbose: "La 23:00, în fiecare zi, de luni până vineri");
+                , expectedVerbose: "La 23:00, de luni până vineri");
         }
 
         [Fact]
@@ -87,7 +87,7 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "30 11 * * 1-5",
                 expected: "La 11:30, de luni până vineri",
-                expectedVerbose: "La 11:30, în fiecare zi, de luni până vineri");
+                expectedVerbose: "La 11:30, de luni până vineri");
         }
 
         [Fact]
@@ -134,7 +134,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestOnceAWeek()
         {
-            Harness(cron: "46 9 * * 1", expected: "La 09:46, doar luni", expectedVerbose: "La 09:46, în fiecare zi, doar luni");
+            Harness(cron: "46 9 * * 1", expected: "La 09:46, doar luni", expectedVerbose: "La 09:46, doar luni");
         }
 
         [Fact]
@@ -177,7 +177,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestDayOfWeekName()
         {
-            Harness(cron: "23 12 * * SUN", expected: "La 12:23, doar duminică", expectedVerbose: "La 12:23, în fiecare zi, doar duminică");
+            Harness(cron: "23 12 * * SUN", expected: "La 12:23, doar duminică", expectedVerbose: "La 12:23, doar duminică");
         }
 
         [Fact]
@@ -185,7 +185,7 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "*/5 15 * * MON-FRI", 
                 expected: "La fiecare 5 minute, între 15:00 și 15:59, de luni până vineri",
-                expectedVerbose: "La fiecare 5 minute, între 15:00 și 15:59, în fiecare zi, de luni până vineri");
+                expectedVerbose: "La fiecare 5 minute, între 15:00 și 15:59, de luni până vineri");
         }
 
         [Fact]
@@ -193,7 +193,7 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "* * * * MON#3", 
                 expected: "În fiecare minut, în a treia luni a lunii", 
-                expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, în a treia luni a lunii");
+                expectedVerbose: "În fiecare minut, în fiecare oră, în a treia luni a lunii");
         }
 
         [Fact]
@@ -201,7 +201,7 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "* * * * 4L",
                 expected: "În fiecare minut, în ultima joi a lunii",
-                expectedVerbose: "În fiecare minut, în fiecare oră, în fiecare zi, în ultima joi a lunii");
+                expectedVerbose: "În fiecare minut, în fiecare oră, în ultima joi a lunii");
         }
 
         [Fact]
@@ -303,7 +303,7 @@ namespace CronExpressionDescriptor.Test
             Harness(
               cron: "0 30 10-13 ? * WED,FRI",
               expected: "La și 30 de minute, între 10:00 și 13:59, doar miercuri și vineri",
-              expectedVerbose: "La și 30 de minute, între 10:00 și 13:59, în fiecare zi, doar miercuri și vineri");            
+              expectedVerbose: "La și 30 de minute, între 10:00 și 13:59, doar miercuri și vineri");            
         }
 
         [Fact]
@@ -392,7 +392,7 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "23 12 * * SUN#2", 
                 expected: "La 12:23, în a doua duminică a lunii", 
-                expectedVerbose: "La 12:23, în fiecare zi, în a doua duminică a lunii");
+                expectedVerbose: "La 12:23, în a doua duminică a lunii");
         }
 
         [Fact]
@@ -430,7 +430,7 @@ namespace CronExpressionDescriptor.Test
         {
             Harness(cron: "0 15 10 ? * */3",
                 expected: "La 10:15, la fiecare a 3-a zi a săptămânii",
-                expectedVerbose: "La 10:15, în fiecare zi, la fiecare a 3-a zi a săptămânii");
+                expectedVerbose: "La 10:15, la fiecare a 3-a zi a săptămânii");
         }
 
         [Fact]
@@ -478,7 +478,7 @@ namespace CronExpressionDescriptor.Test
             // GitHub Issue #44: https://github.com/bradymholt/cron-expression-descriptor/issues/44
             Harness(cron: "0 00 10 ? * MON-THU,SUN *",
                 expected: "La 10:00, doar de luni până joi și duminică",
-                expectedVerbose: "La 10:00, în fiecare zi, doar de luni până joi și duminică");
+                expectedVerbose: "La 10:00, doar de luni până joi și duminică");
         }
 
         [Fact]

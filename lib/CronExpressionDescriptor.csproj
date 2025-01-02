@@ -9,7 +9,7 @@
     <SignAssembly>False</SignAssembly>
     <AssemblyOriginatorKeyFile>CronExpressionDescriptor.snk</AssemblyOriginatorKeyFile>
     <Product>CronExpressionDescriptor</Product>
-    <Version>2.37.0</Version>
+    <Version>2.38.0</Version>
     <PackageReleaseNotes>See https://github.com/bradymholt/cron-expression-descriptor/releases for release notes</PackageReleaseNotes>
     <Authors>Brady Holt</Authors>
     <Description>A library that converts cron expressions into human readable descriptions.  Supports multiple languages including: English, Brazillian, Spanish, Norwgian, Turkish, Dutch, Chinese Simplified, Russian, French, German, Ukrainian, Persian (Farsi), Polish, Romanian Italian, Swedish, Slovenian, Danish, Finnish and Japanese.</Description>

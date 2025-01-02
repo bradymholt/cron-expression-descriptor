@@ -39,6 +39,7 @@ jobs:
       - name: Publish to NuGet
         env:
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+          DOTNET_SYSTEM_GLOBALIZATION_INVARIANT: 1
         run: 
           ./scripts/release.js ${{ steps.bump-version.outputs.new-version}}
       - name: Commit changes and release tag

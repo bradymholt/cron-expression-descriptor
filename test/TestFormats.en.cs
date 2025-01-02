@@ -544,9 +544,15 @@ namespace CronExpressionDescriptor.Test
     }
 
     [Fact]
-    public void EveryYear(){
-        Assert.Equal("Every 10 minutes, Monday through Friday", GetDescription("0/10 * ? * MON-FRI *"));
-        
+    public void Tuesday9()
+    {
+      Assert.Equal("At 09:00 AM, only on Tuesday", GetDescription("0 9 * * 2"));
+    }
+
+    [Fact]
+    public void EveryYear()
+    {
+      Assert.Equal("Every 10 minutes, Monday through Friday", GetDescription("0/10 * ? * MON-FRI *"));
     }
   }
 }

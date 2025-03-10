@@ -131,8 +131,13 @@ namespace CronExpressionDescriptor
         }
       }
 
-      // Uppercase the first letter
-      description = string.Concat(m_culture.TextInfo.ToUpper(description[0]), description.Substring(1));
+      // the seconds when 0 are replaced during parsing with ""
+      // same value returns in turn then GetSecondsDescription
+      if (description.Length > 0)
+      {
+        // Uppercase the first letter
+        description = string.Concat(m_culture.TextInfo.ToUpper(description[0]), description.Substring(1));
+      }
 
       return description;
     }

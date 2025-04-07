@@ -105,6 +105,7 @@ The following language translations are available.
  * Vietnamese - vi ([Nguyen Duc Son](https://github.com/ali33))
  * Turkish - tr ([Mustafa SADEDİL](https://github.com/sadedil))
  * Ukrainian - uk ([Taras](https://github.com/tbudurovych))
+ * Greek - el ([hardra1n](https://github.com/Hardra1n))
 
 To use one of these translations, pass in the `Locale` option to `GetDescription`.  For example, to get the description of `0-10 11 * * *` in German:
 

@@ -277,7 +277,7 @@
     <comment>And description</comment>
   </data>
   <data name="ComaEveryMinute" xml:space="preserve">
-    <value>, mọi minute</value>
+    <value>, mọi phút</value>
     <comment>ComaEveryMinute1 description</comment>
   </data>
   <data name="ComaEveryHour" xml:space="preserve">

@@ -12,7 +12,7 @@
     <Version>2.40.0</Version>
     <PackageReleaseNotes>See https://github.com/bradymholt/cron-expression-descriptor/releases for release notes</PackageReleaseNotes>
     <Authors>Brady Holt</Authors>
-    <Description>A library that converts cron expressions into human readable descriptions.  Supports multiple languages including: English, Brazillian, Spanish, Norwgian, Turkish, Dutch, Chinese Simplified, Russian, French, German, Ukrainian, Persian (Farsi), Polish, Romanian, Italian, Swedish, Slovenian, Danish, Finnish, Greek and Japanese.</Description>
+    <Description>A library that converts cron expressions into human readable descriptions.  Supports multiple languages including: English, Brazillian, Spanish, Norwgian, Turkish, Dutch, Chinese Simplified, Russian, French, German, Ukrainian, Persian (Farsi), Polish, Romanian, Italian, Swedish, Slovenian, Danish, Finnish, Greek, Kazakh and Japanese.</Description>
     <PackageLicense>https://github.com/bradymholt/cron-expression-descriptor/blob/master/LICENSE</PackageLicense>
     <PackageProjectUrl>https://github.com/bradymholt/cron-expression-descriptor</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>

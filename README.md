@@ -23,7 +23,7 @@ CronExpressionDescriptor.ExpressionDescriptor.GetDescription("* * * * *");
 
  * Supports all cron expression special characters including * / , - ? L W, #
  * Supports 5, 6 (w/ seconds or year), or 7 (w/ seconds and year) part cron expressions
- * Localization with support for 28 languages
+ * Localization with support for 29 languages
  * Provides casing options (Sentence case, Title Case, lowercase, etc.)
  * Supports [Quartz Enterprise Scheduler .NET](https://www.quartz-scheduler.net/) cron expressions
 
@@ -106,6 +106,7 @@ The following language translations are available.
  * Turkish - tr ([Mustafa SADEDİL](https://github.com/sadedil))
  * Ukrainian - uk ([Taras](https://github.com/tbudurovych))
  * Greek - el ([hardra1n](https://github.com/Hardra1n))
+ * Kazakh - kk ([hardra1n](https://github.com/Hardra1n))
 
 To use one of these translations, pass in the `Locale` option to `GetDescription`.  For example, to get the description of `0-10 11 * * *` in German:
 

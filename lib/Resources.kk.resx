@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="EveryMinute" xml:space="preserve">
+    <value>әрбір минут сайын</value>
+  </data>
+  <data name="EveryHour" xml:space="preserve">
+    <value>әрбір сағат сайын</value>
+    <comment>EveryHour description</comment>
+  </data>
+  <data name="AnErrorOccurredWhenGeneratingTheExpressionD" xml:space="preserve">
+    <value>Өрнек сипаттамасын жасау кезінде қате пайда болды.  Cron өрнек синтаксисін тексеріңіз.</value>
+    <comment>AnErrorOccurredWhenGeneratingTheExpressionD description</comment>
+  </data>
+  <data name="AtSpace" xml:space="preserve">
+    <value>Сағат </value>
+    <comment>At description</comment>
+  </data>
+  <data name="EveryMinuteBetweenX0AndX1" xml:space="preserve">
+    <value>Әрбір минут арасында {0} және {1}</value>
+    <comment>EveryMinuteBetweenX0AndX1 description</comment>
+  </data>
+  <data name="At" xml:space="preserve">
+    <value>Сағат</value>
+    <comment>At description</comment>
+  </data>
+  <data name="SpaceAnd" xml:space="preserve">
+    <value> және</value>
+    <comment>And description</comment>
+  </data>
+  <data name="EverySecond" xml:space="preserve">
+    <value>әрбір секунд сайын</value>
+    <comment>EverySecond description</comment>
+  </data>
+  <data name="EveryX0Seconds" xml:space="preserve">
+    <value>әрбір {0} секунд</value>
+    <comment>EveryX0Seconds description</comment>
+  </data>
+  <data name="SecondsX0ThroughX1PastTheMinute" xml:space="preserve">
+    <value>секунд {0} жөніндегі {1} минутына</value>
+    <comment>SecondsX0ThroughX1PastTheMinute description</comment>
+  </data>
+  <data name="AtX0SecondsPastTheMinute" xml:space="preserve">
+    <value>{0} секундтан кейін басталғаннан кейін минут</value>
+    <comment>AtX0SecondsPastTheMinute description</comment>
+  </data>
+  <data name="EveryX0Minutes" xml:space="preserve">
+    <value>әрбір {0} минут</value>
+    <comment>EveryX0Minutes description</comment>
+  </data>
+  <data name="MinutesX0ThroughX1PastTheHour" xml:space="preserve">
+    <value>минут {0}-{1}</value>
+    <comment>MinutesX0ThroughX1PastTheHour description</comment>
+  </data>
+  <data name="AtX0MinutesPastTheHour" xml:space="preserve">
+    <value>{0} минуттан кейін сағат</value>
+    <comment>AtX0MinutesPastTheHour description</comment>
+  </data>
+  <data name="EveryX0Hours" xml:space="preserve">
+    <value>әрбір {0} сағат</value>
+    <comment>EveryX0Hours description</comment>
+  </data>
+  <data name="BetweenX0AndX1" xml:space="preserve">
+    <value>арасында {0} және {1}</value>
+    <comment>BetweenX0AndX1 description</comment>
+  </data>
+  <data name="AtX0" xml:space="preserve">
+    <value>сағат {0}</value>
+    <comment>AtX0 description</comment>
+  </data>
+  <data name="ComaEveryDay" xml:space="preserve">
+    <value>, әрбір күні</value>
+    <comment>ComaEveryDay description</comment>
+  </data>
+  <data name="ComaEveryX0DaysOfTheWeek" xml:space="preserve">
+    <value>, әрбір {0} күн апта</value>
+    <comment>EveryX0DaysOfTheWeek description</comment>
+  </data>
+  <data name="ComaX0ThroughX1" xml:space="preserve">
+    <value>, {0}-{1}</value>
+    <comment>X0ThroughX1 description</comment>
+  </data>
+  <data name="First" xml:space="preserve">
+    <value>бірінші</value>
+    <comment>First description</comment>
+  </data>
+  <data name="Second" xml:space="preserve">
+    <value>екінші</value>
+    <comment>Second description</comment>
+  </data>
+  <data name="Third" xml:space="preserve">
+    <value>үшінші</value>
+    <comment>Third description</comment>
+  </data>
+  <data name="Fourth" xml:space="preserve">
+    <value>төртінші</value>
+    <comment>Fourth description</comment>
+  </data>
+  <data name="Fifth" xml:space="preserve">
+    <value>бесінші</value>
+    <comment>Fifth description</comment>
+  </data>
+  <data name="ComaOnThe" xml:space="preserve">
+    <value>, </value>
+    <comment>OnThe description</comment>
+  </data>
+  <data name="SpaceX0OfTheMonth" xml:space="preserve">
+    <value> {0} ай</value>
+    <comment>X0OfTheMonth description</comment>
+  </data>
+  <data name="ComaOnTheLastX0OfTheMonth" xml:space="preserve">
+    <value>, әрбір айдың соңғы {0}</value>
+    <comment>OnTheLastX0OfTheMonth description</comment>
+  </data>
+  <data name="ComaOnlyOnX0" xml:space="preserve">
+    <value>, тек {0}</value>
+    <comment>OnlyOnX0 description</comment>
+  </data>
+  <data name="ComaEveryX0Months" xml:space="preserve">
+    <value>, әрбір {0} ай сайын</value>
+    <comment>EveryX0Months description</comment>
+  </data>
+  <data name="ComaOnlyInX0" xml:space="preserve">
+    <value>, тек {0}</value>
+    <comment>ComaOnlyInX0 description</comment>
+  </data>
+  <data name="ComaOnTheLastDayOfTheMonth" xml:space="preserve">
+    <value>, айдың соңғы күні</value>
+    <comment>ComaOnTheLastDayOfTheMonth description</comment>
+  </data>
+  <data name="ComaOnTheLastWeekdayOfTheMonth" xml:space="preserve">
+    <value>, соңғы жұмыс күні ай</value>
+    <comment>OnTheLastWeekdayOfTheMonth description</comment>
+  </data>
+  <data name="FirstWeekday" xml:space="preserve">
+    <value>бірінші жұмыс күні</value>
+    <comment>FirstWeekday description</comment>
+  </data>
+  <data name="WeekdayNearestDayX0" xml:space="preserve">
+    <value>жақында {0}-ші күні</value>
+    <comment>WeekdayNearestDayX0 description</comment>
+  </data>
+  <data name="ComaOnTheX0OfTheMonth" xml:space="preserve">
+    <value>, {0}-айдың</value>
+    <comment>ComaOnTheX0OfTheMonth description</comment>
+  </data>
+  <data name="ComaEveryX0Days" xml:space="preserve">
+    <value>, әрбір {0} күн</value>
+    <comment>ComaEveryX0Days description</comment>
+  </data>
+  <data name="ComaBetweenDayX0AndX1OfTheMonth" xml:space="preserve">
+    <value>, арасында {0} және {1}-күндіз ай</value>
+    <comment>BetweenDayX0AndX1OfTheMonth description</comment>
+  </data>
+  <data name="ComaOnDayX0OfTheMonth" xml:space="preserve">
+    <value>, {0}-ші күні ай</value>
+    <comment>ComaOnDayX0OfTheMonth description</comment>
+  </data>
+  <data name="SpaceAndSpace" xml:space="preserve">
+    <value> және </value>
+    <comment>And description</comment>
+  </data>
+  <data name="ComaEveryMinute" xml:space="preserve">
+    <value>, әрбір минут сайын</value>
+    <comment>ComaEveryMinute1 description</comment>
+  </data>
+  <data name="ComaEveryHour" xml:space="preserve">
+    <value>, әрбір сағат сайын</value>
+    <comment>ComaEveryHour description</comment>
+  </data>
+  <data name="ComaEveryX0Years" xml:space="preserve">
+    <value>, әрбір {0} жыл сайын</value>
+    <comment>ComaEveryX0Years description</comment>
+  </data>
+  <data name="CommaStartingX0" xml:space="preserve">
+    <value>, бастап {0}</value>
+    <comment>CommaStartingX0 description</comment>
+  </data>
+  <data name="AMPeriod" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PMPeriod" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CommaDaysBeforeTheLastDayOfTheMonth" xml:space="preserve">
+    <value>, {0} күн айдың соңғы күні</value>
+    <comment>CommaDaysBeforeTheLastDayOfTheMonth description</comment>
+  </data>
+  <data name="ComaOnlyInYearX0" xml:space="preserve">
+    <value>, тек {0}</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="WeekSpaceAndSpace" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="ComaMinX0ThroughMinX1" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="ComaYearX0ThroughYearX1" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+</root>

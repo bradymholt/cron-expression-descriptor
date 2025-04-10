@@ -86,13 +86,13 @@ namespace CronExpressionDescriptor.Test
     [Fact]
     public void TestOneMonthOnly()
     {
-      Assert.EqualsCaseInsensitive("Κάθε λεπτό, μόνο τον Μάρτιος", GetDescription("* * * 3 *"));
+      Assert.EqualsCaseInsensitive("Κάθε λεπτό, μόνο το Μάρτιος", GetDescription("* * * 3 *"));
     }
 
     [Fact]
     public void TestTwoMonthsOnly()
     {
-      Assert.EqualsCaseInsensitive("Κάθε λεπτό, μόνο τον Μάρτιος και Ιούνιος", GetDescription("* * * 3,6 *"));
+      Assert.EqualsCaseInsensitive("Κάθε λεπτό, μόνο το Μάρτιος και Ιούνιος", GetDescription("* * * 3,6 *"));
     }
 
     [Fact]
@@ -110,25 +110,25 @@ namespace CronExpressionDescriptor.Test
     [Fact]
     public void TestOnceAWeek()
     {
-      Assert.EqualsCaseInsensitive("Στις 09:46 π.μ, μόνο την Δευτέρα", GetDescription("46 9 * * 1"));
+      Assert.EqualsCaseInsensitive("Στις 09:46 π.μ, μόνο το Δευτέρα", GetDescription("46 9 * * 1"));
     }
 
     [Fact]
     public void TestDayOfMonth()
     {
-      Assert.EqualsCaseInsensitive("Στις 12:23 μμ, την 15η ημέρα του μήνα", GetDescription("23 12 15 * *"));
+      Assert.EqualsCaseInsensitive("Στις 12:23 μμ, την 15 ημέρα του μήνα", GetDescription("23 12 15 * *"));
     }
 
     [Fact]
     public void TestMonthName()
     {
-      Assert.EqualsCaseInsensitive("Στις 12:23 μμ, μόνο τον Ιανουάριος", GetDescription("23 12 * JAN *"));
+      Assert.EqualsCaseInsensitive("Στις 12:23 μμ, μόνο το Ιανουάριος", GetDescription("23 12 * JAN *"));
     }
 
     [Fact]
     public void TestDayOfMonthWithQuestionMark()
     {
-      Assert.EqualsCaseInsensitive("Στις 12:23 μμ, μόνο τον Ιανουάριος", GetDescription("23 12 ? JAN *"));
+      Assert.EqualsCaseInsensitive("Στις 12:23 μμ, μόνο το Ιανουάριος", GetDescription("23 12 ? JAN *"));
     }
 
     [Fact]
@@ -146,7 +146,7 @@ namespace CronExpressionDescriptor.Test
     [Fact]
     public void TestDayOfWeekName()
     {
-      Assert.EqualsCaseInsensitive("Στις 12:23 μμ, μόνο την Κυριακή", GetDescription("23 12 * * SUN"));
+      Assert.EqualsCaseInsensitive("Στις 12:23 μμ, μόνο το Κυριακή", GetDescription("23 12 * * SUN"));
     }
 
     [Fact]
@@ -158,7 +158,7 @@ namespace CronExpressionDescriptor.Test
     [Fact]
     public void TestDayOfWeekOnceInMonth()
     {
-      Assert.EqualsCaseInsensitive("Κάθε λεπτό, в τρίτοςΔευτέρα του μήνα", GetDescription("* * * * MON#3"));
+      Assert.EqualsCaseInsensitive("Κάθε λεπτό, τηντρίτος Δευτέρα του μήνα", GetDescription("* * * * MON#3"));
     }
 
     [Fact]
@@ -170,7 +170,7 @@ namespace CronExpressionDescriptor.Test
     [Fact]
     public void TestLastDayOfTheMonth()
     {
-      Assert.EqualsCaseInsensitive("Κάθε 5 λεπτά, την τελευταία μέρα του μήνα, μόνο τον Ιανουάριος", GetDescription("*/5 * L JAN *"));
+      Assert.EqualsCaseInsensitive("Κάθε 5 λεπτά, την τελευταία ημέρα του μήνα, μόνο το Ιανουάριος", GetDescription("*/5 * L JAN *"));
     }
 
     [Fact]
@@ -200,13 +200,13 @@ namespace CronExpressionDescriptor.Test
     [Fact]
     public void TestParticularWeekdayOfTheMonth()
     {
-      Assert.EqualsCaseInsensitive("Κάθε λεπτό, την καθημερινή πλησιέστερη ημέρα 5 του μήνα", GetDescription("* * 5W * *"));
+      Assert.EqualsCaseInsensitive("Κάθε λεπτό, την εργάσιμη ημέρα κοντά στην ημέρα 5 του μήνα", GetDescription("* * 5W * *"));
     }
 
     [Fact]
     public void TestParticularWeekdayOfTheMonth2()
     {
-      Assert.EqualsCaseInsensitive("Κάθε λεπτό, την καθημερινή πλησιέστερη ημέρα 5 του μήνα", GetDescription("* * W5 * *"));
+      Assert.EqualsCaseInsensitive("Κάθε λεπτό, την εργάσιμη ημέρα κοντά στην ημέρα 5 του μήνα", GetDescription("* * W5 * *"));
     }
 
     [Fact]
@@ -230,19 +230,19 @@ namespace CronExpressionDescriptor.Test
     [Fact]
     public void TestEvery5MinutesAt30Seconds()
     {
-      Assert.EqualsCaseInsensitive("Στις 30 δευτερόλεπτα, κάθε 5 λεπτά", GetDescription("30 */5 * * * *"));
+      Assert.EqualsCaseInsensitive("Στις 30 δευτερόλεπτα μετά το λεπτό, κάθε 5 λεπτά", GetDescription("30 */5 * * * *"));
     }
 
     [Fact]
     public void TestMinutesPastTheHourRange()
     {
-      Assert.EqualsCaseInsensitive("Στις 30 λεπτά, μεταξύ 10:00 π.μ και 01:59 μμ, μόνο την Τετάρτη και Παρασκευή", GetDescription("0 30 10-13 ? * WED,FRI"));
+      Assert.EqualsCaseInsensitive("Στις 30 λεπτά μετά την ώρα, μεταξύ 10:00 π.μ και 01:59 μμ, μόνο το Τετάρτη και Παρασκευή", GetDescription("0 30 10-13 ? * WED,FRI"));
     }
 
     [Fact]
     public void TestSecondsPastTheMinuteInterval()
     {
-      Assert.EqualsCaseInsensitive("Στις 10 δευτερόλεπτα, κάθε 5 λεπτά", GetDescription("10 0/5 * * * ?"));
+      Assert.EqualsCaseInsensitive("Στις 10 δευτερόλεπτα μετά το λεπτό, κάθε 5 λεπτά", GetDescription("10 0/5 * * * ?"));
     }
 
     [Fact]
@@ -266,19 +266,19 @@ namespace CronExpressionDescriptor.Test
     [Fact]
     public void TestOneYearOnlyWithSeconds()
     {
-      Assert.EqualsCaseInsensitive("Κάθε δευτερόλεπτο, μόλις το 2013", GetDescription("* * * * * * 2013"));
+      Assert.EqualsCaseInsensitive("Κάθε δευτερόλεπτο, μόνο το 2013", GetDescription("* * * * * * 2013"));
     }
 
     [Fact]
     public void TestOneYearOnlyWithoutSeconds()
     {
-      Assert.EqualsCaseInsensitive("Κάθε λεπτό, μόλις το 2013", GetDescription("* * * * * 2013"));
+      Assert.EqualsCaseInsensitive("Κάθε λεπτό, μόνο το 2013", GetDescription("* * * * * 2013"));
     }
 
     [Fact]
     public void TestTwoYearsOnly()
     {
-      Assert.EqualsCaseInsensitive("Κάθε λεπτό, μόλις το 2013 και 2014", GetDescription("* * * * * 2013,2014"));
+      Assert.EqualsCaseInsensitive("Κάθε λεπτό, μόνο το 2013 και 2014", GetDescription("* * * * * 2013,2014"));
     }
 
     [Fact]
@@ -296,13 +296,13 @@ namespace CronExpressionDescriptor.Test
     [Fact]
     public void TestHourRange()
     {
-      Assert.EqualsCaseInsensitive("Κάθε 30 λεπτά, μεταξύ 08:00 π.μ και 09:59 π.μ, την 5 και 20η ημέρα του μήνα", GetDescription("0 0/30 8-9 5,20 * ?"));
+      Assert.EqualsCaseInsensitive("Κάθε 30 λεπτά, μεταξύ 08:00 π.μ και 09:59 π.μ, την 5 και 20 ημέρα του μήνα", GetDescription("0 0/30 8-9 5,20 * ?"));
     }
 
     [Fact]
     public void TestDayOfWeekModifier()
     {
-      Assert.EqualsCaseInsensitive("Στις 12:23 μμ, в δεύτεροςΚυριακή του μήνα", GetDescription("23 12 * * SUN#2"));
+      Assert.EqualsCaseInsensitive("Στις 12:23 μμ, τηνδεύτερος Κυριακή του μήνα", GetDescription("23 12 * * SUN#2"));
     }
 
     [Fact]
@@ -311,19 +311,19 @@ namespace CronExpressionDescriptor.Test
       Options options = new Options();
       options.DayOfWeekStartIndexZero = false;
 
-      Assert.EqualsCaseInsensitive("Στις 12:23 μμ, в δεύτεροςΚυριακή του μήνα", GetDescription("23 12 * * 1#2", options));
+      Assert.EqualsCaseInsensitive("Στις 12:23 μμ, τηνδεύτερος Κυριακή του μήνα", GetDescription("23 12 * * 1#2", options));
     }
 
     [Fact]
     public void TestHourRangeWithEveryPortion()
     {
-      Assert.EqualsCaseInsensitive("Στις 25 λεπτά, κάθε 13 ώρες, μεταξύ 07:00 π.μ και 07:59 μμ", GetDescription("0 25 7-19/13 ? * *"));
+      Assert.EqualsCaseInsensitive("Στις 25 λεπτά μετά την ώρα, κάθε 13 ώρες, μεταξύ 07:00 π.μ και 07:59 μμ", GetDescription("0 25 7-19/13 ? * *"));
     }
 
     [Fact]
     public void TestHourRangeWithTrailingZeroWithEveryPortion()
     {
-      Assert.EqualsCaseInsensitive("Στις 25 λεπτά, κάθε 13 ώρες, μεταξύ 07:00 π.μ και 08:59 μμ", GetDescription("0 25 7-20/13 ? * *"));
+      Assert.EqualsCaseInsensitive("Στις 25 λεπτά μετά την ώρα, κάθε 13 ώρες, μεταξύ 07:00 π.μ και 08:59 μμ", GetDescription("0 25 7-20/13 ? * *"));
     }
 
     [Fact]
@@ -347,7 +347,7 @@ namespace CronExpressionDescriptor.Test
     [Fact]
     public void TestDayOfMonthInternalWithStepValue()
     {
-      Assert.EqualsCaseInsensitive("Στις 07:05 π.μ, κάθε 3 ημέρες, ξεκινώντας την 2η ημέρα του μήνα", GetDescription("0 5 7 2/3 * ? *"));
+      Assert.EqualsCaseInsensitive("Στις 07:05 π.μ, κάθε 3 ημέρες, ξεκινώντας την 2 ημέρα του μήνα", GetDescription("0 5 7 2/3 * ? *"));
     }
 
     [Fact]

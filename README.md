@@ -139,6 +139,20 @@ ExpressionDescriptor.GetDescription("* * * * *");
 > "Ogni minuto"
 ```
 
+### Restrict number of published resource dll files
+
+If you don't want to publish all languages but only one or just a couple, you can set the languages you want to support by setting the property SatelliteResourceLanguages in the project file:
+
+```
+<PropertyGroup>
+  <SatelliteResourceLanguages>en;nl</SatelliteResourceLanguages>
+</PropertyGroup>
+```
+
+This reduces the size of the published output.
+
+See: [SatelliteResourceLanguages at Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props#satelliteresourcelanguages)
+
 ## .NET Platform Support
 
 Beginning with version 2.0.0, the NuGet package will contain a library targeting .NET Standard 1.1 and 2.0.  This allows the library to be consumed by applications running on the following .NET platforms:

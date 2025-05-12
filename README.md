@@ -76,7 +76,7 @@ ExpressionDescriptor.GetDescription("0-10 11 * * *", new Options(){
 
 ## i18n
 
-The following language translations are available.
+The following language translations are available:
 
  * English - en ([Brady Holt](https://github.com/bradymholt))
  * Chinese Simplified - zh-Hans (zh-CN) ([Star Peng](https://github.com/starpeng))
@@ -139,19 +139,9 @@ ExpressionDescriptor.GetDescription("* * * * *");
 > "Ogni minuto"
 ```
 
-### Restrict number of published resource dll files
+### Reducing build output size
 
-If you don't want to publish all languages but only one or just a couple, you can set the languages you want to support by setting the property SatelliteResourceLanguages in the project file:
-
-```
-<PropertyGroup>
-  <SatelliteResourceLanguages>en;nl</SatelliteResourceLanguages>
-</PropertyGroup>
-```
-
-This reduces the size of the published output.
-
-See: [SatelliteResourceLanguages at Microsoft Learn](https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props#satelliteresourcelanguages)
+If you don't want to include all supported languages in your project build output, see instructions for setting the [SatelliteResourceLanguages property](https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props#satelliteresourcelanguages) in your project.
 
 ## .NET Platform Support
 

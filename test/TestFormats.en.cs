@@ -368,6 +368,13 @@ namespace CronExpressionDescriptor.Test
     }
 
     [Fact]
+    public void TestsEvery7DayOfTheWeek()
+    {
+      // GitHub Issue #188: https://github.com/bradymholt/cron-expression-descriptor/issues/188
+      Assert.Equal("Every hour, every 7 days of the week", GetDescription("0 * * * */7"));
+    }
+
+    [Fact]
     public void TestEvery2DayOfTheWeekInRange()
     {
       // GitHub Issue #58: https://github.com/bradymholt/cron-expression-descriptor/issues/58

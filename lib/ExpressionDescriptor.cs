@@ -580,7 +580,7 @@ namespace CronExpressionDescriptor
       else if (expression.Contains("/"))
       {
         string[] segments = expression.Split('/');
-        description = string.Format(getIntervalDescriptionFormat(segments[1]), getSingleItemDescription(segments[1]));
+        description = string.Format(getIntervalDescriptionFormat(segments[1]), segments[1]);
 
         //interval contains 'between' piece (i.e. 2-59/3 )
         if (segments[0].Contains("-"))

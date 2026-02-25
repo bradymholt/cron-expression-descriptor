@@ -133,7 +133,7 @@
     <comment>At 설명</comment>
   </data>
   <data name="EveryMinuteBetweenX0AndX1" xml:space="preserve">
-    <value>{0}~{1} 사이 매분</value>
+    <value>매분 {0}~{1}</value>
     <comment>EveryMinuteBetweenX0AndX1 설명</comment>
   </data>
   <data name="At" xml:space="preserve">
@@ -153,11 +153,11 @@
     <comment>EveryX0Seconds 설명</comment>
   </data>
   <data name="SecondsX0ThroughX1PastTheMinute" xml:space="preserve">
-    <value>분 이후 {0}~{1}초</value>
+    <value>{0}~{1}초</value>
     <comment>SecondsX0ThroughX1PastTheMinute 설명</comment>
   </data>
   <data name="AtX0SecondsPastTheMinute" xml:space="preserve">
-    <value>분 이후 {0}초</value>
+    <value>{0}초</value>
     <comment>AtX0SecondsPastTheMinute 설명</comment>
   </data>
   <data name="EveryX0Minutes" xml:space="preserve">
@@ -165,11 +165,11 @@
     <comment>EveryX0Minutes 설명</comment>
   </data>
   <data name="MinutesX0ThroughX1PastTheHour" xml:space="preserve">
-    <value>시간 이후 {0}~{1}분</value>
+    <value>{0}~{1}분</value>
     <comment>MinutesX0ThroughX1PastTheHour 설명</comment>
   </data>
   <data name="AtX0MinutesPastTheHour" xml:space="preserve">
-    <value>시간 이후 {0}분</value>
+    <value>{0}분</value>
     <comment>AtX0MinutesPastTheHour 설명</comment>
   </data>
   <data name="EveryX0Hours" xml:space="preserve">
@@ -217,11 +217,11 @@
     <comment>Fifth 설명</comment>
   </data>
   <data name="ComaOnThe" xml:space="preserve">
-    <value>, 날짜 </value>
+    <value>, 매월 </value>
     <comment>OnThe 설명</comment>
   </data>
   <data name="SpaceX0OfTheMonth" xml:space="preserve">
-    <value> 월의 {0}</value>
+    <value> {0}</value>
     <comment>X0OfTheMonth 설명</comment>
   </data>
   <data name="ComaOnTheLastX0OfTheMonth" xml:space="preserve">
@@ -245,7 +245,7 @@
     <comment>ComaOnTheLastDayOfTheMonth 설명</comment>
   </data>
   <data name="ComaOnTheLastWeekdayOfTheMonth" xml:space="preserve">
-    <value>, 월의 마지막 평일에</value>
+    <value>, 매월 마지막 평일</value>
     <comment>OnTheLastWeekdayOfTheMonth 설명</comment>
   </data>
   <data name="FirstWeekday" xml:space="preserve">
@@ -257,7 +257,7 @@
     <comment>WeekdayNearestDayX0 설명</comment>
   </data>
   <data name="ComaOnTheX0OfTheMonth" xml:space="preserve">
-    <value>, 월의 {0}에</value>
+    <value>, 매월 {0}</value>
     <comment>ComaOnTheX0OfTheMonth 설명</comment>
   </data>
   <data name="ComaEveryX0Days" xml:space="preserve">
@@ -269,7 +269,7 @@
     <comment>BetweenDayX0AndX1OfTheMonth 설명</comment>
   </data>
   <data name="ComaOnDayX0OfTheMonth" xml:space="preserve">
-    <value>, 월의 {0}일에</value>
+    <value>, 매월 {0}일</value>
     <comment>ComaOnDayX0OfTheMonth 설명</comment>
   </data>
   <data name="SpaceAndSpace" xml:space="preserve">

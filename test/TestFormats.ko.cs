@@ -79,7 +79,18 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestMinuteSpan()
         {
-            Assert.EqualsCaseInsensitive("11:00 오전~11:10 오전 사이 매분", GetDescription("0-10 11 * * *"));
+            Assert.EqualsCaseInsensitive("매분 11:00 오전~11:10 오전", GetDescription("0-10 11 * * *"));
+        }
+
+        [Fact]
+        public void TestMinuteSpanWith24HourFormat()
+        {
+            var options = new Options
+            {
+                DayOfWeekStartIndexZero = false,
+                Use24HourTimeFormat = true
+            };
+            Assert.EqualsCaseInsensitive("매분 11:00~11:10", GetDescription("0-10 11 * * *", options));
         }
 
         [Fact]
@@ -115,7 +126,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestDayOfMonth()
         {
-            Assert.EqualsCaseInsensitive("시간 12:23 오후, 월의 15일에", GetDescription("23 12 15 * *"));
+            Assert.EqualsCaseInsensitive("시간 12:23 오후, 매월 15일", GetDescription("23 12 15 * *"));
         }
 
         [Fact]
@@ -158,7 +169,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestDayOfWeekOnceInMonth()
         {
-            Assert.EqualsCaseInsensitive("매분, 날짜 세 번째 월의 월요일", GetDescription("* * * * MON#3"));
+            Assert.EqualsCaseInsensitive("매분, 매월 세 번째 월요일", GetDescription("* * * * MON#3"));
         }
 
         [Fact]
@@ -176,37 +187,37 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestLastWeekdayOfTheMonth()
         {
-            Assert.EqualsCaseInsensitive("매분, 월의 마지막 평일에", GetDescription("* * LW * *"));
+            Assert.EqualsCaseInsensitive("매분, 매월 마지막 평일", GetDescription("* * LW * *"));
         }
 
         [Fact]
         public void TestLastWeekdayOfTheMonth2()
         {
-            Assert.EqualsCaseInsensitive("매분, 월의 마지막 평일에", GetDescription("* * WL * *"));
+            Assert.EqualsCaseInsensitive("매분, 매월 마지막 평일", GetDescription("* * WL * *"));
         }
 
         [Fact]
         public void TestFirstWeekdayOfTheMonth()
         {
-            Assert.EqualsCaseInsensitive("매분, 월의 첫 번째 평일에", GetDescription("* * 1W * *"));
+            Assert.EqualsCaseInsensitive("매분, 매월 첫 번째 평일", GetDescription("* * 1W * *"));
         }
 
         [Fact]
         public void TestFirstWeekdayOfTheMonth2()
         {
-            Assert.EqualsCaseInsensitive("매분, 월의 첫 번째 평일에", GetDescription("* * W1 * *"));
+            Assert.EqualsCaseInsensitive("매분, 매월 첫 번째 평일", GetDescription("* * W1 * *"));
         }
 
         [Fact]
         public void TestParticularWeekdayOfTheMonth()
         {
-            Assert.EqualsCaseInsensitive("매분, 월의 5일에 가장 가까운 평일에", GetDescription("* * 5W * *"));
+            Assert.EqualsCaseInsensitive("매분, 매월 5일에 가장 가까운 평일", GetDescription("* * 5W * *"));
         }
 
         [Fact]
         public void TestParticularWeekdayOfTheMonth2()
         {
-            Assert.EqualsCaseInsensitive("매분, 월의 5일에 가장 가까운 평일에", GetDescription("* * W5 * *"));
+            Assert.EqualsCaseInsensitive("매분, 매월 5일에 가장 가까운 평일", GetDescription("* * W5 * *"));
         }
 
         [Fact]
@@ -218,37 +229,37 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestSecondInternvals()
         {
-            Assert.EqualsCaseInsensitive("분 이후 5~10초", GetDescription("5-10 * * * * *"));
+            Assert.EqualsCaseInsensitive("5~10초", GetDescription("5-10 * * * * *"));
         }
 
         [Fact]
         public void TestSecondMinutesHoursIntervals()
         {
-            Assert.EqualsCaseInsensitive("분 이후 5~10초, 시간 이후 30~35분, 10:00 오전~12:59 오후 사이", GetDescription("5-10 30-35 10-12 * * *"));
+            Assert.EqualsCaseInsensitive("5~10초, 30~35분, 10:00 오전~12:59 오후 사이", GetDescription("5-10 30-35 10-12 * * *"));
         }
 
         [Fact]
         public void TestEvery5MinutesAt30Seconds()
         {
-            Assert.EqualsCaseInsensitive("분 이후 30초, 매 5분", GetDescription("30 */5 * * * *"));
+            Assert.EqualsCaseInsensitive("30초, 매 5분", GetDescription("30 */5 * * * *"));
         }
 
         [Fact]
         public void TestMinutesPastTheHourRange()
         {
-            Assert.EqualsCaseInsensitive("시간 이후 30분, 10:00 오전~01:59 오후 사이, 수요일 및 금요일에만", GetDescription("0 30 10-13 ? * WED,FRI"));
+            Assert.EqualsCaseInsensitive("30분, 10:00 오전~01:59 오후 사이, 수요일 및 금요일에만", GetDescription("0 30 10-13 ? * WED,FRI"));
         }
 
         [Fact]
         public void TestSecondsPastTheMinuteInterval()
         {
-            Assert.EqualsCaseInsensitive("분 이후 10초, 매 5분", GetDescription("10 0/5 * * * ?"));
+            Assert.EqualsCaseInsensitive("10초, 매 5분", GetDescription("10 0/5 * * * ?"));
         }
 
         [Fact]
         public void TestBetweenWithInterval()
         {
-            Assert.EqualsCaseInsensitive("매 3분, 시간 이후 2~59분, 01:00 오전, 09:00 오전, 및 10:00 오후, 월의 11~26일 사이, 1월~6월", GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
+            Assert.EqualsCaseInsensitive("매 3분, 2~59분, 01:00 오전, 09:00 오전, 및 10:00 오후, 월의 11~26일 사이, 1월~6월", GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
         }
 
         [Fact]
@@ -260,7 +271,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestMinutesPastTheHour()
         {
-            Assert.EqualsCaseInsensitive("시간 이후 5분", GetDescription("0 5 0/1 * * ?"));
+            Assert.EqualsCaseInsensitive("5분", GetDescription("0 5 0/1 * * ?"));
         }
 
         [Fact]
@@ -297,13 +308,13 @@ namespace CronExpressionDescriptor.Test
         public void TestSecondsInternalWithStepValue()
         {
             // GitHub Issue #49: https://github.com/bradymholt/cron-expression-descriptor/issues/49
-            Assert.EqualsCaseInsensitive("매 30초, 분 이후 5초부터", GetDescription("5/30 * * * * ?"));
+            Assert.EqualsCaseInsensitive("매 30초, 5초부터", GetDescription("5/30 * * * * ?"));
         }
 
         [Fact]
         public void TestMinutesInternalWithStepValue()
         {
-            Assert.EqualsCaseInsensitive("매 30분, 시간 이후 5분부터", GetDescription("0 5/30 * * * ?"));
+            Assert.EqualsCaseInsensitive("매 30분, 5분부터", GetDescription("0 5/30 * * * ?"));
         }
 
         [Fact]
@@ -315,7 +326,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestDayOfMonthInternalWithStepValue()
         {
-            Assert.EqualsCaseInsensitive("시간 07:05 오전, 3일마다, 월의 2일에부터", GetDescription("0 5 7 2/3 * ? *"));
+            Assert.EqualsCaseInsensitive("시간 07:05 오전, 3일마다, 매월 2일부터", GetDescription("0 5 7 2/3 * ? *"));
         }
 
         [Fact]

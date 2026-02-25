@@ -221,7 +221,7 @@
     <comment>OnThe 설명</comment>
   </data>
   <data name="SpaceX0OfTheMonth" xml:space="preserve">
-    <value>{0}</value>
+    <value> {0}</value>
     <comment>X0OfTheMonth 설명</comment>
   </data>
   <data name="ComaOnTheLastX0OfTheMonth" xml:space="preserve">
@@ -245,7 +245,7 @@
     <comment>ComaOnTheLastDayOfTheMonth 설명</comment>
   </data>
   <data name="ComaOnTheLastWeekdayOfTheMonth" xml:space="preserve">
-    <value>, 월의 마지막 평일에</value>
+    <value>, 매월 마지막 평일</value>
     <comment>OnTheLastWeekdayOfTheMonth 설명</comment>
   </data>
   <data name="FirstWeekday" xml:space="preserve">

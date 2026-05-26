@@ -16,6 +16,7 @@
     <PackageLicense>https://github.com/bradymholt/cron-expression-descriptor/blob/master/LICENSE</PackageLicense>
     <PackageProjectUrl>https://github.com/bradymholt/cron-expression-descriptor</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Copyright>Copyright (c) 2017 Brady Holt</Copyright>
     <RepositoryUrl>https://github.com/bradymholt/cron-expression-descriptor</RepositoryUrl>
     <PackageTags>cron, schedule, quartz, quartz.net, cron expression</PackageTags>
     <PackageIcon>icon.png</PackageIcon>

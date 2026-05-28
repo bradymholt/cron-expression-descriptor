@@ -485,6 +485,24 @@ namespace CronExpressionDescriptor.Test
     }
 
     [Fact]
+    public void TestEvery2WeeksOnFriday()
+    {
+      Assert.Equal("At 12:00 PM, every 2 weeks, only on Friday", GetDescription("0 0 12 ? * FRI/2"));
+    }
+
+    [Fact]
+    public void TestEvery3WeeksWedThroughFri()
+    {
+      Assert.Equal("At 12:00 PM, every 3 weeks, Wednesday through Friday", GetDescription("0 0 12 ? * WED-FRI/3"));
+    }
+
+    [Fact]
+    public void TestEvery4WeeksTueAndFri()
+    {
+      Assert.Equal("At 12:00 PM, every 4 weeks, only on Tuesday and Friday", GetDescription("0 0 12 ? * TUE,FRI/4"));
+    }
+
+    [Fact]
     public void TestYearInternalWithStepValue()
     {
       Assert.Equal("At 07:05 AM, every 4 years, 2016 through 9999", GetDescription("0 5 7 ? * ? 2016/4"));

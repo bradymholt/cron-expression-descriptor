@@ -367,19 +367,121 @@ namespace CronExpressionDescriptor
       }
       else
       {
-        description = GetSegmentDescription(
-            m_expressionParts[5],
-            GetString("ComaEveryDay"),
-            (s =>
-            {
-              string exp = s.Contains("#")
-                          ? s.Remove(s.IndexOf("#"))
-                          : s.Contains("L")
-                              ? s.Replace("L", string.Empty)
-                              : s;
+        string dowExpression = m_expressionParts[5];
 
-              return m_culture.DateTimeFormat.GetDayName(((DayOfWeek)Convert.ToInt32(exp)));
-            }),
+        Func<string, string> getSingleDayName = (s =>
+        {
+          string exp = s.Contains("#")
+                      ? s.Remove(s.IndexOf("#"))
+                      : s.Contains("L")
+                          ? s.Replace("L", string.Empty)
+                          : s;
+
+          return m_culture.DateTimeFormat.GetDayName(((DayOfWeek)Convert.ToInt32(exp)));
+        });
+
+        // Handle DOW interval expressions with a specific (non-wildcard) day specification.
+        // When the base part is not a wildcard and the step is >= the range size, the expression
+        // describes a weekly recurrence (e.g. "every 2 weeks, only on Friday") rather than a
+        // within-week recurrence (e.g. "every 2 days of the week, Monday through Friday").
+        if (dowExpression.Contains("/"))
+        {
+          string[] slashParts = dowExpression.Split('/');
+          string basePart = slashParts[0];
+          string stepPart = slashParts[1];
+
+          if (basePart != "*")
+          {
+            bool useWeeksFormat = false;
+
+            if (basePart.Contains(","))
+            {
+              // A list of specific days combined with a step always means a weekly interval
+              useWeeksFormat = true;
+            }
+            else if (basePart.Contains("-"))
+            {
+              // A range + step uses the weekly interval format when the step is >= the range
+              // size (meaning only one or no recurrence per range would ever fire within a week).
+              string[] rangeParts = basePart.Split('-');
+              int rangeStart = int.Parse(rangeParts[0]);
+              int rangeEnd = int.Parse(rangeParts[1]);
+              int step = int.Parse(stepPart);
+              int rangeSize = rangeEnd - rangeStart + 1;
+              useWeeksFormat = step >= rangeSize;
+            }
+
+            if (useWeeksFormat)
+            {
+              string intervalDesc = string.Format(GetString("ComaEveryX0Weeks"), stepPart);
+              string dayDesc;
+
+              if (basePart.Contains(","))
+              {
+                // Build a list description, e.g. "only on Tuesday and Friday"
+                string[] dayItems = basePart.Split(',');
+                string daysContent = string.Empty;
+                for (int i = 0; i < dayItems.Length; i++)
+                {
+                  if (i > 0 && dayItems.Length > 2)
+                  {
+                    daysContent += ",";
+                    if (i < dayItems.Length - 1)
+                    {
+                      daysContent += " ";
+                    }
+                  }
+
+                  if (i > 0 && dayItems.Length > 1 && (i == dayItems.Length - 1 || dayItems.Length == 2))
+                  {
+                    daysContent += GetString("SpaceAndSpace");
+                  }
+
+                  if (dayItems[i].Contains("-"))
+                  {
+                    string between = GenerateBetweenSegmentDescription(dayItems[i],
+                        s => GetString("ComaX0ThroughX1"),
+                        getSingleDayName);
+                    daysContent += between.TrimStart(',').TrimStart();
+                  }
+                  else
+                  {
+                    daysContent += getSingleDayName(dayItems[i]);
+                  }
+                }
+
+                dayDesc = string.Format(GetString("ComaOnlyOnX0"), daysContent);
+              }
+              else
+              {
+                // Range case: determine whether to show the full range or just the start day
+                string[] rangeParts = basePart.Split('-');
+                int rangeEnd = int.Parse(rangeParts[1]);
+
+                if (rangeEnd == 6)
+                {
+                  // The range was produced by normalizing a single DOW value (e.g. FRI/2 -> 5-6/2).
+                  // Show "only on <startDay>" rather than "<startDay> through Saturday".
+                  dayDesc = string.Format(GetString("ComaOnlyOnX0"), getSingleDayName(rangeParts[0]));
+                }
+                else
+                {
+                  // An explicit range (e.g. WED-FRI/3): show the full range
+                  dayDesc = GenerateBetweenSegmentDescription(basePart,
+                      s => GetString("ComaX0ThroughX1"),
+                      getSingleDayName);
+                }
+              }
+
+              return intervalDesc + dayDesc;
+            }
+          }
+        }
+
+        description = GetSegmentDescription(
+            dowExpression,
+            GetString("ComaEveryDay"),
+            getSingleDayName,
             (s => string.Format(GetString("ComaEveryX0DaysOfTheWeek"), s)),
             (s => GetString("ComaX0ThroughX1")),
             (s =>
@@ -424,7 +526,7 @@ namespace CronExpressionDescriptor
               return format;
             }),
             (s => GetString("ComaX0ThroughX1"))
-      );
+        );
       }
 
       return description;

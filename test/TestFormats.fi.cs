@@ -427,7 +427,7 @@ namespace CronExpressionDescriptor.Test
         public void TestDayOfWeekWithDayOfMonth()
         {
             // GitHub Issue #46: https://github.com/bradymholt/cron-expression-descriptor/issues/46
-            Assert.Equal("Klo 00:00, kuukauden 1, 2, ja 3 päivä, vain keskiviikko ja perjantai", GetDescription("0 0 0 1,2,3 * WED,FRI"));
+            Assert.Equal("Klo 00:00, kuukauden 1, 2, ja 3 päivä, ja keskiviikko ja perjantai", GetDescription("0 0 0 1,2,3 * WED,FRI"));
         }
 
         [Fact]

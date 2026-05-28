@@ -232,6 +232,10 @@
     <value>, solo el {0}</value>
     <comment>Descripción Solo el X0</comment>
   </data>
+  <data name="ComaAndOnX0" xml:space="preserve">
+    <value>, y el {0}</value>
+    <comment>ComaAndOnX0 description - used when both day-of-month and day-of-week are specified</comment>
+  </data>
   <data name="ComaEveryX0Months" xml:space="preserve">
     <value>, cada {0} meses</value>
     <comment>Descripción Cada X0 meses</comment>

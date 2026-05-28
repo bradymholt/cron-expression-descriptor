@@ -437,7 +437,7 @@ namespace CronExpressionDescriptor.Test
     public void TestDayOfWeekWithDayOfMonth()
     {
       // GitHub Issue #46: https://github.com/bradymholt/cron-expression-descriptor/issues/46
-      Assert.Equal("00:00, a hónap 1, 2, és 3. napján, csak szerda és péntek", GetDescription("0 0 0 1,2,3 * WED,FRI"));
+      Assert.Equal("00:00, a hónap 1, 2, és 3. napján, és szerda és péntek", GetDescription("0 0 0 1,2,3 * WED,FRI"));
     }
 
     [Fact]

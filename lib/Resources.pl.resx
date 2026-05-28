@@ -189,6 +189,10 @@
     <value>, tylko {0}</value>
     <comment>OnlyOnX0 description</comment>
   </data>
+  <data name="ComaAndOnX0" xml:space="preserve">
+    <value>, i {0}</value>
+    <comment>ComaAndOnX0 description - used when both day-of-month and day-of-week are specified</comment>
+  </data>
   <data name="ComaOnThe" xml:space="preserve">
     <value>, </value>
     <comment>OnThe description</comment>

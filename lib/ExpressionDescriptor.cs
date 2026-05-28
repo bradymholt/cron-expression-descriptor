@@ -418,7 +418,11 @@ namespace CronExpressionDescriptor
               }
               else
               {
-                format = GetString("ComaOnlyOnX0");
+                // If DOM is also specified (non-wildcard, non-?), use "and on" to reflect
+                // that both conditions are evaluated (cron OR logic when both DOM and DOW are set).
+                // Otherwise use "only on" when only DOW is constraining the schedule.
+                bool isDomSpecified = m_expressionParts[3] != "*" && m_expressionParts[3] != "?";
+                format = isDomSpecified ? GetString("ComaAndOnX0") : GetString("ComaOnlyOnX0");
               }
 
               return format;

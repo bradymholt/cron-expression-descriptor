@@ -233,9 +233,9 @@
     <comment>OnlyOnX0 description</comment>
   </data>
 	<data name="ComaAndOnX0" xml:space="preserve">
-	  <value>, a v {0}</value>
-	  <comment>ComaAndOnX0 description - used when both day-of-month and day-of-week are specified</comment>
-	</data>
+    <value>, a v {0}</value>
+    <comment>ComaAndOnX0 description - used when both day-of-month and day-of-week are specified</comment>
+  </data>
 	<data name="ComaEveryX0Months" xml:space="preserve">
     <value>, každých {0} měsíců</value>
     <comment>EveryX0Months description</comment>

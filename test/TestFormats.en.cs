@@ -450,7 +450,16 @@ namespace CronExpressionDescriptor.Test
     public void TestDayOfWeekWithDayOfMonth()
     {
       // GitHub Issue #46: https://github.com/bradymholt/cron-expression-descriptor/issues/46
-      Assert.Equal("At 12:00 AM, on day 1, 2, and 3 of the month, only on Wednesday and Friday", GetDescription("0 0 0 1,2,3 * WED,FRI"));
+      Assert.Equal("At 12:00 AM, on day 1, 2, and 3 of the month, or on Wednesday and Friday", GetDescription("0 0 0 1,2,3 * WED,FRI"));
+    }
+
+    [Fact]
+    public void TestDayOfMonthAndDayOfWeekBothSpecified()
+    {
+      // GitHub Issue: when both DOM and DOW are non-wildcard, standard cron uses OR logic:
+      // the job fires when EITHER the day-of-month OR day-of-week condition is met.
+      Assert.Equal("Every minute, on day 2 of the month, or on Monday", GetDescription("* * 2 * 1"));
+      Assert.Equal("Every minute, every 2 days, or on Monday", GetDescription("* * */2 * 1"));
     }
 
     [Fact]

@@ -232,6 +232,10 @@
     <value>, {0}에만</value>
     <comment>OnlyOnX0 설명</comment>
   </data>
+  <data name="ComaOrOnX0" xml:space="preserve">
+    <value>, 또는 {0}</value>
+    <comment>ComaOrOnX0 description - used when both day-of-month and day-of-week are specified (OR logic)</comment>
+  </data>
   <data name="ComaEveryX0Months" xml:space="preserve">
     <value>, {0}개월마다</value>
     <comment>EveryX0Months 설명</comment>

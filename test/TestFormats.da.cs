@@ -418,7 +418,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestDayOfWeekWithDayOfMonth()
         {
-            Assert.Equal("Kl 00:00, på dag 1, 2, og 3 i måneden, kun onsdag og fredag", GetDescription("0 0 0 1,2,3 * WED,FRI"));
+            Assert.Equal("Kl 00:00, på dag 1, 2, og 3 i måneden, eller onsdag og fredag", GetDescription("0 0 0 1,2,3 * WED,FRI"));
         }
         
         [Fact]

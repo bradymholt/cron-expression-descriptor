@@ -521,7 +521,11 @@ namespace CronExpressionDescriptor
               }
               else
               {
-                format = GetString("ComaOnlyOnX0");
+                // Standard cron fires when either DOM or DOW condition is met (OR logic).
+                // If DOM is also specified (non-wildcard, non-?), use "or on" to reflect
+                // the OR logic. Otherwise use "only on" when only DOW is constraining the schedule.
+                bool isDomSpecified = m_expressionParts[3] != "*" && m_expressionParts[3] != "?";
+                format = isDomSpecified ? GetString("ComaOrOnX0") : GetString("ComaOnlyOnX0");
               }
 
               return format;

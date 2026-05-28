@@ -232,6 +232,10 @@
     <value>, 仅在 {0}</value>
     <comment>OnlyOnX0 description</comment>
   </data>
+  <data name="ComaOrOnX0" xml:space="preserve">
+    <value>, 或{0}</value>
+    <comment>ComaOrOnX0 description - used when both day-of-month and day-of-week are specified (OR logic)</comment>
+  </data>
   <data name="ComaEveryX0Months" xml:space="preserve">
     <value>, 每 {0} 月</value>
     <comment>EveryX0Months description</comment>

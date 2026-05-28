@@ -344,6 +344,12 @@ namespace CronExpressionDescriptor.Test
     }
 
     [Fact]
+    public void TestDayOfWeekModifierFourth()
+    {
+      Assert.Equal("At 12:36 PM, on the fourth Tuesday of the month", GetDescription("36 12 * * 2#4"));
+    }
+
+    [Fact]
     public void TestHourRangeWithEveryPortion()
     {
       Assert.Equal("At 25 minutes past the hour, every 8 hours, between 07:00 AM and 07:59 PM", GetDescription("0 25 7-19/8 ? * *"));

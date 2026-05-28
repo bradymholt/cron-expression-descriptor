@@ -489,7 +489,8 @@ namespace CronExpressionDescriptor
               string format = null;
               if (s.Contains("#"))
               {
-                string dayOfWeekOfMonthNumber = s.Substring(s.IndexOf("#") + 1);
+                Match hashMatch = Regex.Match(s, @"#(\d+)");
+                string dayOfWeekOfMonthNumber = hashMatch.Success ? hashMatch.Groups[1].Value : string.Empty;
                 string dayOfWeekOfMonthDescription = null;
                 switch (dayOfWeekOfMonthNumber)
                 {

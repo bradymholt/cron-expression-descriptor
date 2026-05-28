@@ -225,6 +225,17 @@ namespace CronExpressionDescriptor
         }
 
         /// <summary>
+        ///   Looks up a localized string similar to , every {0} weeks.
+        /// </summary>
+        internal static string ComaEveryX0Weeks
+        {
+            get
+            {
+                return ResourceManager.GetString("ComaEveryX0Weeks", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to , every {0} months.
         /// </summary>
         internal static string ComaEveryX0Months

@@ -192,6 +192,10 @@
     <value>, every {0} days of the week</value>
     <comment>EveryX0DaysOfTheWeek description</comment>
   </data>
+  <data name="ComaEveryX0Weeks" xml:space="preserve">
+    <value>, every {0} weeks</value>
+    <comment>ComaEveryX0Weeks description</comment>
+  </data>
   <data name="ComaX0ThroughX1" xml:space="preserve">
     <value>, {0} through {1}</value>
     <comment>X0ThroughX1 description</comment>

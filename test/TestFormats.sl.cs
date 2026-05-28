@@ -427,7 +427,7 @@ namespace CronExpressionDescriptor.Test
         public void TestDayOfWeekWithDayOfMonth()
         {
             // GitHub Issue #46: https://github.com/bradymholt/cron-expression-descriptor/issues/46
-            Assert.Equal("Ob 00:00, 1, 2, in 3. dan v mesecu, in v sreda in petek", GetDescription("0 0 0 1,2,3 * WED,FRI"));
+            Assert.Equal("Ob 00:00, 1, 2, in 3. dan v mesecu, ali v sreda in petek", GetDescription("0 0 0 1,2,3 * WED,FRI"));
         }
 
         [Fact]

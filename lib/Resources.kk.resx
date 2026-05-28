@@ -232,9 +232,9 @@
     <value>, тек {0}</value>
     <comment>OnlyOnX0 description</comment>
   </data>
-  <data name="ComaAndOnX0" xml:space="preserve">
-    <value>, және {0}</value>
-    <comment>ComaAndOnX0 description - used when both day-of-month and day-of-week are specified</comment>
+  <data name="ComaOrOnX0" xml:space="preserve">
+    <value>, немесе {0}</value>
+    <comment>ComaOrOnX0 description - used when both day-of-month and day-of-week are specified (OR logic)</comment>
   </data>
   <data name="ComaEveryX0Months" xml:space="preserve">
     <value>, әрбір {0} ай сайын</value>

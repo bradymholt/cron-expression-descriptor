@@ -26,7 +26,7 @@ namespace CronExpressionDescriptor.Test
 
                     var res = ExpressionDescriptor.GetDescription(expression, options);
 
-                    Assert.Equal("At 11:59 PM, on day 31 of the month, and on Friday, only in December", res);
+                    Assert.Equal("At 11:59 PM, on day 31 of the month, or on Friday, only in December", res);
                 }
             }
             finally

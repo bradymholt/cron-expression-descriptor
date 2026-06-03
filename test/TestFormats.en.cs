@@ -454,6 +454,24 @@ namespace CronExpressionDescriptor.Test
     }
 
     [Fact]
+    public void TestDayOfWeekNthListSameDay()
+    {
+      Assert.Equal("At 09:00 AM, on the second and fourth Monday of the month", GetDescription("0 0 9 * * 1#2,1#4"));
+    }
+
+    [Fact]
+    public void TestDayOfWeekNthListSameDayMultiple()
+    {
+      Assert.Equal("At 07:45 AM, on the first, third, and fifth Friday of the month", GetDescription("0 45 7 * * 5#1,5#3,5#5"));
+    }
+
+    [Fact]
+    public void TestDayOfWeekNthListDifferentDays()
+    {
+      Assert.Equal("At 09:00 AM, on the second Monday and fourth Wednesday of the month", GetDescription("0 0 9 * * 1#2,3#4"));
+    }
+
+    [Fact]
     public void TestDayOfMonthAndDayOfWeekBothSpecified()
     {
       // GitHub Issue: when both DOM and DOW are non-wildcard, standard cron uses OR logic:

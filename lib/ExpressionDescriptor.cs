@@ -379,6 +379,49 @@ namespace CronExpressionDescriptor
 
           return m_culture.DateTimeFormat.GetDayName(((DayOfWeek)Convert.ToInt32(exp)));
         });
+        Func<string, string> getDayOfWeekOfMonthDescription = (s =>
+        {
+          switch (s)
+          {
+            case "1":
+              return GetString("First");
+            case "2":
+              return GetString("Second");
+            case "3":
+              return GetString("Third");
+            case "4":
+              return GetString("Fourth");
+            case "5":
+              return GetString("Fifth");
+            default:
+              return null;
+          }
+        });
+        Func<string[], string> getListDescription = (s =>
+        {
+          var descriptionContent = new StringBuilder();
+
+          for (int i = 0; i < s.Length; i++)
+          {
+            if (i > 0 && s.Length > 2)
+            {
+              descriptionContent.Append(",");
+              if (i < s.Length - 1)
+              {
+                descriptionContent.Append(" ");
+              }
+            }
+
+            if (i > 0 && s.Length > 1 && (i == s.Length - 1 || s.Length == 2))
+            {
+              descriptionContent.Append(GetString("SpaceAndSpace"));
+            }
+
+            descriptionContent.Append(s[i]);
+          }
+
+          return descriptionContent.ToString();
+        });
 
         // Handle DOW interval expressions with a specific (non-wildcard) day specification.
         // When the base part is not a wildcard and the step is >= the range size, the expression
@@ -478,6 +521,46 @@ namespace CronExpressionDescriptor
           }
         }
 
+        if (dowExpression.Contains(",") && dowExpression.Contains("#"))
+        {
+          string[] dowSegments = dowExpression.Split(',');
+          var hashParts = dowSegments
+              .Select(s => Regex.Match(s, @"^([^,]+)#(\d+)$"))
+              .ToArray();
+
+          if (hashParts.All(m => m.Success))
+          {
+            var parsedParts = hashParts
+                .Select(m => new
+                {
+                  Day = m.Groups[1].Value,
+                  Ordinal = getDayOfWeekOfMonthDescription(m.Groups[2].Value)
+                })
+                .Where(p => !string.IsNullOrEmpty(p.Ordinal))
+                .ToArray();
+
+            if (parsedParts.Length == dowSegments.Length)
+            {
+              string dayOfWeekDescription;
+              if (parsedParts.Select(p => p.Day).Distinct().Count() == 1)
+              {
+                string ordinalList = getListDescription(parsedParts.Select(p => p.Ordinal).ToArray());
+                dayOfWeekDescription = string.Format("{0} {1}", ordinalList, getSingleDayName(parsedParts[0].Day));
+              }
+              else
+              {
+                dayOfWeekDescription = getListDescription(parsedParts
+                    .Select(p => string.Format("{0} {1}", p.Ordinal, getSingleDayName(p.Day)))
+                    .ToArray());
+              }
+
+              string monthSuffix = GetString("SpaceX0OfTheMonth").Replace(" {0}", string.Empty).Replace("{0}", string.Empty);
+              string onTheFormat = string.Concat(GetString("ComaOnThe"), "{0}", monthSuffix);
+              return string.Format(onTheFormat, dayOfWeekDescription);
+            }
+          }
+        }
+
         description = GetSegmentDescription(
             dowExpression,
             GetString("ComaEveryDay"),
@@ -491,29 +574,8 @@ namespace CronExpressionDescriptor
               {
                 Match hashMatch = Regex.Match(s, @"#(\d+)");
                 string dayOfWeekOfMonthNumber = hashMatch.Success ? hashMatch.Groups[1].Value : string.Empty;
-                string dayOfWeekOfMonthDescription = null;
-                switch (dayOfWeekOfMonthNumber)
-                {
-                  case "1":
-                    dayOfWeekOfMonthDescription = GetString("First");
-                    break;
-                  case "2":
-                    dayOfWeekOfMonthDescription = GetString("Second");
-                    break;
-                  case "3":
-                    dayOfWeekOfMonthDescription = GetString("Third");
-                    break;
-                  case "4":
-                    dayOfWeekOfMonthDescription = GetString("Fourth");
-                    break;
-                  case "5":
-                    dayOfWeekOfMonthDescription = GetString("Fifth");
-                    break;
-                }
-
-
-                format = string.Concat(GetString("ComaOnThe"),
-                            dayOfWeekOfMonthDescription, GetString("SpaceX0OfTheMonth"));
+                string dayOfWeekOfMonthDescription = getDayOfWeekOfMonthDescription(dayOfWeekOfMonthNumber);
+                format = string.Concat(GetString("ComaOnThe"), dayOfWeekOfMonthDescription, GetString("SpaceX0OfTheMonth"));
               }
               else if (s.Contains("L"))
               {

@@ -170,6 +170,7 @@ This library has been ported to several other languages.
  - PHP - [https://github.com/panlatent/cron-expression-descriptor](https://github.com/panlatent/cron-expression-descriptor)
  - Go - [https://github.com/lnquy/cron](https://github.com/lnquy/cron)
  - Rust - [https://github.com/cflockhart/cron-descriptor-rust](https://github.com/cflockhart/cron-descriptor-rust)
+ - Swift - [https://github.com/gooop/cron-descriptor-swift](https://github.com/gooop/cron-descriptor-swift)
 
 ## Frequently Asked Questions
 

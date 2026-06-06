@@ -107,6 +107,7 @@ The following language translations are available:
  * Ukrainian - uk ([Taras](https://github.com/tbudurovych))
  * Greek - el ([hardra1n](https://github.com/Hardra1n))
  * Kazakh - kk ([hardra1n](https://github.com/Hardra1n))
+ * Kyrgyz - ky ([Only Human](https://github.com/kgz77))
 
 To use one of these translations, pass in the `Locale` option to `GetDescription`.  For example, to get the description of `0-10 11 * * *` in German:
 

@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 
 namespace CronExpressionDescriptor.Test
 {
@@ -367,6 +367,12 @@ namespace CronExpressionDescriptor.Test
         public void TestYearInternalWithStepValue()
         {
             Assert.Equal("Um 07:05, alle 4 Jahre, 2016 bis 9999", GetDescription("0 5 7 ? * ? 2016/4"));
+        }
+
+        [Fact]
+        public void TestWeekInternalWithStepValue()
+        {
+            Assert.Equal("Jede Minute, alle 2 Wochen, nur am Freitag", GetDescription("* * * * 5/2"));
         }
     }
 }

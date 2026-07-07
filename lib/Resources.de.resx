@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -191,6 +191,9 @@
   <data name="ComaEveryX0DaysOfTheWeek" xml:space="preserve">
     <value>, alle {0} Tage der Woche</value>
     <comment>EveryX0DaysOfTheWeek description</comment>
+  </data>
+  <data name="ComaEveryX0Weeks" xml:space="preserve">
+    <value>, alle {0} Wochen</value>
   </data>
   <data name="ComaX0ThroughX1" xml:space="preserve">
     <value>, {0} bis {1}</value>

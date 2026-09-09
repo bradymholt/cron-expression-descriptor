@@ -10,6 +10,9 @@ on:
         - major
         - minor
         - patch    
+permissions:
+  contents: write
+  issues: write
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -46,12 +49,29 @@ jobs:
           git commit -am "New release: ${{ steps.bump-version.outputs.new-version}}"
           git tag ${{ steps.bump-version.outputs.new-version}}          
           git push gh-origin HEAD:master --tags
+      - name: Build release notes from changelog
+        id: release-notes
+        run: |
+          VERSION=${{ steps.bump-version.outputs.new-version }}
+          NOTES_FILE=/tmp/release-notes.md
+          awk -v v="$VERSION" '
+            $0 ~ "^## "v" - " { in_section=1; next }
+            in_section && $0 ~ "^## " { exit }
+            in_section { print }
+          ' CHANGELOG.md > "$NOTES_FILE"
+
+          if ! grep -q '[^[:space:]]' "$NOTES_FILE"; then
+            echo "No changelog release notes found for $VERSION" >&2
+            exit 1
+          fi
+
+          echo "notes-file=$NOTES_FILE" >> "$GITHUB_OUTPUT"
       - name: Create a Release
         id: create-release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.bump-version.outputs.new-version}}
-          generate_release_notes: true          
+          body_path: ${{ steps.release-notes.outputs.notes-file }}
       - name: Comment on PRs with link to release they are included in
         uses: actions/github-script@v6
         env:

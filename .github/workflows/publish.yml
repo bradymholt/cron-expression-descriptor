@@ -10,6 +10,12 @@ on:
         - major
         - minor
         - patch    
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: master-push
+  cancel-in-progress: false
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -17,6 +23,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: refs/heads/master
+          fetch-depth: 0
       - name: Setup git repo
         run: |
           git config user.name $GITHUB_ACTOR
@@ -43,9 +50,19 @@ jobs:
           ./scripts/release.js ${{ steps.bump-version.outputs.new-version}}
       - name: Commit changes and release tag
         run: |
-          git commit -am "New release: ${{ steps.bump-version.outputs.new-version}}"
-          git tag ${{ steps.bump-version.outputs.new-version}}          
-          git push gh-origin HEAD:master --tags
+          VERSION=${{ steps.bump-version.outputs.new-version }}
+          git commit -am "New release: $VERSION"
+          # The demo site workflow pushes to master on its own, so master can move under us mid-run.
+          for attempt in 1 2 3; do
+            git fetch gh-origin master
+            if git rebase gh-origin/master && git push gh-origin HEAD:master; then
+              break
+            fi
+            git rebase --abort || true
+            if [ "$attempt" = 3 ]; then exit 1; fi
+          done
+          git tag $VERSION
+          git push gh-origin refs/tags/$VERSION
       - name: Create a Release
         id: create-release
         uses: softprops/action-gh-release@v1

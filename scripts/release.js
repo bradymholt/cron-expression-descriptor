@@ -37,7 +37,7 @@ exec(`dotnet test -c release test/Test.csproj`);
 // Build, pack, and push to NuGet
 exec(`dotnet build -c release ${libCsproj}`);
 exec(`dotnet pack -c release --no-build ${libCsproj}`);
-exec(`dotnet nuget push ${releasePath}/${nupkgFile} -k ${NUGET_API_KEY}`);
+exec(`dotnet nuget push ${releasePath}/${nupkgFile} -k ${NUGET_API_KEY} --skip-duplicate`);
 
 echo(`DONE!  Released version ${newVersionNumber} to NuGet.`);
 return;

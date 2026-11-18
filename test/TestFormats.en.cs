@@ -472,6 +472,26 @@ namespace CronExpressionDescriptor.Test
     }
 
     [Fact]
+    public void TestDayOfWeekListMixingPlainAndNthDays()
+    {
+      Assert.Equal("At 09:00 AM, only on Monday and on the second Wednesday of the month", GetDescription("0 9 * * 1,3#2"));
+      Assert.Equal("At 09:00 AM, Monday through Tuesday and on the second Wednesday of the month", GetDescription("0 9 * * 3#2,1-2"));
+      Assert.Equal("At 09:00 AM, only on Friday and on the second and fourth Monday of the month", GetDescription("0 9 * * 1#2,5,1#4"));
+    }
+
+    [Fact]
+    public void TestDayOfWeekListMixingPlainAndLastDays()
+    {
+      Assert.Equal("At 09:00 AM, only on Monday and on the last Friday of the month", GetDescription("0 9 * * 5L,1"));
+    }
+
+    [Fact]
+    public void TestDayOfWeekListMixingNthAndLastDays()
+    {
+      Assert.Equal("At 09:00 AM, on the second Monday of the month and on the last Friday of the month", GetDescription("0 9 * * 1#2,5L"));
+    }
+
+    [Fact]
     public void TestDayOfMonthAndDayOfWeekBothSpecified()
     {
       // GitHub Issue: when both DOM and DOW are non-wildcard, standard cron uses OR logic:

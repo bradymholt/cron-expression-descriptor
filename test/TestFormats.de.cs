@@ -374,5 +374,11 @@ namespace CronExpressionDescriptor.Test
         {
             Assert.Equal("Jede Minute, alle 2 Wochen, nur am Freitag", GetDescription("* * * * 5/2"));
         }
+
+        [Fact]
+        public void TestDayOfWeekListMixingPlainAndNthDays()
+        {
+            Assert.Equal("Jede Minute, nur am Montag und am zweiten Mittwoch des Monats", GetDescription("* * * * 1,3#2"));
+        }
     }
 }

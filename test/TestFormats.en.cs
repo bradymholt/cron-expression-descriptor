@@ -203,6 +203,18 @@ namespace CronExpressionDescriptor.Test
     }
 
     [Fact]
+    public void TestLowercaseSpecialCharacters()
+    {
+      Assert.Equal("Every minute, on the last Thursday of the month", GetDescription("* * * * 4l"));
+      Assert.Equal("Every minute, on the last day of the month", GetDescription("* * l * *"));
+      Assert.Equal("Every minute, on the last weekday of the month", GetDescription("* * lw * *"));
+      Assert.Equal("Every minute, on the last weekday of the month", GetDescription("* * wl * *"));
+      Assert.Equal("Every minute, on the weekday nearest day 15 of the month", GetDescription("* * 15w * *"));
+      Assert.Equal("At 12:00 AM, 5 days before the last day of the month", GetDescription("0 0 0 l-5 * ?"));
+      Assert.Equal("At 12:00 AM, on the last Friday of the month", GetDescription("0 0 0 ? * fril"));
+    }
+
+    [Fact]
     public void TestFirstWeekdayOfTheMonth()
     {
       Assert.Equal("Every minute, on the first weekday of the month", GetDescription("* * 1W * *"));

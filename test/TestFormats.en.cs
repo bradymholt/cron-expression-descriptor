@@ -179,6 +179,23 @@ namespace CronExpressionDescriptor.Test
     }
 
     [Fact]
+    public void TestLastDayOfTheWeekAlone()
+    {
+      Assert.Equal("Every minute, only on Saturday", GetDescription("* * * * L"));
+      Assert.Equal("At 12:00 AM, only on Saturday", GetDescription("0 0 0 ? * L"));
+      Assert.Equal("At 12:00 AM, only on Saturday, only in January", GetDescription("0 0 0 ? 1 L"));
+    }
+
+    [Fact]
+    public void TestLastDayOfTheWeekAloneWithSundayStartOne()
+    {
+      Options options = new Options();
+      options.DayOfWeekStartIndexZero = false;
+
+      Assert.Equal("Every second, only on Saturday", GetDescription("* * * ? * L", options));
+    }
+
+    [Fact]
     public void TestLastDayOfTheMonth()
     {
       Assert.Equal("Every 5 minutes, on the last day of the month, only in January", GetDescription("*/5 * L JAN *"));

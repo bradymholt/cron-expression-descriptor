@@ -181,6 +181,12 @@ namespace CronExpressionDescriptor
         return t.Value.Replace(dowDigits, dowDigitsAdjusted);
       });
 
+      // Convert DOW 'L' to '6' (Saturday)
+      if (expressionParts[5] == "L")
+      {
+        expressionParts[5] = "6";
+      }
+
       // Convert DOM '?' to '*'
       if (expressionParts[3] == "?")
       {

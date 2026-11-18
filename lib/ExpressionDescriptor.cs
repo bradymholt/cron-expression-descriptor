@@ -549,7 +549,15 @@ namespace CronExpressionDescriptor
                 })
                 .ToArray();
 
-            return string.Join(GetString("SpaceAndSpace"), groupDescriptions);
+            // Three or more groups read as a comma list ("A, B, and C"). Two groups get the comma too when
+            // either group already has its own "and" (e.g. "only on Monday and Tuesday, and on the second
+            // Wednesday of the month"), so the "and"s don't stack up.
+            if (groups.Length == 2 && groups.Any(g => g.Length > 1))
+            {
+              return string.Concat(groupDescriptions[0], ",", GetString("SpaceAndSpace"), groupDescriptions[1]);
+            }
+
+            return getListDescription(groupDescriptions);
           }
         }
 

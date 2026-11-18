@@ -110,6 +110,12 @@ namespace CronExpressionDescriptor
     /// <param name="expressionParts">A 7 part string array, one part for each component of the cron expression</param>
     private void NormalizeExpression(string[] expressionParts)
     {
+      // Special characters are case-insensitive (Quartz upper-cases the whole expression), so "5l" is "5L"
+      for (int i = 0; i < expressionParts.Length; i++)
+      {
+        expressionParts[i] = expressionParts[i].ToUpperInvariant();
+      }
+
       // Convert ? to * only for DOM and DOW
       expressionParts[3] = expressionParts[3].Replace("?", "*");
       expressionParts[5] = expressionParts[5].Replace("?", "*");

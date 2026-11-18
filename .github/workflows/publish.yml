@@ -13,6 +13,7 @@ on:
 permissions:
   contents: write
   issues: write
+  id-token: write
 concurrency:
   group: master-push
   cancel-in-progress: false
@@ -43,9 +44,14 @@ jobs:
         run: |
           export NEW_VERSION=$(./scripts/get-new-release-version.js ${{ github.event.inputs.version_type }})
           echo "new-version=$NEW_VERSION" >> "$GITHUB_OUTPUT"          
+      - name: NuGet login
+        uses: NuGet/login@v1
+        id: nuget-login
+        with:
+          user: ${{ secrets.NUGET_USER }}
       - name: Publish to NuGet
         env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}          
+          NUGET_API_KEY: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
         run: 
           ./scripts/release.js ${{ steps.bump-version.outputs.new-version}}
       - name: Commit changes and release tag

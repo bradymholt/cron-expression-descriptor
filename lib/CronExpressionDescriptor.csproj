@@ -18,6 +18,8 @@
     <PackageTags>cron, schedule, quartz, quartz.net, cron expression</PackageTags>
     <PackageIcon>icon.png</PackageIcon>
     <NeutralLanguage>en</NeutralLanguage>
+    <EnablePackageValidation>true</EnablePackageValidation>
+    <PackageValidationBaselineVersion>2.52.0</PackageValidationBaselineVersion>
   </PropertyGroup>  
   <ItemGroup>
     <None Include="../icon.png" Pack="true" Visible="false" PackagePath="" />

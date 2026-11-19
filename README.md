@@ -146,7 +146,7 @@ If you don't want to include all supported languages in your project build outpu
 
 ## .NET Platform Support
 
-The NuGet package contains a library targeting .NET Standard 2.0 and .NET 6.0.  This allows the library to be consumed by applications running on the following .NET platforms:
+The NuGet package contains a library targeting .NET Standard 2.0 and .NET 10.0.  This allows the library to be consumed by applications running on the following .NET platforms:
 
 - .NET Core >= 2.0 and .NET >= 5.0
 - .NET Framework >= 4.6.1

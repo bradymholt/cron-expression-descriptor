@@ -32,7 +32,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestTimeOfDayCertainDaysOfWeek()
         {
-            Assert.Equal("Às 11:00 PM, de segunda-feira a sexta-feira", GetDescription("0 23 ? * MON-FRI"));
+            Assert.Equal("Às 23:00, de segunda-feira a sexta-feira", GetDescription("0 23 ? * MON-FRI"));
         }
         [Fact]
         public void TestEverySecond()
@@ -59,18 +59,18 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestWeekdaysAtTime()
         {
-            Assert.Equal("Às 11:30 AM, de segunda-feira a sexta-feira", GetDescription("30 11 * * 1-5"));
+            Assert.Equal("Às 11:30, de segunda-feira a sexta-feira", GetDescription("30 11 * * 1-5"));
         }
 
         [Fact]
         public void TestDailyAtTime()
         {
-            Assert.Equal("Às 11:30 AM", GetDescription("30 11 * * *"));
+            Assert.Equal("Às 11:30", GetDescription("30 11 * * *"));
         }
         [Fact]
         public void TestMinuteSpan()
         {
-            Assert.Equal("A cada minuto entre 11:00 AM e 11:10 AM", GetDescription("0-10 11 * * *"));
+            Assert.Equal("A cada minuto entre 11:00 e 11:10", GetDescription("0-10 11 * * *"));
         }
 
         [Fact]
@@ -87,58 +87,58 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestTwoTimesEachAfternoon()
         {
-            Assert.Equal("Às 02:30 PM e 04:30 PM", GetDescription("30 14,16 * * *"));
+            Assert.Equal("Às 14:30 e 16:30", GetDescription("30 14,16 * * *"));
         }
 
         [Fact]
         public void TestThreeTimesDaily()
         {
-            Assert.Equal("Às 06:30 AM, 02:30 PM e 04:30 PM", GetDescription("30 6,14,16 * * *"));
+            Assert.Equal("Às 06:30, 14:30 e 16:30", GetDescription("30 6,14,16 * * *"));
         }
 
         [Fact]
         public void TestOnceAWeek()
         {
-            Assert.Equal("Às 09:46 AM, somente de segunda-feira", GetDescription("46 9 * * 1"));
+            Assert.Equal("Às 09:46, somente de segunda-feira", GetDescription("46 9 * * 1"));
         }
         [Fact]
         public void TestDayOfMonth()
         {
-            Assert.Equal("Às 12:23 PM, no dia 15 do mês", GetDescription("23 12 15 * *"));
+            Assert.Equal("Às 12:23, no dia 15 do mês", GetDescription("23 12 15 * *"));
         }
 
         [Fact]
         public void TestMonthName()
         {
-            Assert.Equal("Às 12:23 PM, somente em janeiro", GetDescription("23 12 * JAN *"));
+            Assert.Equal("Às 12:23, somente em janeiro", GetDescription("23 12 * JAN *"));
         }
 
         [Fact]
         public void TestDayOfMonthWithQuestionMark()
         {
-            Assert.Equal("Às 12:23 PM, somente em janeiro", GetDescription("23 12 ? JAN *"));
+            Assert.Equal("Às 12:23, somente em janeiro", GetDescription("23 12 ? JAN *"));
         }
         [Fact]
         public void TestMonthNameRange2()
         {
-            Assert.Equal("Às 12:23 PM, de janeiro a fevereiro", GetDescription("23 12 * JAN-FEB *"));
+            Assert.Equal("Às 12:23, de janeiro a fevereiro", GetDescription("23 12 * JAN-FEB *"));
         }
 
         [Fact]
         public void TestMonthNameRange3()
         {
-            Assert.Equal("Às 12:23 PM, de janeiro a março", GetDescription("23 12 * JAN-MAR *"));
+            Assert.Equal("Às 12:23, de janeiro a março", GetDescription("23 12 * JAN-MAR *"));
         }
 
         [Fact]
         public void TestDayOfWeekName()
         {
-            Assert.Equal("Às 12:23 PM, somente de domingo", GetDescription("23 12 * * SUN"));
+            Assert.Equal("Às 12:23, somente de domingo", GetDescription("23 12 * * SUN"));
         }
         [Fact]
         public void TestDayOfWeekRange()
         {
-            Assert.Equal("A cada 5 minutos, entre 03:00 PM e 03:59 PM, de segunda-feira a sexta-feira", GetDescription("*/5 15 * * MON-FRI"));
+            Assert.Equal("A cada 5 minutos, entre 15:00 e 15:59, de segunda-feira a sexta-feira", GetDescription("*/5 15 * * MON-FRI"));
         }
 
         [Fact]
@@ -195,7 +195,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestTimeOfDayWithSeconds()
         {
-            Assert.Equal("Às 02:02:30 PM", GetDescription("30 02 14 * * *"));
+            Assert.Equal("Às 14:02:30", GetDescription("30 02 14 * * *"));
         }
 
         [Fact]
@@ -206,7 +206,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestSecondMinutesHoursIntervals()
         {
-            Assert.Equal("No segundo 5 até 10 de cada minuto, do minuto 30 até 35 de cada hora, entre 10:00 AM e 12:59 PM", GetDescription("5-10 30-35 10-12 * * *"));
+            Assert.Equal("No segundo 5 até 10 de cada minuto, do minuto 30 até 35 de cada hora, entre 10:00 e 12:59", GetDescription("5-10 30-35 10-12 * * *"));
         }
 
         [Fact]
@@ -218,7 +218,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestMinutesPastTheHourRange()
         {
-            Assert.Equal("Aos 30 minutos da hora, entre 10:00 AM e 01:59 PM, somente de quarta-feira e sexta-feira", GetDescription("0 30 10-13 ? * WED,FRI"));
+            Assert.Equal("Aos 30 minutos da hora, entre 10:00 e 13:59, somente de quarta-feira e sexta-feira", GetDescription("0 30 10-13 ? * WED,FRI"));
         }
         [Fact]
         public void TestSecondsPastTheMinuteInterval()
@@ -228,12 +228,12 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestBetweenWithInterval()
         {
-            Assert.Equal("A cada 3 minutos, do minuto 2 até 59 de cada hora, Às 01:00 AM, 09:00 AM, e 10:00 PM, entre os dias 11 e 26 do mês, de janeiro a junho", GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
+            Assert.Equal("A cada 3 minutos, do minuto 2 até 59 de cada hora, Às 01:00, 09:00, e 22:00, entre os dias 11 e 26 do mês, de janeiro a junho", GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
         }
         [Fact]
         public void TestRecurringFirstOfMonth()
         {
-            Assert.Equal("Às 06:00 AM", GetDescription("0 0 6 1/1 * ?"));
+            Assert.Equal("Às 06:00", GetDescription("0 0 6 1/1 * ?"));
         }
         [Fact]
         public void TestMinutesPastTheHour()
@@ -261,13 +261,13 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestYearRange2()
         {
-            Assert.Equal("Às 12:23 PM, de janeiro a fevereiro, de 2013 a 2014", GetDescription("23 12 * JAN-FEB * 2013-2014"));
+            Assert.Equal("Às 12:23, de janeiro a fevereiro, de 2013 a 2014", GetDescription("23 12 * JAN-FEB * 2013-2014"));
         }
 
         [Fact]
         public void TestYearRange3()
         {
-            Assert.Equal("Às 12:23 PM, de janeiro a março, de 2013 a 2015", GetDescription("23 12 * JAN-MAR * 2013-2015"));
+            Assert.Equal("Às 12:23, de janeiro a março, de 2013 a 2015", GetDescription("23 12 * JAN-MAR * 2013-2015"));
         }
 
         [Fact]
@@ -286,31 +286,31 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestHoursInternalWithStepValue()
         {
-            Assert.Equal("A cada segundo, a cada 8 horas, iniciando Às 05:00 AM", GetDescription("* * 5/8 * * ?"));
+            Assert.Equal("A cada segundo, a cada 8 horas, iniciando Às 05:00", GetDescription("* * 5/8 * * ?"));
         }
 
         [Fact]
         public void TestDayOfMonthInternalWithStepValue()
         {
-            Assert.Equal("Às 07:05 AM, a cada 3 dias, iniciando no dia 2 do mês", GetDescription("0 5 7 2/3 * ? *"));
+            Assert.Equal("Às 07:05, a cada 3 dias, iniciando no dia 2 do mês", GetDescription("0 5 7 2/3 * ? *"));
         }
 
         [Fact]
         public void TestMonthInternalWithStepValue()
         {
-            Assert.Equal("Às 07:05 AM, a cada 2 meses, de março a dezembro", GetDescription("0 5 7 ? 3/2 ? *"));
+            Assert.Equal("Às 07:05, a cada 2 meses, de março a dezembro", GetDescription("0 5 7 ? 3/2 ? *"));
         }
 
         [Fact]
         public void TestDayOfWeekInternalWithStepValue()
         {
-            Assert.Equal("Às 07:05 AM, a cada 3 dias de semana, de terça-feira a sábado", GetDescription("0 5 7 ? * 2/3 *"));
+            Assert.Equal("Às 07:05, a cada 3 dias de semana, de terça-feira a sábado", GetDescription("0 5 7 ? * 2/3 *"));
         }
 
         [Fact]
         public void TestYearInternalWithStepValue()
         {
-            Assert.Equal("Às 07:05 AM, a cada 4 anos, de 2016 a 9999", GetDescription("0 5 7 ? * ? 2016/4"));
+            Assert.Equal("Às 07:05, a cada 4 anos, de 2016 a 9999", GetDescription("0 5 7 ? * ? 2016/4"));
         }
     }
 }

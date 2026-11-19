@@ -1,7 +1,5 @@
 @page "/"
 @using System.Globalization;
-@using Microsoft.AspNetCore.WebUtilities;
-@inject NavigationManager UriHelper
 @inject NavigationManager NavigationManager
 
 <form>
@@ -45,6 +43,9 @@
 
 @code {
     private string locale = "en-US";
+    [SupplyParameterFromQuery(Name = "expression")]
+    public string QueryExpression { get; set; }
+
     private string expression = "0 23 ? * MON-FRI";
     private string description = "";
     private void UpdateDescription()
@@ -61,13 +62,12 @@
 
     private void LocaleChanged(ChangeEventArgs e)
     {
-        NavigationManager.NavigateTo($"?locale={e.Value.ToString()}&expression={this.expression}", true);
+        NavigationManager.NavigateTo($"?locale={Uri.EscapeDataString(e.Value.ToString())}&expression={Uri.EscapeDataString(this.expression)}", true);
     }
 
     protected override void OnInitialized()
     {
-        var uri = UriHelper.ToAbsoluteUri(UriHelper.Uri);
-        this.expression = QueryHelpers.ParseQuery(uri.Query).TryGetValue("expression", out var type) ? type.First() : this.expression;
+        this.expression = QueryExpression ?? this.expression;
 
         this.locale = CultureInfo.DefaultThreadCurrentCulture?.ToString() ?? this.locale;
 

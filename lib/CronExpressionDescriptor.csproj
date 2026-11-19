@@ -10,18 +10,22 @@
     <PackageReleaseNotes>See https://github.com/bradymholt/cron-expression-descriptor/releases for release notes</PackageReleaseNotes>
     <Authors>Brady Holt</Authors>
     <Description>A library that converts cron expressions into human readable descriptions.  Supports multiple languages including: English, Brazillian, Spanish, Norwgian, Turkish, Dutch, Chinese Simplified, Russian, French, German, Ukrainian, Persian (Farsi), Polish, Romanian, Italian, Swedish, Slovenian, Danish, Finnish, Greek, Kazakh, Kyrgyz and Japanese.</Description>
-    <PackageLicense>https://github.com/bradymholt/cron-expression-descriptor/blob/master/LICENSE</PackageLicense>
     <PackageProjectUrl>https://github.com/bradymholt/cron-expression-descriptor</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>Copyright (c) 2017 Brady Holt</Copyright>
     <RepositoryUrl>https://github.com/bradymholt/cron-expression-descriptor</RepositoryUrl>
     <PackageTags>cron, schedule, quartz, quartz.net, cron expression</PackageTags>
     <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
     <NeutralLanguage>en</NeutralLanguage>
     <EnablePackageValidation>true</EnablePackageValidation>
-    <PackageValidationBaselineVersion>2.52.0</PackageValidationBaselineVersion>
+    <PackageValidationBaselineVersion>2.53.0</PackageValidationBaselineVersion>
   </PropertyGroup>  
   <ItemGroup>
     <None Include="../icon.png" Pack="true" Visible="false" PackagePath="" />
+    <None Include="../README.md" Pack="true" Visible="false" PackagePath="" />
   </ItemGroup>
 </Project>

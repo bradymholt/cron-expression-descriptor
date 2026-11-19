@@ -1,9 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.1;netstandard2.0;net6.0</TargetFrameworks>    
-  </PropertyGroup>
-  <PropertyGroup Condition="$(TargetFramework.Contains('netstandard1'))">
-    <DefineConstants>NET_STANDARD_1X</DefineConstants>
+    <TargetFrameworks>netstandard2.0;net10.0</TargetFrameworks>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>False</SignAssembly>
@@ -21,6 +18,8 @@
     <PackageTags>cron, schedule, quartz, quartz.net, cron expression</PackageTags>
     <PackageIcon>icon.png</PackageIcon>
     <NeutralLanguage>en</NeutralLanguage>
+    <EnablePackageValidation>true</EnablePackageValidation>
+    <PackageValidationBaselineVersion>2.52.0</PackageValidationBaselineVersion>
   </PropertyGroup>  
   <ItemGroup>
     <None Include="../icon.png" Pack="true" Visible="false" PackagePath="" />

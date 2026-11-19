@@ -501,6 +501,41 @@ namespace CronExpressionDescriptor.Test
     }
 
     [Fact]
+    public void TestDayOfWeekListMixingPlainAndNthDays()
+    {
+      Assert.Equal("At 09:00 AM, only on Monday and on the second Wednesday of the month", GetDescription("0 9 * * 1,3#2"));
+      Assert.Equal("At 09:00 AM, Monday through Tuesday and on the second Wednesday of the month", GetDescription("0 9 * * 3#2,1-2"));
+      Assert.Equal("At 09:00 AM, only on Friday, and on the second and fourth Monday of the month", GetDescription("0 9 * * 1#2,5,1#4"));
+      Assert.Equal("At 09:00 AM, only on Monday and Tuesday, and on the second Wednesday of the month", GetDescription("0 9 * * 1,2,3#2"));
+    }
+
+    [Fact]
+    public void TestDayOfWeekListMixingPlainNthAndLastDays()
+    {
+      Assert.Equal("At 09:00 AM, only on Monday, on the second Wednesday of the month, and on the last Friday of the month", GetDescription("0 9 * * 1,3#2,5L"));
+      Assert.Equal("At 09:00 AM, only on Monday and Tuesday, on the second Wednesday of the month, and on the last Friday of the month", GetDescription("0 9 * * 1,2,3#2,5L"));
+    }
+
+    [Fact]
+    public void TestDayOfWeekListMixingPlainAndNthDaysWithDayOfMonth()
+    {
+      // Day-of-month and day-of-week are OR'ed, so the plain group reads "or on".
+      Assert.Equal("At 09:00 AM, on day 15 of the month, or on Monday and on the second Wednesday of the month", GetDescription("0 9 15 * 1,3#2"));
+    }
+
+    [Fact]
+    public void TestDayOfWeekListMixingPlainAndLastDays()
+    {
+      Assert.Equal("At 09:00 AM, only on Monday and on the last Friday of the month", GetDescription("0 9 * * 5L,1"));
+    }
+
+    [Fact]
+    public void TestDayOfWeekListMixingNthAndLastDays()
+    {
+      Assert.Equal("At 09:00 AM, on the second Monday of the month and on the last Friday of the month", GetDescription("0 9 * * 1#2,5L"));
+    }
+
+    [Fact]
     public void TestDayOfMonthAndDayOfWeekBothSpecified()
     {
       // GitHub Issue: when both DOM and DOW are non-wildcard, standard cron uses OR logic:

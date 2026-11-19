@@ -355,9 +355,14 @@ namespace CronExpressionDescriptor
     /// <returns>The DAYOFWEEK description</returns>
     protected string GetDayOfWeekDescription()
     {
+      return GetDayOfWeekDescription(m_expressionParts[5]);
+    }
+
+    private string GetDayOfWeekDescription(string dowExpression)
+    {
       string description = null;
 
-      if (m_expressionParts[5] == "*")
+      if (dowExpression == "*")
       {
         // DOW is specified as * so we will not generate a description and defer to DOM part.
         // Otherwise, we could get a contradiction like "on day 1 of the month, every day"
@@ -367,8 +372,6 @@ namespace CronExpressionDescriptor
       }
       else
       {
-        string dowExpression = m_expressionParts[5];
-
         Func<string, string> getSingleDayName = (s =>
         {
           string exp = s.Contains("#")
@@ -518,6 +521,43 @@ namespace CronExpressionDescriptor
 
               return intervalDesc + dayDesc;
             }
+          }
+        }
+
+        // A list that mixes plain days with # or L days (e.g. 1,3#2 or 5L,1) is described one group at a
+        // time: plain days first, then # days, then L days. Otherwise the # or L wording ends up applied
+        // to every day in the list (e.g. "on the second Monday and Wednesday of the month" for 1,3#2).
+        if (dowExpression.Contains(",") && !dowExpression.Contains("/"))
+        {
+          string[] dowSegments = dowExpression.Split(',');
+          var groups = new[]
+          {
+            dowSegments.Where(s => !s.Contains("#") && !s.Contains("L")).ToArray(),
+            dowSegments.Where(s => s.Contains("#")).ToArray(),
+            dowSegments.Where(s => !s.Contains("#") && s.Contains("L")).ToArray()
+          }
+          .Where(g => g.Length > 0)
+          .ToArray();
+
+          if (groups.Length > 1)
+          {
+            string[] groupDescriptions = groups
+                .Select((g, i) =>
+                {
+                  string groupDescription = GetDayOfWeekDescription(string.Join(",", g));
+                  return i == 0 ? groupDescription : groupDescription.TrimStart(',').TrimStart();
+                })
+                .ToArray();
+
+            // Three or more groups read as a comma list ("A, B, and C"). Two groups get the comma too when
+            // either group already has its own "and" (e.g. "only on Monday and Tuesday, and on the second
+            // Wednesday of the month"), so the "and"s don't stack up.
+            if (groups.Length == 2 && groups.Any(g => g.Length > 1))
+            {
+              return string.Concat(groupDescriptions[0], ",", GetString("SpaceAndSpace"), groupDescriptions[1]);
+            }
+
+            return getListDescription(groupDescriptions);
           }
         }
 

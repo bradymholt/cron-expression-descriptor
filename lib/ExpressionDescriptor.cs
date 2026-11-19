@@ -45,14 +45,7 @@ namespace CronExpressionDescriptor
       }
       else
       {
-        // If options.Locale not specified...
-#if NET_STANDARD_1X
-        // .NET Standard 1.* will use English as default
-        m_culture = new CultureInfo("en-US");
-#else
-        // .NET Standard >= 2.0 will use CurrentUICulture as default
         m_culture = System.Threading.Thread.CurrentThread.CurrentUICulture;
-#endif
       }
 
       if (m_options.Use24HourTimeFormat != null)

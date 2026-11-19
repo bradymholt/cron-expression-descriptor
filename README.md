@@ -146,12 +146,14 @@ If you don't want to include all supported languages in your project build outpu
 
 ## .NET Platform Support
 
-Beginning with version 2.0.0, the NuGet package will contain a library targeting .NET Standard 1.1 and 2.0.  This allows the library to be consumed by applications running on the following .NET platforms:
+The NuGet package contains a library targeting .NET Standard 2.0 and .NET 6.0.  This allows the library to be consumed by applications running on the following .NET platforms:
 
-- .NET Core >= 1.0
-- .NET Framework >= 4.5
-- Mono >= 4.6
+- .NET Core >= 2.0 and .NET >= 5.0
+- .NET Framework >= 4.6.1
+- Mono >= 5.4
 - ([More](https://github.com/dotnet/standard/blob/master/docs/versions.md))
+
+If your application is running on a platform that only supports .NET Standard 1.x (e.g. .NET Core 1.x or .NET Framework 4.5), you can use version `2.52.0`, the last version targeting .NET Standard 1.1.
 
 If your application is targeting an earlier version of .NET Framework (i.e. 4.0 or 3.5), you can use version `1.21.2` as it has support back to .NET Framework 3.5.  To install this version, run `Install-Package CronExpressionDescriptor -Version 1.21.2`.
 

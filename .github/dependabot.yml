@@ -11,6 +11,11 @@ updates:
       - /demo
     schedule:
       interval: monthly
+    ignore:
+      - dependency-name: "Microsoft.AspNetCore.*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "Microsoft.Extensions.*"
+        update-types: ["version-update:semver-major"]
     groups:
       nuget:
         patterns:

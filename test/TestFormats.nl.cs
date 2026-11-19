@@ -35,7 +35,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestTimeOfDayCertainDaysOfWeek()
         {
-            Assert.Equal("Om 11:00 PM, maandag t/m vrijdag", GetDescription("0 23 ? * MON-FRI"));
+            Assert.Equal("Om 23:00, maandag t/m vrijdag", GetDescription("0 23 ? * MON-FRI"));
         }
 
         [Fact]
@@ -66,19 +66,19 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestWeekdaysAtTime()
         {
-            Assert.Equal("Om 11:30 AM, maandag t/m vrijdag", GetDescription("30 11 * * 1-5"));
+            Assert.Equal("Om 11:30, maandag t/m vrijdag", GetDescription("30 11 * * 1-5"));
         }
 
         [Fact]
         public void TestDailyAtTime()
         {
-            Assert.Equal("Om 11:30 AM", GetDescription("30 11 * * *"));
+            Assert.Equal("Om 11:30", GetDescription("30 11 * * *"));
         }
 
         [Fact]
         public void TestMinuteSpan()
         {
-            Assert.Equal("Elke minuut tussen 11:00 AM en 11:10 AM", GetDescription("0-10 11 * * *"));
+            Assert.Equal("Elke minuut tussen 11:00 en 11:10", GetDescription("0-10 11 * * *"));
         }
 
         [Fact]
@@ -96,61 +96,61 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestTwoTimesEachAfternoon()
         {
-            Assert.Equal("Om 02:30 PM en 04:30 PM", GetDescription("30 14,16 * * *"));
+            Assert.Equal("Om 14:30 en 16:30", GetDescription("30 14,16 * * *"));
         }
 
         [Fact]
         public void TestThreeTimesDaily()
         {
-            Assert.Equal("Om 06:30 AM, 02:30 PM en 04:30 PM", GetDescription("30 6,14,16 * * *"));
+            Assert.Equal("Om 06:30, 14:30 en 16:30", GetDescription("30 6,14,16 * * *"));
         }
 
         [Fact]
         public void TestOnceAWeek()
         {
-            Assert.Equal("Om 09:46 AM, alleen op maandag", GetDescription("46 9 * * 1"));
+            Assert.Equal("Om 09:46, alleen op maandag", GetDescription("46 9 * * 1"));
         }
 
         [Fact]
         public void TestDayOfMonth()
         {
-            Assert.Equal("Om 12:23 PM, op dag 15 van de maand", GetDescription("23 12 15 * *"));
+            Assert.Equal("Om 12:23, op dag 15 van de maand", GetDescription("23 12 15 * *"));
         }
 
         [Fact]
         public void TestMonthName()
         {
-            Assert.Equal("Om 12:23 PM, alleen in januari", GetDescription("23 12 * JAN *"));
+            Assert.Equal("Om 12:23, alleen in januari", GetDescription("23 12 * JAN *"));
         }
 
         [Fact]
         public void TestDayOfMonthWithQuestionMark()
         {
-            Assert.Equal("Om 12:23 PM, alleen in januari", GetDescription("23 12 ? JAN *"));
+            Assert.Equal("Om 12:23, alleen in januari", GetDescription("23 12 ? JAN *"));
         }
 
         [Fact]
         public void TestMonthNameRange2()
         {
-            Assert.Equal("Om 12:23 PM, januari t/m februari", GetDescription("23 12 * JAN-FEB *"));
+            Assert.Equal("Om 12:23, januari t/m februari", GetDescription("23 12 * JAN-FEB *"));
         }
 
         [Fact]
         public void TestMonthNameRange3()
         {
-            Assert.Equal("Om 12:23 PM, januari t/m maart", GetDescription("23 12 * JAN-MAR *"));
+            Assert.Equal("Om 12:23, januari t/m maart", GetDescription("23 12 * JAN-MAR *"));
         }
 
         [Fact]
         public void TestDayOfWeekName()
         {
-            Assert.Equal("Om 12:23 PM, alleen op zondag", GetDescription("23 12 * * SUN"));
+            Assert.Equal("Om 12:23, alleen op zondag", GetDescription("23 12 * * SUN"));
         }
 
         [Fact]
         public void TestDayOfWeekRange()
         {
-            Assert.Equal("Elke 5 minuten, tussen 03:00 PM en 03:59 PM, maandag t/m vrijdag", GetDescription("*/5 15 * * MON-FRI"));
+            Assert.Equal("Elke 5 minuten, tussen 15:00 en 15:59, maandag t/m vrijdag", GetDescription("*/5 15 * * MON-FRI"));
         }
 
         [Fact]
@@ -210,7 +210,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestTimeOfDayWithSeconds()
         {
-            Assert.Equal("Om 02:02:30 PM", GetDescription("30 02 14 * * *"));
+            Assert.Equal("Om 14:02:30", GetDescription("30 02 14 * * *"));
         }
 
         [Fact]
@@ -222,7 +222,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestSecondMinutesHoursIntervals()
         {
-            Assert.Equal("Seconden 5 t/m 10 na de minuut, minuut 30 t/m 35 na het uur, tussen 10:00 AM en 12:59 PM", GetDescription("5-10 30-35 10-12 * * *"));
+            Assert.Equal("Seconden 5 t/m 10 na de minuut, minuut 30 t/m 35 na het uur, tussen 10:00 en 12:59", GetDescription("5-10 30-35 10-12 * * *"));
         }
 
         [Fact]
@@ -234,7 +234,7 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestMinutesPastTheHourRange()
         {
-            Assert.Equal("Om 30 minuten na het uur, tussen 10:00 AM en 01:59 PM, alleen op woensdag en vrijdag", GetDescription("0 30 10-13 ? * WED,FRI"));
+            Assert.Equal("Om 30 minuten na het uur, tussen 10:00 en 13:59, alleen op woensdag en vrijdag", GetDescription("0 30 10-13 ? * WED,FRI"));
         }
 
         [Fact]
@@ -246,13 +246,13 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestBetweenWithInterval()
         {
-            Assert.Equal("Elke 3 minuten, minuut 2 t/m 59 na het uur, om 01:00 AM, 09:00 AM, en 10:00 PM, tussen dag 11 en 26 van de maand, januari t/m juni", GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
+            Assert.Equal("Elke 3 minuten, minuut 2 t/m 59 na het uur, om 01:00, 09:00, en 22:00, tussen dag 11 en 26 van de maand, januari t/m juni", GetDescription("2-59/3 1,9,22 11-26 1-6 ?"));
         }
 
         [Fact]
         public void TestRecurringFirstOfMonth()
         {
-            Assert.Equal("Om 06:00 AM", GetDescription("0 0 6 1/1 * ?"));
+            Assert.Equal("Om 06:00", GetDescription("0 0 6 1/1 * ?"));
         }
 
         [Fact]
@@ -282,25 +282,25 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestYearRange2()
         {
-            Assert.Equal("Om 12:23 PM, januari t/m februari, 2013 t/m 2014", GetDescription("23 12 * JAN-FEB * 2013-2014"));
+            Assert.Equal("Om 12:23, januari t/m februari, 2013 t/m 2014", GetDescription("23 12 * JAN-FEB * 2013-2014"));
         }
 
         [Fact]
         public void TestYearRange3()
         {
-            Assert.Equal("Om 12:23 PM, januari t/m maart, 2013 t/m 2015", GetDescription("23 12 * JAN-MAR * 2013-2015"));
+            Assert.Equal("Om 12:23, januari t/m maart, 2013 t/m 2015", GetDescription("23 12 * JAN-MAR * 2013-2015"));
         }
 
         [Fact]
         public void TestHourRange()
         {
-            Assert.Equal("Elke 30 minuten, tussen 08:00 AM en 09:59 AM, op dag 5 en 20 van de maand", GetDescription("0 0/30 8-9 5,20 * ?"));
+            Assert.Equal("Elke 30 minuten, tussen 08:00 en 09:59, op dag 5 en 20 van de maand", GetDescription("0 0/30 8-9 5,20 * ?"));
         }
 
         [Fact]
         public void TestDayOfWeekModifier()
         {
-            Assert.Equal("Om 12:23 PM, op de tweede zondag van de maand", GetDescription("23 12 * * SUN#2"));
+            Assert.Equal("Om 12:23, op de tweede zondag van de maand", GetDescription("23 12 * * SUN#2"));
         }
 
         [Fact]
@@ -309,19 +309,19 @@ namespace CronExpressionDescriptor.Test
             Options options = new Options();
             options.DayOfWeekStartIndexZero = false;
 
-            Assert.Equal("Om 12:23 PM, op de tweede zondag van de maand", GetDescription("23 12 * * 1#2", options));
+            Assert.Equal("Om 12:23, op de tweede zondag van de maand", GetDescription("23 12 * * 1#2", options));
         }
 
         [Fact]
         public void TestHourRangeWithEveryPortion()
         {
-            Assert.Equal("Om 25 minuten na het uur, elke 13 uur, tussen 07:00 AM en 07:59 PM", GetDescription("0 25 7-19/13 ? * *"));
+            Assert.Equal("Om 25 minuten na het uur, elke 13 uur, tussen 07:00 en 19:59", GetDescription("0 25 7-19/13 ? * *"));
         }
 
         [Fact]
         public void TestHourRangeWithTrailingZeroWithEveryPortion()
         {
-            Assert.Equal("Om 25 minuten na het uur, elke 13 uur, tussen 07:00 AM en 08:59 PM", GetDescription("0 25 7-20/13 ? * *"));
+            Assert.Equal("Om 25 minuten na het uur, elke 13 uur, tussen 07:00 en 20:59", GetDescription("0 25 7-20/13 ? * *"));
         }
 
         [Fact]
@@ -340,31 +340,31 @@ namespace CronExpressionDescriptor.Test
         [Fact]
         public void TestHoursInternalWithStepValue()
         {
-            Assert.Equal("Elke seconde, elke 8 uur, beginnend om 05:00 AM", GetDescription("* * 5/8 * * ?"));
+            Assert.Equal("Elke seconde, elke 8 uur, beginnend om 05:00", GetDescription("* * 5/8 * * ?"));
         }
 
         [Fact]
         public void TestDayOfMonthInternalWithStepValue()
         {
-            Assert.Equal("Om 07:05 AM, elke 3 dagen, beginnend op dag 2 van de maand", GetDescription("0 5 7 2/3 * ? *"));
+            Assert.Equal("Om 07:05, elke 3 dagen, beginnend op dag 2 van de maand", GetDescription("0 5 7 2/3 * ? *"));
         }
 
         [Fact]
         public void TestMonthInternalWithStepValue()
         {
-            Assert.Equal("Om 07:05 AM, elke 2 maanden, maart t/m december", GetDescription("0 5 7 ? 3/2 ? *"));
+            Assert.Equal("Om 07:05, elke 2 maanden, maart t/m december", GetDescription("0 5 7 ? 3/2 ? *"));
         }
 
         [Fact]
         public void TestDayOfWeekInternalWithStepValue()
         {
-            Assert.Equal("Om 07:05 AM, elke 3 dagen van de week, dinsdag t/m zaterdag", GetDescription("0 5 7 ? * 2/3 *"));
+            Assert.Equal("Om 07:05, elke 3 dagen van de week, dinsdag t/m zaterdag", GetDescription("0 5 7 ? * 2/3 *"));
         }
 
         [Fact]
         public void TestYearInternalWithStepValue()
         {
-            Assert.Equal("Om 07:05 AM, elke 4 jaren, 2016 t/m 9999", GetDescription("0 5 7 ? * ? 2016/4"));
+            Assert.Equal("Om 07:05, elke 4 jaren, 2016 t/m 9999", GetDescription("0 5 7 ? * ? 2016/4"));
         }
     }
 }

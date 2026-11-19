@@ -1,0 +1,17 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+  - package-ecosystem: nuget
+    directories:
+      - /lib
+      - /test
+      - /demo
+    schedule:
+      interval: monthly
+    groups:
+      nuget:
+        patterns:
+          - "*"

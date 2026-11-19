@@ -22,7 +22,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: refs/heads/master
           fetch-depth: 0
@@ -33,11 +33,11 @@ jobs:
           git remote add gh-origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
-          node-version: 16    
+          node-version: 24    
       - name: Setup .NET Core
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with:
           global-json-file: global.json
       - name: Bump release version
@@ -72,12 +72,12 @@ jobs:
           git push gh-origin refs/tags/$VERSION
       - name: Create a Release
         id: create-release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.bump-version.outputs.new-version}}
           generate_release_notes: true          
       - name: Comment on PRs with link to release they are included in
-        uses: actions/github-script@v6
+        uses: actions/github-script@v9
         env:
           RELEASE_ID: ${{ steps.create-release.outputs.id }}
         with:

@@ -159,6 +159,14 @@ namespace CronExpressionDescriptor
         expressionParts[6] = expressionParts[6].Replace("1/", "*/");
       }
 
+      if (m_options.DayOfWeekStartIndexZero)
+      {
+        // "0-7" (or "SUN-7") runs from Sunday to Sunday again, i.e. every day. Read it as 0-6 so that
+        // 7 => 0 below does not turn it into "0-0" (Sunday through Sunday).
+        expressionParts[5] = string.Join(",", expressionParts[5].Split(',').Select(item =>
+          Regex.Replace(item, @"^(0|SUN)-7(?=/|$)", "$1-6", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant)));
+      }
+
       // Adjust DOW based on dayOfWeekStartIndexZero option
       expressionParts[5] = Regex.Replace(expressionParts[5], @"(^\d)|([^#/\s]\d)", t =>
       { //skip anything preceding by # or /
@@ -203,6 +211,10 @@ namespace CronExpressionDescriptor
         expressionParts[5] = Regex.Replace(expressionParts[5], currentDayOfWeekDescription, i.ToString(), RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
 
       }
+
+      // Sunday can be written as both 0 and 7 ("0,7"), which are the same item once normalized; list it once
+      string[] dowItems = expressionParts[5].Split(',');
+      expressionParts[5] = string.Join(",", dowItems.Where((item, index) => item == "" || Array.IndexOf(dowItems, item) == index));
 
       // Convert JAN-DEC format to 1-12 format
       for (int i = 1; i <= 12; i++)

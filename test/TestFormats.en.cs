@@ -666,6 +666,20 @@ namespace CronExpressionDescriptor.Test
     }
 
     [Fact]
+    public void SundayAsBoth0And7InList()
+    {
+      Assert.Equal("At 09:00 AM, only on Sunday", GetDescription("0 9 * * 0,7"));
+      Assert.Equal("At 09:00 AM, only on Sunday and Monday", GetDescription("0 9 * * 0,1,7"));
+    }
+
+    [Fact]
+    public void SundayThroughSundayRange()
+    {
+      Assert.Equal("At 09:00 AM, Sunday through Saturday", GetDescription("0 9 * * 0-7"));
+      Assert.Equal("At 09:00 AM, Sunday through Saturday", GetDescription("0 9 * * SUN-7"));
+    }
+
+    [Fact]
     public void Tuesday9()
     {
       Assert.Equal("At 09:00 AM, only on Tuesday", GetDescription("0 9 * * 2"));

@@ -31,6 +31,8 @@ jobs:
         with:
           ref: refs/heads/master
           fetch-depth: 0
+          # A deploy key on the master ruleset's bypass list, so the release push isn't rejected
+          ssh-key: ${{ secrets.RELEASE_DEPLOY_KEY }}
       # Checked against the master tip, after taking the concurrency lock, so a run queued behind
       # a release that already shipped its changes doesn't release again with nothing new.
       - name: Check for releasable changes since last release
@@ -57,10 +59,7 @@ jobs:
         if: steps.changes.outputs.release == 'true'
         run: |
           git config user.name $GITHUB_ACTOR
-          git config user.email gh-actions-${GITHUB_ACTOR}@github.com         
-          git remote add gh-origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git 
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git config user.email gh-actions-${GITHUB_ACTOR}@github.com
       - uses: actions/setup-node@v7
         if: steps.changes.outputs.release == 'true'
         with:
@@ -95,15 +94,15 @@ jobs:
           git commit -am "New release: $VERSION"
           # The demo site workflow pushes to master on its own, so master can move under us mid-run.
           for attempt in 1 2 3; do
-            git fetch gh-origin master
-            if git rebase gh-origin/master && git push gh-origin HEAD:master; then
+            git fetch origin master
+            if git rebase origin/master && git push origin HEAD:master; then
               break
             fi
             git rebase --abort || true
             if [ "$attempt" = 3 ]; then exit 1; fi
           done
           git tag $VERSION
-          git push gh-origin refs/tags/$VERSION
+          git push origin refs/tags/$VERSION
       - name: Create a Release
         if: steps.changes.outputs.release == 'true'
         id: create-release

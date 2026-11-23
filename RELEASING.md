@@ -5,6 +5,8 @@
 
 The `.github/workflows/publish.yml` GitHub Actions Workflow handles publishing new releases.  It packs and pushes the package to NuGet, commits the version bump to `master`, tags the release, and creates the GitHub Release.
 
+It runs automatically after the Build workflow succeeds on `master`, so merging a PR publishes a minor release.  The release is skipped when nothing has changed since the last release tag outside of docs, the demo, tests, scripts, and repo config (dependency bumps that only touch tests or the demo don't release).  For a major or patch release, run the workflow manually and pick the version type.
+
 The release tag is only created after the version bump commit lands on `master`, so a tag always points at a commit reachable from `master`.  The workflow shares a `master-push` concurrency group with the demo site workflow so the two cannot push to `master` at the same time, and it rebases and retries if `master` moves anyway.
 
 If a run fails after the NuGet push, just re-run it: `master` still holds the old version so the same version number is recomputed, and `dotnet nuget push --skip-duplicate` makes re-publishing a no-op.

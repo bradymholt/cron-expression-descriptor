@@ -9,7 +9,11 @@ on:
         options:
         - major
         - minor
-        - patch    
+        - patch
+  workflow_run:
+    workflows: [Build]
+    types: [completed]
+    branches: [master]
 permissions:
   contents: write
   issues: write
@@ -21,12 +25,36 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     steps:
       - uses: actions/checkout@v7
         with:
           ref: refs/heads/master
           fetch-depth: 0
+      # Checked against the master tip, after taking the concurrency lock, so a run queued behind
+      # a release that already shipped its changes doesn't release again with nothing new.
+      - name: Check for releasable changes since last release
+        id: changes
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            echo "release=true" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          last_tag=$(git describe --tags --abbrev=0)
+          changed=$(git diff --name-only "$last_tag" HEAD -- . \
+            ':!*.md' ':!docs/**' ':!demo/**' ':!test/**' ':!scripts/**' \
+            ':!.github/**' ':!.vscode/**' ':!.claude/**' \
+            ':!.editorconfig' ':!.gitignore' ':!LICENSE')
+          if [ -n "$changed" ]; then
+            echo "Releasable changes since $last_tag:"
+            echo "$changed"
+            echo "release=true" >> $GITHUB_OUTPUT
+          else
+            echo "No releasable changes since $last_tag; skipping release."
+            echo "release=false" >> $GITHUB_OUTPUT
+          fi
       - name: Setup git repo
+        if: steps.changes.outputs.release == 'true'
         run: |
           git config user.name $GITHUB_ACTOR
           git config user.email gh-actions-${GITHUB_ACTOR}@github.com         
@@ -34,28 +62,34 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/setup-node@v7
+        if: steps.changes.outputs.release == 'true'
         with:
           node-version: 24    
       - name: Setup .NET Core
+        if: steps.changes.outputs.release == 'true'
         uses: actions/setup-dotnet@v6
         with:
           global-json-file: global.json
       - name: Bump release version
+        if: steps.changes.outputs.release == 'true'
         id: bump-version
         run: |
-          export NEW_VERSION=$(./scripts/get-new-release-version.js ${{ github.event.inputs.version_type }})
+          export NEW_VERSION=$(./scripts/get-new-release-version.js ${{ github.event.inputs.version_type || 'minor' }})
           echo "new-version=$NEW_VERSION" >> "$GITHUB_OUTPUT"          
       - name: NuGet login
+        if: steps.changes.outputs.release == 'true'
         uses: NuGet/login@v1
         id: nuget-login
         with:
           user: brady.holt
       - name: Publish to NuGet
+        if: steps.changes.outputs.release == 'true'
         env:
           NUGET_API_KEY: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
         run: 
           ./scripts/release.js ${{ steps.bump-version.outputs.new-version}}
       - name: Commit changes and release tag
+        if: steps.changes.outputs.release == 'true'
         run: |
           VERSION=${{ steps.bump-version.outputs.new-version }}
           git commit -am "New release: $VERSION"
@@ -71,12 +105,14 @@ jobs:
           git tag $VERSION
           git push gh-origin refs/tags/$VERSION
       - name: Create a Release
+        if: steps.changes.outputs.release == 'true'
         id: create-release
         uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.bump-version.outputs.new-version}}
           generate_release_notes: true          
       - name: Comment on PRs with link to release they are included in
+        if: steps.changes.outputs.release == 'true'
         uses: actions/github-script@v9
         env:
           RELEASE_ID: ${{ steps.create-release.outputs.id }}

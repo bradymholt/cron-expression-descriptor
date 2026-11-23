@@ -4,6 +4,9 @@ on:
   push:
     branches:
     - master
+    # Its own pushes only touch docs/, and deploy-key pushes trigger workflows
+    paths-ignore:
+    - 'docs/**'
 concurrency:
   group: master-push
   cancel-in-progress: false
@@ -12,6 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v7
+      with:
+        # A deploy key on the master ruleset's bypass list, so the push isn't rejected
+        ssh-key: ${{ secrets.RELEASE_DEPLOY_KEY }}
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v6
       with:
@@ -26,8 +32,5 @@ jobs:
       run: |
         git config user.name $GITHUB_ACTOR
         git config user.email gh-actions-${GITHUB_ACTOR}@github.com
-        git remote add gh-origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
         git add -A && git commit -m "Build demo site" 
-        git push gh-origin HEAD:master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        git push origin HEAD:master

@@ -12,6 +12,9 @@ namespace CronExpressionDescriptor
   public class ExpressionDescriptor
   {
     private readonly char[] m_specialCharacters = new char[] { '/', '-', ',', '*' };
+    private static readonly Regex WeekdayNumberRegex = new Regex(@"(\d{1,2}W)|(W\d{1,2})");
+    private static readonly Regex LastDayOffsetRegex = new Regex(@"L-(\d{1,2})");
+
     private readonly string[] m_24hourTimeFormatTwoLetterISOLanguageName = new string[] { "ru", "uk", "de", "it", "tr", "pl", "ro", "da", "sl", "fi", "sv", "nb", "hu", "cs", "ky", "fr", "nl", "pt" };
 
     private string m_expression;
@@ -108,8 +111,7 @@ namespace CronExpressionDescriptor
             description = GetYearDescription();
             break;
           default:
-            description = GetSecondsDescription();
-            break;
+            throw new ArgumentOutOfRangeException(nameof(type));
         }
       }
       catch (Exception ex)
@@ -308,7 +310,7 @@ namespace CronExpressionDescriptor
             {
               return s == "0" && secondsExpression == ""
                       ? string.Empty
-                      : (int.Parse(s) < 20)
+                      : (i < 20)
                           ? GetString("AtX0MinutesPastTheHour")
                           : GetString("AtX0MinutesPastTheHourGt20") ?? GetString("AtX0MinutesPastTheHour");
             }
@@ -601,10 +603,9 @@ namespace CronExpressionDescriptor
           description = GetString("CommaOnTheLastWeekdayOfTheMonth");
           break;
         default:
-          Regex weekDayNumberMatches = new Regex("(\\d{1,2}W)|(W\\d{1,2})");
-          if (weekDayNumberMatches.IsMatch(expression))
+          Match m = WeekdayNumberRegex.Match(expression);
+          if (m.Success)
           {
-            Match m = weekDayNumberMatches.Match(expression);
             int dayNumber = Int32.Parse(m.Value.Replace("W", ""));
 
             string dayString = dayNumber == 1 ? GetString("FirstWeekday") :
@@ -616,11 +617,10 @@ namespace CronExpressionDescriptor
           else
           {
             // Handle "last day offset" (i.e. L-5:  "5 days before the last day of the month")
-            Regex lastDayOffSetMatches = new Regex("L-(\\d{1,2})");
-            if (lastDayOffSetMatches.IsMatch(expression))
+            Match lastDayOffsetMatch = LastDayOffsetRegex.Match(expression);
+            if (lastDayOffsetMatch.Success)
             {
-              Match m = lastDayOffSetMatches.Match(expression);
-              string offSetDays = m.Groups[1].Value;
+              string offSetDays = lastDayOffsetMatch.Groups[1].Value;
               description = String.Format(GetString("CommaDaysBeforeTheLastDayOfTheMonth"), offSetDays);
               break;
             }
@@ -882,7 +882,6 @@ namespace CronExpressionDescriptor
       return Resources.ResourceManager.GetString(resourceName, m_culture);
     }
 
-    #region Static
     /// <summary>
     /// Generates a human readable string for the Cron Expression
     /// </summary>
@@ -904,10 +903,5 @@ namespace CronExpressionDescriptor
       ExpressionDescriptor descriptor = new ExpressionDescriptor(expression, options);
       return descriptor.GetDescription(DescriptionTypeEnum.FULL);
     }
-    #endregion
   }
-
-
-
-
 }

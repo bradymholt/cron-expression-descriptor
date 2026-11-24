@@ -44,8 +44,7 @@ namespace CronExpressionDescriptor
     /// <returns>A 7 part string array, one part for each component of the cron expression (seconds, minutes, etc.)</returns>
     public string[] Parse()
     {
-      // Initialize all elements of parsed array to empty strings
-      string[] parsed = new string[7].Select(el => "").ToArray();
+      string[] parsed = Enumerable.Repeat(string.Empty, 7).ToArray();
 
       if (string.IsNullOrEmpty(m_expression))
       {
@@ -116,47 +115,14 @@ namespace CronExpressionDescriptor
       expressionParts[3] = expressionParts[3].Replace("?", "*");
       expressionParts[5] = expressionParts[5].Replace("?", "*");
 
-      // Convert 0/, 1/ to */
-      if (expressionParts[0].StartsWith("0/"))
+      // Convert 0/, 1/ to */ (seconds, minutes and hours start at 0; the rest start at 1)
+      for (int i = 0; i < expressionParts.Length; i++)
       {
-        // Seconds
-        expressionParts[0] = expressionParts[0].Replace("0/", "*/");
-      }
-
-      if (expressionParts[1].StartsWith("0/"))
-      {
-        // Minutes
-        expressionParts[1] = expressionParts[1].Replace("0/", "*/");
-      }
-
-      if (expressionParts[2].StartsWith("0/"))
-      {
-        // Hours
-        expressionParts[2] = expressionParts[2].Replace("0/", "*/");
-      }
-
-      if (expressionParts[3].StartsWith("1/"))
-      {
-        // DOM
-        expressionParts[3] = expressionParts[3].Replace("1/", "*/");
-      }
-
-      if (expressionParts[4].StartsWith("1/"))
-      {
-        // Month
-        expressionParts[4] = expressionParts[4].Replace("1/", "*/");
-      }
-
-      if (expressionParts[5].StartsWith("1/"))
-      {
-        // DOW
-        expressionParts[5] = expressionParts[5].Replace("1/", "*/");
-      }
-
-      if (expressionParts[6].StartsWith("1/"))
-      {
-        // Years
-        expressionParts[6] = expressionParts[6].Replace("1/", "*/");
+        string startPrefix = i <= 2 ? "0/" : "1/";
+        if (expressionParts[i].StartsWith(startPrefix))
+        {
+          expressionParts[i] = "*/" + expressionParts[i].Substring(startPrefix.Length);
+        }
       }
 
       if (m_options.DayOfWeekStartIndexZero)
@@ -193,12 +159,6 @@ namespace CronExpressionDescriptor
 
       // Convert DOW 'L' to '6' (Saturday), also when it is one item of a list ("1,L")
       expressionParts[5] = string.Join(",", expressionParts[5].Split(',').Select(item => item == "L" ? "6" : item));
-
-      // Convert DOM '?' to '*'
-      if (expressionParts[3] == "?")
-      {
-        expressionParts[3] = "*";
-      }
 
       // Convert SUN-SAT format to 0-6 format
       for (int i = 0; i <= 6; i++)

@@ -10,7 +10,7 @@ namespace CronExpressionDescriptor.Test
 {
   public class TestResources
   {
-    // 24-hour locales leave the AM/PM markers out and fall back to the English ones.
+    // Many locales have no AM/PM markers of their own and fall back to the English ones.
     private static readonly string[] OptionalKeys = { "AMPeriod", "PMPeriod" };
 
     [Fact]

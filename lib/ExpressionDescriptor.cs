@@ -353,233 +353,214 @@ namespace CronExpressionDescriptor
 
     private string GetDayOfWeekDescription(string dowExpression)
     {
-      string description = null;
-
       if (dowExpression == "*")
       {
         // DOW is specified as * so we will not generate a description and defer to DOM part.
         // Otherwise, we could get a contradiction like "on day 1 of the month, every day"
         // or a dupe description like "every day, every day".
-        description = string.Empty;
+        return string.Empty;
+      }
 
+      return GetWeeklyIntervalDescription(dowExpression)
+          ?? GetMixedDayGroupsDescription(dowExpression)
+          ?? GetNthDayListDescription(dowExpression)
+          ?? GetSegmentDescription(
+              dowExpression,
+              GetString("ComaEveryDay"),
+              GetSingleDayName,
+              (s => string.Format(GetString("ComaEveryX0DaysOfTheWeek"), s)),
+              (s => GetString("ComaX0ThroughX1")),
+              GetDayOfWeekFormat,
+              (s => GetString("ComaX0ThroughX1")));
+    }
+
+    private string GetSingleDayName(string dayExpression)
+    {
+      string exp = dayExpression.Contains("#")
+                  ? dayExpression.Remove(dayExpression.IndexOf("#"))
+                  : dayExpression.Replace("L", string.Empty);
+
+      return m_culture.DateTimeFormat.GetDayName((DayOfWeek)Convert.ToInt32(exp));
+    }
+
+    private string GetOrdinalDescription(string ordinal)
+    {
+      switch (ordinal)
+      {
+        case "1": return GetString("First");
+        case "2": return GetString("Second");
+        case "3": return GetString("Third");
+        case "4": return GetString("Fourth");
+        case "5": return GetString("Fifth");
+        default: return null;
+      }
+    }
+
+    private string GetDayOfWeekFormat(string dowExpression)
+    {
+      if (dowExpression.Contains("#"))
+      {
+        Match hashMatch = Regex.Match(dowExpression, @"#(\d+)");
+        string ordinal = hashMatch.Success ? hashMatch.Groups[1].Value : string.Empty;
+        return string.Concat(GetString("ComaOnThe"), GetOrdinalDescription(ordinal), GetString("SpaceX0OfTheMonth"));
+      }
+
+      if (dowExpression.Contains("L"))
+      {
+        return GetString("ComaOnTheLastX0OfTheMonth");
+      }
+
+      // Standard cron fires when either DOM or DOW condition is met (OR logic).
+      // If DOM is also specified (non-wildcard, non-?), use "or on" to reflect
+      // the OR logic. Otherwise use "only on" when only DOW is constraining the schedule.
+      bool isDomSpecified = m_expressionParts[3] != "*" && m_expressionParts[3] != "?";
+      return isDomSpecified ? GetString("ComaOrOnX0") : GetString("ComaOnlyOnX0");
+    }
+
+    // A DOW step with a specific (non-wildcard) base describes a weekly recurrence (e.g. "every 2 weeks,
+    // only on Friday") rather than a within-week one (e.g. "every 2 days of the week, Monday through
+    // Friday") when the base is a list, or a range no larger than the step.
+    private string GetWeeklyIntervalDescription(string dowExpression)
+    {
+      if (!dowExpression.Contains("/"))
+      {
+        return null;
+      }
+
+      string[] slashParts = dowExpression.Split('/');
+      string basePart = slashParts[0];
+      string stepPart = slashParts[1];
+
+      if (basePart == "*")
+      {
+        return null;
+      }
+
+      string intervalDesc = string.Format(GetString("ComaEveryX0Weeks"), stepPart);
+
+      if (basePart.Contains(","))
+      {
+        string daysContent = GetListDescription(basePart.Split(',')
+            .Select(item => item.Contains("-")
+                ? GenerateBetweenSegmentDescription(item, s => GetString("ComaX0ThroughX1"), GetSingleDayName).TrimStart(',').TrimStart()
+                : GetSingleDayName(item))
+            .ToArray());
+
+        return intervalDesc + string.Format(GetString("ComaOnlyOnX0"), daysContent);
+      }
+
+      if (!basePart.Contains("-"))
+      {
+        return null;
+      }
+
+      string[] rangeParts = basePart.Split('-');
+      int rangeStart = int.Parse(rangeParts[0]);
+      int rangeEnd = int.Parse(rangeParts[1]);
+      if (int.Parse(stepPart) < rangeEnd - rangeStart + 1)
+      {
+        return null;
+      }
+
+      // A range ending on Saturday was produced by normalizing a single DOW value (e.g. FRI/2 -> 5-6/2),
+      // so it reads "only on <startDay>" rather than "<startDay> through Saturday".
+      string dayDesc = rangeEnd == 6
+          ? string.Format(GetString("ComaOnlyOnX0"), GetSingleDayName(rangeParts[0]))
+          : GenerateBetweenSegmentDescription(basePart, s => GetString("ComaX0ThroughX1"), GetSingleDayName);
+
+      return intervalDesc + dayDesc;
+    }
+
+    // A list that mixes plain days with # or L days (e.g. 1,3#2 or 5L,1) is described one group at a
+    // time: plain days first, then # days, then L days. Otherwise the # or L wording ends up applied
+    // to every day in the list (e.g. "on the second Monday and Wednesday of the month" for 1,3#2).
+    private string GetMixedDayGroupsDescription(string dowExpression)
+    {
+      if (!dowExpression.Contains(",") || dowExpression.Contains("/"))
+      {
+        return null;
+      }
+
+      string[] dowSegments = dowExpression.Split(',');
+      var groups = new[]
+      {
+        dowSegments.Where(s => !s.Contains("#") && !s.Contains("L")).ToArray(),
+        dowSegments.Where(s => s.Contains("#")).ToArray(),
+        dowSegments.Where(s => !s.Contains("#") && s.Contains("L")).ToArray()
+      }
+      .Where(g => g.Length > 0)
+      .ToArray();
+
+      if (groups.Length < 2)
+      {
+        return null;
+      }
+
+      string[] groupDescriptions = groups
+          .Select((g, i) =>
+          {
+            string groupDescription = GetDayOfWeekDescription(string.Join(",", g));
+            return i == 0 ? groupDescription : groupDescription.TrimStart(',').TrimStart();
+          })
+          .ToArray();
+
+      // Three or more groups read as a comma list ("A, B, and C"). Two groups get the comma too when
+      // either group already has its own "and" (e.g. "only on Monday and Tuesday, and on the second
+      // Wednesday of the month"), so the "and"s don't stack up.
+      if (groups.Length == 2 && groups.Any(g => g.Length > 1))
+      {
+        return string.Concat(groupDescriptions[0], ",", GetString("SpaceAndSpace"), groupDescriptions[1]);
+      }
+
+      return GetListDescription(groupDescriptions);
+    }
+
+    private string GetNthDayListDescription(string dowExpression)
+    {
+      if (!dowExpression.Contains(",") || !dowExpression.Contains("#"))
+      {
+        return null;
+      }
+
+      string[] dowSegments = dowExpression.Split(',');
+      var hashParts = dowSegments
+          .Select(s => Regex.Match(s, @"^([^,]+)#(\d+)$"))
+          .ToArray();
+
+      if (!hashParts.All(m => m.Success))
+      {
+        return null;
+      }
+
+      var parsedParts = hashParts
+          .Select(m => new
+          {
+            Day = m.Groups[1].Value,
+            Ordinal = GetOrdinalDescription(m.Groups[2].Value)
+          })
+          .Where(p => !string.IsNullOrEmpty(p.Ordinal))
+          .ToArray();
+
+      if (parsedParts.Length != dowSegments.Length)
+      {
+        return null;
+      }
+
+      string dayOfWeekDescription;
+      if (parsedParts.Select(p => p.Day).Distinct().Count() == 1)
+      {
+        string ordinalList = GetListDescription(parsedParts.Select(p => p.Ordinal).ToArray());
+        dayOfWeekDescription = string.Format("{0} {1}", ordinalList, GetSingleDayName(parsedParts[0].Day));
       }
       else
       {
-        Func<string, string> getSingleDayName = (s =>
-        {
-          string exp = s.Contains("#")
-                      ? s.Remove(s.IndexOf("#"))
-                      : s.Contains("L")
-                          ? s.Replace("L", string.Empty)
-                          : s;
-
-          return m_culture.DateTimeFormat.GetDayName(((DayOfWeek)Convert.ToInt32(exp)));
-        });
-        Func<string, string> getDayOfWeekOfMonthDescription = (s =>
-        {
-          switch (s)
-          {
-            case "1":
-              return GetString("First");
-            case "2":
-              return GetString("Second");
-            case "3":
-              return GetString("Third");
-            case "4":
-              return GetString("Fourth");
-            case "5":
-              return GetString("Fifth");
-            default:
-              return null;
-          }
-        });
-
-        // Handle DOW interval expressions with a specific (non-wildcard) day specification.
-        // When the base part is not a wildcard and the step is >= the range size, the expression
-        // describes a weekly recurrence (e.g. "every 2 weeks, only on Friday") rather than a
-        // within-week recurrence (e.g. "every 2 days of the week, Monday through Friday").
-        if (dowExpression.Contains("/"))
-        {
-          string[] slashParts = dowExpression.Split('/');
-          string basePart = slashParts[0];
-          string stepPart = slashParts[1];
-
-          if (basePart != "*")
-          {
-            bool useWeeksFormat = false;
-
-            if (basePart.Contains(","))
-            {
-              // A list of specific days combined with a step always means a weekly interval
-              useWeeksFormat = true;
-            }
-            else if (basePart.Contains("-"))
-            {
-              // A range + step uses the weekly interval format when the step is >= the range
-              // size (meaning only one or no recurrence per range would ever fire within a week).
-              string[] rangeParts = basePart.Split('-');
-              int rangeStart = int.Parse(rangeParts[0]);
-              int rangeEnd = int.Parse(rangeParts[1]);
-              int step = int.Parse(stepPart);
-              int rangeSize = rangeEnd - rangeStart + 1;
-              useWeeksFormat = step >= rangeSize;
-            }
-
-            if (useWeeksFormat)
-            {
-              string intervalDesc = string.Format(GetString("ComaEveryX0Weeks"), stepPart);
-              string dayDesc;
-
-              if (basePart.Contains(","))
-              {
-                // Build a list description, e.g. "only on Tuesday and Friday"
-                string daysContent = GetListDescription(basePart.Split(',')
-                    .Select(item => item.Contains("-")
-                        ? GenerateBetweenSegmentDescription(item, s => GetString("ComaX0ThroughX1"), getSingleDayName).TrimStart(',').TrimStart()
-                        : getSingleDayName(item))
-                    .ToArray());
-
-                dayDesc = string.Format(GetString("ComaOnlyOnX0"), daysContent);
-              }
-              else
-              {
-                // Range case: determine whether to show the full range or just the start day
-                string[] rangeParts = basePart.Split('-');
-                int rangeEnd = int.Parse(rangeParts[1]);
-
-                if (rangeEnd == 6)
-                {
-                  // The range was produced by normalizing a single DOW value (e.g. FRI/2 -> 5-6/2).
-                  // Show "only on <startDay>" rather than "<startDay> through Saturday".
-                  dayDesc = string.Format(GetString("ComaOnlyOnX0"), getSingleDayName(rangeParts[0]));
-                }
-                else
-                {
-                  // An explicit range (e.g. WED-FRI/3): show the full range
-                  dayDesc = GenerateBetweenSegmentDescription(basePart,
-                      s => GetString("ComaX0ThroughX1"),
-                      getSingleDayName);
-                }
-              }
-
-              return intervalDesc + dayDesc;
-            }
-          }
-        }
-
-        // A list that mixes plain days with # or L days (e.g. 1,3#2 or 5L,1) is described one group at a
-        // time: plain days first, then # days, then L days. Otherwise the # or L wording ends up applied
-        // to every day in the list (e.g. "on the second Monday and Wednesday of the month" for 1,3#2).
-        if (dowExpression.Contains(",") && !dowExpression.Contains("/"))
-        {
-          string[] dowSegments = dowExpression.Split(',');
-          var groups = new[]
-          {
-            dowSegments.Where(s => !s.Contains("#") && !s.Contains("L")).ToArray(),
-            dowSegments.Where(s => s.Contains("#")).ToArray(),
-            dowSegments.Where(s => !s.Contains("#") && s.Contains("L")).ToArray()
-          }
-          .Where(g => g.Length > 0)
-          .ToArray();
-
-          if (groups.Length > 1)
-          {
-            string[] groupDescriptions = groups
-                .Select((g, i) =>
-                {
-                  string groupDescription = GetDayOfWeekDescription(string.Join(",", g));
-                  return i == 0 ? groupDescription : groupDescription.TrimStart(',').TrimStart();
-                })
-                .ToArray();
-
-            // Three or more groups read as a comma list ("A, B, and C"). Two groups get the comma too when
-            // either group already has its own "and" (e.g. "only on Monday and Tuesday, and on the second
-            // Wednesday of the month"), so the "and"s don't stack up.
-            if (groups.Length == 2 && groups.Any(g => g.Length > 1))
-            {
-              return string.Concat(groupDescriptions[0], ",", GetString("SpaceAndSpace"), groupDescriptions[1]);
-            }
-
-            return GetListDescription(groupDescriptions);
-          }
-        }
-
-        if (dowExpression.Contains(",") && dowExpression.Contains("#"))
-        {
-          string[] dowSegments = dowExpression.Split(',');
-          var hashParts = dowSegments
-              .Select(s => Regex.Match(s, @"^([^,]+)#(\d+)$"))
-              .ToArray();
-
-          if (hashParts.All(m => m.Success))
-          {
-            var parsedParts = hashParts
-                .Select(m => new
-                {
-                  Day = m.Groups[1].Value,
-                  Ordinal = getDayOfWeekOfMonthDescription(m.Groups[2].Value)
-                })
-                .Where(p => !string.IsNullOrEmpty(p.Ordinal))
-                .ToArray();
-
-            if (parsedParts.Length == dowSegments.Length)
-            {
-              string dayOfWeekDescription;
-              if (parsedParts.Select(p => p.Day).Distinct().Count() == 1)
-              {
-                string ordinalList = GetListDescription(parsedParts.Select(p => p.Ordinal).ToArray());
-                dayOfWeekDescription = string.Format("{0} {1}", ordinalList, getSingleDayName(parsedParts[0].Day));
-              }
-              else
-              {
-                dayOfWeekDescription = GetListDescription(parsedParts
-                    .Select(p => string.Format("{0} {1}", p.Ordinal, getSingleDayName(p.Day)))
-                    .ToArray());
-              }
-
-              string monthSuffix = GetString("SpaceX0OfTheMonth").Replace(" {0}", string.Empty).Replace("{0}", string.Empty);
-              string onTheFormat = string.Concat(GetString("ComaOnThe"), "{0}", monthSuffix);
-              return string.Format(onTheFormat, dayOfWeekDescription);
-            }
-          }
-        }
-
-        description = GetSegmentDescription(
-            dowExpression,
-            GetString("ComaEveryDay"),
-            getSingleDayName,
-            (s => string.Format(GetString("ComaEveryX0DaysOfTheWeek"), s)),
-            (s => GetString("ComaX0ThroughX1")),
-            (s =>
-            {
-              string format = null;
-              if (s.Contains("#"))
-              {
-                Match hashMatch = Regex.Match(s, @"#(\d+)");
-                string dayOfWeekOfMonthNumber = hashMatch.Success ? hashMatch.Groups[1].Value : string.Empty;
-                string dayOfWeekOfMonthDescription = getDayOfWeekOfMonthDescription(dayOfWeekOfMonthNumber);
-                format = string.Concat(GetString("ComaOnThe"), dayOfWeekOfMonthDescription, GetString("SpaceX0OfTheMonth"));
-              }
-              else if (s.Contains("L"))
-              {
-                format = GetString("ComaOnTheLastX0OfTheMonth");
-              }
-              else
-              {
-                // Standard cron fires when either DOM or DOW condition is met (OR logic).
-                // If DOM is also specified (non-wildcard, non-?), use "or on" to reflect
-                // the OR logic. Otherwise use "only on" when only DOW is constraining the schedule.
-                bool isDomSpecified = m_expressionParts[3] != "*" && m_expressionParts[3] != "?";
-                format = isDomSpecified ? GetString("ComaOrOnX0") : GetString("ComaOnlyOnX0");
-              }
-
-              return format;
-            }),
-            (s => GetString("ComaX0ThroughX1"))
-        );
+        dayOfWeekDescription = GetListDescription(parsedParts
+            .Select(p => string.Format("{0} {1}", p.Ordinal, GetSingleDayName(p.Day)))
+            .ToArray());
       }
 
-      return description;
+      string monthSuffix = GetString("SpaceX0OfTheMonth").Replace(" {0}", string.Empty).Replace("{0}", string.Empty);
+      return string.Concat(GetString("ComaOnThe"), dayOfWeekDescription, monthSuffix);
     }
 
     /// <summary>

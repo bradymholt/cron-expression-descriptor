@@ -393,31 +393,6 @@ namespace CronExpressionDescriptor
               return null;
           }
         });
-        Func<string[], string> getListDescription = (s =>
-        {
-          var descriptionContent = new StringBuilder();
-
-          for (int i = 0; i < s.Length; i++)
-          {
-            if (i > 0 && s.Length > 2)
-            {
-              descriptionContent.Append(",");
-              if (i < s.Length - 1)
-              {
-                descriptionContent.Append(" ");
-              }
-            }
-
-            if (i > 0 && s.Length > 1 && (i == s.Length - 1 || s.Length == 2))
-            {
-              descriptionContent.Append(GetString("SpaceAndSpace"));
-            }
-
-            descriptionContent.Append(s[i]);
-          }
-
-          return descriptionContent.ToString();
-        });
 
         // Handle DOW interval expressions with a specific (non-wildcard) day specification.
         // When the base part is not a wildcard and the step is >= the range size, the expression
@@ -458,36 +433,11 @@ namespace CronExpressionDescriptor
               if (basePart.Contains(","))
               {
                 // Build a list description, e.g. "only on Tuesday and Friday"
-                string[] dayItems = basePart.Split(',');
-                string daysContent = string.Empty;
-                for (int i = 0; i < dayItems.Length; i++)
-                {
-                  if (i > 0 && dayItems.Length > 2)
-                  {
-                    daysContent += ",";
-                    if (i < dayItems.Length - 1)
-                    {
-                      daysContent += " ";
-                    }
-                  }
-
-                  if (i > 0 && dayItems.Length > 1 && (i == dayItems.Length - 1 || dayItems.Length == 2))
-                  {
-                    daysContent += GetString("SpaceAndSpace");
-                  }
-
-                  if (dayItems[i].Contains("-"))
-                  {
-                    string between = GenerateBetweenSegmentDescription(dayItems[i],
-                        s => GetString("ComaX0ThroughX1"),
-                        getSingleDayName);
-                    daysContent += between.TrimStart(',').TrimStart();
-                  }
-                  else
-                  {
-                    daysContent += getSingleDayName(dayItems[i]);
-                  }
-                }
+                string daysContent = GetListDescription(basePart.Split(',')
+                    .Select(item => item.Contains("-")
+                        ? GenerateBetweenSegmentDescription(item, s => GetString("ComaX0ThroughX1"), getSingleDayName).TrimStart(',').TrimStart()
+                        : getSingleDayName(item))
+                    .ToArray());
 
                 dayDesc = string.Format(GetString("ComaOnlyOnX0"), daysContent);
               }
@@ -550,7 +500,7 @@ namespace CronExpressionDescriptor
               return string.Concat(groupDescriptions[0], ",", GetString("SpaceAndSpace"), groupDescriptions[1]);
             }
 
-            return getListDescription(groupDescriptions);
+            return GetListDescription(groupDescriptions);
           }
         }
 
@@ -577,12 +527,12 @@ namespace CronExpressionDescriptor
               string dayOfWeekDescription;
               if (parsedParts.Select(p => p.Day).Distinct().Count() == 1)
               {
-                string ordinalList = getListDescription(parsedParts.Select(p => p.Ordinal).ToArray());
+                string ordinalList = GetListDescription(parsedParts.Select(p => p.Ordinal).ToArray());
                 dayOfWeekDescription = string.Format("{0} {1}", ordinalList, getSingleDayName(parsedParts[0].Day));
               }
               else
               {
-                dayOfWeekDescription = getListDescription(parsedParts
+                dayOfWeekDescription = GetListDescription(parsedParts
                     .Select(p => string.Format("{0} {1}", p.Ordinal, getSingleDayName(p.Day)))
                     .ToArray());
               }
@@ -807,40 +757,11 @@ namespace CronExpressionDescriptor
       }
       else if (expression.Contains(","))
       {
-        string[] segments = expression.Split(',');
-
-        string descriptionContent = string.Empty;
-        for (int i = 0; i < segments.Length; i++)
-        {
-          if (i > 0 && segments.Length > 2)
-          {
-            descriptionContent += ",";
-
-            if (i < segments.Length - 1)
-            {
-              descriptionContent += " ";
-            }
-          }
-
-          if (i > 0 && segments.Length > 1 && (i == segments.Length - 1 || segments.Length == 2))
-          {
-            descriptionContent += GetString("SpaceAndSpace");
-          }
-
-          if (segments[i].Contains("-"))
-          {
-            string betweenSegmentDescription = GenerateBetweenSegmentDescription(segments[i], getRangeFormat, getSingleItemDescription);
-
-            //remove any leading comma
-            betweenSegmentDescription = betweenSegmentDescription.Replace(", ", "");
-
-            descriptionContent += betweenSegmentDescription;
-          }
-          else
-          {
-            descriptionContent += getSingleItemDescription(segments[i]);
-          }
-        }
+        string descriptionContent = GetListDescription(expression.Split(',')
+            .Select(segment => segment.Contains("-")
+                ? GenerateBetweenSegmentDescription(segment, getRangeFormat, getSingleItemDescription).Replace(", ", "")
+                : getSingleItemDescription(segment))
+            .ToArray());
 
         description = string.Format(getDescriptionFormat(expression), descriptionContent);
       }
@@ -850,6 +771,32 @@ namespace CronExpressionDescriptor
       }
 
       return description;
+    }
+
+    private string GetListDescription(string[] items)
+    {
+      var description = new StringBuilder();
+
+      for (int i = 0; i < items.Length; i++)
+      {
+        if (i > 0 && items.Length > 2)
+        {
+          description.Append(",");
+          if (i < items.Length - 1)
+          {
+            description.Append(" ");
+          }
+        }
+
+        if (i > 0 && (i == items.Length - 1 || items.Length == 2))
+        {
+          description.Append(GetString("SpaceAndSpace"));
+        }
+
+        description.Append(items[i]);
+      }
+
+      return description.ToString();
     }
 
     /// <summary>

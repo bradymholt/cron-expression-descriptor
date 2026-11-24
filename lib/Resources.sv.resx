@@ -173,6 +173,10 @@
     <value>, var {0}:e månad</value>
     <comment>EveryX0Months description</comment>
   </data>
+  <data name="CommaEveryX0Weeks" xml:space="preserve">
+    <value>, var {0}:e vecka</value>
+    <comment>CommaEveryX0Weeks description</comment>
+  </data>
   <data name="CommaEveryX0Years" xml:space="preserve">
     <value>, var {0}:e år</value>
     <comment>CommaEveryX0Years description</comment>

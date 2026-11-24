@@ -173,6 +173,10 @@
     <value>, cada {0} meses</value>
     <comment>EveryX0Months description</comment>
   </data>
+  <data name="CommaEveryX0Weeks" xml:space="preserve">
+    <value>, cada {0} semanas</value>
+    <comment>CommaEveryX0Weeks description</comment>
+  </data>
   <data name="CommaOnDayX0OfTheMonth" xml:space="preserve">
     <value>, el día {0} del mes</value>
     <comment>CommaOnDayX0OfTheMonth description</comment>

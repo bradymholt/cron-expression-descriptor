@@ -240,6 +240,10 @@
     <value>, 每 {0} 月</value>
     <comment>EveryX0Months description</comment>
   </data>
+  <data name="CommaEveryX0Weeks" xml:space="preserve">
+    <value>, 每 {0} 周</value>
+    <comment>CommaEveryX0Weeks description</comment>
+  </data>
   <data name="CommaOnlyInX0" xml:space="preserve">
     <value>, 仅在 {0}</value>
     <comment>CommaOnlyInX0 description</comment>

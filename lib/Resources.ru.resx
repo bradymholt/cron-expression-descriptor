@@ -240,6 +240,10 @@
     <value>, каждые {0} месяцев</value>
     <comment>EveryX0Months description</comment>
   </data>
+  <data name="CommaEveryX0Weeks" xml:space="preserve">
+    <value>, каждые {0} недель</value>
+    <comment>CommaEveryX0Weeks description</comment>
+  </data>
   <data name="CommaOnlyInX0" xml:space="preserve">
     <value>, только в {0}</value>
     <comment>CommaOnlyInX0 description</comment>

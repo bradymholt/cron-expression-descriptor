@@ -173,6 +173,10 @@
     <value>, ogni {0} mesi</value>
     <comment>EveryX0Months description</comment>
   </data>
+  <data name="CommaEveryX0Weeks" xml:space="preserve">
+    <value>, ogni {0} settimane</value>
+    <comment>CommaEveryX0Weeks description</comment>
+  </data>
   <data name="CommaEveryX0Years" xml:space="preserve">
     <value>, ogni {0} anni</value>
     <comment>CommaEveryX0Years description</comment>

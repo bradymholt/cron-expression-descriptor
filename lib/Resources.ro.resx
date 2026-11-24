@@ -173,6 +173,10 @@
     <value>, la fiecare {0} luni</value>
     <comment>EveryX0Months description</comment>
   </data>
+  <data name="CommaEveryX0Weeks" xml:space="preserve">
+    <value>, la fiecare {0} săptămâni</value>
+    <comment>CommaEveryX0Weeks description</comment>
+  </data>
   <data name="CommaEveryX0Years" xml:space="preserve">
     <value>, o dată la {0} ani</value>
     <comment>CommaEveryX0Years description</comment>

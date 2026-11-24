@@ -240,6 +240,10 @@
     <value>, vsakih {0} mesecev</value>
     <comment>EveryX0Months description</comment>
   </data>
+  <data name="CommaEveryX0Weeks" xml:space="preserve">
+    <value>, vsakih {0} tednov</value>
+    <comment>CommaEveryX0Weeks description</comment>
+  </data>
   <data name="CommaOnlyInX0" xml:space="preserve">
     <value>, samo v {0}</value>
     <comment>CommaOnlyInX0 description</comment>

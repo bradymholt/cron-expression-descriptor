@@ -240,6 +240,10 @@
     <value>, {0}개월마다</value>
     <comment>EveryX0Months 설명</comment>
   </data>
+  <data name="CommaEveryX0Weeks" xml:space="preserve">
+    <value>, {0}주마다</value>
+    <comment>CommaEveryX0Weeks description</comment>
+  </data>
   <data name="CommaOnlyInX0" xml:space="preserve">
     <value>, {0}에만</value>
     <comment>CommaOnlyInX0 설명</comment>

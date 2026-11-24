@@ -240,6 +240,10 @@
     <value>, elke {0} maanden</value>
     <comment>EveryX0Months description</comment>
   </data>
+  <data name="CommaEveryX0Weeks" xml:space="preserve">
+    <value>, elke {0} weken</value>
+    <comment>CommaEveryX0Weeks description</comment>
+  </data>
   <data name="CommaOnlyInX0" xml:space="preserve">
     <value>, alleen in {0}</value>
     <comment>CommaOnlyInX0 description</comment>

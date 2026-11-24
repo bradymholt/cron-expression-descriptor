@@ -173,6 +173,10 @@
     <value>, co {0} miesięcy</value>
     <comment>EveryX0Months description</comment>
   </data>
+  <data name="CommaEveryX0Weeks" xml:space="preserve">
+    <value>, co {0} tygodni</value>
+    <comment>CommaEveryX0Weeks description</comment>
+  </data>
   <data name="CommaEveryX0Years" xml:space="preserve">
     <value>, co {0} lat</value>
     <comment>CommaEveryX0Years description</comment>

@@ -240,6 +240,10 @@
     <value>, әрбір {0} ай сайын</value>
     <comment>EveryX0Months description</comment>
   </data>
+  <data name="CommaEveryX0Weeks" xml:space="preserve">
+    <value>, әрбір {0} апта сайын</value>
+    <comment>CommaEveryX0Weeks description</comment>
+  </data>
   <data name="CommaOnlyInX0" xml:space="preserve">
     <value>, тек {0}</value>
     <comment>CommaOnlyInX0 description</comment>

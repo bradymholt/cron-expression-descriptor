@@ -240,6 +240,10 @@
     <value>, cada {0} meses</value>
     <comment>Descripción Cada X0 meses</comment>
   </data>
+  <data name="CommaEveryX0Weeks" xml:space="preserve">
+    <value>, cada {0} semanas</value>
+    <comment>CommaEveryX0Weeks description</comment>
+  </data>
   <data name="CommaOnlyInX0" xml:space="preserve">
     <value>, solo en {0}</value>
     <comment>Descripción Coma solo en X0</comment>

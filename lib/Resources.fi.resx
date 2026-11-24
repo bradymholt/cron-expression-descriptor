@@ -177,6 +177,10 @@
     <value>, joka {0}. kuukausi</value>
     <comment>EveryX0Months description</comment>
   </data>
+  <data name="CommaEveryX0Weeks" xml:space="preserve">
+    <value>, joka {0}. viikko</value>
+    <comment>CommaEveryX0Weeks description</comment>
+  </data>
   <data name="CommaEveryX0Years" xml:space="preserve">
     <value>, joka {0}. vuosi</value>
     <comment>CommaEveryX0Years description</comment>

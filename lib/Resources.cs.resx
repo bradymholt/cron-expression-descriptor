@@ -236,9 +236,13 @@
     <value>, nebo v {0}</value>
     <comment>CommaOrOnX0 description - used when both day-of-month and day-of-week are specified (OR logic)</comment>
   </data>
-	<data name="CommaEveryX0Months" xml:space="preserve">
+  <data name="CommaEveryX0Months" xml:space="preserve">
     <value>, každých {0} měsíců</value>
     <comment>EveryX0Months description</comment>
+  </data>
+  <data name="CommaEveryX0Weeks" xml:space="preserve">
+    <value>, každých {0} týdnů</value>
+    <comment>CommaEveryX0Weeks description</comment>
   </data>
 	<data name="CommaOnlyInX0" xml:space="preserve">
     <value>, jen za {0}</value>

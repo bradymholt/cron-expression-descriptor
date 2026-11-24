@@ -191,11 +191,8 @@ namespace CronExpressionDescriptor
         return t.Value.Replace(dowDigits, dowDigitsAdjusted);
       });
 
-      // Convert DOW 'L' to '6' (Saturday)
-      if (expressionParts[5] == "L")
-      {
-        expressionParts[5] = "6";
-      }
+      // Convert DOW 'L' to '6' (Saturday), also when it is one item of a list ("1,L")
+      expressionParts[5] = string.Join(",", expressionParts[5].Split(',').Select(item => item == "L" ? "6" : item));
 
       // Convert DOM '?' to '*'
       if (expressionParts[3] == "?")

@@ -874,7 +874,6 @@ namespace CronExpressionDescriptor
 
     /// <summary>
     /// Gets a localized string resource
-    /// refactored because Resources.ResourceManager.GetString was way too long
     /// </summary>
     /// <param name="resourceName">name of the resource</param>
     /// <returns>translated resource</returns>

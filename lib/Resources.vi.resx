@@ -185,7 +185,7 @@
     <comment>AtX0 description</comment>
   </data>
   <data name="CommaEveryDay" xml:space="preserve">
-    <value>, mọi ngày</value>
+    <value>, mỗi ngày</value>
     <comment>CommaEveryDay description</comment>
   </data>
   <data name="CommaEveryX0DaysOfTheWeek" xml:space="preserve">
@@ -285,11 +285,11 @@
     <comment>And description</comment>
   </data>
   <data name="CommaEveryMinute" xml:space="preserve">
-    <value>, mọi phút</value>
+    <value>, mỗi phút</value>
     <comment>CommaEveryMinute1 description</comment>
   </data>
   <data name="CommaEveryHour" xml:space="preserve">
-    <value>, mọi giờ</value>
+    <value>, mỗi giờ</value>
     <comment>CommaEveryHour description</comment>
   </data>
   <data name="CommaEveryX0Years" xml:space="preserve">

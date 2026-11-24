@@ -184,15 +184,15 @@
     <value>مدت {0}</value>
     <comment>AtX0 description</comment>
   </data>
-  <data name="ComaEveryDay" xml:space="preserve">
+  <data name="CommaEveryDay" xml:space="preserve">
     <value>, هر روز</value>
-    <comment>ComaEveryDay description</comment>
+    <comment>CommaEveryDay description</comment>
   </data>
-  <data name="ComaEveryX0DaysOfTheWeek" xml:space="preserve">
+  <data name="CommaEveryX0DaysOfTheWeek" xml:space="preserve">
     <value>, هر {0} روز از هفته</value>
     <comment>EveryX0DaysOfTheWeek description</comment>
   </data>
-  <data name="ComaX0ThroughX1" xml:space="preserve">
+  <data name="CommaX0ThroughX1" xml:space="preserve">
     <value>, {0} از {1}</value>
     <comment>X0ThroughX1 description</comment>
   </data>
@@ -216,7 +216,7 @@
     <value>پنجمین</value>
     <comment>Fifth description</comment>
   </data>
-  <data name="ComaOnThe" xml:space="preserve">
+  <data name="CommaOnThe" xml:space="preserve">
     <value>, در </value>
     <comment>OnThe description</comment>
   </data>
@@ -224,31 +224,35 @@
     <value> {0} از ماه</value>
     <comment>X0OfTheMonth description</comment>
   </data>
-  <data name="ComaOnTheLastX0OfTheMonth" xml:space="preserve">
+  <data name="CommaOnTheLastX0OfTheMonth" xml:space="preserve">
     <value>, در آخرین {0} از ماه</value>
     <comment>OnTheLastX0OfTheMonth description</comment>
   </data>
-  <data name="ComaOnlyOnX0" xml:space="preserve">
+  <data name="CommaOnlyOnX0" xml:space="preserve">
     <value>, فقط در {0}</value>
     <comment>OnlyOnX0 description</comment>
   </data>
-  <data name="ComaOrOnX0" xml:space="preserve">
+  <data name="CommaOrOnX0" xml:space="preserve">
     <value>, یا در {0}</value>
-    <comment>ComaOrOnX0 description - used when both day-of-month and day-of-week are specified (OR logic)</comment>
+    <comment>CommaOrOnX0 description - used when both day-of-month and day-of-week are specified (OR logic)</comment>
   </data>
-  <data name="ComaEveryX0Months" xml:space="preserve">
+  <data name="CommaEveryX0Months" xml:space="preserve">
     <value>, هر {0} ماه</value>
     <comment>EveryX0Months description</comment>
   </data>
-  <data name="ComaOnlyInX0" xml:space="preserve">
+  <data name="CommaEveryX0Weeks" xml:space="preserve">
+    <value>, هر {0} هفته</value>
+    <comment>CommaEveryX0Weeks description</comment>
+  </data>
+  <data name="CommaOnlyInX0" xml:space="preserve">
     <value>, فقط در {0}</value>
-    <comment>ComaOnlyInX0 description</comment>
+    <comment>CommaOnlyInX0 description</comment>
   </data>
-  <data name="ComaOnTheLastDayOfTheMonth" xml:space="preserve">
+  <data name="CommaOnTheLastDayOfTheMonth" xml:space="preserve">
     <value>, در آخرین روز از ماه</value>
-    <comment>ComaOnTheLastDayOfTheMonth description</comment>
+    <comment>CommaOnTheLastDayOfTheMonth description</comment>
   </data>
-  <data name="ComaOnTheLastWeekdayOfTheMonth" xml:space="preserve">
+  <data name="CommaOnTheLastWeekdayOfTheMonth" xml:space="preserve">
     <value>, در آخرین روز هفته ماه</value>
     <comment>OnTheLastWeekdayOfTheMonth description</comment>
   </data>
@@ -260,37 +264,37 @@
     <value>روز هفته نزدیک به روز {0}</value>
     <comment>WeekdayNearestDayX0 description</comment>
   </data>
-  <data name="ComaOnTheX0OfTheMonth" xml:space="preserve">
+  <data name="CommaOnTheX0OfTheMonth" xml:space="preserve">
     <value>, در {0} از ماه</value>
-    <comment>ComaOnTheX0OfTheMonth description</comment>
+    <comment>CommaOnTheX0OfTheMonth description</comment>
   </data>
-  <data name="ComaEveryX0Days" xml:space="preserve">
+  <data name="CommaEveryX0Days" xml:space="preserve">
     <value>, هر {0} روز</value>
-    <comment>ComaEveryX0Days description</comment>
+    <comment>CommaEveryX0Days description</comment>
   </data>
-  <data name="ComaBetweenDayX0AndX1OfTheMonth" xml:space="preserve">
+  <data name="CommaBetweenDayX0AndX1OfTheMonth" xml:space="preserve">
     <value>, مابین روز {0} و {1} از ماه</value>
     <comment>BetweenDayX0AndX1OfTheMonth description</comment>
   </data>
-  <data name="ComaOnDayX0OfTheMonth" xml:space="preserve">
+  <data name="CommaOnDayX0OfTheMonth" xml:space="preserve">
     <value>, در روز {0} از ماه</value>
-    <comment>ComaOnDayX0OfTheMonth description</comment>
+    <comment>CommaOnDayX0OfTheMonth description</comment>
   </data>
   <data name="SpaceAndSpace" xml:space="preserve">
     <value> و </value>
     <comment>And description</comment>
   </data>
-  <data name="ComaEveryMinute" xml:space="preserve">
+  <data name="CommaEveryMinute" xml:space="preserve">
     <value>, هر دقیقه</value>
-    <comment>ComaEveryMinute1 description</comment>
+    <comment>CommaEveryMinute1 description</comment>
   </data>
-  <data name="ComaEveryHour" xml:space="preserve">
+  <data name="CommaEveryHour" xml:space="preserve">
     <value>, هر ساعت</value>
-    <comment>ComaEveryHour description</comment>
+    <comment>CommaEveryHour description</comment>
   </data>
-  <data name="ComaEveryX0Years" xml:space="preserve">
+  <data name="CommaEveryX0Years" xml:space="preserve">
     <value>, هر {0} سال</value>
-    <comment>ComaEveryX0Years description</comment>
+    <comment>CommaEveryX0Years description</comment>
   </data>
   <data name="CommaStartingX0" xml:space="preserve">
     <value>, در حال شروع {0}</value>
@@ -308,7 +312,7 @@
     <value>, {0} روز قبل از آخرین روز ماه</value>
     <comment>CommaDaysBeforeTheLastDayOfTheMonth description</comment>
   </data>
-  <data name="ComaOnlyInYearX0" xml:space="preserve">
+  <data name="CommaOnlyInYearX0" xml:space="preserve">
     <value>, فقط در {0}</value>
   </data>
 </root>

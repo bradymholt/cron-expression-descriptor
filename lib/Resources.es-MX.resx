@@ -184,15 +184,15 @@
     <value>a {0}</value>
     <comment>Descripción A X0</comment>
   </data>
-  <data name="ComaEveryDay" xml:space="preserve">
+  <data name="CommaEveryDay" xml:space="preserve">
     <value>, todos los días</value>
     <comment>Descripción Coma todos los días</comment>
   </data>
-  <data name="ComaEveryX0DaysOfTheWeek" xml:space="preserve">
+  <data name="CommaEveryX0DaysOfTheWeek" xml:space="preserve">
     <value>, cada {0} días de la semana</value>
     <comment>Descripción Cada X0 días de la semana</comment>
   </data>
-  <data name="ComaX0ThroughX1" xml:space="preserve">
+  <data name="CommaX0ThroughX1" xml:space="preserve">
     <value>, {0} hasta {1}</value>
     <comment>Descripción X0 hasta X1</comment>
   </data>
@@ -216,7 +216,7 @@
     <value>quinto</value>
     <comment>Descripción Quinto</comment>
   </data>
-  <data name="ComaOnThe" xml:space="preserve">
+  <data name="CommaOnThe" xml:space="preserve">
     <value>, el </value>
     <comment>Descripción El</comment>
   </data>
@@ -224,31 +224,35 @@
     <value> {0} del mes</value>
     <comment>Descripción X0 del mes</comment>
   </data>
-  <data name="ComaOnTheLastX0OfTheMonth" xml:space="preserve">
+  <data name="CommaOnTheLastX0OfTheMonth" xml:space="preserve">
     <value>, el último {0} del mes</value>
     <comment>Descripción El último X0 del mes</comment>
   </data>
-  <data name="ComaOnlyOnX0" xml:space="preserve">
+  <data name="CommaOnlyOnX0" xml:space="preserve">
     <value>, solo el {0}</value>
     <comment>Descripción Solo el X0</comment>
   </data>
-  <data name="ComaOrOnX0" xml:space="preserve">
+  <data name="CommaOrOnX0" xml:space="preserve">
     <value>, o el {0}</value>
-    <comment>ComaOrOnX0 description - used when both day-of-month and day-of-week are specified (OR logic)</comment>
+    <comment>CommaOrOnX0 description - used when both day-of-month and day-of-week are specified (OR logic)</comment>
   </data>
-  <data name="ComaEveryX0Months" xml:space="preserve">
+  <data name="CommaEveryX0Months" xml:space="preserve">
     <value>, cada {0} meses</value>
     <comment>Descripción Cada X0 meses</comment>
   </data>
-  <data name="ComaOnlyInX0" xml:space="preserve">
+  <data name="CommaEveryX0Weeks" xml:space="preserve">
+    <value>, cada {0} semanas</value>
+    <comment>CommaEveryX0Weeks description</comment>
+  </data>
+  <data name="CommaOnlyInX0" xml:space="preserve">
     <value>, solo en {0}</value>
     <comment>Descripción Coma solo en X0</comment>
   </data>
-  <data name="ComaOnTheLastDayOfTheMonth" xml:space="preserve">
+  <data name="CommaOnTheLastDayOfTheMonth" xml:space="preserve">
     <value>, el último día del mes</value>
     <comment>Descripción Coma el último día del mes</comment>
   </data>
-  <data name="ComaOnTheLastWeekdayOfTheMonth" xml:space="preserve">
+  <data name="CommaOnTheLastWeekdayOfTheMonth" xml:space="preserve">
     <value>, el último día hábil del mes</value>
     <comment>Descripción El último día hábil del mes</comment>
   </data>
@@ -260,19 +264,19 @@
     <value>el día más próximo al día hábil {0}</value>
     <comment>Descripción El día más próximo al día hábil X0</comment>
   </data>
-  <data name="ComaOnTheX0OfTheMonth" xml:space="preserve">
+  <data name="CommaOnTheX0OfTheMonth" xml:space="preserve">
     <value>, el {0} del mes</value>
     <comment>Descripción Coma el X0 del mes</comment>
   </data>
-  <data name="ComaEveryX0Days" xml:space="preserve">
+  <data name="CommaEveryX0Days" xml:space="preserve">
     <value>, cada {0} días</value>
     <comment>Descripción Coma cada X0 días</comment>
   </data>
-  <data name="ComaBetweenDayX0AndX1OfTheMonth" xml:space="preserve">
+  <data name="CommaBetweenDayX0AndX1OfTheMonth" xml:space="preserve">
     <value>, entre el {0} y el {1} día del mes</value>
     <comment>Descripción Entre el X0 y el X1 día del mes</comment>
   </data>
-  <data name="ComaOnDayX0OfTheMonth" xml:space="preserve">
+  <data name="CommaOnDayX0OfTheMonth" xml:space="preserve">
     <value>, el día {0} del mes</value>
     <comment>Descripción Coma el día X0 del mes</comment>
   </data>
@@ -280,15 +284,15 @@
     <value> y </value>
     <comment>Descripción Y</comment>
   </data>
-  <data name="ComaEveryMinute" xml:space="preserve">
+  <data name="CommaEveryMinute" xml:space="preserve">
     <value>, cada un minuto</value>
     <comment>Descripción Coma cada 1 minuto</comment>
   </data>
-  <data name="ComaEveryHour" xml:space="preserve">
+  <data name="CommaEveryHour" xml:space="preserve">
     <value>, cada una hora</value>
     <comment>Descripción Coma cada una hora</comment>
   </data>
-  <data name="ComaEveryX0Years" xml:space="preserve">
+  <data name="CommaEveryX0Years" xml:space="preserve">
     <value>, cada {0} años</value>
     <comment>Descripción Coma cada X0 años</comment>
   </data>
@@ -308,7 +312,7 @@
     <value>, {0} días antes del último día del mes</value>
     <comment>Descripción Coma días antes del último día del mes</comment>
   </data>
-  <data name="ComaOnlyInYearX0" xml:space="preserve">
+  <data name="CommaOnlyInYearX0" xml:space="preserve">
     <value>, solo en {0}</value>
   </data>
 </root>

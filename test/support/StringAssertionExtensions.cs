@@ -6,9 +6,9 @@ namespace CronExpressionDescriptor.Test.Support
 {
     public class AssertExtensions : Xunit.Assert
     {
-        public static void EqualsCaseInsensitive(string expectedSubString, string actualString)
+        public static void ContainsCaseInsensitive(string expectedSubstring, string actualString)
         {
-            Assert.Contains(expectedSubString, actualString, StringComparison.OrdinalIgnoreCase);
+            Assert.Contains(expectedSubstring, actualString, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

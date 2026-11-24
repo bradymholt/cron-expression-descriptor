@@ -184,15 +184,15 @@
     <value>{0}</value>
     <comment>AtX0 설명</comment>
   </data>
-  <data name="ComaEveryDay" xml:space="preserve">
+  <data name="CommaEveryDay" xml:space="preserve">
     <value>, 매일</value>
-    <comment>ComaEveryDay 설명</comment>
+    <comment>CommaEveryDay 설명</comment>
   </data>
-  <data name="ComaEveryX0DaysOfTheWeek" xml:space="preserve">
+  <data name="CommaEveryX0DaysOfTheWeek" xml:space="preserve">
     <value>, 주 중 {0}일마다</value>
     <comment>EveryX0DaysOfTheWeek 설명</comment>
   </data>
-  <data name="ComaX0ThroughX1" xml:space="preserve">
+  <data name="CommaX0ThroughX1" xml:space="preserve">
     <value>, {0}~{1}</value>
     <comment>X0ThroughX1 설명</comment>
   </data>
@@ -216,7 +216,7 @@
     <value>5번째</value>
     <comment>Fifth 설명</comment>
   </data>
-  <data name="ComaOnThe" xml:space="preserve">
+  <data name="CommaOnThe" xml:space="preserve">
     <value>, 매월 </value>
     <comment>OnThe 설명</comment>
   </data>
@@ -224,31 +224,35 @@
     <value> {0}</value>
     <comment>X0OfTheMonth 설명</comment>
   </data>
-  <data name="ComaOnTheLastX0OfTheMonth" xml:space="preserve">
+  <data name="CommaOnTheLastX0OfTheMonth" xml:space="preserve">
     <value>, 월의 마지막 {0}</value>
     <comment>OnTheLastX0OfTheMonth 설명</comment>
   </data>
-  <data name="ComaOnlyOnX0" xml:space="preserve">
+  <data name="CommaOnlyOnX0" xml:space="preserve">
     <value>, {0}에만</value>
     <comment>OnlyOnX0 설명</comment>
   </data>
-  <data name="ComaOrOnX0" xml:space="preserve">
+  <data name="CommaOrOnX0" xml:space="preserve">
     <value>, 또는 {0}</value>
-    <comment>ComaOrOnX0 description - used when both day-of-month and day-of-week are specified (OR logic)</comment>
+    <comment>CommaOrOnX0 description - used when both day-of-month and day-of-week are specified (OR logic)</comment>
   </data>
-  <data name="ComaEveryX0Months" xml:space="preserve">
+  <data name="CommaEveryX0Months" xml:space="preserve">
     <value>, {0}개월마다</value>
     <comment>EveryX0Months 설명</comment>
   </data>
-  <data name="ComaOnlyInX0" xml:space="preserve">
+  <data name="CommaEveryX0Weeks" xml:space="preserve">
+    <value>, {0}주마다</value>
+    <comment>CommaEveryX0Weeks description</comment>
+  </data>
+  <data name="CommaOnlyInX0" xml:space="preserve">
     <value>, {0}에만</value>
-    <comment>ComaOnlyInX0 설명</comment>
+    <comment>CommaOnlyInX0 설명</comment>
   </data>
-  <data name="ComaOnTheLastDayOfTheMonth" xml:space="preserve">
+  <data name="CommaOnTheLastDayOfTheMonth" xml:space="preserve">
     <value>, 월의 마지막 날에</value>
-    <comment>ComaOnTheLastDayOfTheMonth 설명</comment>
+    <comment>CommaOnTheLastDayOfTheMonth 설명</comment>
   </data>
-  <data name="ComaOnTheLastWeekdayOfTheMonth" xml:space="preserve">
+  <data name="CommaOnTheLastWeekdayOfTheMonth" xml:space="preserve">
     <value>, 매월 마지막 평일</value>
     <comment>OnTheLastWeekdayOfTheMonth 설명</comment>
   </data>
@@ -260,37 +264,37 @@
     <value>{0}일에 가장 가까운 평일</value>
     <comment>WeekdayNearestDayX0 설명</comment>
   </data>
-  <data name="ComaOnTheX0OfTheMonth" xml:space="preserve">
+  <data name="CommaOnTheX0OfTheMonth" xml:space="preserve">
     <value>, 매월 {0}</value>
-    <comment>ComaOnTheX0OfTheMonth 설명</comment>
+    <comment>CommaOnTheX0OfTheMonth 설명</comment>
   </data>
-  <data name="ComaEveryX0Days" xml:space="preserve">
+  <data name="CommaEveryX0Days" xml:space="preserve">
     <value>, {0}일마다</value>
-    <comment>ComaEveryX0Days 설명</comment>
+    <comment>CommaEveryX0Days 설명</comment>
   </data>
-  <data name="ComaBetweenDayX0AndX1OfTheMonth" xml:space="preserve">
+  <data name="CommaBetweenDayX0AndX1OfTheMonth" xml:space="preserve">
     <value>, 월의 {0}~{1}일 사이</value>
     <comment>BetweenDayX0AndX1OfTheMonth 설명</comment>
   </data>
-  <data name="ComaOnDayX0OfTheMonth" xml:space="preserve">
+  <data name="CommaOnDayX0OfTheMonth" xml:space="preserve">
     <value>, 매월 {0}일</value>
-    <comment>ComaOnDayX0OfTheMonth 설명</comment>
+    <comment>CommaOnDayX0OfTheMonth 설명</comment>
   </data>
   <data name="SpaceAndSpace" xml:space="preserve">
     <value> 및 </value>
     <comment>And 설명</comment>
   </data>
-  <data name="ComaEveryMinute" xml:space="preserve">
+  <data name="CommaEveryMinute" xml:space="preserve">
     <value>, 매분</value>
-    <comment>ComaEveryMinute1 설명</comment>
+    <comment>CommaEveryMinute1 설명</comment>
   </data>
-  <data name="ComaEveryHour" xml:space="preserve">
+  <data name="CommaEveryHour" xml:space="preserve">
     <value>, 매시간</value>
-    <comment>ComaEveryHour 설명</comment>
+    <comment>CommaEveryHour 설명</comment>
   </data>
-  <data name="ComaEveryX0Years" xml:space="preserve">
+  <data name="CommaEveryX0Years" xml:space="preserve">
     <value>, {0}년마다</value>
-    <comment>ComaEveryX0Years 설명</comment>
+    <comment>CommaEveryX0Years 설명</comment>
   </data>
   <data name="CommaStartingX0" xml:space="preserve">
     <value>, {0}부터</value>
@@ -308,7 +312,7 @@
     <value>, 월의 마지막 날 이전 {0}일</value>
     <comment>CommaDaysBeforeTheLastDayOfTheMonth 설명</comment>
   </data>
-  <data name="ComaOnlyInYearX0" xml:space="preserve">
+  <data name="CommaOnlyInYearX0" xml:space="preserve">
     <value>, {0}년에만</value>
   </data>
 </root>

@@ -129,7 +129,7 @@
     <comment>AnErrorOccurredWhenGeneratingTheExpressionD description</comment>
   </data>
   <data name="AtSpace" xml:space="preserve">
-    <value> </value>
+    <value></value>
     <comment>At description</comment>
   </data>
   <data name="EveryMinuteBetweenX0AndX1" xml:space="preserve">
@@ -184,15 +184,15 @@
     <value>{0}</value>
     <comment>AtX0 description</comment>
   </data>
-  <data name="ComaEveryDay" xml:space="preserve">
+  <data name="CommaEveryDay" xml:space="preserve">
     <value>, 毎日</value>
-    <comment>ComaEveryDay description</comment>
+    <comment>CommaEveryDay description</comment>
   </data>
-  <data name="ComaEveryX0DaysOfTheWeek" xml:space="preserve">
+  <data name="CommaEveryX0DaysOfTheWeek" xml:space="preserve">
     <value>, 週のうち {0} 日ごと</value>
     <comment>EveryX0DaysOfTheWeek description</comment>
   </data>
-  <data name="ComaX0ThroughX1" xml:space="preserve">
+  <data name="CommaX0ThroughX1" xml:space="preserve">
     <value>, {0} から {1} まで</value>
     <comment>X0ThroughX1 description</comment>
   </data>
@@ -216,7 +216,7 @@
     <value>月の5 番目の</value>
     <comment>Fifth description</comment>
   </data>
-  <data name="ComaOnThe" xml:space="preserve">
+  <data name="CommaOnThe" xml:space="preserve">
     <value>, </value>
     <comment>OnThe description</comment>
   </data>
@@ -224,31 +224,35 @@
     <value> {0}</value>
     <comment>X0OfTheMonth description</comment>
   </data>
-  <data name="ComaOnTheLastX0OfTheMonth" xml:space="preserve">
+  <data name="CommaOnTheLastX0OfTheMonth" xml:space="preserve">
     <value>, {0}</value>
     <comment>OnTheLastX0OfTheMonth description</comment>
   </data>
-  <data name="ComaOnlyOnX0" xml:space="preserve">
+  <data name="CommaOnlyOnX0" xml:space="preserve">
     <value>, {0}</value>
     <comment>OnlyOnX0 description</comment>
   </data>
-  <data name="ComaOrOnX0" xml:space="preserve">
+  <data name="CommaOrOnX0" xml:space="preserve">
     <value>, または{0}</value>
-    <comment>ComaOrOnX0 description - used when both day-of-month and day-of-week are specified (OR logic)</comment>
+    <comment>CommaOrOnX0 description - used when both day-of-month and day-of-week are specified (OR logic)</comment>
   </data>
-  <data name="ComaEveryX0Months" xml:space="preserve">
+  <data name="CommaEveryX0Months" xml:space="preserve">
     <value>, {0} か月ごと</value>
     <comment>EveryX0Months description</comment>
   </data>
-  <data name="ComaOnlyInX0" xml:space="preserve">
+  <data name="CommaEveryX0Weeks" xml:space="preserve">
+    <value>, {0} 週間ごと</value>
+    <comment>CommaEveryX0Weeks description</comment>
+  </data>
+  <data name="CommaOnlyInX0" xml:space="preserve">
     <value>, {0}</value>
-    <comment>ComaOnlyInX0 description</comment>
+    <comment>CommaOnlyInX0 description</comment>
   </data>
-  <data name="ComaOnTheLastDayOfTheMonth" xml:space="preserve">
+  <data name="CommaOnTheLastDayOfTheMonth" xml:space="preserve">
     <value>, 月の最終日</value>
-    <comment>ComaOnTheLastDayOfTheMonth description</comment>
+    <comment>CommaOnTheLastDayOfTheMonth description</comment>
   </data>
-  <data name="ComaOnTheLastWeekdayOfTheMonth" xml:space="preserve">
+  <data name="CommaOnTheLastWeekdayOfTheMonth" xml:space="preserve">
     <value>, 月の最後の平日</value>
     <comment>OnTheLastWeekdayOfTheMonth description</comment>
   </data>
@@ -260,37 +264,37 @@
     <value>{0} 日の直近の平日</value>
     <comment>WeekdayNearestDayX0 description</comment>
   </data>
-  <data name="ComaOnTheX0OfTheMonth" xml:space="preserve">
+  <data name="CommaOnTheX0OfTheMonth" xml:space="preserve">
     <value>, {0}</value>
-    <comment>ComaOnTheX0OfTheMonth description</comment>
+    <comment>CommaOnTheX0OfTheMonth description</comment>
   </data>
-  <data name="ComaEveryX0Days" xml:space="preserve">
+  <data name="CommaEveryX0Days" xml:space="preserve">
     <value>, {0} 日ごと</value>
-    <comment>ComaEveryX0Days description</comment>
+    <comment>CommaEveryX0Days description</comment>
   </data>
-  <data name="ComaBetweenDayX0AndX1OfTheMonth" xml:space="preserve">
+  <data name="CommaBetweenDayX0AndX1OfTheMonth" xml:space="preserve">
     <value>, 月の {0} 日から {1} 日の間</value>
     <comment>BetweenDayX0AndX1OfTheMonth description</comment>
   </data>
-  <data name="ComaOnDayX0OfTheMonth" xml:space="preserve">
+  <data name="CommaOnDayX0OfTheMonth" xml:space="preserve">
     <value>, {0} 日</value>
-    <comment>ComaOnDayX0OfTheMonth description</comment>
+    <comment>CommaOnDayX0OfTheMonth description</comment>
   </data>
   <data name="SpaceAndSpace" xml:space="preserve">
     <value> と </value>
     <comment>And description</comment>
   </data>
-  <data name="ComaEveryMinute" xml:space="preserve">
+  <data name="CommaEveryMinute" xml:space="preserve">
     <value>, 毎分</value>
-    <comment>ComaEveryMinute1 description</comment>
+    <comment>CommaEveryMinute1 description</comment>
   </data>
-  <data name="ComaEveryHour" xml:space="preserve">
+  <data name="CommaEveryHour" xml:space="preserve">
     <value>, 毎時</value>
-    <comment>ComaEveryHour description</comment>
+    <comment>CommaEveryHour description</comment>
   </data>
-  <data name="ComaEveryX0Years" xml:space="preserve">
+  <data name="CommaEveryX0Years" xml:space="preserve">
     <value>, {0} 年ごと</value>
-    <comment>ComaEveryX0Years description</comment>
+    <comment>CommaEveryX0Years description</comment>
   </data>
   <data name="CommaStartingX0" xml:space="preserve">
     <value>, {0}に開始</value>
@@ -308,7 +312,7 @@
     <value>, 月末から {0} 日前</value>
     <comment>CommaDaysBeforeTheLastDayOfTheMonth description</comment>
   </data>
-  <data name="ComaOnlyInYearX0" xml:space="preserve">
+  <data name="CommaOnlyInYearX0" xml:space="preserve">
     <value>, {0}</value>
   </data>
 </root>

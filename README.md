@@ -62,7 +62,7 @@ A `CronExpressionDescriptor.Options` object can be passed to `GetDescription`.  
 - **bool Verbose** - Whether to use a verbose description (Default: false)
 - **bool DayOfWeekStartIndexZero** - Whether to interpret cron expression DOW `1` as Sunday or Monday. (Default: true)
 - **?bool Use24HourTimeFormat** - If true, descriptions will use a [24-hour clock](https://en.wikipedia.org/wiki/24-hour_clock) (Default: false but some translations will default to true)
-- **string Locale** - The locale to use (Default: "en")
+- **string Locale** - The locale to use (Default: [Thread.CurrentUICulture](#currentuiculture))
 
 Example usage:
 
@@ -81,7 +81,7 @@ The following language translations are available:
  * English - en ([Brady Holt](https://github.com/bradymholt))
  * Chinese Simplified - zh-Hans (zh-CN) ([Star Peng](https://github.com/starpeng))
  * Chinese Traditional - zh-Hant (zh-TW) ([Ricky Chiang](https://github.com/metavige))
- * Czech - cz ([Jirka](https://github.com/Betacart))
+ * Czech - cs ([Jirka](https://github.com/Betacart))
  * Danish - da ([Rasmus Melchior Jacobsen](https://github.com/rmja))
  * Dutch - nl ([TotalMace](https://github.com/TotalMace))
  * Finnish - fi ([Mikael Rosenberg](https://github.com/MR77FI))
@@ -114,18 +114,6 @@ To use one of these translations, pass in the `Locale` option to `GetDescription
 ```csharp
 ExpressionDescriptor.GetDescription("0-10 11 * * *", new Options(){ Locale = "de" });
 > "Jede Minute zwischen 11:00 und 11:10"
-```
-
-Alternatively, you can call `ExpressionDescriptor.SetDefaultLocale("es");` first to set the default locale and then every usage will use this locale by default.
-
-```csharp
-ExpressionDescriptor.SetDefaultLocale("es");
-
-ExpressionDescriptor.GetDescription("*/45 * * * * *");
-> "Cada 45 segundos"
-
-ExpressionDescriptor.GetDescription("0-10 11 * * *");
-> "Cada minuto entre las 11:00 AM y las 11:10 AM"
 ```
 
 ### CurrentUICulture

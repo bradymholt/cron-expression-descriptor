@@ -282,7 +282,7 @@ namespace CronExpressionDescriptor
              return GetString("AtX0SecondsPastTheMinute");
            }
          }),
-         (s => GetString("ComaMinX0ThroughMinX1") ?? GetString("ComaX0ThroughX1"))
+         (s => GetString("CommaMinX0ThroughMinX1") ?? GetString("CommaX0ThroughX1"))
          );
 
       return description;
@@ -317,7 +317,7 @@ namespace CronExpressionDescriptor
               return GetString("AtX0MinutesPastTheHour");
             }
           }),
-          getRangeFormat: (s => GetString("ComaMinX0ThroughMinX1") ?? GetString("ComaX0ThroughX1"))
+          getRangeFormat: (s => GetString("CommaMinX0ThroughMinX1") ?? GetString("CommaX0ThroughX1"))
       );
 
       return description;
@@ -336,7 +336,7 @@ namespace CronExpressionDescriptor
              (s => string.Format(GetString("EveryX0Hours"), s)),
              (s => GetString("BetweenX0AndX1")),
              (s => GetString("AtX0")),
-             (s => GetString("ComaMinX0ThroughMinX1") ?? GetString("ComaX0ThroughX1"))
+             (s => GetString("CommaMinX0ThroughMinX1") ?? GetString("CommaX0ThroughX1"))
          );
 
       return description;
@@ -366,12 +366,12 @@ namespace CronExpressionDescriptor
           ?? GetNthDayListDescription(dowExpression)
           ?? GetSegmentDescription(
               dowExpression,
-              GetString("ComaEveryDay"),
+              GetString("CommaEveryDay"),
               GetSingleDayName,
-              (s => string.Format(GetString("ComaEveryX0DaysOfTheWeek"), s)),
-              (s => GetString("ComaX0ThroughX1")),
+              (s => string.Format(GetString("CommaEveryX0DaysOfTheWeek"), s)),
+              (s => GetString("CommaX0ThroughX1")),
               GetDayOfWeekFormat,
-              (s => GetString("ComaX0ThroughX1")));
+              (s => GetString("CommaX0ThroughX1")));
     }
 
     private string GetSingleDayName(string dayExpression)
@@ -402,19 +402,19 @@ namespace CronExpressionDescriptor
       {
         Match hashMatch = Regex.Match(dowExpression, @"#(\d+)");
         string ordinal = hashMatch.Success ? hashMatch.Groups[1].Value : string.Empty;
-        return string.Concat(GetString("ComaOnThe"), GetOrdinalDescription(ordinal), GetString("SpaceX0OfTheMonth"));
+        return string.Concat(GetString("CommaOnThe"), GetOrdinalDescription(ordinal), GetString("SpaceX0OfTheMonth"));
       }
 
       if (dowExpression.Contains("L"))
       {
-        return GetString("ComaOnTheLastX0OfTheMonth");
+        return GetString("CommaOnTheLastX0OfTheMonth");
       }
 
       // Standard cron fires when either DOM or DOW condition is met (OR logic).
       // If DOM is also specified (non-wildcard, non-?), use "or on" to reflect
       // the OR logic. Otherwise use "only on" when only DOW is constraining the schedule.
       bool isDomSpecified = m_expressionParts[3] != "*" && m_expressionParts[3] != "?";
-      return isDomSpecified ? GetString("ComaOrOnX0") : GetString("ComaOnlyOnX0");
+      return isDomSpecified ? GetString("CommaOrOnX0") : GetString("CommaOnlyOnX0");
     }
 
     // A DOW step with a specific (non-wildcard) base describes a weekly recurrence (e.g. "every 2 weeks,
@@ -436,17 +436,17 @@ namespace CronExpressionDescriptor
         return null;
       }
 
-      string intervalDesc = string.Format(GetString("ComaEveryX0Weeks"), stepPart);
+      string intervalDesc = string.Format(GetString("CommaEveryX0Weeks"), stepPart);
 
       if (basePart.Contains(","))
       {
         string daysContent = GetListDescription(basePart.Split(',')
             .Select(item => item.Contains("-")
-                ? GenerateBetweenSegmentDescription(item, s => GetString("ComaX0ThroughX1"), GetSingleDayName).TrimStart(',').TrimStart()
+                ? GenerateBetweenSegmentDescription(item, s => GetString("CommaX0ThroughX1"), GetSingleDayName).TrimStart(',').TrimStart()
                 : GetSingleDayName(item))
             .ToArray());
 
-        return intervalDesc + string.Format(GetString("ComaOnlyOnX0"), daysContent);
+        return intervalDesc + string.Format(GetString("CommaOnlyOnX0"), daysContent);
       }
 
       if (!basePart.Contains("-"))
@@ -465,8 +465,8 @@ namespace CronExpressionDescriptor
       // A range ending on Saturday was produced by normalizing a single DOW value (e.g. FRI/2 -> 5-6/2),
       // so it reads "only on <startDay>" rather than "<startDay> through Saturday".
       string dayDesc = rangeEnd == 6
-          ? string.Format(GetString("ComaOnlyOnX0"), GetSingleDayName(rangeParts[0]))
-          : GenerateBetweenSegmentDescription(basePart, s => GetString("ComaX0ThroughX1"), GetSingleDayName);
+          ? string.Format(GetString("CommaOnlyOnX0"), GetSingleDayName(rangeParts[0]))
+          : GenerateBetweenSegmentDescription(basePart, s => GetString("CommaX0ThroughX1"), GetSingleDayName);
 
       return intervalDesc + dayDesc;
     }
@@ -560,7 +560,7 @@ namespace CronExpressionDescriptor
       }
 
       string monthSuffix = GetString("SpaceX0OfTheMonth").Replace(" {0}", string.Empty).Replace("{0}", string.Empty);
-      return string.Concat(GetString("ComaOnThe"), dayOfWeekDescription, monthSuffix);
+      return string.Concat(GetString("CommaOnThe"), dayOfWeekDescription, monthSuffix);
     }
 
     /// <summary>
@@ -573,10 +573,10 @@ namespace CronExpressionDescriptor
           m_expressionParts[4],
           string.Empty,
          (s => new DateTime(DateTime.Now.Year, Convert.ToInt32(s), 1).ToString("MMMM", m_culture)),
-         (s => string.Format(GetString("ComaEveryX0Months"), s)),
-         (s => GetString("ComaMonthX0ThroughMonthX1") ?? GetString("ComaX0ThroughX1")),
-         (s => GetString("ComaOnlyInX0")),
-         (s => GetString("ComaMonthX0ThroughMonthX1") ?? GetString("ComaX0ThroughX1"))
+         (s => string.Format(GetString("CommaEveryX0Months"), s)),
+         (s => GetString("CommaMonthX0ThroughMonthX1") ?? GetString("CommaX0ThroughX1")),
+         (s => GetString("CommaOnlyInX0")),
+         (s => GetString("CommaMonthX0ThroughMonthX1") ?? GetString("CommaX0ThroughX1"))
       );
 
       return description;
@@ -594,11 +594,11 @@ namespace CronExpressionDescriptor
       switch (expression)
       {
         case "L":
-          description = GetString("ComaOnTheLastDayOfTheMonth");
+          description = GetString("CommaOnTheLastDayOfTheMonth");
           break;
         case "WL":
         case "LW":
-          description = GetString("ComaOnTheLastWeekdayOfTheMonth");
+          description = GetString("CommaOnTheLastWeekdayOfTheMonth");
           break;
         default:
           Regex weekDayNumberMatches = new Regex("(\\d{1,2}W)|(W\\d{1,2})");
@@ -609,7 +609,7 @@ namespace CronExpressionDescriptor
 
             string dayString = dayNumber == 1 ? GetString("FirstWeekday") :
                 String.Format(GetString("WeekdayNearestDayX0"), dayNumber);
-            description = String.Format(GetString("ComaOnTheX0OfTheMonth"), dayString);
+            description = String.Format(GetString("CommaOnTheX0OfTheMonth"), dayString);
 
             break;
           }
@@ -634,12 +634,12 @@ namespace CronExpressionDescriptor
             else
             {
               description = GetSegmentDescription(expression,
-                  GetString("ComaEveryDay"),
+                  GetString("CommaEveryDay"),
                   (s => s),
-                  (s => s == "1" ? GetString("ComaEveryDay") : GetString("ComaEveryX0Days")),
-                  (s => GetString("ComaBetweenDayX0AndX1OfTheMonth")),
-                  (s => GetString("ComaOnDayX0OfTheMonth")),
-                  (s => GetString("ComaX0ThroughX1"))
+                  (s => s == "1" ? GetString("CommaEveryDay") : GetString("CommaEveryX0Days")),
+                  (s => GetString("CommaBetweenDayX0AndX1OfTheMonth")),
+                  (s => GetString("CommaOnDayX0OfTheMonth")),
+                  (s => GetString("CommaX0ThroughX1"))
               );
               break;
             }
@@ -659,10 +659,10 @@ namespace CronExpressionDescriptor
           string.Empty,
          (s => Regex.IsMatch(s, @"^\d+$") ?
           new DateTime(Convert.ToInt32(s), 1, 1).ToString("yyyy") : s),
-         (s => string.Format(GetString("ComaEveryX0Years"), s)),
-         (s => GetString("ComaYearX0ThroughYearX1") ?? GetString("ComaX0ThroughX1")),
-         (s => GetString("ComaOnlyInYearX0")),
-         (s => GetString("ComaYearX0ThroughYearX1") ?? GetString("ComaX0ThroughX1"))
+         (s => string.Format(GetString("CommaEveryX0Years"), s)),
+         (s => GetString("CommaYearX0ThroughYearX1") ?? GetString("CommaX0ThroughX1")),
+         (s => GetString("CommaOnlyInYearX0")),
+         (s => GetString("CommaYearX0ThroughYearX1") ?? GetString("CommaX0ThroughX1"))
       );
 
       return description;
@@ -671,11 +671,11 @@ namespace CronExpressionDescriptor
     /// <summary>
     /// Generates the segment description
     /// <remarks>
-    /// Range expressions used the 'ComaX0ThroughX1' resource
+    /// Range expressions used the 'CommaX0ThroughX1' resource
     /// However Romanian language has different idioms for
-    /// 1. 'from number to number' (minutes, seconds, hours, days) => ComaMinX0ThroughMinX1 optional resource
-    /// 2. 'from month to month' ComaMonthX0ThroughMonthX1 optional resource
-    /// 3. 'from year to year' => ComaYearX0ThroughYearX1 optional resource
+    /// 1. 'from number to number' (minutes, seconds, hours, days) => CommaMinX0ThroughMinX1 optional resource
+    /// 2. 'from month to month' CommaMonthX0ThroughMonthX1 optional resource
+    /// 3. 'from year to year' => CommaYearX0ThroughYearX1 optional resource
     /// therefore <paramref name="getRangeFormat"/> was introduced
     /// </remarks>
     /// </summary>
@@ -863,9 +863,9 @@ namespace CronExpressionDescriptor
     {
       if (!useVerboseFormat)
       {
-        description = description.Replace(GetString("ComaEveryMinute"), string.Empty);
-        description = description.Replace(GetString("ComaEveryHour"), string.Empty);
-        description = description.Replace(GetString("ComaEveryDay"), string.Empty);
+        description = description.Replace(GetString("CommaEveryMinute"), string.Empty);
+        description = description.Replace(GetString("CommaEveryHour"), string.Empty);
+        description = description.Replace(GetString("CommaEveryDay"), string.Empty);
         description = Regex.Replace(description, @"\, ?$", "");
       }
 

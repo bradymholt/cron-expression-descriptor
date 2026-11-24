@@ -149,75 +149,75 @@
     <value>{0} - {1} välillä</value>
     <comment>BetweenX0AndX1 description</comment>
   </data>
-  <data name="ComaBetweenDayX0AndX1OfTheMonth" xml:space="preserve">
+  <data name="CommaBetweenDayX0AndX1OfTheMonth" xml:space="preserve">
     <value>, kuukauden päivien {0} ja {1} välillä</value>
     <comment>BetweenDayX0AndX1OfTheMonth description</comment>
   </data>
-  <data name="ComaEveryDay" xml:space="preserve">
+  <data name="CommaEveryDay" xml:space="preserve">
     <value>, joka päivä</value>
-    <comment>ComaEveryDay description</comment>
+    <comment>CommaEveryDay description</comment>
   </data>
-  <data name="ComaEveryHour" xml:space="preserve">
+  <data name="CommaEveryHour" xml:space="preserve">
     <value>, joka tunti</value>
-    <comment>ComaEveryHour description</comment>
+    <comment>CommaEveryHour description</comment>
   </data>
-  <data name="ComaEveryMinute" xml:space="preserve">
+  <data name="CommaEveryMinute" xml:space="preserve">
     <value>, joka minuutti</value>
-    <comment>ComaEveryMinute1 description</comment>
+    <comment>CommaEveryMinute1 description</comment>
   </data>
-  <data name="ComaEveryX0Days" xml:space="preserve">
+  <data name="CommaEveryX0Days" xml:space="preserve">
     <value>, joka {0}. päivä</value>
-    <comment>ComaEveryX0Days description</comment>
+    <comment>CommaEveryX0Days description</comment>
   </data>
-  <data name="ComaEveryX0DaysOfTheWeek" xml:space="preserve">
+  <data name="CommaEveryX0DaysOfTheWeek" xml:space="preserve">
     <value>, joka {0}. viikonpäivä</value>
     <comment>EveryX0DaysOfTheWeek description</comment>
   </data>
-  <data name="ComaEveryX0Months" xml:space="preserve">
+  <data name="CommaEveryX0Months" xml:space="preserve">
     <value>, joka {0}. kuukausi</value>
     <comment>EveryX0Months description</comment>
   </data>
-  <data name="ComaEveryX0Years" xml:space="preserve">
+  <data name="CommaEveryX0Years" xml:space="preserve">
     <value>, joka {0}. vuosi</value>
-    <comment>ComaEveryX0Years description</comment>
+    <comment>CommaEveryX0Years description</comment>
   </data>
-  <data name="ComaOnDayX0OfTheMonth" xml:space="preserve">
+  <data name="CommaOnDayX0OfTheMonth" xml:space="preserve">
     <value>, kuukauden {0} päivä</value>
-    <comment>ComaOnDayX0OfTheMonth description</comment>
+    <comment>CommaOnDayX0OfTheMonth description</comment>
   </data>
-  <data name="ComaOnlyInX0" xml:space="preserve">
+  <data name="CommaOnlyInX0" xml:space="preserve">
     <value>, vain {0}</value>
-    <comment>ComaOnlyInX0 description</comment>
+    <comment>CommaOnlyInX0 description</comment>
   </data>
-  <data name="ComaOnlyOnX0" xml:space="preserve">
+  <data name="CommaOnlyOnX0" xml:space="preserve">
     <value>, vain {0}</value>
     <comment>OnlyOnX0 description</comment>
   </data>
-  <data name="ComaOrOnX0" xml:space="preserve">
+  <data name="CommaOrOnX0" xml:space="preserve">
     <value>, tai {0}</value>
-    <comment>ComaOrOnX0 description - used when both day-of-month and day-of-week are specified (OR logic)</comment>
+    <comment>CommaOrOnX0 description - used when both day-of-month and day-of-week are specified (OR logic)</comment>
   </data>
-  <data name="ComaOnThe" xml:space="preserve">
+  <data name="CommaOnThe" xml:space="preserve">
     <value>, </value>
     <comment>OnThe description</comment>
   </data>
-  <data name="ComaOnTheLastDayOfTheMonth" xml:space="preserve">
+  <data name="CommaOnTheLastDayOfTheMonth" xml:space="preserve">
     <value>, kuukauden viimeisenä päivänä</value>
-    <comment>ComaOnTheLastDayOfTheMonth description</comment>
+    <comment>CommaOnTheLastDayOfTheMonth description</comment>
   </data>
-  <data name="ComaOnTheLastWeekdayOfTheMonth" xml:space="preserve">
+  <data name="CommaOnTheLastWeekdayOfTheMonth" xml:space="preserve">
     <value>, kuukauden viimeisenä viikonpäivänä</value>
     <comment>OnTheLastWeekdayOfTheMonth description</comment>
   </data>
-  <data name="ComaOnTheLastX0OfTheMonth" xml:space="preserve">
+  <data name="CommaOnTheLastX0OfTheMonth" xml:space="preserve">
     <value>, kuukauden viimeinen {0}</value>
     <comment>OnTheLastX0OfTheMonth description</comment>
   </data>
-  <data name="ComaOnTheX0OfTheMonth" xml:space="preserve">
+  <data name="CommaOnTheX0OfTheMonth" xml:space="preserve">
     <value>, kuukauden {0}</value>
-    <comment>ComaOnTheX0OfTheMonth description</comment>
+    <comment>CommaOnTheX0OfTheMonth description</comment>
   </data>
-  <data name="ComaX0ThroughX1" xml:space="preserve">
+  <data name="CommaX0ThroughX1" xml:space="preserve">
     <value>, {0} - {1}</value>
     <comment>X0ThroughX1 description</comment>
   </data>
@@ -304,7 +304,7 @@
     <value>viikonpäivä lähintä {0} päivää</value>
     <comment>WeekdayNearestDayX0 description</comment>
   </data>
-  <data name="ComaOnlyInYearX0" xml:space="preserve">
+  <data name="CommaOnlyInYearX0" xml:space="preserve">
     <value>, vain {0}</value>
   </data>
 </root>

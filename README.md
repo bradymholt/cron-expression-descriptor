@@ -1,5 +1,10 @@
-# Cron Expression Descriptor [![Build](https://github.com/bradymholt/cron-expression-descriptor/actions/workflows/build.yml/badge.svg)](https://github.com/bradymholt/cron-expression-descriptor/actions/workflows/build.yml) [![NuGet version](https://badge.fury.io/nu/CronExpressionDescriptor.svg)](https://badge.fury.io/nu/CronExpressionDescriptor)
+# Cron Expression Descriptor
 
+[![Build](https://github.com/bradymholt/cron-expression-descriptor/actions/workflows/build.yml/badge.svg)](https://github.com/bradymholt/cron-expression-descriptor/actions/workflows/build.yml)
+[![NuGet](https://img.shields.io/nuget/v/CronExpressionDescriptor.svg)](https://www.nuget.org/packages/CronExpressionDescriptor/)
+[![NuGet downloads](https://img.shields.io/nuget/dt/CronExpressionDescriptor.svg)](https://www.nuget.org/packages/CronExpressionDescriptor/)
+[![.NET Standard 2.0 | .NET 10](https://img.shields.io/badge/.NET-Standard%202.0%20%7C%2010.0-512BD4.svg)](#net-platform-support)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bradymholt/cron-expression-descriptor/blob/master/LICENSE)
 
 <img align="left" src="https://user-images.githubusercontent.com/759811/210273710-b13913e2-0a71-4d9d-94da-1fe538b8a73e.gif"/>
 
@@ -11,295 +16,205 @@
 
 A .NET library that converts cron expressions into human readable descriptions.
 
-```
-CronExpressionDescriptor.ExpressionDescriptor.GetDescription("* * * * *");
-> "Every minute"
+```csharp
+ExpressionDescriptor.GetDescription("0 23 ? * MON-FRI");
+// "At 11:00 PM, Monday through Friday"
 ```
 
-**Author**: Brady Holt (http://www.geekytidbits.com)
-**License**: [MIT](https://github.com/bradymholt/cron-expression-descriptor/blob/dotnet-core/LICENSE)
+**[Try it live →](https://bradymholt.github.io/cron-expression-descriptor/)**
+
+## Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Options](#options)
+- [Languages](#languages)
+- [Examples](#examples)
+- [.NET Platform Support](#net-platform-support)
+- [Ports](#ports)
+- [FAQ](#faq)
 
 ## Features
 
- * Supports all cron expression special characters including * / , - ? L W, #
- * Supports 5, 6 (w/ seconds or year), or 7 (w/ seconds and year) part cron expressions
- * Localization with support for 29 languages
- * Provides casing options (Sentence case, Title Case, lowercase, etc.)
- * Supports [Quartz Enterprise Scheduler .NET](https://www.quartz-scheduler.net/) cron expressions
+- Supports all cron expression special characters including `*` `/` `,` `-` `?` `L` `W` `#`
+- Supports 5, 6 (with seconds or year), or 7 (with seconds and year) part cron expressions
+- [30 languages](#languages)
+- Supports [Quartz.NET](https://www.quartz-scheduler.net/) cron expressions
+- 12 or 24-hour time
 
-## Demo
+## Installation
 
-[https://bradymholt.github.io/cron-expression-descriptor](https://bradymholt.github.io/cron-expression-descriptor/)
+```bash
+dotnet add package CronExpressionDescriptor
+```
 
-## Download
-
-Cron Expression Descriptor releases can be installed with **NuGet**.
-
-### Package Manager (Visual Studio)
-
-    Install-Package CronExpressionDescriptor
-
-### .NET CLI
-
-    dotnet add package CronExpressionDescriptor
-
-[Visit the NuGet Package page](https://www.nuget.org/packages/CronExpressionDescriptor/) for more info.
-
-View [Releases](https://github.com/bradymholt/cron-expression-descriptor/releases) for release version history.
+See the [NuGet package](https://www.nuget.org/packages/CronExpressionDescriptor/) and [release notes](https://github.com/bradymholt/cron-expression-descriptor/releases).
 
 ## Quick Start
 
 ```csharp
-CronExpressionDescriptor.ExpressionDescriptor.GetDescription("* * * * *");
-> "Every minute"
+using CronExpressionDescriptor;
+
+ExpressionDescriptor.GetDescription("*/5 15 * * MON-FRI");
+// "Every 5 minutes, between 03:00 PM and 03:59 PM, Monday through Friday"
 ```
 
 ## Options
 
-A `CronExpressionDescriptor.Options` object can be passed to `GetDescription`.  The following options are available:
+Pass an `Options` object to `GetDescription`:
 
-- **bool ThrowExceptionOnParseError** - If exception occurs when trying to parse expression and generate description, whether to throw or catch and output the Exception message as the description. (Default: true)
-- **bool Verbose** - Whether to use a verbose description (Default: false)
-- **bool DayOfWeekStartIndexZero** - Whether to interpret cron expression DOW `1` as Sunday or Monday. (Default: true)
-- **?bool Use24HourTimeFormat** - If true, descriptions will use a [24-hour clock](https://en.wikipedia.org/wiki/24-hour_clock) (Default: false but some translations will default to true)
-- **string Locale** - The locale to use (Default: [Thread.CurrentUICulture](#currentuiculture))
-
-Example usage:
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `ThrowExceptionOnParseError` | `bool` | `true` | Throw when the expression can't be described, or return the error message as the description |
+| `Verbose` | `bool` | `false` | Keep parts like ", every minute" that only restate the default |
+| `DayOfWeekStartIndexZero` | `bool` | `true` | Whether day of week `0` is Sunday (`true`) or `1` is Sunday (`false`) |
+| `Use24HourTimeFormat` | `bool?` | `null` | Use a [24-hour clock](https://en.wikipedia.org/wiki/24-hour_clock); when `null`, the locale decides |
+| `Locale` | `string` | `null` | The language to describe the expression in; when `null`, [`CurrentUICulture`](#currentuiculture) is used |
 
 ```csharp
-ExpressionDescriptor.GetDescription("0-10 11 * * *", new Options(){
+ExpressionDescriptor.GetDescription("0-10 11 * * *", new Options
+{
     DayOfWeekStartIndexZero = false,
     Use24HourTimeFormat = true,
     Locale = "fr"
 });
+// "Toutes les minutes entre 11:00 et 11:10"
 ```
 
-## i18n
+## Languages
 
-The following language translations are available:
-
- * English - en ([Brady Holt](https://github.com/bradymholt))
- * Chinese Simplified - zh-Hans (zh-CN) ([Star Peng](https://github.com/starpeng))
- * Chinese Traditional - zh-Hant (zh-TW) ([Ricky Chiang](https://github.com/metavige))
- * Czech - cs ([Jirka](https://github.com/Betacart))
- * Danish - da ([Rasmus Melchior Jacobsen](https://github.com/rmja))
- * Dutch - nl ([TotalMace](https://github.com/TotalMace))
- * Finnish - fi ([Mikael Rosenberg](https://github.com/MR77FI))
- * French - fr ([Arnaud TAMAILLON](https://github.com/Greybird))
- * German - de ([Michael Schuler](https://github.com/mschuler))
- * Hebrew - he ([Ariel Deil](https://github.com/arieldeil))
- * Hungarian - hu ([Varga Miklós](https://github.com/Micky2149))
- * Italian - it ([rinaldihno](https://github.com/rinaldihno))
- * Japanese - ja ([Alin Sarivan](https://github.com/asarivan))
- * Korean - ko ([Ion Mincu](https://github.com/ionmincu))
- * Norwegian - nb ([Siarhei Khalipski](https://github.com/KhalipskiSiarhei))
- * Persian (Farsi) - fa ([A. Bahrami](https://github.com/alirezakoo))
- * Polish - pl ([foka](https://github.com/foka))
- * Portuguese (Brazil) - pt-BR ([Renato Lima](https://github.com/natenho))
- * Romanian - ro ([Illegitimis](https://github.com/illegitimis))
- * Russian - ru ([LbISS](https://github.com/LbISS))
- * Slovenian - sl-SI ([Jani Bevk](https://github.com/jenzy))
- * Spanish - es ([Ivan Santos](https://github.com/ivansg))
- * Spanish (Mexico) - es-MX ([Ion Mincu](https://github.com/ionmincu))
- * Swedish - sv ([roobin](https://github.com/roobin))
- * Vietnamese - vi ([Nguyen Duc Son](https://github.com/ali33))
- * Turkish - tr ([Mustafa SADEDİL](https://github.com/sadedil))
- * Ukrainian - uk ([Taras](https://github.com/tbudurovych))
- * Greek - el ([hardra1n](https://github.com/Hardra1n))
- * Kazakh - kk ([hardra1n](https://github.com/Hardra1n))
- * Kyrgyz - ky ([Only Human](https://github.com/kgz77))
-
-To use one of these translations, pass in the `Locale` option to `GetDescription`.  For example, to get the description of `0-10 11 * * *` in German:
+Pass a `Locale` to describe an expression in another language:
 
 ```csharp
-ExpressionDescriptor.GetDescription("0-10 11 * * *", new Options(){ Locale = "de" });
-> "Jede Minute zwischen 11:00 und 11:10"
+ExpressionDescriptor.GetDescription("0-10 11 * * *", new Options { Locale = "de" });
+// "Jede Minute zwischen 11:00 und 11:10"
 ```
+
+| Language | Locale | Contributor |
+| --- | --- | --- |
+| English | `en` | [Brady Holt](https://github.com/bradymholt) |
+| Chinese (Simplified) | `zh-Hans` (`zh-CN`) | [Star Peng](https://github.com/starpeng) |
+| Chinese (Traditional) | `zh-Hant` (`zh-TW`) | [Ricky Chiang](https://github.com/metavige) |
+| Czech | `cs` | [Jirka](https://github.com/Betacart) |
+| Danish | `da` | [Rasmus Melchior Jacobsen](https://github.com/rmja) |
+| Dutch | `nl` | [TotalMace](https://github.com/TotalMace) |
+| Finnish | `fi` | [Mikael Rosenberg](https://github.com/MR77FI) |
+| French | `fr` | [Arnaud TAMAILLON](https://github.com/Greybird) |
+| German | `de` | [Michael Schuler](https://github.com/mschuler) |
+| Greek | `el` | [hardra1n](https://github.com/Hardra1n) |
+| Hebrew | `he-IL` | [Ariel Deil](https://github.com/arieldeil) |
+| Hungarian | `hu` | [Varga Miklós](https://github.com/Micky2149) |
+| Italian | `it` | [rinaldihno](https://github.com/rinaldihno) |
+| Japanese | `ja` | [Alin Sarivan](https://github.com/asarivan) |
+| Kazakh | `kk` | [hardra1n](https://github.com/Hardra1n) |
+| Korean | `ko` | [Ion Mincu](https://github.com/ionmincu) |
+| Kyrgyz | `ky` | [Only Human](https://github.com/kgz77) |
+| Norwegian | `nb` | [Siarhei Khalipski](https://github.com/KhalipskiSiarhei) |
+| Persian (Farsi) | `fa` | [A. Bahrami](https://github.com/alirezakoo) |
+| Polish | `pl` | [foka](https://github.com/foka) |
+| Portuguese (Brazil) | `pt` | [Renato Lima](https://github.com/natenho) |
+| Romanian | `ro` | [Illegitimis](https://github.com/illegitimis) |
+| Russian | `ru` | [LbISS](https://github.com/LbISS) |
+| Slovenian | `sl` | [Jani Bevk](https://github.com/jenzy) |
+| Spanish | `es` | [Ivan Santos](https://github.com/ivansg) |
+| Spanish (Mexico) | `es-MX` | [Ion Mincu](https://github.com/ionmincu) |
+| Swedish | `sv` | [roobin](https://github.com/roobin) |
+| Turkish | `tr` | [Mustafa SADEDİL](https://github.com/sadedil) |
+| Ukrainian | `uk` | [Taras](https://github.com/tbudurovych) |
+| Vietnamese | `vi` | [Nguyen Duc Son](https://github.com/ali33) |
+
+Want to add a language? See [CONTRIBUTING.md](https://github.com/bradymholt/cron-expression-descriptor/blob/master/CONTRIBUTING.md#i18n).
 
 ### CurrentUICulture
 
-If you are targeting a platform that [supports .NET Standard >= 2.0](https://github.com/dotnet/standard/blob/master/docs/versions.md), [Thread.CurrentUICulture](https://msdn.microsoft.com/en-us/library/system.threading.thread.currentuiculture(v=vs.110).aspx) is supported for determining the default locale, without explicitly passing it in with the `Locale` option, so the following will work:
+When no `Locale` is passed, [`Thread.CurrentUICulture`](https://learn.microsoft.com/en-us/dotnet/api/system.threading.thread.currentuiculture) decides the language:
 
 ```csharp
-// .NET Standard >= 2.0 only
-CultureInfo myCultureInfo = new CultureInfo("it-IT");
-Thread.CurrentThread.CurrentUICulture = myCultureInfo;
+Thread.CurrentThread.CurrentUICulture = new CultureInfo("it-IT");
 ExpressionDescriptor.GetDescription("* * * * *");
-> "Ogni minuto"
+// "Ogni minuto"
 ```
 
 ### Reducing build output size
 
-If you don't want to include all supported languages in your project build output, see instructions for setting the [SatelliteResourceLanguages property](https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props#satelliteresourcelanguages) in your project.
+To leave out languages you don't need, set the [`SatelliteResourceLanguages`](https://learn.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props#satelliteresourcelanguages) property in your project.
+
+## Examples
+
+| Expression | Description |
+| --- | --- |
+| `* * * * *` | Every minute |
+| `*/5 * * * *` | Every 5 minutes |
+| `0 * * * *` | Every hour |
+| `30 11 * * *` | At 11:30 AM |
+| `30 11 * * 1-5` | At 11:30 AM, Monday through Friday |
+| `0 23 ? * MON-FRI` | At 11:00 PM, Monday through Friday |
+| `0-10 11 * * *` | Every minute between 11:00 AM and 11:10 AM |
+| `30 6,14,16 * * *` | At 06:30 AM, 02:30 PM and 04:30 PM |
+| `*/5 15 * * MON-FRI` | Every 5 minutes, between 03:00 PM and 03:59 PM, Monday through Friday |
+| `23 12 15 * *` | At 12:23 PM, on day 15 of the month |
+| `* * * 3,6 *` | Every minute, only in March and June |
+| `23 12 * JAN-MAR *` | At 12:23 PM, January through March |
+| `* * * * MON#3` | Every minute, on the third Monday of the month |
+| `* * * * 4L` | Every minute, on the last Thursday of the month |
+| `*/5 * L JAN *` | Every 5 minutes, on the last day of the month, only in January |
+| `* * * * * *` | Every second |
+| `*/45 * * * * *` | Every 45 seconds |
+| `30 02 14 * * *` | At 02:02:30 PM |
+| `5-10 30-35 10-12 * * *` | Seconds 5 through 10 past the minute, minutes 30 through 35 past the hour, between 10:00 AM and 12:59 PM |
+| `0 30 10-13 ? * WED,FRI` | At 30 minutes past the hour, between 10:00 AM and 01:59 PM, only on Wednesday and Friday |
+| `2-59/3 1,9,22 11-26 1-6 ?` | Every 3 minutes, minutes 2 through 59 past the hour, at 01:00 AM, 09:00 AM, and 10:00 PM, between day 11 and 26 of the month, January through June |
+| `* * * * * 2013,2014` | Every minute, only in 2013 and 2014 |
+| `23 12 * JAN-FEB * 2013-2014` | At 12:23 PM, January through February, 2013 through 2014 |
 
 ## .NET Platform Support
 
-The NuGet package contains a library targeting .NET Standard 2.0 and .NET 10.0.  This allows the library to be consumed by applications running on the following .NET platforms:
+The NuGet package targets .NET Standard 2.0 and .NET 10.0, so it runs on:
 
 - .NET Core >= 2.0 and .NET >= 5.0
 - .NET Framework >= 4.6.1
 - Mono >= 5.4
-- ([More](https://github.com/dotnet/standard/blob/master/docs/versions.md))
+- [Other .NET Standard 2.0 platforms](https://learn.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-0)
 
-If your application is running on a platform that only supports .NET Standard 1.x (e.g. .NET Core 1.x or .NET Framework 4.5), you can use version `2.52.0`, the last version targeting .NET Standard 1.1.
+### Older platforms
 
-If your application is targeting an earlier version of .NET Framework (i.e. 4.0 or 3.5), you can use version `1.21.2` as it has support back to .NET Framework 3.5.  To install this version, run `Install-Package CronExpressionDescriptor -Version 1.21.2`.
+| You need | Use version |
+| --- | --- |
+| .NET Standard 1.x (e.g. .NET Core 1.x, .NET Framework 4.5) | `2.52.0` |
+| .NET Framework 3.5 or 4.0 | `1.21.2` |
+| A [strong-named](https://learn.microsoft.com/en-us/dotnet/standard/assembly/strong-named) assembly | `1.21.2` |
 
-### Strong Name Signing
-
-If you need an assembly that is [signed with a strong name](https://msdn.microsoft.com/en-us/library/wd40t7ad(v=vs.100).aspx), you can use version 1.21.2 as it is currently the latest version signed with a strong name.
+```bash
+dotnet add package CronExpressionDescriptor --version 1.21.2
+```
 
 ## Ports
 
-This library has been ported to several other languages.
+This library has been ported to several other languages:
 
- - JavaScript - [https://github.com/bradymholt/cRonstrue](https://github.com/bradymholt/cRonstrue)
- - Java - [https://github.com/RedHogs/cron-parser](https://github.com/RedHogs/cron-parser)
- - Java - [https://github.com/voidburn/cron-expression-descriptor](https://github.com/voidburn/cron-expression-descriptor)
- - Ruby - [https://github.com/alpinweis/cronex](https://github.com/alpinweis/cronex)
- - Python - [https://github.com/Salamek/cron-descriptor](https://github.com/Salamek/cron-descriptor)
- - PHP - [https://github.com/panlatent/cron-expression-descriptor](https://github.com/panlatent/cron-expression-descriptor)
- - Go - [https://github.com/lnquy/cron](https://github.com/lnquy/cron)
- - Rust - [https://github.com/cflockhart/cron-descriptor-rust](https://github.com/cflockhart/cron-descriptor-rust)
- - Swift - [https://github.com/gooop/cron-descriptor-swift](https://github.com/gooop/cron-descriptor-swift)
+| Language | Project |
+| --- | --- |
+| JavaScript | [bradymholt/cRonstrue](https://github.com/bradymholt/cRonstrue) |
+| Java | [RedHogs/cron-parser](https://github.com/RedHogs/cron-parser) |
+| Java | [voidburn/cron-expression-descriptor](https://github.com/voidburn/cron-expression-descriptor) |
+| Ruby | [alpinweis/cronex](https://github.com/alpinweis/cronex) |
+| Python | [Salamek/cron-descriptor](https://github.com/Salamek/cron-descriptor) |
+| PHP | [panlatent/cron-expression-descriptor](https://github.com/panlatent/cron-expression-descriptor) |
+| Go | [lnquy/cron](https://github.com/lnquy/cron) |
+| Rust | [cflockhart/cron-descriptor-rust](https://github.com/cflockhart/cron-descriptor-rust) |
+| Swift | [gooop/cron-descriptor-swift](https://github.com/gooop/cron-descriptor-swift) |
 
-## Frequently Asked Questions
+## FAQ
 
-> The cron expression I am passing in is not valid and this library is giving strange output.  What should I do?
+**The cron expression I'm passing in is not valid and the output is strange. What should I do?**
 
-This library does not do full validation of cron expressions and assumes the expression passed in is valid. If you need to validate an expression consider using a library like [Cronos](https://github.com/HangfireIO/Cronos).
+This library does not fully validate cron expressions and assumes the expression is valid. To validate one, use a library like [Cronos](https://github.com/HangfireIO/Cronos).
 
-> Does this library support showing the "next" scheduled date?
+**Can this library show the next scheduled date?**
 
-No, this is not supported.
+No. [Cronos](https://github.com/HangfireIO/Cronos) can.
 
-## Examples
+## License
 
-ExpressionDescriptor.GetDescription("* * * * *");
-> "Every minute"
-
-ExpressionDescriptor.GetDescription("*/1 * * * *");
-> "Every minute"
-
-ExpressionDescriptor.GetDescription("0 0/1 * * * ?");
-> "Every minute"
-
-ExpressionDescriptor.GetDescription("0 0 * * * ?");
-> "Every hour"
-
-ExpressionDescriptor.GetDescription("0 0 0/1 * * ?");
-> "Every hour"
-
-ExpressionDescriptor.GetDescription("0 23 ? * MON-FRI");
-> "At 11:00 PM, Monday through Friday"
-
-ExpressionDescriptor.GetDescription("* * * * * *");
-> "Every second"
-
-ExpressionDescriptor.GetDescription("*/45 * * * * *");
-> "Every 45 seconds"
-
-ExpressionDescriptor.GetDescription("*/5 * * * *");
-> "Every 5 minutes"
-
-ExpressionDescriptor.GetDescription("0 0/10 * * * ?");
-> "Every 10 minutes"
-
-ExpressionDescriptor.GetDescription("0 */5 * * * *");
-> "Every 5 minutes"
-
-ExpressionDescriptor.GetDescription("30 11 * * 1-5");
-> "At 11:30 AM, Monday through Friday"
-
-ExpressionDescriptor.GetDescription("30 11 * * *");
-> "At 11:30 AM"
-
-ExpressionDescriptor.GetDescription("0-10 11 * * *");
-> "Every minute between 11:00 AM and 11:10 AM"
-
-ExpressionDescriptor.GetDescription("* * * 3 *");
-> "Every minute, only in March"
-
-ExpressionDescriptor.GetDescription("* * * 3,6 *");
-> "Every minute, only in March and June"
-
-ExpressionDescriptor.GetDescription("30 14,16 * * *");
-> "At 02:30 PM and 04:30 PM"
-
-ExpressionDescriptor.GetDescription("30 6,14,16 * * *");
-> "At 06:30 AM, 02:30 PM and 04:30 PM"
-
-ExpressionDescriptor.GetDescription("46 9 * * 1");
-> "At 09:46 AM, only on Monday"
-
-ExpressionDescriptor.GetDescription("23 12 15 * *");
-> "At 12:23 PM, on day 15 of the month"
-
-ExpressionDescriptor.GetDescription("23 12 * JAN *");
-> "At 12:23 PM, only in January"
-
-ExpressionDescriptor.GetDescription("23 12 ? JAN *");
-> "At 12:23 PM, only in January"
-
-ExpressionDescriptor.GetDescription("23 12 * JAN-FEB *");
-> "At 12:23 PM, January through February"
-
-ExpressionDescriptor.GetDescription("23 12 * JAN-MAR *");
-> "At 12:23 PM, January through March"
-
-ExpressionDescriptor.GetDescription("23 12 * * SUN");
-> "At 12:23 PM, only on Sunday"
-
-ExpressionDescriptor.GetDescription("*/5 15 * * MON-FRI");
-> "Every 5 minutes, between 03:00 PM and 03:59 PM, Monday through Friday"
-
-ExpressionDescriptor.GetDescription("* * * * MON#3");
-> "Every minute, on the third Monday of the month"
-
-ExpressionDescriptor.GetDescription("* * * * 4L");
-> "Every minute, on the last Thursday of the month"
-
-ExpressionDescriptor.GetDescription("*/5 * L JAN *");
-> "Every 5 minutes, on the last day of the month, only in January"
-
-ExpressionDescriptor.GetDescription("30 02 14 * * *");
-> "At 02:02:30 PM"
-
-ExpressionDescriptor.GetDescription("5-10 * * * * *");
-> "Seconds 5 through 10 past the minute"
-
-ExpressionDescriptor.GetDescription("5-10 30-35 10-12 * * *");
-> "Seconds 5 through 10 past the minute, minutes 30 through 35 past the hour, between 10:00 AM and 12:00 PM"
-
-ExpressionDescriptor.GetDescription("30 */5 * * * *");
-> "At 30 seconds past the minute, every 05 minutes"
-
-ExpressionDescriptor.GetDescription("0 30 10-13 ? * WED,FRI");
-> "At 30 minutes past the hour, between 10:00 AM and 01:00 PM, only on Wednesday and Friday"
-
-ExpressionDescriptor.GetDescription("10 0/5 * * * ?");
-> "At 10 seconds past the minute, every 05 minutes"
-
-ExpressionDescriptor.GetDescription("2-59/3 1,9,22 11-26 1-6 ?");
-> "Every 03 minutes, minutes 2 through 59 past the hour, at 01:00 AM, 09:00 AM, and 10:00 PM, between day 11 and 26 of the month, January through June"
-
-ExpressionDescriptor.GetDescription("0 0 6 1/1 * ?");
-> "At 06:00 AM"
-
-ExpressionDescriptor.GetDescription("0 5 0/1 * * ?");
-> "At 05 minutes past the hour"
-
-ExpressionDescriptor.GetDescription("* * * * * * 2013");
-> "Every second, only in 2013"
-
-ExpressionDescriptor.GetDescription("* * * * * 2013");
-> "Every minute, only in 2013"
-
-ExpressionDescriptor.GetDescription("* * * * * 2013,2014");
-> "Every minute, only in 2013 and 2014"
-
-ExpressionDescriptor.GetDescription("23 12 * JAN-FEB * 2013-2014");
-> "At 12:23 PM, January through February, 2013 through 2014"
-
-ExpressionDescriptor.GetDescription("23 12 * JAN-MAR * 2013-2015");
-> "At 12:23 PM, January through March, 2013 through 2015"
+[MIT](https://github.com/bradymholt/cron-expression-descriptor/blob/master/LICENSE) © [Brady Holt](https://www.geekytidbits.com)

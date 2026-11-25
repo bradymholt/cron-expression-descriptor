@@ -1,0 +1,17 @@
+name: Translation
+description: Report a translation problem or request a new language
+body:
+  - type: input
+    id: language
+    attributes:
+      label: Language and locale
+      placeholder: "German (de)"
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: For a wrong translation, include the expression, the current description and the correct one. To add a language, see CONTRIBUTING.md.
+    validations:
+      required: true

@@ -1,76 +1,216 @@
 @page "/"
 @using System.Globalization;
+@using System.Text.RegularExpressions;
 @inject NavigationManager NavigationManager
 
-<form>
-    <fieldset>
-        <label for="locale">Language</label>
-        <select id="locale" name="locale" @onchange="LocaleChanged" value="@locale">
-            <option value="en-US">English</option>
-            <option value="zh-CN">Chinese (Simplified)</option>
-            <option value="zh-TW">Chinese (Traditional)</option>
-            <option value="da">Danish</option>
-            <option value="nl">Dutch</option>
-            <option value="fi">Finnish</option>
-            <option value="fr">French</option>
-            <option value="de">German</option>
-            <option value="hu">Hungarian</option>
-            <option value="it">Italian</option>
-            <option value="ja">Japanese</option>
-            <option value="ky-KG">Kyrgyz</option>
-            <option value="nb">Norwegian</option>
-            <option value="pl">Polish</option>
-            <option value="pt">Portuguese</option>
-            <option value="ro">Romanian</option>
-            <option value="ru">Russian</option>
-            <option value="sl-SI">Slovenian</option>
-            <option value="es">Spanish</option>
-            <option value="sv">Swedish</option>
-            <option value="tr">Turkish</option>
-            <option value="uk">Ukrainian</option>
-        </select>
-        <label for="expression">Cron Expression</label>
-        <input id="expression" name="expression" @bind="expression" placeholder="" type="text" />
-        <button type="button" class="button button-black" id="describe" @onclick="UpdateDescription">Describe</button>
-    </fieldset>
-</form>
-<h3>Output</h3>
-<blockquote>
-    <div id="description" class="description">
-        @description
+<section class="card">
+    <label for="expression">Cron expression</label>
+    <input id="expression" class="expression" type="text" spellcheck="false" autocomplete="off" autofocus
+           placeholder="* * * * *"
+           @bind="expression" @bind:event="oninput" @bind:after="Update" />
+
+    @if (fields.Count > 0)
+    {
+        <ul class="fields" aria-label="Fields">
+            @foreach (var (label, value) in fields)
+            {
+                <li><code>@value</code><span>@label</span></li>
+            }
+        </ul>
+    }
+
+    <output id="description" class="description @(isError ? "error" : "")" for="expression" aria-live="polite" dir="auto">@description</output>
+
+    <div class="options">
+        <div class="option">
+            <label for="locale">Language</label>
+            <select id="locale" value="@locale" @onchange="LocaleChanged">
+                @foreach (var (languageCode, languageName) in Languages)
+                {
+                    <option value="@languageCode">@languageName</option>
+                }
+            </select>
+        </div>
+        <div class="option">
+            <label for="time-format">Time format</label>
+            <select id="time-format" @bind="timeFormat" @bind:after="Update">
+                <option value="">Language default</option>
+                <option value="12">12-hour</option>
+                <option value="24">24-hour</option>
+            </select>
+        </div>
+        <div class="checks">
+            <label class="check"><input type="checkbox" @bind="verbose" @bind:after="Update" /> Verbose</label>
+            <label class="check"><input type="checkbox" @bind="dayOfWeekStartsAtOne" @bind:after="Update" /> Day of week 1 is Sunday</label>
+        </div>
     </div>
-</blockquote>
+</section>
+
+<section>
+    <h2>Examples</h2>
+    <ul class="examples">
+        @foreach (var example in Examples)
+        {
+            <li><button type="button" class="example" @onclick="() => UseExample(example)"><code>@example</code></button></li>
+        }
+    </ul>
+</section>
 
 @code {
-    private string locale = "en-US";
+    private static readonly (string Code, string Name)[] Languages =
+    {
+        ("en", "English"),
+        ("zh-Hans", "Chinese (Simplified)"),
+        ("zh-Hant", "Chinese (Traditional)"),
+        ("cs", "Czech"),
+        ("da", "Danish"),
+        ("nl", "Dutch"),
+        ("fi", "Finnish"),
+        ("fr", "French"),
+        ("de", "German"),
+        ("el", "Greek"),
+        ("he-IL", "Hebrew"),
+        ("hu", "Hungarian"),
+        ("it", "Italian"),
+        ("ja", "Japanese"),
+        ("kk", "Kazakh"),
+        ("ko", "Korean"),
+        ("ky", "Kyrgyz"),
+        ("nb", "Norwegian"),
+        ("fa", "Persian (Farsi)"),
+        ("pl", "Polish"),
+        ("pt", "Portuguese (Brazil)"),
+        ("ro", "Romanian"),
+        ("ru", "Russian"),
+        ("sl", "Slovenian"),
+        ("es", "Spanish"),
+        ("es-MX", "Spanish (Mexico)"),
+        ("sv", "Swedish"),
+        ("tr", "Turkish"),
+        ("uk", "Ukrainian"),
+        ("vi", "Vietnamese"),
+    };
+
+    private static readonly string[] Examples =
+    {
+        "*/5 * * * *",
+        "0 23 ? * MON-FRI",
+        "30 6,14,16 * * *",
+        "0 0 1 * *",
+        "* * * * MON#3",
+        "0 12 L * *",
+        "*/45 * * * * *",
+        "23 12 * JAN-FEB * 2013-2014",
+    };
+
+    private static readonly string[] AllFieldLabels = { "Second", "Minute", "Hour", "Day of month", "Month", "Day of week", "Year" };
+
     [SupplyParameterFromQuery(Name = "expression")]
     public string QueryExpression { get; set; }
 
+    [SupplyParameterFromQuery(Name = "locale")]
+    public string QueryLocale { get; set; }
+
+    [SupplyParameterFromQuery(Name = "time")]
+    public string QueryTimeFormat { get; set; }
+
+    [SupplyParameterFromQuery(Name = "verbose")]
+    public bool? QueryVerbose { get; set; }
+
+    [SupplyParameterFromQuery(Name = "dow1")]
+    public bool? QueryDayOfWeekStartsAtOne { get; set; }
+
     private string expression = "0 23 ? * MON-FRI";
+    private string locale = "en";
+    private string timeFormat = "";
+    private bool verbose;
+    private bool dayOfWeekStartsAtOne;
     private string description = "";
-    private void UpdateDescription()
+    private bool isError;
+    private List<(string Label, string Value)> fields = new();
+
+    protected override void OnInitialized()
     {
-        var options = new CronExpressionDescriptor.Options()
+        expression = QueryExpression ?? expression;
+        locale = Languages.Any(l => l.Code == QueryLocale) ? QueryLocale : locale;
+        timeFormat = QueryTimeFormat is "12" or "24" ? QueryTimeFormat : "";
+        verbose = QueryVerbose ?? false;
+        dayOfWeekStartsAtOne = QueryDayOfWeekStartsAtOne ?? false;
+        Describe();
+    }
+
+    private void Update()
+    {
+        Describe();
+        NavigationManager.NavigateTo(GetShareUri(locale), replace: true);
+    }
+
+    private void Describe()
+    {
+        fields = GetFields(expression);
+
+        if (string.IsNullOrWhiteSpace(expression))
         {
-            ThrowExceptionOnParseError = false,
-            Verbose = false,
-            DayOfWeekStartIndexZero = true,
+            description = "Enter a cron expression";
+            isError = true;
+            return;
+        }
+
+        var options = new CronExpressionDescriptor.Options
+        {
+            Locale = locale,
+            Verbose = verbose,
+            DayOfWeekStartIndexZero = !dayOfWeekStartsAtOne,
+            Use24HourTimeFormat = timeFormat switch { "12" => false, "24" => true, _ => null },
         };
 
-        this.description = CronExpressionDescriptor.ExpressionDescriptor.GetDescription(this.expression, options);
+        try
+        {
+            description = CronExpressionDescriptor.ExpressionDescriptor.GetDescription(expression, options);
+            isError = false;
+        }
+        catch (Exception ex)
+        {
+            description = ex.Message;
+            isError = true;
+        }
+    }
+
+    // Mirrors ExpressionParser's rule for whether a 6 part expression ends in a year or starts with seconds
+    private static List<(string, string)> GetFields(string expression)
+    {
+        var parts = (expression ?? "").Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        var labels = parts.Length switch
+        {
+            5 => AllFieldLabels[1..6],
+            6 when Regex.IsMatch(parts[5], @"\d{4}$") || parts[4] == "?" || parts[2] == "?" => AllFieldLabels[1..7],
+            6 => AllFieldLabels[0..6],
+            7 => AllFieldLabels,
+            _ => Array.Empty<string>(),
+        };
+        return labels.Zip(parts).ToList();
+    }
+
+    private void UseExample(string example)
+    {
+        expression = example;
+        Update();
     }
 
     private void LocaleChanged(ChangeEventArgs e)
     {
-        NavigationManager.NavigateTo($"?locale={Uri.EscapeDataString(e.Value.ToString())}&expression={Uri.EscapeDataString(this.expression)}", true);
+        NavigationManager.NavigateTo(GetShareUri(e.Value?.ToString()), forceLoad: true, replace: true);
     }
 
-    protected override void OnInitialized()
+    private string GetShareUri(string localeCode)
     {
-        this.expression = QueryExpression ?? this.expression;
-
-        this.locale = CultureInfo.DefaultThreadCurrentCulture?.ToString() ?? this.locale;
-
-        this.UpdateDescription();
+        return NavigationManager.GetUriWithQueryParameters(new Dictionary<string, object>
+        {
+            ["expression"] = expression,
+            ["locale"] = localeCode == "en" ? null : localeCode,
+            ["time"] = string.IsNullOrEmpty(timeFormat) ? null : timeFormat,
+            ["verbose"] = verbose ? true : null,
+            ["dow1"] = dayOfWeekStartsAtOne ? true : null,
+        });
     }
 }

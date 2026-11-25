@@ -1,0 +1,34 @@
+name: Bug report
+description: An expression is described incorrectly, or the library throws
+body:
+  - type: input
+    id: expression
+    attributes:
+      label: Cron expression
+      placeholder: "0 23 ? * MON-FRI"
+    validations:
+      required: true
+  - type: input
+    id: actual
+    attributes:
+      label: Actual description
+      description: What GetDescription returned (or the exception message)
+    validations:
+      required: true
+  - type: input
+    id: expected
+    attributes:
+      label: Expected description
+    validations:
+      required: true
+  - type: textarea
+    id: options
+    attributes:
+      label: Options
+      description: Any Options you passed (Locale, Use24HourTimeFormat, DayOfWeekStartIndexZero, Verbose)
+      render: csharp
+  - type: input
+    id: version
+    attributes:
+      label: Package version
+      placeholder: "3.5.0"

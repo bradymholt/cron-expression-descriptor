@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Try the demo
+    url: https://bradymholt.github.io/cron-expression-descriptor/
+    about: Check how an expression is described before filing an issue
+  - name: JavaScript version (cRonstrue)
+    url: https://github.com/bradymholt/cRonstrue/issues
+    about: Issues with the JavaScript port belong in its own repo

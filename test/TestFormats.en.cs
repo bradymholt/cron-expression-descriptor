@@ -534,6 +534,32 @@ namespace CronExpressionDescriptor.Test
     }
 
     [Fact]
+    public void TestListWithWildcardItem()
+    {
+      // A list that has "*" as one of its items covers every value, so "*,5" is "*"
+      Assert.Equal("Every minute", GetDescription("*,5 * * * *"));
+      Assert.Equal("Every hour", GetDescription("0 *,5 * * *"));
+      Assert.Equal("Every 5 minutes", GetDescription("*/5 9,* * * *"));
+      Assert.Equal("At 12:00 AM", GetDescription("0 0 *,15 * *"));
+      Assert.Equal("At 12:00 AM", GetDescription("0 0 * *,3 *"));
+      Assert.Equal("At 12:00 AM", GetDescription("0 0 * * MON,*"));
+      Assert.Equal("At 12:00 PM", GetDescription("0 0 12 ? * * 2030,*"));
+    }
+
+    [Fact]
+    public void TestDayListWithWildcardItemAndOtherDayPart()
+    {
+      // Day of month starts with "*", so it is combined with day of week using AND
+      Assert.Equal("At 12:00 AM, only on Monday", GetDescription("0 0 *,5 * MON"));
+      Assert.Equal("At 12:00 AM, on day 5 of the month", GetDescription("0 0 5 * *,MON"));
+
+      // Neither day part starts with "*", so they are combined using OR, and a list with "*" matches every day
+      Assert.Equal("At 12:00 AM", GetDescription("0 0 5,* * MON"));
+      Assert.Equal("At 12:00 AM", GetDescription("0 0 10,5,* * MON"));
+      Assert.Equal("At 12:00 AM", GetDescription("0 0 5 * MON,*"));
+    }
+
+    [Fact]
     public void TestDayOfWeekListMixingPlainAndNthDaysWithDayOfMonth()
     {
       // Day-of-month and day-of-week are OR'ed, so the plain group reads "or on".

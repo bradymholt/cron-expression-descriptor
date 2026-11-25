@@ -20,17 +20,39 @@ namespace CronExpressionDescriptor.Test
       var resourceManager = new ResourceManager("CronExpressionDescriptor.Resources", assembly);
       string[] requiredKeys = GetKeys(resourceManager, CultureInfo.InvariantCulture).Except(OptionalKeys).ToArray();
 
-      string[] locales = Directory.GetDirectories(Path.GetDirectoryName(assembly.Location))
-          .Where(dir => File.Exists(Path.Combine(dir, "CronExpressionDescriptor.resources.dll")))
-          .Select(Path.GetFileName)
-          .ToArray();
-      Assert.NotEmpty(locales);
-
-      foreach (string locale in locales)
+      foreach (string locale in GetLocales())
       {
         string[] missingKeys = requiredKeys.Except(GetKeys(resourceManager, new CultureInfo(locale))).ToArray();
         Assert.True(missingKeys.Length == 0, $"{locale} is missing: {string.Join(", ", missingKeys)}");
       }
+    }
+
+    [Fact]
+    public void TestEveryLocaleIsListedInReadmeAndDemo()
+    {
+      string root = Path.GetDirectoryName(typeof(TestResources).Assembly.Location);
+      while (!File.Exists(Path.Combine(root, "CronExpressionDescriptor.sln")))
+      {
+        root = Path.GetDirectoryName(root);
+      }
+      string readme = File.ReadAllText(Path.Combine(root, "README.md"));
+      string demo = File.ReadAllText(Path.Combine(root, "demo", "Pages", "Index.razor"));
+
+      foreach (string locale in GetLocales())
+      {
+        Assert.True(readme.Contains($"| `{locale}`"), $"{locale} is missing from the README language table");
+        Assert.True(demo.Contains($"(\"{locale}\","), $"{locale} is missing from the demo language list");
+      }
+    }
+
+    private static string[] GetLocales()
+    {
+      string[] locales = Directory.GetDirectories(Path.GetDirectoryName(typeof(ExpressionDescriptor).Assembly.Location))
+          .Where(dir => File.Exists(Path.Combine(dir, "CronExpressionDescriptor.resources.dll")))
+          .Select(Path.GetFileName)
+          .ToArray();
+      Assert.NotEmpty(locales);
+      return locales;
     }
 
     private static string[] GetKeys(ResourceManager resourceManager, CultureInfo culture)

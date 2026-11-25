@@ -115,6 +115,27 @@ namespace CronExpressionDescriptor
       expressionParts[3] = expressionParts[3].Replace("?", "*");
       expressionParts[5] = expressionParts[5].Replace("?", "*");
 
+      // Day of month and day of week are combined with AND only when one of them starts with "*" (as in Vixie cron
+      // and cronie), otherwise with OR. So "0 0 5,* * MON" runs every day, while "0 0 *,5 * MON" runs on Mondays.
+      foreach (int[] dayParts in new[] { new[] { 3, 5 }, new[] { 5, 3 } })
+      {
+        string part = expressionParts[dayParts[0]];
+        string otherPart = expressionParts[dayParts[1]];
+        if (HasWildcardListItem(part) && !part.StartsWith("*") && !otherPart.StartsWith("*"))
+        {
+          expressionParts[dayParts[1]] = "*";
+        }
+      }
+
+      // A list that has "*" as one of its items covers every value ("*,5" is "*")
+      for (int i = 0; i < expressionParts.Length; i++)
+      {
+        if (HasWildcardListItem(expressionParts[i]))
+        {
+          expressionParts[i] = "*";
+        }
+      }
+
       // Convert 0/, 1/ to */ (seconds, minutes and hours start at 0; the rest start at 1)
       for (int i = 0; i < expressionParts.Length; i++)
       {
@@ -234,6 +255,11 @@ namespace CronExpressionDescriptor
           }
         }
       }
+    }
+
+    private static bool HasWildcardListItem(string expressionPart)
+    {
+      return expressionPart.Contains(",") && expressionPart.Split(',').Contains("*");
     }
   }
 }

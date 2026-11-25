@@ -2,12 +2,11 @@
 
 Thanks for being willing to contribute!
 
-**Working on your first Pull Request?** You can learn how from this *free* series
-[How to Contribute to an Open Source Project on GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github).
+**Working on your first Pull Request?** You can learn how from GitHub's guide to [contributing to a project](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project).
 
 ## Project setup
 
-1. Ensure [.NET Core SDK](https://www.microsoft.com/net/download/core#/sdk) version >=  2.0.0 is installed
+1. Install the [.NET SDK](https://dotnet.microsoft.com/download) version listed in [global.json](global.json)
 2. Fork and clone the repo
 3. `dotnet restore` to install dependencies
 4. Create a branch for your PR
@@ -16,13 +15,25 @@ Thanks for being willing to contribute!
 
 If you are adding a language translation you will need to do the following:
 
-1. Determine the language culture name (LCN) to use.  You can reference [Table of Language Culture Names, Codes, and ISO Values Method](https://msdn.microsoft.com/en-us/library/ee825488(v=cs.20).aspx) for help.  More information about Resource files can be found [here](https://learn.microsoft.com/en-us/dotnet/core/extensions/localization#resource-files).
-2. Add a `Resources.[LCN].resx` file than provides the translation.  You can use one of the existing ones as a pattern.  In general, please use only the first part of the culture name which denotes the language itself and not the country/region.  This will allow the translation to be used more widely.  However, if the language is very much specific to a country/region then using the second part of of the name is appropriate.  For example, there are 5 culture names for Germany (de-AT, de-DE, dr-LI, de-LU, de-CH) but we only have a resource file named `Resources.de.resx`.  This allows this translation to be used for any of the specific culture names that would be passed in at runtime.  However, for Chinese, we have `Resources.zh-CN.resx` defined because the translation is Chinese Simplified and specific to China itself.
-3. Create a TestsFormats.[LCN].cs file in CronExpressionDescriptor.Test project with tests for the translation.  You can use one of the existing test files as a pattern.
-4. Add the translation to the `README.md` i18n list and the <Description/> section of the CronExpressionDescriptor/CronExpressionDescriptor.csproj file
+1. Determine the culture name to use. See [Localization in .NET](https://learn.microsoft.com/en-us/dotnet/core/extensions/localization) and the [list of culture names](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-lcid/a9eac961-e77d-41a6-90a5-ce1a8b0cdb9c) for help. In general, please use only the language part of the culture name (e.g. `de`, not `de-DE`) so the translation is used for every region that speaks the language. Use a region-specific name (e.g. `es-MX`) only when the translation is specific to that region.
+2. Add a `lib/Resources.[culture].resx` file that provides the translation. You can use one of the existing ones as a pattern.
+3. Add a `test/TestFormats.[culture].cs` file with tests for the translation. You can use one of the existing test files as a pattern.
+4. Add the translation to:
+   - the language table in [README.md](README.md)
+   - the language list in [demo/Pages/Index.razor](demo/Pages/Index.razor)
+   - the `<Description>` in [lib/CronExpressionDescriptor.csproj](lib/CronExpressionDescriptor.csproj)
 
-## Committing and Pushing changes
+   `dotnet test` fails if a translation is missing from the README or the demo.
 
-1. Run tests with `dotnet test` from the `CronExpressionDescriptor.Test` folder (or, `dotnet test test/Test.csproj` from root folder).
-2. Commit and push changes up to GitHub
-1. [Create a Pull Request](https://help.github.com/articles/creating-a-pull-request/).  Please use a simple description that explains the changes in brief.
+## Running the demo site
+
+```bash
+cd demo
+dotnet watch
+```
+
+## Committing and pushing changes
+
+1. Run tests with `dotnet test test/Test.csproj` from the root folder.
+2. Commit and push changes up to GitHub.
+3. [Create a Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request). Please use a simple description that explains the changes in brief.

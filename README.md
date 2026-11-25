@@ -3,7 +3,7 @@
 [![Build](https://github.com/bradymholt/cron-expression-descriptor/actions/workflows/build.yml/badge.svg)](https://github.com/bradymholt/cron-expression-descriptor/actions/workflows/build.yml)
 [![NuGet](https://img.shields.io/nuget/v/CronExpressionDescriptor.svg)](https://www.nuget.org/packages/CronExpressionDescriptor/)
 [![NuGet downloads](https://img.shields.io/nuget/dt/CronExpressionDescriptor.svg)](https://www.nuget.org/packages/CronExpressionDescriptor/)
-[![.NET Standard 2.0 | .NET 10](https://img.shields.io/badge/.NET-Standard%202.0%20%7C%2010.0-512BD4.svg)](#net-platform-support)
+[![.NET 10 | .NET Standard 2.0](https://img.shields.io/badge/.NET%2010%20%7C%20.NET%20Standard%202.0-512BD4.svg)](#net-platform-support)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bradymholt/cron-expression-descriptor/blob/master/LICENSE)
 
 <img align="left" src="https://user-images.githubusercontent.com/759811/210273710-b13913e2-0a71-4d9d-94da-1fe538b8a73e.gif"/>

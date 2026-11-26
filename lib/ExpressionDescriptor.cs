@@ -207,6 +207,7 @@ namespace CronExpressionDescriptor
       }
       else if (secondsExpression == "" && hourExpression.Contains(",")
           && hourExpression.IndexOf('-') == -1
+          && hourExpression.IndexOf('/') == -1
           && minuteExpression.IndexOfAny(m_specialCharacters) == -1)
       {
         //hours list with single minute (o.e. 30 6,14,16)
@@ -272,7 +273,7 @@ namespace CronExpressionDescriptor
            int i = 0;
            if (int.TryParse(s, out i))
            {
-             return s == "0"
+             return s == "0" && !m_expressionParts[0].Contains(",")
                     ? string.Empty
                     : (i < 20)
                         ? GetString("AtX0SecondsPastTheMinute")
@@ -308,7 +309,8 @@ namespace CronExpressionDescriptor
             int i = 0;
             if (int.TryParse(s, out i))
             {
-              return s == "0" && secondsExpression == ""
+              // minute 0 is left to the hour description, unless it is one item of a list (e.g. */10,0)
+              return s == "0" && secondsExpression == "" && !m_expressionParts[1].Contains(",")
                       ? string.Empty
                       : (i < 20)
                           ? GetString("AtX0MinutesPastTheHour")
@@ -366,6 +368,7 @@ namespace CronExpressionDescriptor
       return GetWeeklyIntervalDescription(dowExpression)
           ?? GetMixedDayGroupsDescription(dowExpression)
           ?? GetNthDayListDescription(dowExpression)
+          ?? GetSteppedDayListDescription(dowExpression)
           ?? GetSegmentDescription(
               dowExpression,
               GetString("CommaEveryDay"),
@@ -433,7 +436,9 @@ namespace CronExpressionDescriptor
       string basePart = slashParts[0];
       string stepPart = slashParts[1];
 
-      if (basePart == "*")
+      // A step followed by more list items (e.g. 1-5/2,6) or on * (e.g. 1,*/2) is described item by
+      // item instead.
+      if (basePart.Contains("*") || stepPart.Contains(","))
       {
         return null;
       }
@@ -515,6 +520,33 @@ namespace CronExpressionDescriptor
       }
 
       return GetListDescription(groupDescriptions);
+    }
+
+    // A list with a step in it (e.g. */2,1 or 1-5/2,6) describes each item on its own, since the step
+    // only applies to its own item. When the day of month is also set, plain days after the first item
+    // are just named ("every 2 days of the week and Monday") rather than reading "and or on Monday".
+    private string GetSteppedDayListDescription(string dowExpression)
+    {
+      if (!dowExpression.Contains(",") || !dowExpression.Contains("/"))
+      {
+        return null;
+      }
+
+      bool isDomSpecified = m_expressionParts[3] != "*" && m_expressionParts[3] != "?";
+
+      return GetListDescription(dowExpression.Split(',')
+          .Select((item, i) =>
+          {
+            if (i == 0)
+            {
+              return GetDayOfWeekDescription(item);
+            }
+
+            return isDomSpecified && item.IndexOfAny(new char[] { '/', '-', '#', 'L' }) == -1
+                ? GetSingleDayName(item)
+                : GetDayOfWeekDescription(item).TrimStart(',').TrimStart();
+          })
+          .ToArray());
     }
 
     private string GetNthDayListDescription(string dowExpression)
@@ -709,6 +741,21 @@ namespace CronExpressionDescriptor
       else if (expression.IndexOfAny(new char[] { '/', '-', ',' }) == -1)
       {
         description = string.Format(getDescriptionFormat(expression), getSingleItemDescription(expression));
+      }
+      else if (expression.Contains(",") && expression.Contains("/"))
+      {
+        // A step only applies to its own list item (e.g. */10,5 is every 10 minutes, plus minute 5),
+        // so each item is described on its own.
+        string[] itemDescriptions = expression.Split(',')
+            .Select((segment, i) =>
+            {
+              string itemDescription = GetSegmentDescription(segment, allDescription, getSingleItemDescription,
+                  getIntervalDescriptionFormat, getBetweenDescriptionFormat, getDescriptionFormat, getRangeFormat);
+              return i > 0 && itemDescription.StartsWith(", ") ? itemDescription.Substring(2) : itemDescription;
+            })
+            .ToArray();
+
+        description = GetListDescription(itemDescriptions);
       }
       else if (expression.Contains("/"))
       {

@@ -560,6 +560,33 @@ namespace CronExpressionDescriptor.Test
     }
 
     [Fact]
+    public void TestListWithStepItem()
+    {
+      // A step only applies to its own list item, so each item is described on its own
+      Assert.Equal("Every 10 minutes and at 5 minutes past the hour", GetDescription("*/10,5 * * * *"));
+      Assert.Equal("At 5 minutes past the hour and every 10 minutes", GetDescription("5,*/10 * * * *"));
+      Assert.Equal("Every 10 minutes and at 0 minutes past the hour", GetDescription("*/10,0 * * * *"));
+      Assert.Equal("Every 10 minutes, minutes 0 through 30 past the hour and at 45 minutes past the hour", GetDescription("0-30/10,45 * * * *"));
+      Assert.Equal("Every 20 seconds and at 5 seconds past the minute", GetDescription("*/20,5 * * * * *"));
+      Assert.Equal("Every 6 hours and at 01:00 AM", GetDescription("0 */6,1 * * *"));
+      Assert.Equal("Every 2 hours, between 01:00 AM and 05:59 AM and at 08:00 AM", GetDescription("0 1-5/2,8 * * *"));
+      Assert.Equal("At 12:00 AM, every 5 days and on day 3 of the month", GetDescription("0 0 */5,3 * *"));
+      Assert.Equal("At 12:00 AM, on day 1 of the month, every 3 months and only in February", GetDescription("0 0 1 */3,2 *"));
+    }
+
+    [Fact]
+    public void TestDayOfWeekListWithStepItem()
+    {
+      Assert.Equal("At 12:00 PM, every 2 days of the week, Monday through Friday and only on Saturday", GetDescription("0 12 * * 1-5/2,6"));
+      Assert.Equal("At 12:00 PM, only on Monday and every 2 days of the week", GetDescription("0 12 * * MON,*/2"));
+      Assert.Equal("At 12:00 PM, every 2 days of the week, only on Monday, and only on Wednesday", GetDescription("0 12 * * */2,1,3"));
+
+      // With day of month set, the plain days are only named, so the list doesn't read "and or on Monday"
+      Assert.Equal("At 12:00 PM, on day 10 of the month, every 2 days of the week and Monday", GetDescription("0 12 10 * */2,1"));
+      Assert.Equal("At 12:00 PM, on day 10 of the month, every 2 days of the week, Monday through Friday and Saturday", GetDescription("0 12 10 * 1-5/2,6"));
+    }
+
+    [Fact]
     public void TestDayOfWeekListMixingPlainAndNthDaysWithDayOfMonth()
     {
       // Day-of-month and day-of-week are OR'ed, so the plain group reads "or on".

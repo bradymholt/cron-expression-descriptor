@@ -225,6 +225,16 @@ namespace CronExpressionDescriptor.Test
     }
 
     [Fact]
+    public void TestLastDayOffsetInList()
+    {
+      Assert.Equal("At 12:00 AM, on day 1 of the month and 3 days before the last day of the month", GetDescription("0 0 1,L-3 * *"));
+      Assert.Equal("At 12:00 AM, on day 1 and 15 of the month and 3 days before the last day of the month", GetDescription("0 0 L-3,1,15 * *"));
+      Assert.Equal("At 12:00 AM, on the last day of the month and 1 days before the last day of the month", GetDescription("0 0 L-1,L * *"));
+      Assert.Equal("At 12:00 AM, 3 days before the last day of the month and 1 days before the last day of the month", GetDescription("0 0 L-3,L-1 * *"));
+      Assert.Equal("At 12:00 AM, between day 1 and 5 of the month and 2 days before the last day of the month", GetDescription("0 0 1-5,L-2 * *"));
+    }
+
+    [Fact]
     public void TestLastWeekdayOfTheMonth()
     {
       Assert.Equal("Every minute, on the last weekday of the month", GetDescription("* * LW * *"));

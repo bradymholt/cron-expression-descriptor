@@ -590,8 +590,34 @@ namespace CronExpressionDescriptor
     /// <returns>The DAYOFMONTH description</returns>
     protected string GetDayOfMonthDescription()
     {
+      return GetDayOfMonthDescription(m_expressionParts[3]);
+    }
+
+    private static bool IsLastDayOffset(string dayOfMonthItem)
+    {
+      return Regex.IsMatch(dayOfMonthItem, @"^L-\d{1,2}$");
+    }
+
+    private string GetDayOfMonthDescription(string expression)
+    {
       string description = null;
-      string expression = m_expressionParts[3];
+
+      // A list with L-n items (e.g. 1,L-3) runs on each of them, so describe the L-n items on their own.
+      // Otherwise the L-n match below takes the whole list and the other items are lost.
+      string[] dayOfMonthItems = expression.Split(',');
+      string[] lastDayOffsetItems = dayOfMonthItems.Where(IsLastDayOffset).ToArray();
+      if (dayOfMonthItems.Length > 1 && lastDayOffsetItems.Length > 0)
+      {
+        string[] otherItems = dayOfMonthItems.Where(s => !IsLastDayOffset(s)).ToArray();
+        string[] parts = (otherItems.Length > 0 ? new[] { string.Join(",", otherItems) } : new string[0])
+            .Concat(lastDayOffsetItems)
+            .Select(GetDayOfMonthDescription)
+            .Where(s => !string.IsNullOrEmpty(s))
+            .Select((s, i) => i == 0 ? s : GetString("SpaceAndSpace") + s.TrimStart(',').TrimStart())
+            .ToArray();
+
+        return string.Concat(parts);
+      }
 
       switch (expression)
       {
